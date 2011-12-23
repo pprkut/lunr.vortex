@@ -7,6 +7,7 @@ set_include_path(
     $base . "/system/config:" .
     $base . "/system:" .
     $base . "/tests:" .
+    $base . "/tests/system:" .
     get_include_path()
 );
 
