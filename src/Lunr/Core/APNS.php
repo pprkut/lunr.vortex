@@ -16,7 +16,7 @@
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
-namespace Lunr\Libraries\Core;
+namespace Lunr\Core;
 
 /**
  * Apple Push Notifications System Library

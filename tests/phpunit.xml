@@ -13,7 +13,10 @@
     </testsuites>
     <filter>
         <whitelist>
-            <directory>../system/libraries/</directory>
+            <directory>../src/</directory>
+            <exclude>
+                <directory>../src/Lunr/Core/Tests/</directory>
+            </exclude>
         </whitelist>
     </filter>
     <logging>

@@ -14,9 +14,9 @@
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
-namespace Lunr\Libraries\Core;
+namespace Lunr\Core;
 
-use Lunr\Libraries\Network\Curl;
+use Lunr\Network\Curl;
 
 /**
  * Android (C2DM) Push Notifications System Library
