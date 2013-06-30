@@ -6,16 +6,18 @@
             syntaxCheck="false"
             forceCoversAnnotation="true"
             mapTestClassNameToCoveredClassName="true"
-            colors="true">
+            colors="true"
+            verbose="true">
+    <php>
+        <ini name="zend.enable_gc" value="0" />
+    </php>
     <testsuites>
-        <testsuite name="Lunr Testsuite">
-        </testsuite>
     </testsuites>
     <filter>
         <whitelist>
             <directory>../src/Lunr/</directory>
             <exclude>
-                <directory>../src/Lunr/Core/Tests/</directory>
+                <directory>../src/Lunr/Vortex/Tests/</directory>
             </exclude>
         </whitelist>
     </filter>
