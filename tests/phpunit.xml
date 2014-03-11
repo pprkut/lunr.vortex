@@ -34,6 +34,10 @@
             <file>src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherBaseTest.php</file>
             <file>src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherSetTest.php</file>
             <file>src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherPushTest.php</file>
+            <file>src/Lunr/Vortex/PAP/Tests/PAPPayloadBaseTest.php</file>
+            <file>src/Lunr/Vortex/PAP/Tests/PAPPayloadGetTest.php</file>
+            <file>src/Lunr/Vortex/PAP/Tests/PAPPayloadSetTest.php</file>
+            <file>src/Lunr/Vortex/PAP/Tests/PAPPayloadTest.php</file>
         </testsuite>
     </testsuites>
     <filter>
@@ -43,6 +47,7 @@
                 <directory>../src/Lunr/Vortex/Tests/</directory>
                 <directory>../src/Lunr/Vortex/GCM/Tests/</directory>
                 <directory>../src/Lunr/Vortex/MPNS/Tests/</directory>
+                <directory>../src/Lunr/Vortex/PAP/Tests/</directory>
             </exclude>
         </whitelist>
     </filter>
