@@ -17,6 +17,9 @@
             <file>src/Lunr/Vortex/Email/Tests/EmailPayloadGetTest.php</file>
             <file>src/Lunr/Vortex/Email/Tests/EmailPayloadSetTest.php</file>
             <file>src/Lunr/Vortex/Email/Tests/EmailPayloadTest.php</file>
+            <file>src/Lunr/Vortex/Email/Tests/EmailResponseErrorTest.php</file>
+            <file>src/Lunr/Vortex/Email/Tests/EmailResponseSetTest.php</file>
+            <file>src/Lunr/Vortex/Email/Tests/EmailResponseSuccessTest.php</file>
             <file>src/Lunr/Vortex/GCM/Tests/GCMDispatcherBaseTest.php</file>
             <file>src/Lunr/Vortex/GCM/Tests/GCMDispatcherPushTest.php</file>
             <file>src/Lunr/Vortex/GCM/Tests/GCMDispatcherSetTest.php</file>
@@ -55,6 +58,7 @@
             <directory>../src/Lunr/</directory>
             <exclude>
                 <directory>../src/Lunr/Vortex/Tests/</directory>
+                <directory>../src/Lunr/Vortex/Email/Tests/</directory>
                 <directory>../src/Lunr/Vortex/GCM/Tests/</directory>
                 <directory>../src/Lunr/Vortex/Email/Tests/</directory>
                 <directory>../src/Lunr/Vortex/MPNS/Tests/</directory>
