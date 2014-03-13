@@ -13,6 +13,10 @@
     </php>
     <testsuites>
         <testsuite name="Vortex">
+            <file>src/Lunr/Vortex/Email/Tests/EmailPayloadBaseTest.php</file>
+            <file>src/Lunr/Vortex/Email/Tests/EmailPayloadGetTest.php</file>
+            <file>src/Lunr/Vortex/Email/Tests/EmailPayloadSetTest.php</file>
+            <file>src/Lunr/Vortex/Email/Tests/EmailPayloadTest.php</file>
             <file>src/Lunr/Vortex/GCM/Tests/GCMDispatcherBaseTest.php</file>
             <file>src/Lunr/Vortex/GCM/Tests/GCMDispatcherPushTest.php</file>
             <file>src/Lunr/Vortex/GCM/Tests/GCMDispatcherSetTest.php</file>
@@ -52,6 +56,7 @@
             <exclude>
                 <directory>../src/Lunr/Vortex/Tests/</directory>
                 <directory>../src/Lunr/Vortex/GCM/Tests/</directory>
+                <directory>../src/Lunr/Vortex/Email/Tests/</directory>
                 <directory>../src/Lunr/Vortex/MPNS/Tests/</directory>
                 <directory>../src/Lunr/Vortex/PAP/Tests/</directory>
             </exclude>
