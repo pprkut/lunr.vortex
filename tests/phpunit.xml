@@ -9,61 +9,61 @@
             colors="true"
             verbose="true">
     <php>
-        <ini name="zend.enable_gc" value="0" />
+        <ini name="zend.enable_gc" value="1" />
     </php>
     <testsuites>
         <testsuite name="Vortex">
-            <file>src/Lunr/Vortex/APNS/Tests/APNSPayloadBaseTest.php</file>
-            <file>src/Lunr/Vortex/APNS/Tests/APNSPayloadGetTest.php</file>
-            <file>src/Lunr/Vortex/APNS/Tests/APNSPayloadSetTest.php</file>
-            <file>src/Lunr/Vortex/APNS/Tests/APNSResponseSetTest.php</file>
-            <file>src/Lunr/Vortex/APNS/Tests/APNSResponseSuccessTest.php</file>
-            <file>src/Lunr/Vortex/APNS/Tests/APNSResponseTest.php</file>
-            <file>src/Lunr/Vortex/APNS/Tests/APNSDispatcherBaseTest.php</file>
-            <file>src/Lunr/Vortex/APNS/Tests/APNSDispatcherPushTest.php</file>
-            <file>src/Lunr/Vortex/APNS/Tests/APNSDispatcherSetTest.php</file>
-            <file>src/Lunr/Vortex/APNS/Tests/APNSDispatcherTest.php</file>
-            <file>src/Lunr/Vortex/Email/Tests/EmailPayloadBaseTest.php</file>
-            <file>src/Lunr/Vortex/Email/Tests/EmailPayloadGetTest.php</file>
-            <file>src/Lunr/Vortex/Email/Tests/EmailPayloadSetTest.php</file>
-            <file>src/Lunr/Vortex/Email/Tests/EmailPayloadTest.php</file>
-            <file>src/Lunr/Vortex/Email/Tests/EmailResponseErrorTest.php</file>
-            <file>src/Lunr/Vortex/Email/Tests/EmailResponseSetTest.php</file>
-            <file>src/Lunr/Vortex/Email/Tests/EmailResponseSuccessTest.php</file>
-            <file>src/Lunr/Vortex/Email/Tests/EmailDispatcherPushTest.php</file>
-            <file>src/Lunr/Vortex/Email/Tests/EmailDispatcherSetTest.php</file>
-            <file>src/Lunr/Vortex/Email/Tests/EmailDispatcherTest.php</file>
-            <file>src/Lunr/Vortex/GCM/Tests/GCMDispatcherBaseTest.php</file>
-            <file>src/Lunr/Vortex/GCM/Tests/GCMDispatcherPushTest.php</file>
-            <file>src/Lunr/Vortex/GCM/Tests/GCMDispatcherSetTest.php</file>
-            <file>src/Lunr/Vortex/GCM/Tests/GCMDispatcherTest.php</file>
-            <file>src/Lunr/Vortex/GCM/Tests/GCMPayloadBaseTest.php</file>
-            <file>src/Lunr/Vortex/GCM/Tests/GCMPayloadGetTest.php</file>
-            <file>src/Lunr/Vortex/GCM/Tests/GCMPayloadSetTest.php</file>
-            <file>src/Lunr/Vortex/GCM/Tests/GCMResponseErrorTest.php</file>
-            <file>src/Lunr/Vortex/GCM/Tests/GCMResponseSetTest.php</file>
-            <file>src/Lunr/Vortex/GCM/Tests/GCMResponseSuccessTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSPayloadTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSToastPayloadSetTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSToastPayloadGetTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSTilePayloadSetTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSTilePayloadGetTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSResponseErrorTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSResponseSuccessTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSResponseSetTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherBaseTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherSetTest.php</file>
-            <file>src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherPushTest.php</file>
-            <file>src/Lunr/Vortex/PAP/Tests/PAPPayloadBaseTest.php</file>
-            <file>src/Lunr/Vortex/PAP/Tests/PAPPayloadGetTest.php</file>
-            <file>src/Lunr/Vortex/PAP/Tests/PAPPayloadSetTest.php</file>
-            <file>src/Lunr/Vortex/PAP/Tests/PAPResponseErrorTest.php</file>
-            <file>src/Lunr/Vortex/PAP/Tests/PAPResponseInvalidXMLTest.php</file>
-            <file>src/Lunr/Vortex/PAP/Tests/PAPResponseSetTest.php</file>
-            <file>src/Lunr/Vortex/PAP/Tests/PAPResponseSuccessTest.php</file>
-            <file>src/Lunr/Vortex/PAP/Tests/PAPDispatcherPushTest.php</file>
-            <file>src/Lunr/Vortex/PAP/Tests/PAPDispatcherSetTest.php</file>
-            <file>src/Lunr/Vortex/PAP/Tests/PAPDispatcherTest.php</file>
+            <file>../src/Lunr/Vortex/APNS/Tests/APNSPayloadBaseTest.php</file>
+            <file>../src/Lunr/Vortex/APNS/Tests/APNSPayloadGetTest.php</file>
+            <file>../src/Lunr/Vortex/APNS/Tests/APNSPayloadSetTest.php</file>
+            <file>../src/Lunr/Vortex/APNS/Tests/APNSResponseSetTest.php</file>
+            <file>../src/Lunr/Vortex/APNS/Tests/APNSResponseSuccessTest.php</file>
+            <file>../src/Lunr/Vortex/APNS/Tests/APNSResponseTest.php</file>
+            <file>../src/Lunr/Vortex/APNS/Tests/APNSDispatcherBaseTest.php</file>
+            <file>../src/Lunr/Vortex/APNS/Tests/APNSDispatcherPushTest.php</file>
+            <file>../src/Lunr/Vortex/APNS/Tests/APNSDispatcherSetTest.php</file>
+            <file>../src/Lunr/Vortex/APNS/Tests/APNSDispatcherTest.php</file>
+            <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadBaseTest.php</file>
+            <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadGetTest.php</file>
+            <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadSetTest.php</file>
+            <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadTest.php</file>
+            <file>../src/Lunr/Vortex/Email/Tests/EmailResponseErrorTest.php</file>
+            <file>../src/Lunr/Vortex/Email/Tests/EmailResponseSetTest.php</file>
+            <file>../src/Lunr/Vortex/Email/Tests/EmailResponseSuccessTest.php</file>
+            <file>../src/Lunr/Vortex/Email/Tests/EmailDispatcherPushTest.php</file>
+            <file>../src/Lunr/Vortex/Email/Tests/EmailDispatcherSetTest.php</file>
+            <file>../src/Lunr/Vortex/Email/Tests/EmailDispatcherTest.php</file>
+            <file>../src/Lunr/Vortex/GCM/Tests/GCMDispatcherBaseTest.php</file>
+            <file>../src/Lunr/Vortex/GCM/Tests/GCMDispatcherPushTest.php</file>
+            <file>../src/Lunr/Vortex/GCM/Tests/GCMDispatcherSetTest.php</file>
+            <file>../src/Lunr/Vortex/GCM/Tests/GCMDispatcherTest.php</file>
+            <file>../src/Lunr/Vortex/GCM/Tests/GCMPayloadBaseTest.php</file>
+            <file>../src/Lunr/Vortex/GCM/Tests/GCMPayloadGetTest.php</file>
+            <file>../src/Lunr/Vortex/GCM/Tests/GCMPayloadSetTest.php</file>
+            <file>../src/Lunr/Vortex/GCM/Tests/GCMResponseErrorTest.php</file>
+            <file>../src/Lunr/Vortex/GCM/Tests/GCMResponseSetTest.php</file>
+            <file>../src/Lunr/Vortex/GCM/Tests/GCMResponseSuccessTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSPayloadTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSToastPayloadSetTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSToastPayloadGetTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSTilePayloadSetTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSTilePayloadGetTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSResponseErrorTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSResponseSuccessTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSResponseSetTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherBaseTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherSetTest.php</file>
+            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherPushTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadBaseTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadGetTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadSetTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseErrorTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseInvalidXMLTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseSetTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseSuccessTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherPushTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherSetTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherTest.php</file>
         </testsuite>
     </testsuites>
     <filter>
