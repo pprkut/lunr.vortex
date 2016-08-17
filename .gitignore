@@ -9,3 +9,4 @@ build
 # ignore external interactions
 src/ApnsPHP
 src/Psr
+src/PHPMailer
