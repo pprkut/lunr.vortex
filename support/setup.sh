@@ -10,17 +10,17 @@ if ! [ -e "$TMP" ]; then
 fi
 
 # interactions download locations
-PSRLOG="https://github.com/php-fig/log/archive/1.0.0.tar.gz"
+PSRLOG="https://github.com/php-fig/log/archive/1.0.2.tar.gz"
 APNSPHP="https://github.com/M2Mobi/ApnsPHP/archive/b9c04fdfdf63da714fbb06e4151d939e0e9fdccb.tar.gz"
-PHPMAILER="https://github.com/PHPMailer/PHPMailer/archive/v6.0.0rc2.tar.gz"
+PHPMAILER="https://github.com/PHPMailer/PHPMailer/archive/v6.0.0rc4.tar.gz"
 REQUESTS="https://github.com/rmccue/Requests/archive/v1.7.0.tar.gz"
 
 if ! [ -e "$DESTDIR/Psr/Log" ]; then
   cd "$TMP"
     wget --content-disposition "$PSRLOG"
-    tar xvf log-1.0.0.tar.gz
+    tar xvf log-1.0.2.tar.gz
 
-    mv log-1.0.0/Psr "$DESTDIR/"
+    mv log-1.0.2/Psr "$DESTDIR/"
   cd -
 fi
 
@@ -41,10 +41,10 @@ fi
 if ! [ -e "$DESTDIR/PHPMailer" ]; then
   cd "$TMP"
     wget --content-disposition "$PHPMAILER"
-    tar xvf PHPMailer-6.0.0rc2.tar.gz
+    tar xvf PHPMailer-6.0.0rc4.tar.gz
 
     mkdir -p "$DESTDIR/PHPMailer"
-    mv PHPMailer-6.0.0rc2/src "$DESTDIR/PHPMailer/PHPMailer"
+    mv PHPMailer-6.0.0rc4/src "$DESTDIR/PHPMailer/PHPMailer"
   cd -
 fi
 
