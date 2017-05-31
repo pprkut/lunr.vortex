@@ -11,3 +11,4 @@ src/ApnsPHP
 src/PHPMailer
 src/Psr
 src/Requests
+vendor

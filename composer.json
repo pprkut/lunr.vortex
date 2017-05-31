@@ -1,0 +1,30 @@
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/M2Mobi/ApnsPHP.git"
+    }
+  ],
+  "require": {
+    "psr/log": "~1.0.2",
+    "duccio/apns-php": "dev-master#2f5965c37568a26084d7544947cc0883ad2dac0d",
+    "PHPMailer/PHPMailer": "~6.0.0rc4",
+    "rmccue/Requests": "~1.7.0",
+    "php": "5.6.*"
+  },
+  "suggest": {
+    "ext-http": "Needed for HTTP support in Corona, needed to get hostname in Shadow when parsing data",
+    "ext-apn": "Needed for push notification support in Vortex",
+    "ext-uopz": "Needed for unit tests on PHP 7 as a replacement for runkit"
+  },
+  "require-dev": {
+    "ext-runkit": "~1.0.4",
+    "ext-xdebug": "~2.4"
+  },
+  "config": {
+    "optimize-autoloader": true
+  },
+  "autoload": {
+    "psr-4": {"Lunr\\": "src/Lunr/"}
+  }
+}
