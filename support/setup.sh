@@ -11,7 +11,7 @@ fi
 
 # interactions download locations
 PSRLOG="https://github.com/php-fig/log/archive/1.0.2.tar.gz"
-APNSPHP="https://github.com/M2Mobi/ApnsPHP/archive/b9c04fdfdf63da714fbb06e4151d939e0e9fdccb.tar.gz"
+APNSPHP="https://github.com/M2Mobi/ApnsPHP/archive/2f5965c37568a26084d7544947cc0883ad2dac0d.tar.gz"
 PHPMAILER="https://github.com/PHPMailer/PHPMailer/archive/v6.0.0rc4.tar.gz"
 REQUESTS="https://github.com/rmccue/Requests/archive/v1.7.0.tar.gz"
 
@@ -32,9 +32,9 @@ fi
 if ! [ -e "$DESTDIR/ApnsPHP" ]; then
   cd "$TMP"
     wget --content-disposition "$APNSPHP"
-    tar xvf ApnsPHP-b9c04fdfdf63da714fbb06e4151d939e0e9fdccb.tar.gz
+    tar xvf ApnsPHP-2f5965c37568a26084d7544947cc0883ad2dac0d.tar.gz
 
-    mv ApnsPHP-b9c04fdfdf63da714fbb06e4151d939e0e9fdccb/ApnsPHP "$DESTDIR/ApnsPHP"
+    mv ApnsPHP-2f5965c37568a26084d7544947cc0883ad2dac0d/ApnsPHP "$DESTDIR/ApnsPHP"
   cd -
 fi
 
