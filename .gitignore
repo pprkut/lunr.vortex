@@ -6,9 +6,6 @@
 # ignore test results
 build
 
-# ignore external interactions
-src/ApnsPHP
-src/PHPMailer
-src/Psr
-src/Requests
+# ignore generated files
 vendor
+decomposer.autoload.inc.php
