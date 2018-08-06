@@ -11,7 +11,7 @@
     "PHPMailer/PHPMailer": "~6.0.0",
     "rmccue/Requests": "~1.7.0",
     "php": "5.6.* || 7.*",
-    "lunr/halo": "~0.5.0"
+    "lunr/halo": "dev-master"
   },
   "suggest": {
     "ext-http": "Needed for HTTP support in Corona, needed to get hostname in Shadow when parsing data",
