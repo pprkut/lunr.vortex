@@ -19,7 +19,7 @@
     "ApnsPHP": {
         "url": "https://github.com/M2Mobi/apnsphp.git",
         "version": "1.0.1.92",
-        "revision": "5c5a6d65b1c88a2acb1cab32e5efda7f5bd5988c",
+        "revision": "1.0.1.x",
         "psr0": {
             "path": "/"
         }
