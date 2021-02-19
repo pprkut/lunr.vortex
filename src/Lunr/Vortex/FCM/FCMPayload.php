@@ -202,7 +202,7 @@ class FCMPayload
     /**
      * Mark the notification priority.
      *
-     * @param Lunr\Vortex\FCM\FCMPriority $priority Notification priority value.
+     * @param FCMPriority $priority Notification priority value.
      *
      * @return FCMPayload Self Reference
      */

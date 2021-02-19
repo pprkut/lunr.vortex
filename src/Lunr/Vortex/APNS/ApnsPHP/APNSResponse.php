@@ -28,7 +28,7 @@ class APNSResponse implements PushNotificationResponseInterface
 
     /**
      * The statuses per endpoint.
-     * @var array
+     * @var array<PushNotificationStatus::*>
      */
     protected $statuses;
 
@@ -195,7 +195,7 @@ class APNSResponse implements PushNotificationResponseInterface
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus Delivery status for the endpoint
+     * @return PushNotificationStatus::* Delivery status for the endpoint
      */
     public function get_status($endpoint)
     {

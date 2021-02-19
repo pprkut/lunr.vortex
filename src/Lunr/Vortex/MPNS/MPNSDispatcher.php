@@ -67,11 +67,11 @@ class MPNSDispatcher implements PushNotificationDispatcherInterface
         $type = MPNSType::RAW;
         if ($payload instanceof MPNSToastPayload)
         {
-            $type = MPNSTYPE::TOAST;
+            $type = MPNSType::TOAST;
         }
         elseif ($payload instanceof MPNSTilePayload)
         {
-            $type = MPNSTYPE::TILE;
+            $type = MPNSType::TILE;
         }
 
         $headers = [

@@ -29,7 +29,7 @@ class PAPResponse implements PushNotificationResponseInterface
 
     /**
      * Delivery status.
-     * @var integer
+     * @var PushNotificationStatus::*
      */
     private $status;
 
@@ -150,8 +150,8 @@ class PAPResponse implements PushNotificationResponseInterface
     /**
      * Set notification status information.
      *
-     * @param string          $endpoint The notification endpoint that was used.
-     * @param LoggerInterface $logger   Shared instance of a Logger.
+     * @param string                   $endpoint The notification endpoint that was used.
+     * @param \Psr\Log\LoggerInterface $logger   Shared instance of a Logger.
      *
      * @return void
      */
@@ -221,7 +221,7 @@ class PAPResponse implements PushNotificationResponseInterface
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus Delivery status for the endpoint
+     * @return PushNotificationStatus::* Delivery status for the endpoint
      */
     public function get_status($endpoint)
     {

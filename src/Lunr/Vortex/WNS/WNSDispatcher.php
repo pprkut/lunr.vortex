@@ -23,19 +23,19 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
 {
     /**
      * Client Secret to use when obtaining an oauth token
-     * @var string
+     * @var string|null
      */
     protected $client_secret;
 
     /**
      * Client ID to use when obtaining an oauth token
-     * @var string
+     * @var string|null
      */
     protected $client_id;
 
     /**
      * The authentication token to identify the app channel
-     * @var string
+     * @var string|null
      */
     private $oauth_token;
 

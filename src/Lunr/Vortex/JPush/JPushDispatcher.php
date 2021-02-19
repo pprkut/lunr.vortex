@@ -41,7 +41,7 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
 
     /**
      * Push Notification authentication token.
-     * @var string
+     * @var string|null
      */
     protected $auth_token;
 

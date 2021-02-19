@@ -46,13 +46,13 @@ class JPushBatchResponse
 
     /**
      * Raw payload that was sent to JPush.
-     * @var string
+     * @var array
      */
     protected $payload;
 
     /**
      * Message ID.
-     * @var string
+     * @var integer
      */
     protected $message_id;
 
@@ -151,7 +151,7 @@ class JPushBatchResponse
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus Delivery status for the endpoint
+     * @return PushNotificationStatus::* Delivery status for the endpoint
      */
     public function get_status($endpoint)
     {

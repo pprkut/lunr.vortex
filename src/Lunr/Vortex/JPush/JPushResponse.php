@@ -22,7 +22,7 @@ class JPushResponse implements PushNotificationResponseInterface
 
     /**
      * The statuses per endpoint.
-     * @var array
+     * @var array<string,PushNotificationStatus::*>
      */
     protected $statuses;
 
@@ -46,7 +46,7 @@ class JPushResponse implements PushNotificationResponseInterface
      * Add the results of a batch response.
      *
      * @param JPushBatchResponse $batch_response Batch response
-     * @param array            $endpoints      Endpoints of the batch
+     * @param string[]           $endpoints      Endpoints of the batch
      *
      * @return void
      */
@@ -63,7 +63,7 @@ class JPushResponse implements PushNotificationResponseInterface
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus Delivery status for the endpoint
+     * @return PushNotificationStatus::* Delivery status for the endpoint
      */
     public function get_status($endpoint)
     {

@@ -13,6 +13,7 @@
 namespace Lunr\Vortex\WNS;
 
 use Lunr\Vortex\PushNotificationStatus;
+use Requests_Response_Headers;
 
 /**
  * Windows Push Notification response wrapper.
@@ -22,7 +23,7 @@ class WNSResponse
 
     /**
      * HTTP headers of the response.
-     * @var array
+     * @var Requests_Response_Headers
      */
     private $headers;
 
@@ -34,7 +35,7 @@ class WNSResponse
 
     /**
      * Delivery status.
-     * @var integer
+     * @var PushNotificationStatus::*
      */
     private $status;
 
@@ -155,7 +156,7 @@ class WNSResponse
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus Delivery status for the endpoint
+     * @return PushNotificationStatus::* Delivery status for the endpoint
      */
     public function get_status($endpoint)
     {

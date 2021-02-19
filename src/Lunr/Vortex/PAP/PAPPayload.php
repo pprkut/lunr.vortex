@@ -25,16 +25,17 @@ class PAPPayload
 
     /**
      * Push Notification deliver before timestamp.
-     * @var string
+     * @var int|null
      */
-    protected $priority = '';
+    protected $priority;
 
     /**
      * Constructor.
      */
     public function __construct()
     {
-        $this->data = [];
+        $this->data     = [];
+        $this->priority = NULL;
     }
 
     /**
@@ -42,6 +43,7 @@ class PAPPayload
      */
     public function __destruct()
     {
+        unset($this->priority);
         unset($this->data);
     }
 
@@ -89,7 +91,7 @@ class PAPPayload
     /**
      * Get the notification priority.
      *
-     * @return mixed Notification priority.
+     * @return int|null Notification priority.
      */
     public function get_priority()
     {
