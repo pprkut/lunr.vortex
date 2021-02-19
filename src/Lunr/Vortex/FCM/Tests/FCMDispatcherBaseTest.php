@@ -75,10 +75,9 @@ class FCMDispatcherBaseTest extends FCMDispatcherTest
      */
     public function testGetBatchResponseReturnsFCMBatchResponseObject(): void
     {
-        $this->http->expects($this->at(0))
+        $this->http->expects($this->atLeast(1))
                    ->method('__get')
-                   ->with('status_code')
-                   ->will($this->returnValue(500));
+                   ->willReturnMap([['status_code', 500]]);
 
         $method = $this->get_accessible_reflection_method('get_batch_response');
         $result = $method->invokeArgs($this->class, [ $this->http, $this->logger, [ 'endpoint' ], '{}' ]);

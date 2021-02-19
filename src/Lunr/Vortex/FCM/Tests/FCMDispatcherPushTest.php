@@ -132,9 +132,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $message = 'Dispatching FCM notification(s) failed: {message}';
         $context = [ 'message' => 'cURL error 10: Request error' ];
 
-        $this->logger->expects($this->at(0))
+        $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->with($this->equalTo($message), $this->equalTo($context));
+                     ->withConsecutive([$message, $context], ['Dispatching push notification failed: {error}']);
 
         $result = $this->class->push($this->payload, $endpoints);
 
@@ -175,9 +175,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $message = 'Dispatching FCM notification(s) failed: {message}';
         $context = [ 'message' => 'cURL error 28: Request timed out' ];
 
-        $this->logger->expects($this->at(0))
+        $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->with($this->equalTo($message), $this->equalTo($context));
+                     ->withConsecutive([$message, $context], ['Dispatching push notification failed: {error}']);
 
         $result = $this->class->push($this->payload, $endpoints);
 
@@ -327,25 +327,13 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
 
         $pos = 0;
 
-        $post = '{"collapse_key":"abcde-12345","registration_ids":["endpoint1","endpoint2"]}';
+        $post1 = '{"collapse_key":"abcde-12345","registration_ids":["endpoint1","endpoint2"]}';
+        $post2 = '{"collapse_key":"abcde-12345","registration_ids":["endpoint3","endpoint4"]}';
+        $post3 = '{"collapse_key":"abcde-12345","to":"endpoint5"}';
 
-        $this->http->expects($this->at($pos++))
+        $this->http->expects($this->exactly(3))
                    ->method('post')
-                   ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo($post), $this->equalTo($options))
-                   ->will($this->returnValue($response));
-
-        $post = '{"collapse_key":"abcde-12345","registration_ids":["endpoint3","endpoint4"]}';
-
-        $this->http->expects($this->at($pos++))
-                   ->method('post')
-                   ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo($post), $this->equalTo($options))
-                   ->will($this->returnValue($response));
-
-        $post = '{"collapse_key":"abcde-12345","to":"endpoint5"}';
-
-        $this->http->expects($this->at($pos++))
-                   ->method('post')
-                   ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo($post), $this->equalTo($options))
+                   ->withConsecutive([$url, $headers, $post1, $options], [$url, $headers, $post2, $options], [$url, $headers, $post3, $options])
                    ->will($this->returnValue($response));
 
         $this->class->push($this->payload, $endpoints);

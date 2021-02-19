@@ -77,10 +77,9 @@ class JPushDispatcherBaseTest extends JPushDispatcherTest
      */
     public function testGetBatchResponseReturnsJPushBatchResponseObject(): void
     {
-        $this->http->expects($this->at(0))
+        $this->http->expects($this->atLeast(1))
                    ->method('__get')
-                   ->with('success')
-                   ->will($this->returnValue(FALSE));
+                   ->willReturnMap([['success', FALSE]]);
 
         $method = $this->get_accessible_reflection_method('get_batch_response');
         $result = $method->invokeArgs($this->class, [ $this->http, $this->logger, [ 'endpoint' ], '{}' ]);

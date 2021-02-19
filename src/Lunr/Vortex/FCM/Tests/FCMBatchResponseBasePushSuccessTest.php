@@ -174,20 +174,22 @@ class FCMBatchResponseBasePushSuccessTest extends FCMBatchResponseTest
         ];
 
         $endpoints = [];
+        $params    = [];
 
         for ($i = 1; $i <= 13; $i++)
         {
             $endpoint = 'endpoint' . $i;
 
             $endpoints[] = $endpoint;
-
-            $this->logger->expects($this->at($i - 1))
-                         ->method('warning')
-                         ->with(
-                             'Dispatching push notification failed for endpoint {endpoint}: {error}',
-                             [ 'endpoint' => $endpoint, 'error' => $error_messages[$endpoint] ]
-                         );
+            $params[] = [
+                'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                [ 'endpoint' => $endpoint, 'error' => $error_messages[$endpoint] ],
+            ];
         }
+
+        $this->logger->expects($this->exactly(count($params)))
+                     ->method('warning')
+                     ->withConsecutive(...$params);
 
         $statuses = [
             'endpoint1'  => PushNotificationStatus::INVALID_ENDPOINT,
@@ -235,18 +237,12 @@ class FCMBatchResponseBasePushSuccessTest extends FCMBatchResponseTest
             'endpoint5' => PushNotificationStatus::SUCCESS,
         ];
 
-        $this->logger->expects($this->at(0))
+        $message = 'Dispatching push notification failed for endpoint {endpoint}: {error}';
+        $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->with(
-                         'Dispatching push notification failed for endpoint {endpoint}: {error}',
-                         [ 'endpoint' => 'endpoint1', 'error' => 'Invalid registration token' ]
-                     );
-
-        $this->logger->expects($this->at(1))
-                     ->method('warning')
-                     ->with(
-                         'Dispatching push notification failed for endpoint {endpoint}: {error}',
-                         [ 'endpoint' => 'endpoint3', 'error' => 'Invalid registration token' ]
+                     ->withConsecutive(
+                         [$message, [ 'endpoint' => 'endpoint1', 'error' => 'Invalid registration token' ]],
+                         [$message, [ 'endpoint' => 'endpoint3', 'error' => 'Invalid registration token' ]],
                      );
 
         $this->class      = new FCMBatchResponse($this->response, $this->logger, $endpoints, '{}');

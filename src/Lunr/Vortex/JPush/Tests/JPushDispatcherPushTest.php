@@ -126,9 +126,9 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $message = 'Dispatching JPush notification(s) failed: {message}';
         $context = [ 'message' => 'cURL error 10: Request error' ];
 
-        $this->logger->expects($this->at(0))
+        $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->with($message, $context);
+                     ->withConsecutive([$message, $context], ['Dispatching JPush notification failed: {error}']);
 
         $result = $this->class->push($this->payload, $endpoints);
 
@@ -163,9 +163,9 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $message = 'Dispatching JPush notification(s) failed: {message}';
         $context = [ 'message' => 'cURL error 28: Request timed out' ];
 
-        $this->logger->expects($this->at(0))
+        $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->with($message, $context);
+                     ->withConsecutive([$message, $context], ['Dispatching JPush notification failed: {error}']);
 
         $result = $this->class->push($this->payload, $endpoints);
 
@@ -325,38 +325,18 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $http_pos    = 0;
         $payload_pos = 0;
 
-        $post    = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint1","endpoint2"]}}';
+        $post1   = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint1","endpoint2"]}}';
+        $post2   = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint3","endpoint4"]}}';
+        $post3 = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint5"]}}';
         $payload = ['collapse_key' => 'abcde-12345', 'alert' => 'hello'];
 
-        $this->payload->expects($this->at($payload_pos++))
+        $this->payload->expects($this->exactly(3))
                       ->method('get_payload')
                       ->willReturn($payload);
 
-        $this->http->expects($this->at($http_pos++))
+        $this->http->expects($this->exactly(3))
                    ->method('post')
-                   ->with($url, [], $post, [])
-                   ->will($this->returnValue($response));
-
-        $post = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint3","endpoint4"]}}';
-
-        $this->payload->expects($this->at($payload_pos++))
-                      ->method('get_payload')
-                      ->willReturn($payload);
-
-        $this->http->expects($this->at($http_pos++))
-                   ->method('post')
-                   ->with($url, [], $post, [])
-                   ->will($this->returnValue($response));
-
-        $post = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint5"]}}';
-
-        $this->payload->expects($this->at($payload_pos++))
-                      ->method('get_payload')
-                      ->willReturn($payload);
-
-        $this->http->expects($this->at($http_pos++))
-                   ->method('post')
-                   ->with($url, [], $post, [])
+                   ->withConsecutive([$url, [], $post1, []], [$url, [], $post2, []], [$url, [], $post3, []])
                    ->will($this->returnValue($response));
 
         $this->class->push($this->payload, $endpoints);

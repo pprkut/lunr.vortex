@@ -65,20 +65,15 @@ class JPushResponseAddBatchResponseTest extends JPushResponseTest
 
         $pos = 0;
 
-        $this->batch_response->expects($this->at($pos++))
+        $this->batch_response->expects($this->exactly(3))
                              ->method('get_status')
-                             ->with('endpoint2')
-                             ->willReturn(PushNotificationStatus::INVALID_ENDPOINT);
-
-        $this->batch_response->expects($this->at($pos++))
-                             ->method('get_status')
-                             ->with('endpoint3')
-                             ->willReturn(PushNotificationStatus::UNKNOWN);
-
-        $this->batch_response->expects($this->at($pos++))
-                             ->method('get_status')
-                             ->with('endpoint4')
-                             ->willReturn(PushNotificationStatus::SUCCESS);
+                             ->willReturnMap(
+                                 [
+                                     ['endpoint2', PushNotificationStatus::INVALID_ENDPOINT],
+                                     ['endpoint3', PushNotificationStatus::UNKNOWN],
+                                     ['endpoint4', PushNotificationStatus::SUCCESS],
+                                 ]
+                             );
 
         $this->class->add_batch_response($this->batch_response, $endpoints);
 
