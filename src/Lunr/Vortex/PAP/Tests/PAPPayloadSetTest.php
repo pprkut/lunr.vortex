@@ -45,16 +45,16 @@ class PAPPayloadSetTest extends PAPPayloadTest
     }
 
     /**
-     * Test that set_deliver_before_timestamp() sets the deliverbefore.
+     * Test that set_priority() sets the priority.
      *
      * @covers Lunr\Vortex\PAP\PAPPayload::set_priority
      */
     public function testSetPrioritySetsPriority(): void
     {
-        $priority = 'priority';
+        $priority = 1;
         $this->class->set_priority($priority);
 
-        $this->assertPropertyEquals('priority', 'priority');
+        $this->assertPropertyEquals('priority', 1);
     }
 
     /**
@@ -64,8 +64,7 @@ class PAPPayloadSetTest extends PAPPayloadTest
      */
     public function testSetPriorityReturnsSelfReference(): void
     {
-        $cid = 'cid';
-        $this->assertEquals($this->class, $this->class->set_priority($cid));
+        $this->assertEquals($this->class, $this->class->set_priority(2));
     }
 
 }

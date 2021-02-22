@@ -21,7 +21,7 @@ class PAPPayload
      * Array of Push Notification message elements.
      * @var array
      */
-    protected $data;
+    protected array $data;
 
     /**
      * Push Notification deliver before timestamp.
@@ -52,7 +52,7 @@ class PAPPayload
      *
      * @return string The PAP Payload
      */
-    public function get_payload()
+    public function get_payload(): string
     {
         return json_encode($this->data);
     }
@@ -67,7 +67,7 @@ class PAPPayload
      *
      * @return PAPPayload Self Reference
      */
-    public function set_message_data($key, $value)
+    public function set_message_data(string $key, string $value): self
     {
         $this->data[$key] = $value;
 
@@ -81,7 +81,7 @@ class PAPPayload
      *
      * @return PAPPayload Self Reference
      */
-    public function set_priority($priority)
+    public function set_priority(int $priority): self
     {
         $this->priority = $priority;
 

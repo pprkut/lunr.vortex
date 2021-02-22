@@ -13,6 +13,7 @@
 namespace Lunr\Vortex\PAP;
 
 use Lunr\Vortex\PushNotificationDispatcherInterface;
+use Lunr\Vortex\PushNotificationResponseInterface;
 use Requests_Exception;
 use Requests_Response;
 
@@ -99,9 +100,9 @@ class PAPDispatcher implements PushNotificationDispatcherInterface
      * @param PAPPayload $payload   Payload object
      * @param array      $endpoints Endpoints to send to in this batch
      *
-     * @return PAPResponse Response object
+     * @return PushNotificationResponseInterface&PAPResponse Response object
      */
-    public function push($payload, &$endpoints)
+    public function push(object $payload, array &$endpoints): PushNotificationResponseInterface
     {
         // construct PAP URL
         $pap_url = "https://cp{$this->cid}.pushapi.na.blackberry.com/mss/PD_pushRequest";

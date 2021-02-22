@@ -50,7 +50,7 @@ class PAPResponseErrorTest extends PAPResponseTest
      */
     public function testHttpCodeIsSetCorrectly(): void
     {
-        $this->assertPropertySame('http_code', FALSE);
+        $this->assertPropertySame('http_code', 0);
     }
 
     /**

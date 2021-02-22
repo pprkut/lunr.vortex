@@ -14,6 +14,8 @@ namespace Lunr\Vortex\PAP;
 
 use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\PushNotificationResponseInterface;
+use Psr\Log\LoggerInterface;
+use Requests_Response;
 
 /**
  * Google Cloud Messaging Push Notification response wrapper.
@@ -25,47 +27,47 @@ class PAPResponse implements PushNotificationResponseInterface
      * HTTP status code.
      * @var integer
      */
-    private $http_code;
+    private int $http_code;
 
     /**
      * Delivery status.
      * @var PushNotificationStatus::*
      */
-    private $status;
+    private int $status;
 
     /**
      * The HTTP response.
      * @var string
      */
-    private $result;
+    private string $result;
 
     /**
      * The PAP response info.
      * @var array
      */
-    private $pap_response;
+    private array $pap_response;
 
     /**
      * Push notification endpoint.
      * @var string
      */
-    private $endpoint;
+    private string $endpoint;
 
     /**
      * Raw payload that was sent to PAP.
      * @var string
      */
-    protected $payload;
+    protected string $payload;
 
     /**
      * Constructor.
      *
-     * @param \Requests_Response       $response  Requests_Response object.
-     * @param \Psr\Log\LoggerInterface $logger    Shared instance of a Logger.
-     * @param string                   $device_id The deviceID that the message was sent to.
-     * @param string                   $payload   Raw payload that was sent to PAP.
+     * @param Requests_Response $response  Requests_Response object.
+     * @param LoggerInterface    $logger    Shared instance of a Logger.
+     * @param string             $device_id The deviceID that the message was sent to.
+     * @param string             $payload   Raw payload that was sent to PAP.
      */
-    public function __construct($response, $logger, $device_id, $payload)
+    public function __construct(Requests_Response $response, LoggerInterface $logger, string $device_id, string $payload)
     {
         $this->http_code    = $response->status_code;
         $this->result       = $response->body;
@@ -105,7 +107,7 @@ class PAPResponse implements PushNotificationResponseInterface
     /**
      * Helper function for extracting the error info from the PAP response XML.
      *
-     * @return mixed FALSE in case the xml response is unparsable,
+     * @return false|void FALSE in case the xml response is unparsable,
      *               void otherwise
      */
     private function parse_pap_response()
@@ -150,12 +152,12 @@ class PAPResponse implements PushNotificationResponseInterface
     /**
      * Set notification status information.
      *
-     * @param string                   $endpoint The notification endpoint that was used.
-     * @param \Psr\Log\LoggerInterface $logger   Shared instance of a Logger.
+     * @param string          $endpoint The notification endpoint that was used.
+     * @param LoggerInterface $logger   Shared instance of a Logger.
      *
      * @return void
      */
-    private function set_status($endpoint, $logger)
+    private function set_status(string $endpoint, LoggerInterface $logger)
     {
         switch ($this->http_code)
         {
@@ -186,13 +188,11 @@ class PAPResponse implements PushNotificationResponseInterface
 
                 break;
             case 400:
+            case 503:
                 $this->status = PushNotificationStatus::ERROR;
                 break;
             case 401:
                 $this->status = PushNotificationStatus::INVALID_ENDPOINT;
-                break;
-            case 503:
-                $this->status = PushNotificationStatus::ERROR;
                 break;
             default:
                 $this->status = PushNotificationStatus::UNKNOWN;
@@ -223,7 +223,7 @@ class PAPResponse implements PushNotificationResponseInterface
      *
      * @return PushNotificationStatus::* Delivery status for the endpoint
      */
-    public function get_status($endpoint)
+    public function get_status(string $endpoint): int
     {
         if ($endpoint != $this->endpoint)
         {
