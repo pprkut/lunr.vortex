@@ -12,7 +12,7 @@
 namespace Lunr\Vortex;
 
 /**
- * Windows Phone Push Notification Priority Types.
+ * Push notification delivery status.
  */
 class PushNotificationStatus
 {
@@ -21,43 +21,43 @@ class PushNotificationStatus
      * Push notification status unknown.
      * @var integer
      */
-    const UNKNOWN = 0;
+    public const UNKNOWN = 0;
 
     /**
      * Push notification delivered successfully.
      * @var integer
      */
-    const SUCCESS = 1;
+    public const SUCCESS = 1;
 
     /**
      * Push notification could not be delivered. Try again later.
      * @var integer
      */
-    const TEMPORARY_ERROR = 2;
+    public const TEMPORARY_ERROR = 2;
 
     /**
      * Push notification endpoint invalid.
      * @var integer
      */
-    const INVALID_ENDPOINT = 3;
+    public const INVALID_ENDPOINT = 3;
 
     /**
      * Push notification not delivered because of client misconfiguration.
      * @var integer
      */
-    const CLIENT_ERROR = 4;
+    public const CLIENT_ERROR = 4;
 
     /**
      * Push notification not delivered because of server error.
      * @var integer
      */
-    const ERROR = 5;
+    public const ERROR = 5;
 
     /**
      * Push notification not processed by any dispatcher.
      * @var integer
      */
-    const NOT_HANDLED = 6;
+    public const NOT_HANDLED = 6;
 
 }
 

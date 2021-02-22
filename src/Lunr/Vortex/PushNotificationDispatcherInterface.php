@@ -27,7 +27,7 @@ interface PushNotificationDispatcherInterface
      *
      * @return PushNotificationResponseInterface Response object
      */
-    public function push($payload, &$endpoints);
+    public function push(object $payload, array &$endpoints): PushNotificationResponseInterface;
 
 }
 
