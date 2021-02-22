@@ -14,6 +14,7 @@ namespace Lunr\Vortex\Email;
 
 use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\PushNotificationResponseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Email notification response wrapper.
@@ -25,19 +26,19 @@ class EmailResponse implements PushNotificationResponseInterface
      * Push notification statuses per endpoint.
      * @var array
      */
-    private $statuses;
+    private array $statuses;
 
     /**
      * Shared instance of a Logger class.
      * @var \Psr\Log\LoggerInterface
      */
-    private $logger;
+    private LoggerInterface $logger;
 
     /**
      * Raw payload that was sent out.
      * @var string
      */
-    protected $payload;
+    protected string $payload;
 
     /**
      * Constructor.
@@ -46,7 +47,7 @@ class EmailResponse implements PushNotificationResponseInterface
      * @param \Psr\Log\LoggerInterface $logger       Shared instance of a Logger.
      * @param string                   $payload      Raw payload that was sent out.
      */
-    public function __construct($mail_results, $logger, $payload)
+    public function __construct(array $mail_results, LoggerInterface $logger, string $payload)
     {
         $this->logger   = $logger;
         $this->statuses = [];
@@ -72,7 +73,7 @@ class EmailResponse implements PushNotificationResponseInterface
      *
      * @return PushNotificationStatus::* Delivery status for the endpoint
      */
-    public function get_status($endpoint)
+    public function get_status(string $endpoint): int
     {
         if (!array_key_exists($endpoint, $this->statuses))
         {
@@ -89,7 +90,7 @@ class EmailResponse implements PushNotificationResponseInterface
      *
      * @return void
      */
-    private function handle_sent_notifications($mail_results)
+    private function handle_sent_notifications(array $mail_results): void
     {
         foreach ($mail_results as $endpoint => $result_array)
         {

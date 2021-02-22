@@ -21,7 +21,7 @@ class EmailPayload
      * Array of Email Notification message elements.
      * @var array
      */
-    protected $elements;
+    protected array $elements;
 
     /**
      * Constructor.
@@ -44,7 +44,7 @@ class EmailPayload
      *
      * @return string The Email Payload
      */
-    public function get_payload()
+    public function get_payload(): string
     {
         return json_encode($this->elements);
     }
@@ -56,7 +56,7 @@ class EmailPayload
      *
      * @return EmailPayload Self Reference
      */
-    public function set_body($body)
+    public function set_body(string $body): self
     {
         $this->elements['body'] = $body;
 
@@ -70,7 +70,7 @@ class EmailPayload
      *
      * @return EmailPayload Self Reference
      */
-    public function set_subject($subject)
+    public function set_subject(string $subject): self
     {
         $this->elements['subject'] = $subject;
 

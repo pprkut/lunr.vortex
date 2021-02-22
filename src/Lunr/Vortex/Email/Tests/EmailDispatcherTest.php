@@ -13,6 +13,7 @@ namespace Lunr\Vortex\Email\Tests;
 
 use Lunr\Vortex\Email\EmailDispatcher;
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\Email\EmailPayload;
 use ReflectionClass;
 
 /**

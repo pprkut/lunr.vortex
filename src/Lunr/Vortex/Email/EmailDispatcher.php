@@ -12,7 +12,10 @@
 namespace Lunr\Vortex\Email;
 
 use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
+use Lunr\Vortex\PushNotificationResponseInterface;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
+use PHPMailer\PHPMailer\PHPMailer;
+use Psr\Log\LoggerInterface;
 
 /**
  * Email Notification Dispatcher.
@@ -23,27 +26,29 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
      * Email Notification source.
      * @var string
      */
-    private $source;
+    private string $source;
 
     /**
      * Shared instance of the mail transport class.
-     * @var \PHPMailer\PHPMailer\PHPMailer
+     *
+     * @var PHPMailer
      */
-    private $mail_transport;
+    private PHPMailer $mail_transport;
 
     /**
      * Shared instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     *
+     * @var LoggerInterface
      */
-    private $logger;
+    private LoggerInterface $logger;
 
     /**
      * Constructor.
      *
-     * @param \PHPMailer\PHPMailer\PHPMailer $mail_transport Shared instance of the mail transport class.
-     * @param \Psr\Log\LoggerInterface       $logger         Shared instance of a Logger.
+     * @param PHPMailer       $mail_transport Shared instance of the mail transport class.
+     * @param LoggerInterface $logger         Shared instance of a Logger.
      */
-    public function __construct($mail_transport, $logger)
+    public function __construct(PHPMailer $mail_transport, LoggerInterface $logger)
     {
         $this->source = '';
         $this->logger = $logger;
@@ -64,9 +69,9 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Get a cloned instance of the mail transport class.
      *
-     * @return \PHPMailer\PHPMailer\PHPMailer Cloned instance of the PHPMailer class
+     * @return PHPMailer Cloned instance of the PHPMailer class
      */
-    public function clone_mail()
+    public function clone_mail(): PHPMailer
     {
         return clone $this->mail_transport;
     }
@@ -77,9 +82,9 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
      * @param EmailPayload $payload   Payload object
      * @param array        $endpoints Endpoints to send to in this batch
      *
-     * @return EmailResponse Response object
+     * @return PushNotificationResponseInterface&EmailResponse Response object
      */
-    public function push($payload, &$endpoints)
+    public function push(object $payload, array &$endpoints): PushNotificationResponseInterface
     {
         $payload_array = json_decode($payload->get_payload(), TRUE);
 
@@ -117,9 +122,7 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
             }
         }
 
-        $response = new EmailResponse($mail_results, $this->logger, $mail_transport->getSentMIMEMessage());
-
-        return $response;
+        return new EmailResponse($mail_results, $this->logger, $mail_transport->getSentMIMEMessage());
     }
 
     /**
@@ -129,7 +132,7 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
      *
      * @return EmailDispatcher Self reference
      */
-    public function set_source($source)
+    public function set_source(string $source): self
     {
         $this->source = $source;
 

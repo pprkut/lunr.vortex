@@ -53,6 +53,10 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
         $this->mail_transport->expects($this->once())
                              ->method('clearAddresses');
 
+        $this->mail_transport->expects($this->once())
+                             ->method('getSentMIMEMessage')
+                             ->will($this->returnValue(''));
+
         $this->assertInstanceOf('Lunr\Vortex\Email\EmailResponse', $this->class->push($this->payload, $endpoints));
 
         $this->assertEquals($this->mail_transport->Subject, 'subject');
@@ -93,6 +97,10 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
         $this->mail_transport->expects($this->once())
                              ->method('clearAddresses');
 
+        $this->mail_transport->expects($this->once())
+                             ->method('getSentMIMEMessage')
+                             ->will($this->returnValue(''));
+
         $this->assertInstanceOf('Lunr\Vortex\Email\EmailResponse', $this->class->push($this->payload, $endpoints));
 
         $this->assertEquals($this->mail_transport->Subject, 'subject');
@@ -121,6 +129,10 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
         $this->mail_transport->expects($this->once())
                              ->method('send')
                              ->will($this->returnValue(TRUE));
+
+        $this->mail_transport->expects($this->once())
+                             ->method('getSentMIMEMessage')
+                             ->will($this->returnValue(''));
 
         $this->class->push($this->payload, $endpoints);
 
