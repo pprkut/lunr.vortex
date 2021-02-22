@@ -4,9 +4,10 @@
     "m2mobi/apns-php": "dev-master",
     "phpmailer/phpmailer": "~6.4.0",
     "rmccue/requests": "~1.8.0",
-    "php": "~7.2||8.0",
+    "php": ">=7.4",
     "lunr/halo": "dev-master",
-    "lunr/config": "dev-master"
+    "lunr/config": "dev-master",
+    "ext-xml": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "~9.0",
