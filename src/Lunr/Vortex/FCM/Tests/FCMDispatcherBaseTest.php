@@ -75,12 +75,8 @@ class FCMDispatcherBaseTest extends FCMDispatcherTest
      */
     public function testGetBatchResponseReturnsFCMBatchResponseObject(): void
     {
-        $this->http->expects($this->atLeast(1))
-                   ->method('__get')
-                   ->willReturnMap([['status_code', 500]]);
-
         $method = $this->get_accessible_reflection_method('get_batch_response');
-        $result = $method->invokeArgs($this->class, [ $this->http, $this->logger, [ 'endpoint' ], '{}' ]);
+        $result = $method->invokeArgs($this->class, [ $this->response, $this->logger, [ 'endpoint' ], '{}' ]);
 
         $this->assertInstanceOf('Lunr\Vortex\FCM\FCMBatchResponse', $result);
     }

@@ -21,13 +21,13 @@ class FCMPriority
      * Deliver notification immediately.
      * @var string
      */
-    const HIGH = 'high';
+    public const HIGH = 'high';
 
     /**
      * Deliver notification with normal priority.
      * @var string
      */
-    const NORMAL = 'normal';
+    public const NORMAL = 'normal';
 
 }
 

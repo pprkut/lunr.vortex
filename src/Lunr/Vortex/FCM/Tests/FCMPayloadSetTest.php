@@ -66,7 +66,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
      */
     public function testSetTimeToLiveReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_time_to_live('time_to_live'));
+        $this->assertSame($this->class, $this->class->set_time_to_live(15));
     }
 
     /**
@@ -91,7 +91,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
      */
     public function testSetNotificationReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_notification('data'));
+        $this->assertSame($this->class, $this->class->set_notification([]));
     }
 
     /**
@@ -181,7 +181,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
      */
     public function testSetDataReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_data('data'));
+        $this->assertSame($this->class, $this->class->set_data([]));
     }
 
     /**

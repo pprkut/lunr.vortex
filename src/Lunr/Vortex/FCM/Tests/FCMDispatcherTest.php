@@ -13,6 +13,7 @@ namespace Lunr\Vortex\FCM\Tests;
 
 use Lunr\Vortex\FCM\FCMDispatcher;
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\FCM\FCMPayload;
 use ReflectionClass;
 
 /**
@@ -28,6 +29,12 @@ abstract class FCMDispatcherTest extends LunrBaseTest
      * @var \Requests_Session
      */
     protected $http;
+
+    /**
+     * Mock instance of the Requests_Response class.
+     * @var \Requests_Response
+     */
+    protected $response;
 
     /**
      * Mock instance of a Logger class.
@@ -46,10 +53,10 @@ abstract class FCMDispatcherTest extends LunrBaseTest
      */
     public function setUp(): void
     {
-        $this->http   = $this->getMockBuilder('Requests_Session')->getMock();
-        $this->logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
-
-        $this->payload = $this->getMockBuilder('Lunr\Vortex\FCM\FCMPayload')
+        $this->http     = $this->getMockBuilder('Requests_Session')->getMock();
+        $this->response = $this->getMockBuilder('Requests_Response')->getMock();
+        $this->logger   = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
+        $this->payload  = $this->getMockBuilder('Lunr\Vortex\FCM\FCMPayload')
                               ->disableOriginalConstructor()
                               ->getMock();
 

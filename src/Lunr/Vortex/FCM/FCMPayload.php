@@ -23,7 +23,7 @@ class FCMPayload
      * Array of Push Notification elements.
      * @var array
      */
-    protected $elements;
+    protected array $elements;
 
     /**
      * Constructor.
@@ -48,7 +48,7 @@ class FCMPayload
      *
      * @return string FCMPayload
      */
-    public function get_payload()
+    public function get_payload(): string
     {
         return json_encode($this->elements);
     }
@@ -63,7 +63,7 @@ class FCMPayload
      *
      * @return FCMPayload Self Reference
      */
-    public function set_collapse_key($key)
+    public function set_collapse_key(string $key): self
     {
         $this->elements['collapse_key'] = $key;
 
@@ -79,7 +79,7 @@ class FCMPayload
      *
      * @return FCMPayload Self Reference
      */
-    public function set_data($data)
+    public function set_data(array $data): self
     {
         $this->elements['data'] = $data;
 
@@ -96,7 +96,7 @@ class FCMPayload
      *
      * @return FCMPayload Self Reference
      */
-    public function set_time_to_live($ttl)
+    public function set_time_to_live(int $ttl): self
     {
         $this->elements['time_to_live'] = $ttl;
 
@@ -108,7 +108,7 @@ class FCMPayload
      *
      * @return boolean TRUE if condition is present.
      */
-    public function has_condition()
+    public function has_condition(): bool
     {
         return isset($this->elements['condition']);
     }
@@ -118,7 +118,7 @@ class FCMPayload
      *
      * @return boolean TRUE if condition is present.
      */
-    public function has_topic()
+    public function has_topic(): bool
     {
         return isset($this->elements['topic']);
     }
@@ -132,7 +132,7 @@ class FCMPayload
      *
      * @return FCMPayload Self Reference
      */
-    public function set_notification($notification)
+    public function set_notification(array $notification): self
     {
         $this->elements['notification'] = $notification;
 
@@ -146,7 +146,7 @@ class FCMPayload
      *
      * @return FCMPayload Self Reference
      */
-    public function set_content_available($val)
+    public function set_content_available(bool $val): self
     {
         $this->elements['content_available'] = $val;
 
@@ -160,7 +160,7 @@ class FCMPayload
      *
      * @return FCMPayload Self Reference
      */
-    public function set_topic($topic)
+    public function set_topic(string $topic): self
     {
         $this->elements['topic'] = $topic;
 
@@ -178,7 +178,7 @@ class FCMPayload
      *
      * @return FCMPayload Self Reference
      */
-    public function set_condition($condition)
+    public function set_condition(string $condition): self
     {
         $this->elements['condition'] = $condition;
 
@@ -192,7 +192,7 @@ class FCMPayload
      *
      * @return FCMPayload Self Reference
      */
-    public function set_mutable_content($mutable)
+    public function set_mutable_content(bool $mutable): self
     {
         $this->elements['mutable_content'] = $mutable;
 
@@ -202,11 +202,11 @@ class FCMPayload
     /**
      * Mark the notification priority.
      *
-     * @param FCMPriority $priority Notification priority value.
+     * @param FCMPriority::* $priority Notification priority value.
      *
      * @return FCMPayload Self Reference
      */
-    public function set_priority($priority)
+    public function set_priority(string $priority): self
     {
         $priority       = strtolower($priority);
         $priority_class = new ReflectionClass('\Lunr\Vortex\FCM\FCMPriority');
@@ -226,7 +226,7 @@ class FCMPayload
      *
      * @return FCMPayload Self Reference
      */
-    public function set_options($key, $value)
+    public function set_options(string $key, string $value): self
     {
         $this->elements['fcm_options'][$key] = $value;
 
