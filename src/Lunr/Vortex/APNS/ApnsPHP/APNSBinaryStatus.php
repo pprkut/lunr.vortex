@@ -21,73 +21,73 @@ class APNSBinaryStatus
      * No error encountered.
      * @var integer
      */
-    const SUCCESS = 0;
+    public const SUCCESS = 0;
 
     /**
      * Processing error.
      * @var integer
      */
-    const ERROR_PROCESSING = 1;
+    public const ERROR_PROCESSING = 1;
 
     /**
      * Missing device token error.
      * @var integer
      */
-    const ERROR_MISSING_DEVICE_TOKEN = 2;
+    public const ERROR_MISSING_DEVICE_TOKEN = 2;
 
     /**
      * Missing topic error.
      * @var integer
      */
-    const ERROR_TOPIC = 3;
+    public const ERROR_TOPIC = 3;
 
     /**
      * Missing payload error.
      * @var integer
      */
-    const ERROR_MISSING_PAYLOAD = 4;
+    public const ERROR_MISSING_PAYLOAD = 4;
 
     /**
      * Invalid token size error.
      * @var integer
      */
-    const ERROR_INVALID_TOKEN_SIZE = 5;
+    public const ERROR_INVALID_TOKEN_SIZE = 5;
 
     /**
      * Invalid topic size error.
      * @var integer
      */
-    const ERROR_INVALID_TOPIC_SIZE = 6;
+    public const ERROR_INVALID_TOPIC_SIZE = 6;
 
     /**
      * Invalid payload size error.
      * @var integer
      */
-    const ERROR_INVALID_PAYLOAD_SIZE = 7;
+    public const ERROR_INVALID_PAYLOAD_SIZE = 7;
 
     /**
      * Invalid token error.
      * @var integer
      */
-    const ERROR_INVALID_TOKEN = 8;
+    public const ERROR_INVALID_TOKEN = 8;
 
     /**
      * Shutdown error.
      * @var integer
      */
-    const ERROR_SHUTDOWN = 10;
+    public const ERROR_SHUTDOWN = 10;
 
     /**
      * Protocol error,
      * @var integer
      */
-    const ERROR_PROTOCOL = 128;
+    public const ERROR_PROTOCOL = 128;
 
     /**
      * Unknown error.
      * @var integer
      */
-    const ERROR_UNKNOWN = 255;
+    public const ERROR_UNKNOWN = 255;
 
 }
 

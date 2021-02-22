@@ -23,7 +23,7 @@ class APNSPayload
      * Array of Push Notification elements.
      * @var array
      */
-    protected $elements;
+    protected array $elements;
 
     /**
      * Constructor.
@@ -48,7 +48,7 @@ class APNSPayload
      *
      * @return array APNSPayload elements
      */
-    public function get_payload()
+    public function get_payload(): array
     {
         return $this->elements;
     }
@@ -63,7 +63,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_collapse_key($key)
+    public function set_collapse_key(string $key): self
     {
         $this->elements['collapse_key'] = $key;
 
@@ -79,7 +79,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_topic($topic)
+    public function set_topic(string $topic): self
     {
         $this->elements['topic'] = $topic;
 
@@ -93,7 +93,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_priority($priority)
+    public function set_priority(int $priority): self
     {
         $priority       = $priority;
         $priority_class = new ReflectionClass('\Lunr\Vortex\APNS\APNSPriority');
@@ -114,7 +114,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_badge($badge)
+    public function set_badge(int $badge): self
     {
         $this->elements['badge'] = $badge;
 
@@ -128,7 +128,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_sound($sound)
+    public function set_sound(string $sound): self
     {
         $this->elements['sound'] = $sound;
 
@@ -142,7 +142,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_thread_id($thread_id)
+    public function set_thread_id(string $thread_id): self
     {
         $this->elements['thread_id'] = $thread_id;
 
@@ -156,7 +156,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_identifier($identifier)
+    public function set_identifier(string $identifier): self
     {
         $this->elements['identifier'] = $identifier;
 
@@ -170,7 +170,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_category($category)
+    public function set_category(string $category): self
     {
         $this->elements['category'] = $category;
 
@@ -184,7 +184,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_content_available($content_available)
+    public function set_content_available(bool $content_available): self
     {
         $this->elements['content_available'] = $content_available;
 
@@ -198,7 +198,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_mutable_content($mutable_content)
+    public function set_mutable_content(bool $mutable_content): self
     {
         $this->elements['mutable_content'] = $mutable_content;
 
@@ -212,7 +212,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_title($title)
+    public function set_title(string $title): self
     {
         $this->elements['title'] = $title;
 
@@ -226,7 +226,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_body($body)
+    public function set_body(string $body): self
     {
         $this->elements['body'] = $body;
 
@@ -246,7 +246,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_alert($alert)
+    public function set_alert(string $alert): self
     {
         return $this->set_body($alert);
     }
@@ -259,7 +259,7 @@ class APNSPayload
      *
      * @return APNSPayload Self Reference
      */
-    public function set_custom_data($key, $value)
+    public function set_custom_data(string $key, string $value): self
     {
         if (!isset($this->elements['custom_data']))
         {

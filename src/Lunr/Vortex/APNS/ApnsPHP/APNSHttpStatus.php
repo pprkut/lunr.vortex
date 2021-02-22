@@ -21,49 +21,49 @@ class APNSHttpStatus
      * No error encountered.
      * @var integer
      */
-    const SUCCESS = 200;
+    public const SUCCESS = 200;
 
     /**
      * Bad request error.
      * @var integer
      */
-    const ERROR_BAD_REQUEST = 400;
+    public const ERROR_BAD_REQUEST = 400;
 
     /**
      * Certificate or token error.
      * @var integer
      */
-    const ERROR_AUTHENTICATION = 403;
+    public const ERROR_AUTHENTICATION = 403;
 
     /**
      * The device token is inactive for the specified topic.
      * @var integer
      */
-    const ERROR_UNREGISTERED = 410;
+    public const ERROR_UNREGISTERED = 410;
 
     /**
      * The message payload was too large.
      * @var integer
      */
-    const ERROR_PAYLOAD_TOO_LARGE = 413;
+    public const ERROR_PAYLOAD_TOO_LARGE = 413;
 
     /**
      * The provider token is being updated too often.
      * @var integer
      */
-    const TOO_MANY_REQUESTS = 429;
+    public const TOO_MANY_REQUESTS = 429;
 
     /**
      * Unknown internal error.
      * @var integer
      */
-    const ERROR_INTERNAL_ERROR = 500;
+    public const ERROR_INTERNAL_ERROR = 500;
 
     /**
      * Shutdown error.
      * @var integer
      */
-    const ERROR_SHUTDOWN = 503;
+    public const ERROR_SHUTDOWN = 503;
 
 }
 

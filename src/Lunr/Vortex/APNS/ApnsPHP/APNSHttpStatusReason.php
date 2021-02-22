@@ -21,91 +21,91 @@ class APNSHttpStatusReason
      * Bad token error.
      * @var string
      */
-    const ERROR_BAD_TOKEN = 'BadDeviceToken';
+    public const ERROR_BAD_TOKEN = 'BadDeviceToken';
 
     /**
      * Bad collapse ID error.
      * @var string
      */
-    const ERROR_BAD_COLLAPSE_ID = 'BadCollapseId';
+    public const ERROR_BAD_COLLAPSE_ID = 'BadCollapseId';
 
     /**
      * Bad expiration date error.
      * @var string
      */
-    const ERROR_BAD_EXPIRATION_DATE = 'BadExpirationDate';
+    public const ERROR_BAD_EXPIRATION_DATE = 'BadExpirationDate';
 
     /**
      * Bad message ID error.
      * @var string
      */
-    const ERROR_BAD_MESSAGE_ID = 'BadMessageId';
+    public const ERROR_BAD_MESSAGE_ID = 'BadMessageId';
 
     /**
      * Bad priority error.
      * @var string
      */
-    const ERROR_BAD_PRIORITY = 'BadPriority';
+    public const ERROR_BAD_PRIORITY = 'BadPriority';
 
     /**
      * Bad topic error.
      * @var string
      */
-    const ERROR_BAD_TOPIC = 'BadTopic';
+    public const ERROR_BAD_TOPIC = 'BadTopic';
 
     /**
      * Token not for current topic error.
      * @var string
      */
-    const ERROR_NON_MATCHING_TOKEN = 'DeviceTokenNotForTopic';
+    public const ERROR_NON_MATCHING_TOKEN = 'DeviceTokenNotForTopic';
 
     /**
      * Idle timeout.
      * @var string
      */
-    const ERROR_IDLE_TIMEOUT = 'IdleTimeout';
+    public const ERROR_IDLE_TIMEOUT = 'IdleTimeout';
 
     /**
      * Topic not allowed error.
      * @var string
      */
-    const ERROR_TOPIC_BLOCKED = 'TopicDisallowed';
+    public const ERROR_TOPIC_BLOCKED = 'TopicDisallowed';
 
     /**
      * Certificate is not valid.
      * @var string
      */
-    const ERROR_CERTIFICATE_INVALID = 'BadCertificate';
+    public const ERROR_CERTIFICATE_INVALID = 'BadCertificate';
 
     /**
      * Certificate does not match requested environment.
      * @var string
      */
-    const ERROR_CERTIFICATE_ENVIRONMENT = 'BadCertificateEnvironment';
+    public const ERROR_CERTIFICATE_ENVIRONMENT = 'BadCertificateEnvironment';
 
     /**
      * JWT Provider token is expired.
      * @var string
      */
-    const ERROR_EXPIRED_AUTH_TOKEN = 'ExpiredProviderToken';
+    public const ERROR_EXPIRED_AUTH_TOKEN = 'ExpiredProviderToken';
 
     /**
      * JWT Provider token is invalid.
      * @var string
      */
-    const ERROR_INVALID_AUTH_TOKEN = 'InvalidProviderToken';
+    public const ERROR_INVALID_AUTH_TOKEN = 'InvalidProviderToken';
 
     /**
      * JWT Provider token is missing.
      * @var string
      */
-    const ERROR_MISSING_AUTH_TOKEN = 'MissingProviderToken';
+    public const ERROR_MISSING_AUTH_TOKEN = 'MissingProviderToken';
 
     /**
      * Action is forbidden.
      * @var string
      */
-    const ERROR_FORBIDDEN = 'Forbidden';
+    public const ERROR_FORBIDDEN = 'Forbidden';
 
 }
 

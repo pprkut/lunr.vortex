@@ -14,8 +14,11 @@ namespace Lunr\Vortex\APNS\ApnsPHP;
 use \ApnsPHP\Message;
 use \ApnsPHP\Message\Exception as MessageException;
 use \ApnsPHP\Exception as ApnsPHPException;
+use ApnsPHP\Push;
 use Lunr\Vortex\APNS\APNSPayload;
 use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
+use Lunr\Vortex\PushNotificationResponseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Apple Push Notification Service Push Notification Dispatcher.
@@ -25,29 +28,32 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
 
     /**
      * Shared instance of ApnsPHP\Push.
-     * @var \ApnsPHP\Push
+     *
+     * @var Push
      */
-    protected $apns_push;
+    protected Push $apns_push;
 
     /**
      * Apns Message instance
-     * @var \ApnsPHP\Message
+     *
+     * @var Message
      */
-    protected $apns_message;
+    protected Message $apns_message;
 
     /**
      * Shared instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     *
+     * @var LoggerInterface
      */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /**
      * Constructor.
      *
-     * @param \Psr\Log\LoggerInterface $logger    Shared instance of a Logger.
-     * @param \ApnsPHP\Push            $apns_push Apns Push instance.
+     * @param LoggerInterface $logger    Shared instance of a Logger.
+     * @param Push            $apns_push Apns Push instance.
      */
-    public function __construct($logger, $apns_push)
+    public function __construct(LoggerInterface $logger, Push $apns_push)
     {
         $this->logger    = $logger;
         $this->apns_push = $apns_push;
@@ -70,7 +76,7 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
      *
      * @return void
      */
-    protected function reset()
+    protected function reset(): void
     {
         unset($this->apns_message);
     }
@@ -78,9 +84,9 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Return a new APNS message.
      *
-     * @return \ApnsPHP\Message
+     * @return Message
      */
-    protected function get_new_apns_message()
+    protected function get_new_apns_message(): Message
     {
         return new Message();
     }
@@ -91,9 +97,9 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
      * @param APNSPayload $payload   Payload object
      * @param array       $endpoints Endpoints to send to in this batch
      *
-     * @return APNSResponse Response object
+     * @return PushNotificationResponseInterface&APNSResponse Response object
      */
-    public function push($payload, &$endpoints)
+    public function push(object $payload, array &$endpoints): PushNotificationResponseInterface
     {
         // Create message
         $payload = $payload->get_payload();

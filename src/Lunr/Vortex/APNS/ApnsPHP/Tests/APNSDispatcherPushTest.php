@@ -62,7 +62,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn('{"yo"}');
+                      ->willReturn(['yo' => 'data']);
 
         $result = $this->class->push($this->payload, $endpoints);
 

@@ -19,15 +19,15 @@ class APNSPriority
 
     /**
      * Deliver notification immediately.
-     * @var string
+     * @var int
      */
-    const HIGH = 10;
+    public const HIGH = 10;
 
     /**
      * Deliver notification with normal priority.
-     * @var string
+     * @var int
      */
-    const NORMAL = 5;
+    public const NORMAL = 5;
 
 }
 

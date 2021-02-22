@@ -231,7 +231,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
      */
     public function testSetBadgeReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_badge('badge'));
+        $this->assertSame($this->class, $this->class->set_badge(1));
     }
 
     /**
@@ -321,7 +321,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
      */
     public function testSetPriorityReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_priority('badge'));
+        $this->assertSame($this->class, $this->class->set_priority(5));
     }
 
     /**

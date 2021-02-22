@@ -13,6 +13,7 @@ namespace Lunr\Vortex\APNS\ApnsPHP;
 
 use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\PushNotificationResponseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Apple Push Notification Service response wrapper.
@@ -22,32 +23,33 @@ class APNSResponse implements PushNotificationResponseInterface
 
     /**
      * Shared instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     *
+     * @var LoggerInterface
      */
-    protected $logger;
+    protected LoggerInterface $logger;
 
     /**
      * The statuses per endpoint.
      * @var array<PushNotificationStatus::*>
      */
-    protected $statuses;
+    protected array $statuses;
 
     /**
      * Raw payload that was sent to APNS.
      * @var string
      */
-    protected $payload;
+    protected string $payload;
 
     /**
      * Constructor.
      *
-     * @param \Psr\Log\LoggerInterface $logger            Shared instance of a Logger.
-     * @param array                    $endpoints         The endpoints the message was sent to
-     * @param array                    $invalid_endpoints List of invalid endpoints detected before the push.
-     * @param array                    $errors            The errors response from the APNS Push.
-     * @param string                   $payload           Raw payload that was sent to APNS.
+     * @param LoggerInterface $logger            Shared instance of a Logger.
+     * @param array           $endpoints         The endpoints the message was sent to
+     * @param array           $invalid_endpoints List of invalid endpoints detected before the push.
+     * @param array|null      $errors            The errors response from the APNS Push.
+     * @param string          $payload           Raw payload that was sent to APNS.
      */
-    public function __construct($logger, $endpoints, $invalid_endpoints, $errors, $payload)
+    public function __construct(LoggerInterface $logger, array $endpoints, array $invalid_endpoints, ?array $errors, string $payload)
     {
         $this->logger   = $logger;
         $this->statuses = [];
@@ -83,7 +85,7 @@ class APNSResponse implements PushNotificationResponseInterface
      *
      * @return void
      */
-    protected function set_statuses($endpoints, $errors)
+    protected function set_statuses(array $endpoints, array $errors): void
     {
         foreach ($errors as $error)
         {
@@ -164,7 +166,7 @@ class APNSResponse implements PushNotificationResponseInterface
      *
      * @return void
      */
-    protected function report_invalid_endpoints(&$invalid_endpoints)
+    protected function report_invalid_endpoints(array &$invalid_endpoints): void
     {
         foreach ($invalid_endpoints as $invalid_endpoint)
         {
@@ -179,7 +181,7 @@ class APNSResponse implements PushNotificationResponseInterface
      *
      * @return void
      */
-    protected function report_error(&$endpoints)
+    protected function report_error(array &$endpoints): void
     {
         foreach ($endpoints as $endpoint)
         {
@@ -197,7 +199,7 @@ class APNSResponse implements PushNotificationResponseInterface
      *
      * @return PushNotificationStatus::* Delivery status for the endpoint
      */
-    public function get_status($endpoint)
+    public function get_status(string $endpoint): int
     {
         return isset($this->statuses[$endpoint]) ? $this->statuses[$endpoint] : PushNotificationStatus::UNKNOWN;
     }
