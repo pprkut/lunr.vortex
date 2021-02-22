@@ -66,7 +66,7 @@ class JPushMessagePayloadSetTest extends JPushMessagePayloadTest
      */
     public function testSetTimeToLiveReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_time_to_live('time_to_live'));
+        $this->assertSame($this->class, $this->class->set_time_to_live(1));
     }
 
     /**
@@ -92,7 +92,7 @@ class JPushMessagePayloadSetTest extends JPushMessagePayloadTest
      */
     public function testSetDataReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_data('data'));
+        $this->assertSame($this->class, $this->class->set_data([]));
     }
 
     /**

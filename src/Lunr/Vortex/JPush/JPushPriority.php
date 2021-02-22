@@ -19,33 +19,33 @@ class JPushPriority
 
     /**
      * Deliver notification immediately.
-     * @var string
+     * @var int
      */
-    const HIGH = 2;
+    public const HIGH = 2;
 
     /**
      * Deliver notification with medium priority.
-     * @var string
+     * @var int
      */
-    const MEDIUM = 1;
+    public const MEDIUM = 1;
 
     /**
      * Deliver notification with normal priority.
-     * @var string
+     * @var int
      */
-    const NORMAL = 0;
+    public const NORMAL = 0;
 
     /**
      * Deliver notification with low priority.
-     * @var string
+     * @var int
      */
-    const LOW = -1;
+    public const LOW = -1;
 
     /**
      * Deliver notification with no priority.
-     * @var string
+     * @var int
      */
-    const NONE = -2;
+    public const NONE = -2;
 
 }
 

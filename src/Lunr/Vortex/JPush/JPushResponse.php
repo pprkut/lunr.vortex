@@ -24,7 +24,7 @@ class JPushResponse implements PushNotificationResponseInterface
      * The statuses per endpoint.
      * @var array<string,PushNotificationStatus::*>
      */
-    protected $statuses;
+    protected array $statuses;
 
     /**
      * Constructor.
@@ -50,7 +50,7 @@ class JPushResponse implements PushNotificationResponseInterface
      *
      * @return void
      */
-    public function add_batch_response($batch_response, $endpoints)
+    public function add_batch_response(JPushBatchResponse $batch_response, array $endpoints)
     {
         foreach ($endpoints as $endpoint)
         {
@@ -65,7 +65,7 @@ class JPushResponse implements PushNotificationResponseInterface
      *
      * @return PushNotificationStatus::* Delivery status for the endpoint
      */
-    public function get_status($endpoint)
+    public function get_status(string $endpoint): int
     {
         return isset($this->statuses[$endpoint]) ? $this->statuses[$endpoint] : PushNotificationStatus::UNKNOWN;
     }

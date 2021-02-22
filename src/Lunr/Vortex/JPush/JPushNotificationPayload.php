@@ -42,7 +42,7 @@ class JPushNotificationPayload extends JPushPayload
      *
      * @return array JPushPayload
      */
-    public function get_payload()
+    public function get_payload(): array
     {
         $elements = $this->elements;
 
@@ -56,9 +56,9 @@ class JPushNotificationPayload extends JPushPayload
      *
      * @param string $sound The notification sound
      *
-     * @return JPushPayload Self Reference
+     * @return JPushNotificationPayload Self Reference
      */
-    public function set_sound($sound)
+    public function set_sound(string $sound): self
     {
         return $this->set_notification_data('sound', $sound);
     }
@@ -68,9 +68,9 @@ class JPushNotificationPayload extends JPushPayload
      *
      * @param boolean $val Value for the "content_available" field.
      *
-     * @return JPushPayload Self Reference
+     * @return JPushNotificationPayload Self Reference
      */
-    public function set_content_available($val)
+    public function set_content_available(bool $val): self
     {
         return $this->set_notification_data('content-available', $val, ['ios']);
     }
@@ -80,9 +80,9 @@ class JPushNotificationPayload extends JPushPayload
      *
      * @param boolean $mutable Notification mutable_content value.
      *
-     * @return JPushPayload Self Reference
+     * @return JPushNotificationPayload Self Reference
      */
-    public function set_mutable_content($mutable)
+    public function set_mutable_content(bool $mutable): self
     {
         return $this->set_notification_data('mutable-content', $mutable, ['ios']);
     }
@@ -90,11 +90,11 @@ class JPushNotificationPayload extends JPushPayload
     /**
      * Mark the notification priority.
      *
-     * @param JPushPriority $priority Notification priority value.
+     * @param JPushPriority::* $priority Notification priority value.
      *
-     * @return JPushPayload Self Reference
+     * @return JPushNotificationPayload Self Reference
      */
-    public function set_priority($priority)
+    public function set_priority(int $priority): self
     {
         $priority_class = new ReflectionClass('\Lunr\Vortex\JPush\JPushPriority');
         $priorities     = array_values($priority_class->getConstants());

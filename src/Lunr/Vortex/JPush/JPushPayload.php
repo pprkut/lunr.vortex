@@ -21,13 +21,13 @@ abstract class JPushPayload
      * Array of Push Notification elements.
      * @var array
      */
-    protected $elements;
+    protected array $elements;
 
     /**
      * Supported push platforms
      * @var array
      */
-    const PLATFORMS = ['ios', 'android'];
+    private const PLATFORMS = ['ios', 'android'];
 
     /**
      * Constructor.
@@ -55,7 +55,7 @@ abstract class JPushPayload
      *
      * @return array JPushPayload
      */
-    public abstract function get_payload();
+    public abstract function get_payload(): array;
 
     /**
      * Sets the notification identifier.
@@ -64,7 +64,7 @@ abstract class JPushPayload
      *
      * @return JPushPayload Self Reference
      */
-    public function set_notification_identifier($identifier)
+    public function set_notification_identifier(string $identifier): self
     {
         $this->elements['cid'] = $identifier;
 
@@ -78,7 +78,7 @@ abstract class JPushPayload
      *
      * @return JPushPayload Self Reference
      */
-    public function set_body($message)
+    public function set_body(string $message): self
     {
         return $this->set_message_data('msg_content', $message)
                     ->set_notification_data('alert', $message);
@@ -91,7 +91,7 @@ abstract class JPushPayload
      *
      * @return JPushPayload Self Reference
      */
-    public function set_title($message)
+    public function set_title(string $message): self
     {
         return $this->set_message_data('title', $message)
                     ->set_notification_data('title', $message, ['android']);
@@ -106,7 +106,7 @@ abstract class JPushPayload
      *
      * @return JPushPayload Self Reference
      */
-    public function set_data($data)
+    public function set_data(array $data): self
     {
         return $this->set_message_data('extras', $data)
                     ->set_notification_data('extras', $data);
@@ -119,7 +119,7 @@ abstract class JPushPayload
      *
      * @return JPushPayload Self Reference
      */
-    public function set_category($category)
+    public function set_category(string $category): self
     {
         return $this->set_message_data('content_type', $category)
                     ->set_notification_data('category', $category);
@@ -135,7 +135,7 @@ abstract class JPushPayload
      *
      * @return JPushPayload Self Reference
      */
-    public function set_time_to_live($ttl)
+    public function set_time_to_live(int $ttl): self
     {
         $this->set_options('time_to_live', $ttl);
 
@@ -152,7 +152,7 @@ abstract class JPushPayload
      *
      * @return JPushPayload Self Reference
      */
-    public function set_collapse_key($key)
+    public function set_collapse_key(string $key): self
     {
         $this->set_options('apns_collapse_id', $key);
 
@@ -167,7 +167,7 @@ abstract class JPushPayload
      *
      * @return JPushPayload Self Reference
      */
-    public function set_options($key, $value)
+    public function set_options(string $key, string $value): self
     {
         if (!isset($this->elements['options']))
         {
@@ -188,7 +188,7 @@ abstract class JPushPayload
      *
      * @return JPushPayload Self Reference
      */
-    protected function set_notification_data($key, $value, $platforms = self::PLATFORMS)
+    protected function set_notification_data(string $key, $value, array $platforms = self::PLATFORMS): self
     {
         foreach ($platforms as $platform)
         {
@@ -206,7 +206,7 @@ abstract class JPushPayload
      *
      * @return JPushPayload Self Reference
      */
-    protected function set_message_data($key, $value)
+    protected function set_message_data(string $key, $value): self
     {
         $this->elements['message'][$key] = $value;
 

@@ -12,7 +12,10 @@
 namespace Lunr\Vortex\JPush;
 
 use Lunr\Vortex\PushNotificationStatus;
+use Psr\Log\LoggerInterface;
 use Requests_Exception;
+use Requests_Response;
+use Requests_Session;
 
 /**
  * JPush response for a batch push notification.
@@ -24,54 +27,55 @@ class JPushBatchResponse
      * JPush Report API URL.
      * @var string
      */
-    const JPUSH_REPORT_URL = 'https://report.jpush.cn/v3/status/message';
+    private const JPUSH_REPORT_URL = 'https://report.jpush.cn/v3/status/message';
 
     /**
      * Shared instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     *
+     * @var LoggerInterface
      */
-    private $logger;
+    private LoggerInterface $logger;
 
     /**
      * Shared instance of the Requests_Session class.
-     * @var \Requests_Session
+     * @var Requests_Session
      */
-    protected $http;
+    protected Requests_Session $http;
 
     /**
      * The statuses per endpoint.
      * @var array
      */
-    private $statuses;
+    private array $statuses;
 
     /**
      * Raw payload that was sent to JPush.
      * @var array
      */
-    protected $payload;
+    protected array $payload;
 
     /**
      * Message ID.
      * @var integer
      */
-    protected $message_id;
+    protected int $message_id;
 
     /**
      * Notification endpoints.
      * @var array
      */
-    protected $endpoints;
+    protected array $endpoints;
 
     /**
      * Constructor.
      *
-     * @param \Requests_Session        $http      Shared instance of the Requests_Session class.
-     * @param \Psr\Log\LoggerInterface $logger    Shared instance of a Logger.
-     * @param \Requests_Response       $response  Requests_Response object.
-     * @param array                    $endpoints The endpoints the message was sent to (in the same order as sent).
-     * @param array                    $payload   Raw payload that was sent to JPush.
+     * @param Requests_Session  $http      Shared instance of the Requests_Session class.
+     * @param LoggerInterface    $logger    Shared instance of a Logger.
+     * @param Requests_Response $response  Requests_Response object.
+     * @param array              $endpoints The endpoints the message was sent to (in the same order as sent).
+     * @param array              $payload   Raw payload that was sent to JPush.
      */
-    public function __construct($http, $logger, $response, $endpoints, $payload)
+    public function __construct(Requests_Session $http, LoggerInterface $logger, Requests_Response $response, array $endpoints, array $payload)
     {
         $this->statuses  = [];
         $this->http      = $http;
@@ -114,7 +118,7 @@ class JPushBatchResponse
      *
      * @return void
      */
-    private function set_statuses()
+    private function set_statuses(): void
     {
 
         $payload = [
@@ -153,27 +157,27 @@ class JPushBatchResponse
      *
      * @return PushNotificationStatus::* Delivery status for the endpoint
      */
-    public function get_status($endpoint)
+    public function get_status(string $endpoint): int
     {
         if ($this->statuses === [])
         {
             $this->set_statuses();
         }
 
-        return isset($this->statuses[$endpoint]) ? $this->statuses[$endpoint] : PushNotificationStatus::UNKNOWN;
+        return $this->statuses[$endpoint] ?? PushNotificationStatus::UNKNOWN;
     }
 
     /**
      * Report an error with the push notification.
      *
      * @param array              $endpoints The endpoints the message was sent to
-     * @param \Requests_Response $response  The HTTP Response
+     * @param Requests_Response $response  The HTTP Response
      *
      * @see https://docs.jiguang.cn/en/jpush/server/push/rest_api_v3_push/#call-return
      *
      * @return void
      */
-    private function report_error(&$endpoints, $response)
+    private function report_error(array &$endpoints, Requests_Response $response): void
     {
         $upstream_msg = NULL;
         if (!empty($response->body))
@@ -227,7 +231,7 @@ class JPushBatchResponse
      *
      * @return void
      */
-    private function report_endpoint_error($endpoint, $error_code)
+    private function report_endpoint_error(string $endpoint, string $error_code): void
     {
         switch ($error_code)
         {

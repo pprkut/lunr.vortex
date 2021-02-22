@@ -38,7 +38,7 @@ class JPushMessagePayload extends JPushPayload
      *
      * @return array JPushPayload
      */
-    public function get_payload()
+    public function get_payload(): array
     {
         $elements = $this->elements;
 

@@ -66,7 +66,7 @@ class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTest
      */
     public function testSetTimeToLiveReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_time_to_live('time_to_live'));
+        $this->assertSame($this->class, $this->class->set_time_to_live(1));
     }
 
     /**
@@ -91,7 +91,7 @@ class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTest
      */
     public function testSetPriorityInvalid(): void
     {
-        $this->class->set_priority('cow');
+        $this->class->set_priority(25);
 
         $value = $this->get_reflection_property_value('elements');
 
@@ -106,7 +106,7 @@ class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTest
      */
     public function testSetPriorityReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_priority('high'));
+        $this->assertSame($this->class, $this->class->set_priority(1));
     }
 
     /**
@@ -157,7 +157,7 @@ class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTest
      */
     public function testSetDataReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_data('data'));
+        $this->assertSame($this->class, $this->class->set_data([]));
     }
 
     /**
