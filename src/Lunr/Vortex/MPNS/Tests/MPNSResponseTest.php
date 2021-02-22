@@ -40,10 +40,11 @@ abstract class MPNSResponseTest extends LunrBaseTest
     {
         $this->logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('\Requests_Response')->getMock();
 
         $response->status_code = FALSE;
         $response->url         = 'http://localhost/';
+        $response->headers     = new \Requests_Response_Headers();
 
         $this->class      = new MPNSResponse($response, $this->logger, '<?xml version="1.0" encoding="utf-8"?>');
         $this->reflection = new ReflectionClass('Lunr\Vortex\MPNS\MPNSResponse');
@@ -60,7 +61,7 @@ abstract class MPNSResponseTest extends LunrBaseTest
 
         $response = $this->getMockBuilder('Requests_Response')->getMock();
 
-        $response->headers = [
+        $headers = [
             'Date'                     => '2013-07-05',
             'X-Notificationstatus'     => 'Received',
             'X-Deviceconnectionstatus' => 'Connected',
@@ -69,6 +70,7 @@ abstract class MPNSResponseTest extends LunrBaseTest
 
         $response->status_code = 200;
         $response->url         = 'http://localhost/';
+        $response->headers     = new \Requests_Response_Headers($headers);
 
         $this->class      = new MPNSResponse($response, $this->logger, '<?xml version="1.0" encoding="utf-8"?>');
         $this->reflection = new ReflectionClass('Lunr\Vortex\MPNS\MPNSResponse');

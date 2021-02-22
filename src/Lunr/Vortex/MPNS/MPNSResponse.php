@@ -13,6 +13,9 @@ namespace Lunr\Vortex\MPNS;
 
 use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\PushNotificationResponseInterface;
+use Psr\Log\LoggerInterface;
+use Requests_Response;
+use Requests_Response_Headers;
 
 /**
  * Windows Phone Push Notification response wrapper.
@@ -22,13 +25,13 @@ class MPNSResponse implements PushNotificationResponseInterface
 
     /**
      * HTTP headers of the response.
-     * @var array
+     * @var Requests_Response_Headers
      */
-    private $headers;
+    private Requests_Response_Headers $headers;
 
     /**
      * HTTP status code.
-     * @var integer
+     * @var bool
      */
     private $http_code;
 
@@ -36,35 +39,37 @@ class MPNSResponse implements PushNotificationResponseInterface
      * Delivery status.
      * @var PushNotificationStatus::*
      */
-    private $status;
+    private int $status;
 
     /**
      * Push notification endpoint.
      * @var string
      */
-    private $endpoint;
+    private string $endpoint;
 
     /**
      * Raw payload that was sent to MPNS.
      * @var string
      */
-    protected $payload;
+    protected string $payload;
 
     /**
      * Constructor.
      *
-     * @param \Requests_Response       $response Requests_Response object.
-     * @param \Psr\Log\LoggerInterface $logger   Shared instance of a Logger.
-     * @param string                   $payload  Raw payload that was sent to MPNS.
+     * @param Requests_Response $response Requests_Response object.
+     * @param LoggerInterface    $logger   Shared instance of a Logger.
+     * @param string             $payload  Raw payload that was sent to MPNS.
      */
-    public function __construct($response, $logger, $payload)
+    public function __construct(Requests_Response $response, LoggerInterface $logger, string $payload)
     {
         $this->http_code = $response->status_code;
         $this->endpoint  = $response->url;
         $this->payload   = $payload;
 
+
         if ($this->http_code === FALSE)
         {
+            $this->headers = new Requests_Response_Headers();
             $this->status = PushNotificationStatus::ERROR;
         }
         else
@@ -88,22 +93,26 @@ class MPNSResponse implements PushNotificationResponseInterface
     /**
      * Set response header information.
      *
-     * @param array $headers Response headers
+     * @param Requests_Response_Headers $headers Response headers
      *
      * @return void
      */
-    private function set_headers($headers)
+    private function set_headers(Requests_Response_Headers $headers): void
     {
         $this->headers = $headers;
 
         if (in_array($this->http_code, [ 400, 401, 405, 503 ]))
         {
+            unset($this->headers['X-Notificationstatus']);
+            unset($this->headers['X-Deviceconnectionstatus']);
+            unset($this->headers['X-Subscriptionstatus']);
             $this->headers['X-Notificationstatus']     = 'N/A';
             $this->headers['X-Deviceconnectionstatus'] = 'N/A';
             $this->headers['X-Subscriptionstatus']     = 'N/A';
         }
         elseif ($this->http_code === 412)
         {
+            unset($this->headers['X-Subscriptionstatus']);
             $this->headers['X-Subscriptionstatus'] = 'N/A';
         }
     }
@@ -111,12 +120,12 @@ class MPNSResponse implements PushNotificationResponseInterface
     /**
      * Set notification status information.
      *
-     * @param string                   $endpoint The notification endpoint that was used.
-     * @param \Psr\Log\LoggerInterface $logger   Shared instance of a Logger.
+     * @param string          $endpoint The notification endpoint that was used.
+     * @param LoggerInterface $logger   Shared instance of a Logger.
      *
      * @return void
      */
-    private function set_status($endpoint, $logger)
+    private function set_status(string $endpoint, LoggerInterface $logger)
     {
         switch ($this->http_code)
         {
@@ -176,7 +185,7 @@ class MPNSResponse implements PushNotificationResponseInterface
      *
      * @return PushNotificationStatus::* Delivery status for the endpoint
      */
-    public function get_status($endpoint)
+    public function get_status(string $endpoint): int
     {
         if ($endpoint != $this->endpoint)
         {

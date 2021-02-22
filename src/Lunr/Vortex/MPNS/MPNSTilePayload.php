@@ -38,7 +38,7 @@ class MPNSTilePayload extends MPNSPayload
      *
      * @return string Payload
      */
-    public function get_payload()
+    public function get_payload(): string
     {
         $xml  = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
         $xml .= "<wp:Notification xmlns:wp=\"WPNotification\">\n";
@@ -94,7 +94,7 @@ class MPNSTilePayload extends MPNSPayload
      *
      * @return MPNSTilePayload Self Reference
      */
-    public function set_title($title)
+    public function set_title(string $title): self
     {
         $this->elements['title'] = $this->escape_string($title);
 
@@ -108,7 +108,7 @@ class MPNSTilePayload extends MPNSPayload
      *
      * @return MPNSTilePayload Self Reference
      */
-    public function set_background_image($image)
+    public function set_background_image(string $image): self
     {
         $this->elements['background_image'] = $this->escape_string($image);
 
@@ -122,7 +122,7 @@ class MPNSTilePayload extends MPNSPayload
      *
      * @return MPNSTilePayload Self Reference
      */
-    public function set_count($count)
+    public function set_count(string $count): self
     {
         $this->elements['count'] = $this->escape_string($count);
 
@@ -136,7 +136,7 @@ class MPNSTilePayload extends MPNSPayload
      *
      * @return MPNSTilePayload Self Reference
      */
-    public function set_back_background_image($image)
+    public function set_back_background_image(string $image): self
     {
         $this->elements['back_background_image'] = $this->escape_string($image);
 
@@ -150,7 +150,7 @@ class MPNSTilePayload extends MPNSPayload
      *
      * @return MPNSTilePayload Self Reference
      */
-    public function set_back_title($title)
+    public function set_back_title(string $title): self
     {
         $this->elements['back_title'] = $this->escape_string($title);
 
@@ -164,7 +164,7 @@ class MPNSTilePayload extends MPNSPayload
      *
      * @return MPNSTilePayload Self Reference
      */
-    public function set_back_content($content)
+    public function set_back_content(string $content): self
     {
         $this->elements['back_content'] = $this->escape_string($content);
 
@@ -178,7 +178,7 @@ class MPNSTilePayload extends MPNSPayload
      *
      * @return MPNSTilePayload Self Reference
      */
-    public function set_id($id)
+    public function set_id(string $id): self
     {
         $this->elements['id'] = $this->escape_string($id);
 

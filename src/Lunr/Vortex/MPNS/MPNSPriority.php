@@ -21,61 +21,61 @@ class MPNSPriority
      * Initial priority.
      * @var integer
      */
-    const DEFAULT = 0;
+    public const DEFAULT = 0;
 
     /**
      * Deliver Tile notification immediately.
      * @var integer
      */
-    const TILE_IMMEDIATELY = 1;
+    public const TILE_IMMEDIATELY = 1;
 
     /**
      * Deliver Tile notification within 450 seconds.
      * @var integer
      */
-    const TILE_WAIT_450 = 11;
+    public const TILE_WAIT_450 = 11;
 
     /**
      * Deliver Tile notification within 900 seconds.
      * @var integer
      */
-    const TILE_WAIT_900 = 21;
+    public const TILE_WAIT_900 = 21;
 
     /**
      * Deliver Toast notification immediately.
      * @var integer
      */
-    const TOAST_IMMEDIATELY = 2;
+    public const TOAST_IMMEDIATELY = 2;
 
     /**
      * Deliver Toast notification within 450 seconds.
      * @var integer
      */
-    const TOAST_WAIT_450 = 12;
+    public const TOAST_WAIT_450 = 12;
 
     /**
      * Deliver Toast notification within 900 seconds.
      * @var integer
      */
-    const TOAST_WAIT_900 = 22;
+    public const TOAST_WAIT_900 = 22;
 
     /**
      * Deliver Raw notification immediately.
      * @var integer
      */
-    const RAW_IMMEDIATELY = 3;
+    public const RAW_IMMEDIATELY = 3;
 
     /**
      * Deliver Raw notification within 450 seconds.
      * @var integer
      */
-    const RAW_WAIT_450 = 13;
+    public const RAW_WAIT_450 = 13;
 
     /**
      * Deliver Raw notification within 900 seconds.
      * @var integer
      */
-    const RAW_WAIT_900 = 23;
+    public const RAW_WAIT_900 = 23;
 
 }
 

@@ -36,7 +36,7 @@ class MPNSResponseSetTest extends MPNSResponseTest
      */
     public function testSetHeadersWithPreconditionFailedStatus(): void
     {
-        $headers = [
+        $in_headers = [
             'Date'                     => '2013-07-05',
             'X-Notificationstatus'     => 'Received',
             'X-Deviceconnectionstatus' => 'Connected',
@@ -46,7 +46,7 @@ class MPNSResponseSetTest extends MPNSResponseTest
         $this->set_reflection_property_value('http_code', 412);
 
         $method = $this->get_accessible_reflection_method('set_headers');
-        $method->invokeArgs($this->class, [ $headers ]);
+        $method->invokeArgs($this->class, [ new \Requests_Response_Headers($in_headers) ]);
 
         $headers = $this->get_reflection_property_value('headers');
 
@@ -65,11 +65,11 @@ class MPNSResponseSetTest extends MPNSResponseTest
      * @param integer $status Special status code
      *
      * @dataProvider specialStatusProvider
-     * @covers       Lunr\Vortex\MPNS\MPNSResponse::set_headers
+     * @covers       \Lunr\Vortex\MPNS\MPNSResponse::set_headers
      */
-    public function testSetHeadersWithSpecialStatusCodes($status): void
+    public function testSetHeadersWithSpecialStatusCodes(int $status): void
     {
-        $headers = [
+        $in_headers = [
             'Date'                     => '2013-07-05',
             'X-Notificationstatus'     => 'Received',
             'X-Deviceconnectionstatus' => 'Connected',
@@ -79,7 +79,7 @@ class MPNSResponseSetTest extends MPNSResponseTest
         $this->set_reflection_property_value('http_code', $status);
 
         $method = $this->get_accessible_reflection_method('set_headers');
-        $method->invokeArgs($this->class, [ $headers ]);
+        $method->invokeArgs($this->class, [ new \Requests_Response_Headers($in_headers) ]);
 
         $headers = $this->get_reflection_property_value('headers');
 
@@ -126,7 +126,7 @@ class MPNSResponseSetTest extends MPNSResponseTest
         $headers['X-Deviceconnectionstatus'] = 'N/A';
         $headers['X-Subscriptionstatus']     = 'N/A';
 
-        $this->set_reflection_property_value('headers', $headers);
+        $this->set_reflection_property_value('headers', new \Requests_Response_Headers($headers));
         $this->set_reflection_property_value('http_code', $code);
 
         $context = [

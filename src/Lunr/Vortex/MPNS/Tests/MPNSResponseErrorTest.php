@@ -34,7 +34,7 @@ class MPNSResponseErrorTest extends MPNSResponseTest
      */
     public function testHeadersIsNull(): void
     {
-        $this->assertNull($this->get_reflection_property_value('headers'));
+        $this->assertEquals(new \Requests_Response_Headers(), $this->get_reflection_property_value('headers'));
     }
 
     /**

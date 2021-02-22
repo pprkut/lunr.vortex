@@ -12,8 +12,11 @@
 namespace Lunr\Vortex\MPNS;
 
 use Lunr\Vortex\PushNotificationDispatcherInterface;
+use Lunr\Vortex\PushNotificationResponseInterface;
+use Psr\Log\LoggerInterface;
 use Requests_Exception;
 use Requests_Response;
+use Requests_Session;
 
 /**
  * Windows Phone Push Notification Dispatcher.
@@ -23,23 +26,24 @@ class MPNSDispatcher implements PushNotificationDispatcherInterface
 
     /**
      * Shared instance of the Requests_Session class.
-     * @var \Requests_Session
+     * @var Requests_Session
      */
-    private $http;
+    private Requests_Session $http;
 
     /**
      * Shared instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     *
+     * @var LoggerInterface
      */
-    private $logger;
+    private LoggerInterface $logger;
 
     /**
      * Constructor.
      *
-     * @param \Requests_Session        $http   Shared instance of the Requests_Session class.
-     * @param \Psr\Log\LoggerInterface $logger Shared instance of a Logger.
+     * @param Requests_Session $http   Shared instance of the Requests_Session class.
+     * @param LoggerInterface  $logger Shared instance of a Logger.
      */
-    public function __construct($http, $logger)
+    public function __construct(Requests_Session $http, LoggerInterface $logger)
     {
         $this->http     = $http;
         $this->logger   = $logger;
@@ -60,9 +64,9 @@ class MPNSDispatcher implements PushNotificationDispatcherInterface
      * @param MPNSPayload $payload   Payload object
      * @param array       $endpoints Endpoints to send to in this batch
      *
-     * @return MPNSResponse Response object
+     * @return PushNotificationResponseInterface&MPNSResponse Response object
      */
-    public function push($payload, &$endpoints)
+    public function push(object $payload, array &$endpoints): PushNotificationResponseInterface
     {
         $type = MPNSType::RAW;
         if ($payload instanceof MPNSToastPayload)
@@ -112,9 +116,9 @@ class MPNSDispatcher implements PushNotificationDispatcherInterface
      *
      * @param string $endpoint Endpoint to send to
      *
-     * @return \Requests_Response New instance of a Requests_Response object.
+     * @return Requests_Response New instance of a Requests_Response object.
      */
-    protected function get_new_response_object_for_failed_request($endpoint)
+    protected function get_new_response_object_for_failed_request(string $endpoint): Requests_Response
     {
         $http_response = new Requests_Response();
 

@@ -11,6 +11,8 @@
 
 namespace Lunr\Vortex\MPNS;
 
+use Psr\Log\LoggerInterface;
+
 /**
  * Windows Phone Toast Push Notification Payload Generator.
  */
@@ -21,14 +23,14 @@ class MPNSToastPayload extends MPNSPayload
      * Shared instance of a Logger.
      * @var \Psr\Log\LoggerInterface
      */
-    private $logger;
+    private LoggerInterface $logger;
 
     /**
      * Constructor.
      *
      * @param \Psr\Log\LoggerInterface $logger Shared instance of a logger
      */
-    public function __construct($logger)
+    public function __construct(LoggerInterface $logger)
     {
         parent::__construct();
 
@@ -50,7 +52,7 @@ class MPNSToastPayload extends MPNSPayload
      *
      * @return string Payload
      */
-    public function get_payload()
+    public function get_payload(): string
     {
         $xml  = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
         $xml .= "<wp:Notification xmlns:wp=\"WPNotification\">\n";
@@ -83,7 +85,7 @@ class MPNSToastPayload extends MPNSPayload
      *
      * @return MPNSToastPayload Self Reference
      */
-    public function set_title($title)
+    public function set_title(string $title): self
     {
         $this->elements['title'] = $this->escape_string($title);
 
@@ -97,7 +99,7 @@ class MPNSToastPayload extends MPNSPayload
      *
      * @return MPNSToastPayload Self Reference
      */
-    public function set_message($message)
+    public function set_message(string $message): self
     {
         $this->elements['message'] = $this->escape_string($message);
 
@@ -111,7 +113,7 @@ class MPNSToastPayload extends MPNSPayload
      *
      * @return MPNSToastPayload Self Reference
      */
-    public function set_deeplink($deeplink)
+    public function set_deeplink(string $deeplink): self
     {
         $deeplink = $this->escape_string($deeplink);
 

@@ -21,19 +21,19 @@ class MPNSType
      * Tile notification.
      * @var string
      */
-    const TILE = 'token';
+    public const TILE = 'token';
 
     /**
      * Toast notification.
      * @var string
      */
-    const TOAST = 'toast';
+    public const TOAST = 'toast';
 
     /**
      * Raw notification.
      * @var string
      */
-    const RAW = 'raw';
+    public const RAW = 'raw';
 
 }
 

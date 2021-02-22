@@ -12,6 +12,7 @@
 namespace Lunr\Vortex\MPNS\Tests;
 
 use Lunr\Vortex\MPNS\MPNSDispatcher;
+use Lunr\Vortex\MPNS\MPNSPayload;
 use Lunr\Vortex\MPNS\MPNSPriority;
 use Lunr\Vortex\MPNS\MPNSType;
 use Lunr\Halo\LunrBaseTest;

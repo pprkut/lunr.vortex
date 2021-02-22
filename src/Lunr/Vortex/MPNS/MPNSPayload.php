@@ -23,13 +23,13 @@ abstract class MPNSPayload
      * Array of Push Notification elements.
      * @var array
      */
-    protected $elements;
+    protected array $elements;
 
     /**
      * Priority of the payload.
-     * @var integer
+     * @var MPNSPriority::*
      */
-    protected $priority = MPNSPriority::DEFAULT;
+    protected int $priority = MPNSPriority::DEFAULT;
 
     /**
      * Constructor.
@@ -55,7 +55,7 @@ abstract class MPNSPayload
      *
      * @return string Escaped string
      */
-    protected function escape_string($string)
+    protected function escape_string(string $string): string
     {
         $search  = [ '&', '<', '>', '‘', '“' ];
         $replace = [ '&amp;', '&lt;', '&gt;', '&apos;', '&quot;' ];
@@ -68,7 +68,7 @@ abstract class MPNSPayload
      *
      * @return string Payload
      */
-    public abstract function get_payload();
+    public abstract function get_payload(): string;
 
     /**
      * Mark the notification priority.
@@ -77,7 +77,7 @@ abstract class MPNSPayload
      *
      * @return MPNSPayload Self Reference
      */
-    public function set_priority($priority)
+    public function set_priority(int $priority): self
     {
         $mpns = new ReflectionClass('\Lunr\Vortex\MPNS\MPNSPriority');
         if (in_array($priority, $mpns->getConstants()))
