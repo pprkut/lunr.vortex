@@ -62,8 +62,7 @@ abstract class PAPResponseTest extends LunrBaseTest
 
         $response->status_code = 200;
 
-        $error = version_compare('7.4.0', PHP_VERSION, '<=') ? 'Invalid document end' : 'no element found';
-
+        $error = (XML_SAX_IMPL === 'libxml') ? 'Invalid document end' : 'no element found';
 
         $this->logger->expects($this->once())
                      ->method('warning')
