@@ -11,6 +11,7 @@
 
 namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
+use ApnsPHP\Message;
 use Lunr\Halo\PropertyTraits\PsrLoggerTestTrait;
 
 /**
@@ -41,7 +42,7 @@ class APNSDispatcherBaseTest extends APNSDispatcherTest
         $method = $this->get_accessible_reflection_method('get_new_apns_message');
         $result = $method->invokeArgs($this->class, []);
 
-        $this->assertInstanceOf(\ApnsPHP_Message::class, $result);
+        $this->assertInstanceOf(Message::class, $result);
     }
 
 }

@@ -11,9 +11,9 @@
 
 namespace Lunr\Vortex\APNS\ApnsPHP;
 
-use \ApnsPHP_Message;
-use \ApnsPHP_Message_Exception;
-use \ApnsPHP_Exception;
+use \ApnsPHP\Message;
+use \ApnsPHP\Message\Exception as MessageException;
+use \ApnsPHP\Exception as ApnsPHPException;
 use Lunr\Vortex\APNS\APNSPayload;
 use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
 
@@ -24,14 +24,14 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
 {
 
     /**
-     * Shared instance of ApnsPHP_Push.
-     * @var \ApnsPHP_Push
+     * Shared instance of ApnsPHP\Push.
+     * @var \ApnsPHP\Push
      */
     protected $apns_push;
 
     /**
      * Apns Message instance
-     * @var \ApnsPHP_Message
+     * @var \ApnsPHP\Message
      */
     protected $apns_message;
 
@@ -45,7 +45,7 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
      * Constructor.
      *
      * @param \Psr\Log\LoggerInterface $logger    Shared instance of a Logger.
-     * @param \ApnsPHP_Push            $apns_push Apns Push instance.
+     * @param \ApnsPHP\Push            $apns_push Apns Push instance.
      */
     public function __construct($logger, $apns_push)
     {
@@ -78,11 +78,11 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Return a new APNS message.
      *
-     * @return \ApnsPHP_Message
+     * @return \ApnsPHP\Message
      */
     protected function get_new_apns_message()
     {
-        return new ApnsPHP_Message();
+        return new Message();
     }
 
     /**
@@ -164,7 +164,7 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
                 }
             }
         }
-        catch (ApnsPHP_Message_Exception $e)
+        catch (MessageException $e)
         {
             $this->logger->warning($e->getMessage());
         }
@@ -178,7 +178,7 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
             {
                 $this->apns_message->addRecipient($endpoint);
             }
-            catch (ApnsPHP_Message_Exception $e)
+            catch (MessageException $e)
             {
                 $invalid_endpoints[] = $endpoint;
 
@@ -196,7 +196,7 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
 
             $errors = $this->apns_push->getErrors();
         }
-        catch (ApnsPHP_Exception $e)
+        catch (ApnsPHPException $e)
         {
             $errors = NULL;
 

@@ -11,6 +11,10 @@
 
 namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
+use ApnsPHP\Exception as ApnsPHPException;
+use ApnsPHP\Message\Exception as MessageException;
+use ApnsPHP\Push\Exception as PushException;
+
 /**
  * This class contains tests for the push() method of the APNSDispatcher class.
  *
@@ -172,7 +176,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
         $this->apns_message->expects($this->once())
                            ->method('setBadge')
                            ->with('yo')
-                           ->will($this->throwException(new \ApnsPHP_Message_Exception('Invalid badge: yo')));
+                           ->will($this->throwException(new MessageException('Invalid badge: yo')));
 
         $this->logger->expects($this->once())
                      ->method('warning')
@@ -199,7 +203,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
         $this->apns_message->expects($this->once())
                            ->method('setCustomProperty')
                            ->with('apns', 'value1')
-                           ->will($this->throwException(new \ApnsPHP_Message_Exception('Reserved keyword: apns')));
+                           ->will($this->throwException(new MessageException('Reserved keyword: apns')));
 
         $this->logger->expects($this->once())
                      ->method('warning')
@@ -241,9 +245,9 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
                            ->method('addRecipient')
                            ->withConsecutive(['endpoint1'], ['endpoint2'], ['endpoint3'])
                            ->willReturnOnConsecutiveCalls(
-                               $this->throwException(new \ApnsPHP_Message_Exception('Invalid endpoint: endpoint1')),
+                               $this->throwException(new MessageException('Invalid endpoint: endpoint1')),
                                NULL,
-                               $this->throwException(new \ApnsPHP_Message_Exception('Invalid endpoint: endpoint3'))
+                               $this->throwException(new MessageException('Invalid endpoint: endpoint3'))
                            );
 
         $this->logger->expects($this->exactly(2))
@@ -269,7 +273,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
 
         $this->apns_push->expects($this->once())
                         ->method('connect')
-                        ->will($this->throwException(new \ApnsPHP_Exception('Failed to connect')));
+                        ->will($this->throwException(new ApnsPHPException('Failed to connect')));
 
         $this->logger->expects($this->once())
                      ->method('warning')
@@ -294,7 +298,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
 
         $this->apns_push->expects($this->once())
                         ->method('send')
-                        ->will($this->throwException(new \ApnsPHP_Push_Exception('Failed to send')));
+                        ->will($this->throwException(new PushException('Failed to send')));
 
         $this->logger->expects($this->once())
                      ->method('warning')

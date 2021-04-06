@@ -30,7 +30,7 @@ abstract class APNSResponseTest extends LunrBaseTest
 
     /**
      * Mock instance of an APNS Message class.
-     * @var ApnsPHP\Message
+     * @var \ApnsPHP\Message
      */
     protected $apns_message;
 
@@ -43,7 +43,7 @@ abstract class APNSResponseTest extends LunrBaseTest
     {
         $this->logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 
-        $this->apns_message = $this->getMockBuilder('ApnsPHP_Message')
+        $this->apns_message = $this->getMockBuilder('ApnsPHP\Message')
                                    ->disableOriginalConstructor()
                                    ->getMock();
     }

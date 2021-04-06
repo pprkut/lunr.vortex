@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "122503d1f9c51796bae964cb0ca72c4b",
+    "content-hash": "e996aacd856eb97555baf5ef3312e916",
     "packages": [
         {
             "name": "lcobucci/jwt",
@@ -176,16 +176,16 @@
         },
         {
             "name": "m2mobi/apns-php",
-            "version": "2.0.0beta1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/M2mobi/ApnsPHP.git",
-                "reference": "c0b9e0e51561d60e22fbc65558cee7352cc3fce7"
+                "reference": "4ce9421eb688ad25427e10a50f4136f72cc8754d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/M2mobi/ApnsPHP/zipball/c0b9e0e51561d60e22fbc65558cee7352cc3fce7",
-                "reference": "c0b9e0e51561d60e22fbc65558cee7352cc3fce7",
+                "url": "https://api.github.com/repos/M2mobi/ApnsPHP/zipball/4ce9421eb688ad25427e10a50f4136f72cc8754d",
+                "reference": "4ce9421eb688ad25427e10a50f4136f72cc8754d",
                 "shasum": ""
             },
             "require": {
@@ -194,10 +194,11 @@
                 "php": ">=7.2.0",
                 "psr/log": "~1.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "ApnsPHP_": ""
+                "psr-4": {
+                    "ApnsPHP\\": "ApnsPHP"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -214,9 +215,9 @@
             ],
             "support": {
                 "issues": "https://github.com/M2mobi/ApnsPHP/issues",
-                "source": "https://github.com/M2mobi/ApnsPHP/tree/2.0.0beta1"
+                "source": "https://github.com/M2mobi/ApnsPHP/tree/master"
             },
-            "time": "2021-02-05T13:26:58+00:00"
+            "time": "2021-04-08T12:51:02+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -2549,7 +2550,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "m2mobi/apns-php": 10,
+        "m2mobi/apns-php": 20,
         "lunr/halo": 20,
         "lunr/config": 20
     },
