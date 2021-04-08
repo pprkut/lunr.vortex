@@ -35,7 +35,7 @@
     },
     "JWT": {
         "url": "https://github.com/lcobucci/JWT.git",
-        "version": "3.4.2",
+        "version": "4.1.4",
         "psr4": {
             "prefix": "Lcobucci\\JWT",
             "search-path": "/src/"
