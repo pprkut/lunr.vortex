@@ -51,7 +51,7 @@
     },
     "PHPMailer": {
         "url": "https://github.com/PHPMailer/PHPMailer.git",
-        "version": "6.1.6",
+        "version": "6.4.1",
         "psr4": {
             "prefix": "PHPMailer\\PHPMailer",
             "search-path": "/src/"
@@ -59,7 +59,7 @@
     },
     "Requests": {
         "url": "https://github.com/rmccue/Requests.git",
-        "version": "1.7.0",
+        "version": "1.8.0",
         "psr0": {
             "path": "/library/"
         }
