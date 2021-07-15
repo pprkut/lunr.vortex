@@ -21,25 +21,25 @@ class WNSType
      * Tile notification.
      * @var string
      */
-    const TILE = 'tile';
+    public const TILE = 'tile';
 
     /**
      * Toast notification.
      * @var string
      */
-    const TOAST = 'toast';
+    public const TOAST = 'toast';
 
     /**
      * Badge notification.
      * @var string
      */
-    const BADGE = 'badge';
+    public const BADGE = 'badge';
 
     /**
      * Raw notification.
      * @var string
      */
-    const RAW = 'raw';
+    public const RAW = 'raw';
 
 }
 

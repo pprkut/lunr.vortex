@@ -38,7 +38,7 @@ class WNSToastPayload extends WNSPayload
      *
      * @return string Payload
      */
-    public function get_payload()
+    public function get_payload(): string
     {
         $template = (isset($this->elements['template'])) ? $this->elements['template'] : 'ToastText0' . count($this->elements['text']);
 
@@ -78,9 +78,9 @@ class WNSToastPayload extends WNSPayload
      *
      * @param integer         $line The line on which to add the text
      *
-     * @return \Lunr\Vortex\WNS\WNSToastPayload Self Reference
+     * @return self Self Reference
      */
-    public function set_text($text, $line = 0)
+    public function set_text($text, int $line = 0): self
     {
         if (!is_array($text))
         {
@@ -101,9 +101,9 @@ class WNSToastPayload extends WNSPayload
      *
      * @param string $launch Launch parameters for the app
      *
-     * @return WNSToastPayload Self Reference
+     * @return self Self Reference
      */
-    public function set_launch($launch)
+    public function set_launch(string $launch): self
     {
         $this->elements['launch'] = $this->escape_string($launch);
 
@@ -117,9 +117,9 @@ class WNSToastPayload extends WNSPayload
      *
      * @see https://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.notifications.toasttemplatetype
      *
-     * @return WNSToastPayload Self Reference
+     * @return self Self Reference
      */
-    public function set_template($template)
+    public function set_template(string $template): self
     {
         $this->elements['template'] = $this->escape_string($template);
 
@@ -131,9 +131,9 @@ class WNSToastPayload extends WNSPayload
      *
      * @param string $image Image to display
      *
-     * @return WNSToastPayload Self Reference
+     * @return self Self Reference
      */
-    public function set_image($image)
+    public function set_image(string $image): self
     {
         $this->elements['image'] = $this->escape_string($image);
 

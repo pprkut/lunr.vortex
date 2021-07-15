@@ -38,7 +38,7 @@ class WNSTilePayload extends WNSPayload
      *
      * @return string Payload
      */
-    public function get_payload()
+    public function get_payload(): string
     {
         $inner_xml = '';
         foreach ($this->elements['image'] as $key => $value)
@@ -75,9 +75,9 @@ class WNSTilePayload extends WNSPayload
      *
      * @param integer         $line The line on which to add the text
      *
-     * @return WNSTilePayload Self Reference
+     * @return self Self Reference
      */
-    public function set_text($text, $line = 0)
+    public function set_text($text, int $line = 0): self
     {
         if (!is_array($text))
         {
@@ -100,9 +100,9 @@ class WNSTilePayload extends WNSPayload
      *
      * @param integer         $line  The line on which to add the text
      *
-     * @return WNSTilePayload Self Reference
+     * @return self Self Reference
      */
-    public function set_image($image, $line = 0)
+    public function set_image($image, int $line = 0): self
     {
         if (!is_array($image))
         {
@@ -128,7 +128,7 @@ class WNSTilePayload extends WNSPayload
      *
      * @return WNSTilePayload Self Reference
      */
-    public function set_templates($templates)
+    public function set_templates($templates): self
     {
         if (!is_array($templates))
         {

@@ -21,7 +21,7 @@ abstract class WNSPayload
      * Array of Push Notification elements.
      * @var array
      */
-    protected $elements;
+    protected array $elements;
 
     /**
      * Constructor.
@@ -46,7 +46,7 @@ abstract class WNSPayload
      *
      * @return string Escaped string
      */
-    protected function escape_string($string)
+    protected function escape_string(string $string): string
     {
         $search  = [ '&', '<', '>', '‘', '“' ];
         $replace = [ '&amp;', '&lt;', '&gt;', '&apos;', '&quot;' ];
@@ -59,7 +59,7 @@ abstract class WNSPayload
      *
      * @return string Payload
      */
-    public abstract function get_payload();
+    public abstract function get_payload(): string;
 
 }
 

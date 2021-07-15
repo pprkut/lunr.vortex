@@ -16,7 +16,7 @@ use Lunr\Vortex\PushNotificationStatus;
 /**
  * This class contains tests for failed WNS dispatches.
  *
- * @covers Lunr\Vortex\WNS\WNSResponse
+ * @covers \Lunr\Vortex\WNS\WNSResponse
  */
 class WNSResponseErrorTest extends WNSResponseTest
 {
@@ -34,7 +34,7 @@ class WNSResponseErrorTest extends WNSResponseTest
      */
     public function testHeadersIsNull(): void
     {
-        $this->assertNull($this->get_reflection_property_value('headers'));
+        $this->assertEquals(NULL, $this->get_reflection_property_value('headers'));
     }
 
     /**

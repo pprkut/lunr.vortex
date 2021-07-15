@@ -13,8 +13,11 @@
 namespace Lunr\Vortex\WNS;
 
 use Lunr\Vortex\PushNotificationDispatcherInterface;
+use Lunr\Vortex\PushNotificationResponseInterface;
+use Psr\Log\LoggerInterface;
 use Requests_Exception;
 use Requests_Response;
+use Requests_Session;
 
 /**
  * Windows Push Notification Dispatcher.
@@ -25,57 +28,58 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
      * Client Secret to use when obtaining an oauth token
      * @var string|null
      */
-    protected $client_secret;
+    protected ?string $client_secret;
 
     /**
      * Client ID to use when obtaining an oauth token
      * @var string|null
      */
-    protected $client_id;
+    protected ?string $client_id;
 
     /**
      * The authentication token to identify the app channel
      * @var string|null
      */
-    private $oauth_token;
+    private ?string $oauth_token;
 
     /**
      * Push notification type.
      * @var string
      */
-    private $type;
+    private string $type;
 
     /**
      * Shared instance of the Requests_Session class.
-     * @var \Requests_Session
+     * @var Requests_Session
      */
-    private $http;
+    private Requests_Session $http;
 
     /**
      * Shared instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     *
+     * @var LoggerInterface
      */
-    private $logger;
+    private LoggerInterface $logger;
 
     /**
      * The URL to use to request an OAuth token.
      * @var string
      */
-    const TOKEN_URL = 'https://login.live.com/accesstoken.srf';
+    private const TOKEN_URL = 'https://login.live.com/accesstoken.srf';
 
     /**
      * The scope to request the oauth token from.
      * @var string
      */
-    const NOTIFICATION_SCOPE = 'notify.windows.com';
+    private const NOTIFICATION_SCOPE = 'notify.windows.com';
 
     /**
      * Constructor.
      *
-     * @param \Requests_Session        $http   Shared instance of the Requests_Session class.
-     * @param \Psr\Log\LoggerInterface $logger Shared instance of a Logger.
+     * @param Requests_Session $http   Shared instance of the Requests_Session class.
+     * @param LoggerInterface  $logger Shared instance of a Logger.
      */
-    public function __construct($http, $logger)
+    public function __construct(Requests_Session $http, LoggerInterface $logger)
     {
         $this->http          = $http;
         $this->logger        = $logger;
@@ -104,9 +108,9 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
      * @param WNSPayload $payload   Payload object
      * @param array      $endpoints Endpoints to send to in this batch
      *
-     * @return WNSResponse Response object
+     * @return PushNotificationResponseInterface&WNSResponse Response object
      */
-    public function push($payload, &$endpoints)
+    public function push(object $payload, array &$endpoints): PushNotificationResponseInterface
     {
         if (!isset($this->oauth_token))
         {
@@ -177,7 +181,7 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
      *
      * @return WNSDispatcher Self reference
      */
-    public function set_type($type)
+    public function set_type(string $type): self
     {
         if (in_array($type, [ WNSType::TOAST, WNSType::TILE, WNSType::RAW, WNSType::BADGE ]))
         {
@@ -194,7 +198,7 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
      *
      * @return WNSDispatcher Self reference
      */
-    public function set_client_id($client_id)
+    public function set_client_id(string $client_id): self
     {
         $this->client_id = $client_id;
         return $this;
@@ -207,7 +211,7 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
      *
      * @return WNSDispatcher Self reference
      */
-    public function set_client_secret($client_secret)
+    public function set_client_secret(string $client_secret): self
     {
         $this->client_secret = $client_secret;
         return $this;
@@ -263,7 +267,7 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
      *
      * @return void
      */
-    public function set_oauth_token($token)
+    public function set_oauth_token(string $token): void
     {
         $this->oauth_token = $token;
     }
@@ -273,9 +277,9 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
      *
      * @param string $endpoint Endpoint to send to
      *
-     * @return \Requests_Response New instance of a Requests_Response object.
+     * @return Requests_Response New instance of a Requests_Response object.
      */
-    protected function get_new_response_object_for_failed_request($endpoint)
+    protected function get_new_response_object_for_failed_request(string $endpoint): Requests_Response
     {
         $http_response = new Requests_Response();
 

@@ -12,13 +12,16 @@
 
 namespace Lunr\Vortex\WNS;
 
+use Lunr\Vortex\PushNotificationResponseInterface;
 use Lunr\Vortex\PushNotificationStatus;
+use Requests_Response;
 use Requests_Response_Headers;
+use Psr\Log\LoggerInterface;
 
 /**
  * Windows Push Notification response wrapper.
  */
-class WNSResponse
+class WNSResponse implements PushNotificationResponseInterface
 {
 
     /**
@@ -29,7 +32,7 @@ class WNSResponse
 
     /**
      * HTTP status code.
-     * @var integer
+     * @var mixed
      */
     private $http_code;
 
@@ -37,28 +40,28 @@ class WNSResponse
      * Delivery status.
      * @var PushNotificationStatus::*
      */
-    private $status;
+    private int $status;
 
     /**
      * Push notification endpoint.
      * @var string
      */
-    private $endpoint;
+    private string $endpoint;
 
     /**
      * Raw payload that was sent to WNS.
-     * @var string
+     * @var string|null
      */
-    protected $payload;
+    protected ?string $payload;
 
     /**
      * Constructor.
      *
-     * @param \Requests_Response       $response Requests_Response object.
-     * @param \Psr\Log\LoggerInterface $logger   Shared instance of a Logger.
-     * @param string                   $payload  Raw payload that was sent to WNS.
+     * @param Requests_Response $response Requests_Response object.
+     * @param LoggerInterface   $logger   Shared instance of a Logger.
+     * @param string|null       $payload  Raw payload that was sent to WNS.
      */
-    public function __construct($response, $logger, $payload)
+    public function __construct(Requests_Response $response, LoggerInterface $logger, ?string $payload)
     {
         $this->http_code = $response->status_code;
         $this->endpoint  = $response->url;
@@ -89,12 +92,12 @@ class WNSResponse
     /**
      * Set notification status information.
      *
-     * @param string                   $endpoint The notification endpoint that was used.
-     * @param \Psr\Log\LoggerInterface $logger   Shared instance of a Logger.
+     * @param string          $endpoint The notification endpoint that was used.
+     * @param LoggerInterface $logger   Shared instance of a Logger.
      *
      * @return void
      */
-    private function set_status($endpoint, $logger)
+    private function set_status(string $endpoint, LoggerInterface $logger)
     {
         switch ($this->http_code)
         {
@@ -158,7 +161,7 @@ class WNSResponse
      *
      * @return PushNotificationStatus::* Delivery status for the endpoint
      */
-    public function get_status($endpoint)
+    public function get_status(string $endpoint): int
     {
         if ($endpoint != $this->endpoint)
         {

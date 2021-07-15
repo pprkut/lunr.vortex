@@ -38,7 +38,7 @@ class WNSBadgePayload extends WNSPayload
      *
      * @return string Payload
      */
-    public function get_payload()
+    public function get_payload(): string
     {
         $xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
         if (isset($this->elements['value']))
@@ -58,7 +58,7 @@ class WNSBadgePayload extends WNSPayload
      *
      * @return WNSBadgePayload Self Reference
      */
-    public function set_value($value)
+    public function set_value(string $value): self
     {
         $this->elements['value'] = $this->escape_string($value);
 
