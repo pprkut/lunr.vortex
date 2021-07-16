@@ -11,7 +11,7 @@
         <ini name="zend.enable_gc" value="1" />
     </php>
     <testsuites>
-        <testsuite name="Vortex">
+        <testsuite name="APNS">
             <file>../src/Lunr/Vortex/APNS/Tests/APNSPayloadGetTest.php</file>
             <file>../src/Lunr/Vortex/APNS/Tests/APNSPayloadSetTest.php</file>
             <file>../src/Lunr/Vortex/APNS/ApnsPHP/Tests/APNSResponseBasePushSuccessTest.php</file>
@@ -19,6 +19,8 @@
             <file>../src/Lunr/Vortex/APNS/ApnsPHP/Tests/APNSResponseGetStatusTest.php</file>
             <file>../src/Lunr/Vortex/APNS/ApnsPHP/Tests/APNSDispatcherBaseTest.php</file>
             <file>../src/Lunr/Vortex/APNS/ApnsPHP/Tests/APNSDispatcherPushTest.php</file>
+        </testsuite>
+        <testsuite name="Email">
             <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadGetTest.php</file>
             <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadSetTest.php</file>
@@ -30,6 +32,8 @@
             <file>../src/Lunr/Vortex/Email/Tests/EmailDispatcherBaseTest.php</file>
             <file>../src/Lunr/Vortex/Email/Tests/EmailDispatcherPushTest.php</file>
             <file>../src/Lunr/Vortex/Email/Tests/EmailDispatcherSetTest.php</file>
+        </testsuite>
+        <testsuite name="FCM">
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadGetTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadHasTopicTest.php</file>
@@ -44,6 +48,8 @@
             <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherBaseTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherSetTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherPushTest.php</file>
+        </testsuite>
+        <testsuite name="JPush">
             <file>../src/Lunr/Vortex/JPush/Tests/JPushPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushMessagePayloadGetTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushMessagePayloadSetTest.php</file>
@@ -61,6 +67,8 @@
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherBaseTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherSetTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherPushTest.php</file>
+        </testsuite>
+        <testsuite name="MPNS">
             <file>../src/Lunr/Vortex/MPNS/Tests/MPNSPayloadTest.php</file>
             <file>../src/Lunr/Vortex/MPNS/Tests/MPNSPayloadSetTest.php</file>
             <file>../src/Lunr/Vortex/MPNS/Tests/MPNSPayloadGetTest.php</file>
@@ -73,6 +81,21 @@
             <file>../src/Lunr/Vortex/MPNS/Tests/MPNSResponseSetTest.php</file>
             <file>../src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherBaseTest.php</file>
             <file>../src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherPushTest.php</file>
+        </testsuite>
+        <testsuite name="PAP">
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadBaseTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadGetTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadSetTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseErrorTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseInvalidXMLTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseSetTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseSuccessTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherBaseTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherPushTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherSetTest.php</file>
+            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherTest.php</file>
+        </testsuite>
+        <testsuite name="WNS">
             <file>../src/Lunr/Vortex/WNS/Tests/WNSPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/WNS/Tests/WNSToastPayloadSetTest.php</file>
             <file>../src/Lunr/Vortex/WNS/Tests/WNSToastPayloadGetTest.php</file>
@@ -87,17 +110,6 @@
             <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherOAuthTest.php</file>
             <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherPushTest.php</file>
             <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherSetTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseErrorTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseInvalidXMLTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseSetTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseSuccessTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherBaseTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherPushTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherSetTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherTest.php</file>
         </testsuite>
     </testsuites>
     <filter>
