@@ -60,7 +60,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                     [
                         'command'       => 8,
                         'statusCode'    => 8,
-                        'identifier'    => 1,
+                        'identifier'    => 100,
                         'time'          => 1465997381,
                         'statusMessage' => 'Invalid token',
                     ],
@@ -70,8 +70,8 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
         $statuses          = [ 'endpoint1' => PushNotificationStatus::INVALID_ENDPOINT ];
 
         $this->apns_message->expects($this->once())
-                           ->method('getRecipients')
-                           ->willReturn([ 'endpoint1' ]);
+                           ->method('getRecipient')
+                           ->willReturn('endpoint1');
 
         $this->logger->expects($this->once())
                      ->method('warning')
@@ -103,7 +103,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                     [
                         'command'       => 8,
                         'statusCode'    => 400,
-                        'identifier'    => 1,
+                        'identifier'    => 100,
                         'time'          => 1465997381,
                         'statusMessage' => '{"reason": "IdleTimeout"}',
                     ],
@@ -113,8 +113,8 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
         $statuses          = [ 'endpoint1' => PushNotificationStatus::TEMPORARY_ERROR ];
 
         $this->apns_message->expects($this->once())
-                           ->method('getRecipients')
-                           ->willReturn([ 'endpoint1' ]);
+                           ->method('getRecipient')
+                           ->willReturn('endpoint1');
 
         $this->logger->expects($this->once())
                      ->method('warning')
@@ -158,56 +158,67 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
      */
     public function testPushSuccessWithMultipleErrors(): void
     {
+        $new_message = function () {
+            return $this->getMockBuilder('ApnsPHP\Message')
+                        ->disableOriginalConstructor()
+                        ->getMock();
+        };
+
+        $message1 = $new_message();
+        $message2 = $new_message();
+        $message3 = $new_message();
+        $message4 = $new_message();
+
         $endpoints         = [ 'endpoint1', 'endpoint2', 'endpoint3', 'endpoint4' ];
         $invalid_endpoints = [];
         $errors            = [
             1 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message1,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
                         'command'       => 8,
                         'statusCode'    => 8,
-                        'identifier'    => 1,
+                        'identifier'    => 100,
                         'time'          => 1465997381,
                         'statusMessage' => 'Invalid token',
                     ],
                 ],
             ],
             2 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message2,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
                         'command'       => 5,
                         'statusCode'    => 5,
-                        'identifier'    => 2,
+                        'identifier'    => 101,
                         'time'          => 1465997382,
                         'statusMessage' => 'Invalid token size',
                     ],
                 ],
             ],
             3 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message3,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
                         'command'       => 1,
                         'statusCode'    => 1,
-                        'identifier'    => 3,
+                        'identifier'    => 102,
                         'time'          => 1465997383,
                         'statusMessage' => 'Processing error',
                     ],
                 ],
             ],
             4 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message4,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
                         'command'       => 10,
                         'statusCode'    => 10,
-                        'identifier'    => 4,
+                        'identifier'    => 103,
                         'time'          => 1465997390,
                         'statusMessage' => 'Shutdown',
                     ],
@@ -221,9 +232,21 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
             'endpoint4' => PushNotificationStatus::UNKNOWN,
         ];
 
-        $this->apns_message->expects($this->exactly(4))
-                           ->method('getRecipients')
-                           ->willReturn([ 'endpoint1', 'endpoint2', 'endpoint3', 'endpoint4' ]);
+        $message1->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint1');
+
+        $message2->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint2');
+
+        $message3->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint3');
+
+        $message4->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint4');
 
         $this->logger->expects($this->exactly(4))
                      ->method('warning')
@@ -259,24 +282,38 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
      */
     public function testPushSuccessWithMultipleErrorsHttpReason(): void
     {
+        $new_message = function () {
+            return $this->getMockBuilder('ApnsPHP\Message')
+                        ->disableOriginalConstructor()
+                        ->getMock();
+        };
+
+        $message1 = $new_message();
+        $message2 = $new_message();
+        $message3 = $new_message();
+        $message4 = $new_message();
+        $message5 = $new_message();
+        $message6 = $new_message();
+        $message7 = $new_message();
+
         $endpoints         = [ 'endpoint1', 'endpoint2', 'endpoint3', 'endpoint4', 'endpoint5', 'endpoint6', 'endpoint7' ];
         $invalid_endpoints = [];
         $errors            = [
             1 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message1,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
                         'command'       => 8,
                         'statusCode'    => 501,
-                        'identifier'    => 1,
+                        'identifier'    => 100,
                         'time'          => 1465997381,
                         'statusMessage' => '{"reason": "TopicDisallowed"}',
                     ],
                 ],
             ],
             2 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message2,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
@@ -289,7 +326,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                 ],
             ],
             3 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message3,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
@@ -302,7 +339,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                 ],
             ],
             4 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message4,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
@@ -315,7 +352,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                 ],
             ],
             5 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message5,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
@@ -328,7 +365,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                 ],
             ],
             6 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message6,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
@@ -341,7 +378,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                 ],
             ],
             7 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message7,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
@@ -365,9 +402,33 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
             'endpoint7' => PushNotificationStatus::INVALID_ENDPOINT,
         ];
 
-        $this->apns_message->expects($this->exactly(7))
-                           ->method('getRecipients')
-                           ->willReturn([ 'endpoint1', 'endpoint2', 'endpoint3', 'endpoint4', 'endpoint5', 'endpoint6', 'endpoint7' ]);
+        $message1->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint1');
+
+        $message2->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint2');
+
+        $message3->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint3');
+
+        $message4->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint4');
+
+        $message5->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint5');
+
+        $message6->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint6');
+
+        $message7->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint7');
 
         $this->logger->expects($this->exactly(7))
                      ->method('warning')
@@ -415,11 +476,23 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
      */
     public function testPushSuccessWithMultipleMixedResultsAndInvalidEndpoints(): void
     {
+        $new_message = function () {
+            return $this->getMockBuilder('ApnsPHP\Message')
+                        ->disableOriginalConstructor()
+                        ->getMock();
+        };
+
+        $message1 = $new_message();
+        $message2 = $new_message();
+        $message3 = $new_message();
+        $message4 = $new_message();
+        $message5 = $new_message();
+
         $endpoints         = [ 'endpoint1', 'endpoint2', 'endpoint3', 'endpoint4', 'endpoint5' ];
         $invalid_endpoints = [ 'endpoint2', 'endpoint3' ];
         $errors            = [
             4 => [
-                'MESSAGE'             => $this->apns_message,
+                'MESSAGE'             => $message4,
                 'BINARY_NOTIFICATION' => 'blablibla',
                 'ERRORS'              => [
                     [
@@ -440,9 +513,9 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
             'endpoint5' => PushNotificationStatus::SUCCESS,
         ];
 
-        $this->apns_message->expects($this->once())
-                           ->method('getRecipients')
-                           ->willReturn([ 'endpoint1', 'endpoint2', 'endpoint3', 'endpoint4', 'endpoint5' ]);
+        $message4->expects($this->once())
+                 ->method('getRecipient')
+                 ->willReturn('endpoint4');
 
         $this->logger->expects($this->once())
                      ->method('warning')

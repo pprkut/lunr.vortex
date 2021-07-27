@@ -93,7 +93,6 @@ class APNSResponse implements PushNotificationResponseInterface
 
             foreach ($error['ERRORS'] as $sub_error)
             {
-                $id             = $sub_error['identifier'] - 1;
                 $status_code    = $sub_error['statusCode'];
                 $status_message = $sub_error['statusMessage'];
                 $reason         = NULL;
@@ -141,7 +140,7 @@ class APNSResponse implements PushNotificationResponseInterface
                     break;
                 }
 
-                $endpoint = $message->getRecipients()[$id];
+                $endpoint = $message->getRecipient();
 
                 $this->statuses[$endpoint] = $status;
 
