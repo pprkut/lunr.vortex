@@ -12,7 +12,8 @@
 namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Vortex\JPush\JPushBatchResponse;
-
+use Requests_Exception_HTTP_400;
+use Requests_Exception;
 use ReflectionClass;
 
 /**
@@ -44,9 +45,52 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
     /**
      * Test the set_statuses() behavior to fetch new statuses if it fails.
      *
-     * @covers       \Lunr\Vortex\JPush\JPushBatchResponse::set_statuses
+     * @covers \Lunr\Vortex\JPush\JPushBatchResponse::set_statuses
      */
     public function testSetStatusesWillFetchUpstreamFails(): void
+    {
+        $this->set_reflection_property_value('message_id', 1453658564165);
+        $this->set_reflection_property_value('endpoints', ['endpoint1']);
+
+        $report_response = $this->getMockBuilder('Requests_Response')->getMock();
+
+        $content = '{"msg_id": "1453658564165"}';
+
+        $this->response->success     = TRUE;
+        $this->response->body        = $content;
+
+        $this->http->expects($this->once())
+                   ->method('post')
+                   ->with('https://report.jpush.cn/v3/status/message', [], '{"msg_id":1453658564165,"registration_ids":["endpoint1"]}', [])
+                   ->will($this->returnValue($report_response));
+
+        $report_response->status_code = 400;
+
+        $report_response->expects($this->once())
+                        ->method('throw_for_status')
+                        ->will($this->throwException(new Requests_Exception_HTTP_400(NULL, $this->response)));
+
+        $context = [
+            'error' => 'Invalid request',
+        ];
+
+        $this->logger->expects($this->once())
+                     ->method('warning')
+                     ->with('Dispatching JPush notification failed: {error}', $context);
+
+        $method = $this->get_accessible_reflection_method('set_statuses');
+        $result = $method->invokeArgs($this->class, []);
+
+        $this->assertEquals(0, $result);
+        $this->assertPropertyEquals('statuses', ['endpoint1' => 5]);
+    }
+
+    /**
+     * Test set_statuses() when the curl request fails.
+     *
+     * @covers \Lunr\Vortex\JPush\JPushBatchResponse::set_statuses
+     */
+    public function testSetStatusesWithCurlErrors(): void
     {
         $this->set_reflection_property_value('message_id', 1453658564165);
         $this->set_reflection_property_value('endpoints', ['endpoint1']);
@@ -65,18 +109,27 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
 
         $report_response->expects($this->once())
                         ->method('throw_for_status')
-                        ->will($this->throwException(new \Requests_Exception('Message', 'type')));
+                        ->will($this->throwException(new Requests_Exception('cURL error 0001: Network error', 'curlerror', NULL)));
+
+        $context = [
+            'error' => 'cURL error 0001: Network error',
+        ];
+
+        $this->logger->expects($this->once())
+                     ->method('warning')
+                     ->with('Dispatching JPush notification failed: {error}', $context);
 
         $method = $this->get_accessible_reflection_method('set_statuses');
         $result = $method->invokeArgs($this->class, []);
 
         $this->assertEquals(0, $result);
+        $this->assertPropertyEquals('statuses', ['endpoint1' => 5]);
     }
 
     /**
      * Test the set_statuses() behavior to fetch new statuses if it fails.
      *
-     * @covers       \Lunr\Vortex\JPush\JPushBatchResponse::set_statuses
+     * @covers \Lunr\Vortex\JPush\JPushBatchResponse::set_statuses
      */
     public function testSetStatusesWillFetchUpstreamSingle(): void
     {
@@ -155,7 +208,7 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
     /**
      * Test the set_statuses() behavior to fetch new statuses if it fails on some endpoints.
      *
-     * @covers       \Lunr\Vortex\JPush\JPushBatchResponse::set_statuses
+     * @covers \Lunr\Vortex\JPush\JPushBatchResponse::set_statuses
      */
     public function testSetStatusesWillFetchUpstreamMixedErrorSuccess(): void
     {
@@ -209,6 +262,11 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
         ]);
     }
 
+    /**
+     * Unit test data provider for endpoint errors.
+     *
+     * @return array Endpoint errors
+     */
     public function endpointErrorProvider(): array
     {
         $return = [];

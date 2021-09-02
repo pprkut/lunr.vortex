@@ -14,6 +14,7 @@ namespace Lunr\Vortex\JPush;
 use Lunr\Vortex\PushNotificationStatus;
 use Psr\Log\LoggerInterface;
 use Requests_Exception;
+use Requests_Exception_HTTP;
 use Requests_Response;
 use Requests_Session;
 
@@ -131,9 +132,21 @@ class JPushBatchResponse
             $response = $this->http->post(static::JPUSH_REPORT_URL, [], json_encode($payload), []);
             $response->throw_for_status();
         }
-        catch (Requests_Exception $e)
+        catch (Requests_Exception_HTTP $e)
         {
             $this->report_error($this->endpoints, $response);
+            return;
+        }
+        catch (Requests_Exception $e)
+        {
+            foreach ($this->endpoints as $endpoint)
+            {
+                $this->statuses[$endpoint] = PushNotificationStatus::ERROR;
+            }
+
+            $context = [ 'error' => $e->getMessage() ];
+            $this->logger->warning('Dispatching JPush notification failed: {error}', $context);
+
             return;
         }
 
