@@ -20,6 +20,23 @@ class APNSPayloadSetTest extends APNSPayloadTest
 {
 
     /**
+     * Unit test data provider for custom data.
+     *
+     * @return array Custom data key->value pairs
+     */
+    public function customDataProvider()
+    {
+        $data   = [];
+        $data[] = [ "key", "value" ];
+        $data[] = [ "key", NULL ];
+        $data[] = [ "key", 1 ];
+        $data[] = [ "key", 1.1 ];
+        $data[] = [ "key", FALSE ];
+
+        return $data;
+    }
+
+    /**
      * Test set_alert() works correctly.
      *
      * @covers Lunr\Vortex\APNS\APNSPayload::set_alert
@@ -187,16 +204,20 @@ class APNSPayloadSetTest extends APNSPayloadTest
     /**
      * Test set_custom_data() works correctly.
      *
-     * @covers Lunr\Vortex\APNS\APNSPayload::set_custom_data
+     * @param string $key   Data key
+     * @param mixed  $value Data value
+     *
+     * @dataProvider customDataProvider
+     * @covers       Lunr\Vortex\APNS\APNSPayload::set_custom_data
      */
-    public function testSetCustomData(): void
+    public function testSetCustomData($key, $value): void
     {
-        $this->class->set_custom_data('key', 'value');
+        $this->class->set_custom_data($key, $value);
 
-        $value = $this->get_reflection_property_value('elements');
+        $result = $this->get_reflection_property_value('elements');
 
-        $this->assertArrayHasKey('custom_data', $value);
-        $this->assertEquals([ 'key' => 'value' ], $value['custom_data']);
+        $this->assertArrayHasKey('custom_data', $result);
+        $this->assertSame([ $key => $value ], $result['custom_data']);
     }
 
     /**

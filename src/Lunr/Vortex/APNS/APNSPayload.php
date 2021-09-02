@@ -255,11 +255,11 @@ class APNSPayload
      * Sets custom data in the payload.
      *
      * @param string $key   The key of the custom property
-     * @param string $value The value of the custom property
+     * @param mixed  $value The value of the custom property
      *
      * @return APNSPayload Self Reference
      */
-    public function set_custom_data(string $key, string $value): self
+    public function set_custom_data(string $key, $value): self
     {
         if (!isset($this->elements['custom_data']))
         {
