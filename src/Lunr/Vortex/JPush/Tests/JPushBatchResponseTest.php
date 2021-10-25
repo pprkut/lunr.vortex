@@ -48,7 +48,7 @@ abstract class JPushBatchResponseTest extends LunrBaseTest
      */
     public function setUp(): void
     {
-        $this->http   = $this->getMockBuilder('Requests_Session')->getMock();
+        $this->http = $this->getMockBuilder('Requests_Session')->getMock();
 
         $this->logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 

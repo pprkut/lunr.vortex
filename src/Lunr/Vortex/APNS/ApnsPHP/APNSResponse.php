@@ -96,7 +96,7 @@ class APNSResponse implements PushNotificationResponseInterface
                 $status_code    = $sub_error['statusCode'];
                 $status_message = $sub_error['statusMessage'];
                 $reason         = NULL;
-                $message_data = json_decode($status_message, TRUE);
+                $message_data   = json_decode($status_message, TRUE);
                 if (json_last_error() === JSON_ERROR_NONE)
                 {
                     $reason = $message_data['reason'] ?? NULL;

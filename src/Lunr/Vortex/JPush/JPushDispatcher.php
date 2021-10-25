@@ -150,7 +150,7 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
     protected function push_batch(JPushPayload $payload, array &$endpoints): JPushBatchResponse
     {
 
-        $tmp_payload = $payload->get_payload();
+        $tmp_payload                                = $payload->get_payload();
         $tmp_payload['audience']['registration_id'] = $endpoints;
 
         try
@@ -206,6 +206,7 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
 
         return $http_response;
     }
+
 }
 
 ?>

@@ -66,25 +66,25 @@ class JPushNotificationPayload extends JPushPayload
     /**
      * Sets the notification as providing content.
      *
-     * @param boolean $val Value for the "content_available" field.
+     * @param bool $val Value for the "content_available" field.
      *
      * @return JPushNotificationPayload Self Reference
      */
     public function set_content_available(bool $val): self
     {
-        return $this->set_notification_data('content-available', $val, ['ios']);
+        return $this->set_notification_data('content-available', $val, [ 'ios' ]);
     }
 
     /**
      * Mark the notification as mutable.
      *
-     * @param boolean $mutable Notification mutable_content value.
+     * @param bool $mutable Notification mutable_content value.
      *
      * @return JPushNotificationPayload Self Reference
      */
     public function set_mutable_content(bool $mutable): self
     {
-        return $this->set_notification_data('mutable-content', $mutable, ['ios']);
+        return $this->set_notification_data('mutable-content', $mutable, [ 'ios' ]);
     }
 
     /**
@@ -100,7 +100,7 @@ class JPushNotificationPayload extends JPushPayload
         $priorities     = array_values($priority_class->getConstants());
         if (in_array($priority, $priorities, TRUE))
         {
-            $this->set_notification_data('priority', $priority, ['android']);
+            $this->set_notification_data('priority', $priority, [ 'android' ]);
         }
 
         return $this;

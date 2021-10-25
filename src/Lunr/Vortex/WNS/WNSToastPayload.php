@@ -76,7 +76,7 @@ class WNSToastPayload extends WNSPayload
      *
      * @param string[]|string $text Message
      *
-     * @param integer         $line The line on which to add the text
+     * @param int             $line The line on which to add the text
      *
      * @return self Self Reference
      */

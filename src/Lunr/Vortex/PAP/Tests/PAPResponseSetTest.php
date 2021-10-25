@@ -48,8 +48,8 @@ class PAPResponseSetTest extends PAPResponseTest
     /**
      * Test setting the status for a failed request.
      *
-     * @param integer $code     Status code
-     * @param integer $expected Expected push notification status
+     * @param int $code     Status code
+     * @param int $expected Expected push notification status
      *
      * @dataProvider failedRequestProvider
      * @covers       Lunr\Vortex\PAP\PAPResponse::set_status

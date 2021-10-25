@@ -62,7 +62,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn(['yo' => 'data']);
+                      ->willReturn([ 'yo' => 'data' ]);
 
         $result = $this->class->push($this->payload, $endpoints);
 
@@ -171,7 +171,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn(['badge' => 'yo']);
+                      ->willReturn([ 'badge' => 'yo' ]);
 
         $this->apns_message->expects($this->once())
                            ->method('setBadge')
@@ -198,7 +198,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn(['custom_data' => ['apns' => 'value1']]);
+                      ->willReturn([ 'custom_data' => [ 'apns' => 'value1' ]]);
 
         $this->apns_message->expects($this->once())
                            ->method('setCustomProperty')
@@ -243,7 +243,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
 
         $this->apns_message->expects($this->exactly(3))
                            ->method('addRecipient')
-                           ->withConsecutive(['endpoint1'], ['endpoint2'], ['endpoint3'])
+                           ->withConsecutive([ 'endpoint1' ], [ 'endpoint2' ], [ 'endpoint3' ])
                            ->willReturnOnConsecutiveCalls(
                                $this->throwException(new MessageException('Invalid endpoint: endpoint1')),
                                NULL,

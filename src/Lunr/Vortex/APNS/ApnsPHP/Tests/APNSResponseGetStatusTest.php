@@ -48,7 +48,7 @@ class APNSResponseGetStatusTest extends APNSResponseTest
 
         $data['unknown status if no status set'] = [ [], PushNotificationStatus::UNKNOWN ];
 
-        $data['unknown status if endpoint absent'] = [
+        $data['unknown status if endpoint absent']           = [
             [
                 'endpoint1' => PushNotificationStatus::INVALID_ENDPOINT,
             ],
@@ -63,7 +63,7 @@ class APNSResponseGetStatusTest extends APNSResponseTest
             PushNotificationStatus::UNKNOWN,
         ];
 
-        $data['own status if present'] = [
+        $data['own status if present']           = [
             [
                 'endpoint_param' => PushNotificationStatus::INVALID_ENDPOINT,
             ],
@@ -84,8 +84,8 @@ class APNSResponseGetStatusTest extends APNSResponseTest
     /**
      * Test the get_status() behavior.
      *
-     * @param array   $statuses Endpoints statuses
-     * @param integer $status   Expected function result
+     * @param array $statuses Endpoints statuses
+     * @param int   $status   Expected function result
      *
      * @dataProvider endpointDataProvider
      * @covers       Lunr\Vortex\APNS\ApnsPHP\APNSResponse::get_status

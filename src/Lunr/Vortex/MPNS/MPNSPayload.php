@@ -73,7 +73,7 @@ abstract class MPNSPayload
     /**
      * Mark the notification priority.
      *
-     * @param Integer $priority Notification priority value.
+     * @param int $priority Notification priority value.
      *
      * @return MPNSPayload Self Reference
      */

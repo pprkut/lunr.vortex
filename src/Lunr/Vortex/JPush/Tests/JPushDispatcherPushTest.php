@@ -85,7 +85,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
-                      ->willReturn(['collapse_key' => 'abcde-12345']);
+                      ->willReturn([ 'collapse_key' => 'abcde-12345' ]);
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
@@ -112,7 +112,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $endpoints = [ 'endpoint' ];
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"alert":"hello","audience":{"registration_id":["endpoint"]}}';
-        $payload   = ['alert' => 'hello'];
+        $payload   = [ 'alert' => 'hello' ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -128,7 +128,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->withConsecutive([$message, $context], ['Dispatching JPush notification failed: {error}']);
+                     ->withConsecutive([ $message, $context ], [ 'Dispatching JPush notification failed: {error}' ]);
 
         $result = $this->class->push($this->payload, $endpoints);
 
@@ -149,7 +149,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $endpoints = [ 'endpoint' ];
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"alert":"hello","audience":{"registration_id":["endpoint"]}}';
-        $payload   = ['alert' => 'hello'];
+        $payload   = [ 'alert' => 'hello' ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -165,7 +165,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->withConsecutive([$message, $context], ['Dispatching JPush notification failed: {error}']);
+                     ->withConsecutive([ $message, $context ], [ 'Dispatching JPush notification failed: {error}' ]);
 
         $result = $this->class->push($this->payload, $endpoints);
 
@@ -186,14 +186,14 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $endpoints = [ 'endpoint' ];
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"alert":"hello","audience":{"registration_id":["endpoint"]}}';
-        $payload   = ['alert' => 'hello'];
+        $payload   = [ 'alert' => 'hello' ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
                       ->willReturn($payload);
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
-        $response->success = FALSE;
+        $response              = $this->getMockBuilder('Requests_Response')->getMock();
+        $response->success     = FALSE;
         $response->status_code = 400;
 
         $this->http->expects($this->once())
@@ -225,7 +225,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $endpoints = [ 'endpoint' ];
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"alert":"hello","audience":{"registration_id":["endpoint"]}}';
-        $payload   = ['alert' => 'hello'];
+        $payload   = [ 'alert' => 'hello' ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -251,7 +251,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $endpoints = [ 'endpoint' ];
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint"]}}';
-        $payload   = ['collapse_key' => 'abcde-12345', 'alert' => 'hello'];
+        $payload   = [ 'collapse_key' => 'abcde-12345', 'alert' => 'hello' ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -279,7 +279,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $endpoints = [ 'endpoint1', 'endpoint2' ];
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint1","endpoint2"]}}';
-        $payload   = ['collapse_key' => 'abcde-12345', 'alert' => 'hello'];
+        $payload   = [ 'collapse_key' => 'abcde-12345', 'alert' => 'hello' ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -327,8 +327,8 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $post1   = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint1","endpoint2"]}}';
         $post2   = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint3","endpoint4"]}}';
-        $post3 = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint5"]}}';
-        $payload = ['collapse_key' => 'abcde-12345', 'alert' => 'hello'];
+        $post3   = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint5"]}}';
+        $payload = [ 'collapse_key' => 'abcde-12345', 'alert' => 'hello' ];
 
         $this->payload->expects($this->exactly(3))
                       ->method('get_payload')
@@ -336,7 +336,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->http->expects($this->exactly(3))
                    ->method('post')
-                   ->withConsecutive([$url, [], $post1, []], [$url, [], $post2, []], [$url, [], $post3, []])
+                   ->withConsecutive([ $url, [], $post1, []], [ $url, [], $post2, []], [ $url, [], $post3, []])
                    ->will($this->returnValue($response));
 
         $this->class->push($this->payload, $endpoints);

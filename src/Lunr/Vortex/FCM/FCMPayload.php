@@ -92,7 +92,7 @@ class FCMPayload
      * It defines how long (in seconds) the message should be kept on GCM storage,
      * if the device is offline.
      *
-     * @param integer $ttl The time in seconds for the notification to stay alive
+     * @param int $ttl The time in seconds for the notification to stay alive
      *
      * @return FCMPayload Self Reference
      */
@@ -142,7 +142,7 @@ class FCMPayload
     /**
      * Sets the notification as providing content.
      *
-     * @param boolean $val Value for the "content_available" field.
+     * @param bool $val Value for the "content_available" field.
      *
      * @return FCMPayload Self Reference
      */
@@ -188,7 +188,7 @@ class FCMPayload
     /**
      * Mark the notification as mutable.
      *
-     * @param boolean $mutable Notification mutable_content value.
+     * @param bool $mutable Notification mutable_content value.
      *
      * @return FCMPayload Self Reference
      */

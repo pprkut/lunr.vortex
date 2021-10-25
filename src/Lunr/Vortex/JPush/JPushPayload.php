@@ -27,7 +27,7 @@ abstract class JPushPayload
      * Supported push platforms
      * @var array
      */
-    private const PLATFORMS = ['ios', 'android'];
+    private const PLATFORMS = [ 'ios', 'android' ];
 
     /**
      * Constructor.
@@ -39,7 +39,7 @@ abstract class JPushPayload
         $this->elements['platform']     = self::PLATFORMS;
         $this->elements['audience']     = [];
         $this->elements['notification'] = [];
-        $this->elements['message'] = [];
+        $this->elements['message']      = [];
     }
 
     /**
@@ -94,7 +94,7 @@ abstract class JPushPayload
     public function set_title(string $message): self
     {
         return $this->set_message_data('title', $message)
-                    ->set_notification_data('title', $message, ['android']);
+                    ->set_notification_data('title', $message, [ 'android' ]);
     }
 
     /**
@@ -131,7 +131,7 @@ abstract class JPushPayload
      * It defines how long (in seconds) the message should be kept on JPush storage,
      * if the device is offline.
      *
-     * @param integer $ttl The time in seconds for the notification to stay alive
+     * @param int $ttl The time in seconds for the notification to stay alive
      *
      * @return JPushPayload Self Reference
      */
@@ -201,8 +201,8 @@ abstract class JPushPayload
     /**
      * Set notification value for one or more platforms.
      *
-     * @param string   $key       The key in the notification->platform object.
-     * @param mixed    $value     The value accompanying that key.
+     * @param string $key   The key in the notification->platform object.
+     * @param mixed  $value The value accompanying that key.
      *
      * @return JPushPayload Self Reference
      */

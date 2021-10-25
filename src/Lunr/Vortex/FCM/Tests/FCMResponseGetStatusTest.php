@@ -71,8 +71,8 @@ class FCMResponseGetStatusTest extends FCMResponseTest
     /**
      * Test the get_status() behavior.
      *
-     * @param array   $statuses Endpoints statuses
-     * @param integer $status   Expected function result
+     * @param array $statuses Endpoints statuses
+     * @param int   $status   Expected function result
      *
      * @dataProvider endpointDataProvider
      * @covers       Lunr\Vortex\FCM\FCMResponse::get_status

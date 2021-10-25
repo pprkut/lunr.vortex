@@ -63,9 +63,9 @@ class PAPResponse implements PushNotificationResponseInterface
      * Constructor.
      *
      * @param Requests_Response $response  Requests_Response object.
-     * @param LoggerInterface    $logger    Shared instance of a Logger.
-     * @param string             $device_id The deviceID that the message was sent to.
-     * @param string             $payload   Raw payload that was sent to PAP.
+     * @param LoggerInterface   $logger    Shared instance of a Logger.
+     * @param string            $device_id The deviceID that the message was sent to.
+     * @param string            $payload   Raw payload that was sent to PAP.
      */
     public function __construct(Requests_Response $response, LoggerInterface $logger, string $device_id, string $payload)
     {

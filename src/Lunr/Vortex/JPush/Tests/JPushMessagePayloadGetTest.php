@@ -53,6 +53,7 @@ class JPushMessagePayloadGetTest extends JPushMessagePayloadTest
 
         $this->assertEquals($expected, $this->class->get_payload());
     }
+
 }
 
 ?>

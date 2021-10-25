@@ -77,7 +77,7 @@ class PAPPayload
     /**
      * Mark the notification priority.
      *
-     * @param integer $priority The timestamp to set the deliver-before to.
+     * @param int $priority The timestamp to set the deliver-before to.
      *
      * @return PAPPayload Self Reference
      */
@@ -91,7 +91,7 @@ class PAPPayload
     /**
      * Get the notification priority.
      *
-     * @return int|null Notification priority.
+     * @return ?int Notification priority.
      */
     public function get_priority()
     {

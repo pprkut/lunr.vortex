@@ -21,7 +21,7 @@ class MPNSPriority
      * Initial priority.
      * @var integer
      */
-    public const DEFAULT = 0;
+    public const DEFAULT       = 0;
 
     /**
      * Deliver Tile notification immediately.

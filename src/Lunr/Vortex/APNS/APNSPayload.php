@@ -110,7 +110,7 @@ class APNSPayload
      *
      * Used to determine what type of icon to show on the app icon when the message arrives
      *
-     * @param integer $badge The badge index
+     * @param int $badge The badge index
      *
      * @return APNSPayload Self Reference
      */
@@ -180,7 +180,7 @@ class APNSPayload
     /**
      * Sets the payload content_available property.
      *
-     * @param boolean $content_available If there is content available for download
+     * @param bool $content_available If there is content available for download
      *
      * @return APNSPayload Self Reference
      */
@@ -194,7 +194,7 @@ class APNSPayload
     /**
      * Sets the payload mutable_content property.
      *
-     * @param boolean $mutable_content If the notification is mutable
+     * @param bool $mutable_content If the notification is mutable
      *
      * @return APNSPayload Self Reference
      */

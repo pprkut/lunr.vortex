@@ -73,12 +73,12 @@ class PAPDispatcher implements PushNotificationDispatcherInterface
      */
     public function __construct($http, $logger)
     {
-        $this->auth_token    = '';
-        $this->password      = '';
-        $this->cid           = '';
-        $this->push_id       = '';
-        $this->http          = $http;
-        $this->logger        = $logger;
+        $this->auth_token = '';
+        $this->password   = '';
+        $this->cid        = '';
+        $this->push_id    = '';
+        $this->http       = $http;
+        $this->logger     = $logger;
     }
 
     /**
@@ -134,7 +134,7 @@ class PAPDispatcher implements PushNotificationDispatcherInterface
             $this->logger->warning('Dispatching push notification to {endpoint} failed: {error}', $context);
         }
 
-        $this->push_id       = '';
+        $this->push_id = '';
 
         return new PAPResponse($response, $this->logger, $endpoints[0], $pap_data);
     }

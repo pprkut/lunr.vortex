@@ -112,26 +112,32 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
             {
                 $this->apns_message->setTitle($payload['title']);
             }
+
             if (isset($payload['body']))
             {
                 $this->apns_message->setText($payload['body']);
             }
+
             if (isset($payload['thread_id']))
             {
                 $this->apns_message->setThreadID($payload['thread_id']);
             }
+
             if (isset($payload['topic']))
             {
                 $this->apns_message->setTopic($payload['topic']);
             }
+
             if (isset($payload['priority']))
             {
                 $this->apns_message->setPriority($payload['priority']);
             }
+
             if (isset($payload['collapse_key']))
             {
                 $this->apns_message->setCollapseId($payload['collapse_key']);
             }
+
             if (isset($payload['identifier']))
             {
                 $this->apns_message->setCustomIdentifier($payload['identifier']);

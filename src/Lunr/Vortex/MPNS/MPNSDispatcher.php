@@ -45,8 +45,8 @@ class MPNSDispatcher implements PushNotificationDispatcherInterface
      */
     public function __construct(Requests_Session $http, LoggerInterface $logger)
     {
-        $this->http     = $http;
-        $this->logger   = $logger;
+        $this->http   = $http;
+        $this->logger = $logger;
     }
 
     /**

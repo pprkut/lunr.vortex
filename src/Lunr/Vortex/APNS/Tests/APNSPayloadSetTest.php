@@ -27,11 +27,11 @@ class APNSPayloadSetTest extends APNSPayloadTest
     public function customDataProvider()
     {
         $data   = [];
-        $data[] = [ "key", "value" ];
-        $data[] = [ "key", NULL ];
-        $data[] = [ "key", 1 ];
-        $data[] = [ "key", 1.1 ];
-        $data[] = [ "key", FALSE ];
+        $data[] = [ 'key', 'value' ];
+        $data[] = [ 'key', NULL ];
+        $data[] = [ 'key', 1 ];
+        $data[] = [ 'key', 1.1 ];
+        $data[] = [ 'key', FALSE ];
 
         return $data;
     }
@@ -158,12 +158,12 @@ class APNSPayloadSetTest extends APNSPayloadTest
      */
     public function testSetContentAvailable(): void
     {
-        $this->class->set_content_available(true);
+        $this->class->set_content_available(TRUE);
 
         $value = $this->get_reflection_property_value('elements');
 
         $this->assertArrayHasKey('content_available', $value);
-        $this->assertEquals(true, $value['content_available']);
+        $this->assertEquals(TRUE, $value['content_available']);
     }
 
     /**
@@ -173,7 +173,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
      */
     public function testSetContentAvailableReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_content_available(true));
+        $this->assertSame($this->class, $this->class->set_content_available(TRUE));
     }
 
     /**

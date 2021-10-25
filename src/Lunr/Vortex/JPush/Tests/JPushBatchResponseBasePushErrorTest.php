@@ -153,7 +153,7 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
     /**
      * Test constructor behavior for error of push notification in case of internal error.
      *
-     * @param integer $http_code HTTP code received
+     * @param int $http_code HTTP code received
      *
      * @dataProvider internalErrorHTTPCodeDataProvider
      * @covers       \Lunr\Vortex\JPush\JPushBatchResponse::__construct
@@ -197,7 +197,7 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
     /**
      * Test constructor behavior for error of push notification in case of unknown error.
      *
-     * @param integer $http_code HTTP code received
+     * @param int $http_code HTTP code received
      *
      * @dataProvider unknownErrorHTTPCodeDataProvider
      * @covers       \Lunr\Vortex\JPush\JPushBatchResponse::__construct

@@ -62,7 +62,7 @@ class MPNSResponseSetTest extends MPNSResponseTest
     /**
      * Test setting headers for special statuses that don't have optional headers.
      *
-     * @param integer $status Special status code
+     * @param int $status Special status code
      *
      * @dataProvider specialStatusProvider
      * @covers       \Lunr\Vortex\MPNS\MPNSResponse::set_headers
@@ -111,9 +111,9 @@ class MPNSResponseSetTest extends MPNSResponseTest
     /**
      * Test setting the status for a failed request.
      *
-     * @param integer $code     Status code
-     * @param string  $nstatus  Notification status string
-     * @param integer $expected Expected push notification status
+     * @param int    $code     Status code
+     * @param string $nstatus  Notification status string
+     * @param int    $expected Expected push notification status
      *
      * @dataProvider failedRequestProvider
      * @covers       Lunr\Vortex\MPNS\MPNSResponse::set_status

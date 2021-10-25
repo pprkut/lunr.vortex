@@ -65,7 +65,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
      * Constructor.
      *
      * @param Requests_Session $http   Shared instance of the Requests_Session class.
-     * @param LoggerInterface   $logger Shared instance of a Logger.
+     * @param LoggerInterface  $logger Shared instance of a Logger.
      */
     public function __construct(Requests_Session $http, LoggerInterface $logger)
     {

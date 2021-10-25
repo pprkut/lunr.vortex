@@ -57,8 +57,8 @@ class MPNSResponse implements PushNotificationResponseInterface
      * Constructor.
      *
      * @param Requests_Response $response Requests_Response object.
-     * @param LoggerInterface    $logger   Shared instance of a Logger.
-     * @param string             $payload  Raw payload that was sent to MPNS.
+     * @param LoggerInterface   $logger   Shared instance of a Logger.
+     * @param string            $payload  Raw payload that was sent to MPNS.
      */
     public function __construct(Requests_Response $response, LoggerInterface $logger, string $payload)
     {
@@ -66,11 +66,10 @@ class MPNSResponse implements PushNotificationResponseInterface
         $this->endpoint  = $response->url;
         $this->payload   = $payload;
 
-
         if ($this->http_code === FALSE)
         {
             $this->headers = new Requests_Response_Headers();
-            $this->status = PushNotificationStatus::ERROR;
+            $this->status  = PushNotificationStatus::ERROR;
         }
         else
         {

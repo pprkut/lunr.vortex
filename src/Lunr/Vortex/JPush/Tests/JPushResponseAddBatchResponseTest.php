@@ -69,9 +69,9 @@ class JPushResponseAddBatchResponseTest extends JPushResponseTest
                              ->method('get_status')
                              ->willReturnMap(
                                  [
-                                     ['endpoint2', PushNotificationStatus::INVALID_ENDPOINT],
-                                     ['endpoint3', PushNotificationStatus::UNKNOWN],
-                                     ['endpoint4', PushNotificationStatus::SUCCESS],
+                                     [ 'endpoint2', PushNotificationStatus::INVALID_ENDPOINT ],
+                                     [ 'endpoint3', PushNotificationStatus::UNKNOWN ],
+                                     [ 'endpoint4', PushNotificationStatus::SUCCESS ],
                                  ]
                              );
 

@@ -103,7 +103,7 @@ class FCMBatchResponseBasePushErrorTest extends FCMBatchResponseTest
     /**
      * Test constructor behavior for error of push notification in case of internal error.
      *
-     * @param integer $http_code HTTP code received
+     * @param int $http_code HTTP code received
      *
      * @dataProvider internalErrorHTTPCodeDataProvider
      * @covers       Lunr\Vortex\FCM\FCMBatchResponse::__construct
@@ -149,7 +149,7 @@ class FCMBatchResponseBasePushErrorTest extends FCMBatchResponseTest
     /**
      * Test constructor behavior for error of push notification in case of unknown error.
      *
-     * @param integer $http_code HTTP code received
+     * @param int $http_code HTTP code received
      *
      * @dataProvider unknownErrorHTTPCodeDataProvider
      * @covers       Lunr\Vortex\FCM\FCMBatchResponse::__construct

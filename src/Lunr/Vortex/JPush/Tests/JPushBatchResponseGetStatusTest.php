@@ -52,7 +52,7 @@ class JPushBatchResponseGetStatusTest extends JPushBatchResponseTest
         $data = [];
 
         // return unknown status if no status set
-        $data[] = [ ['endpoint14432'], PushNotificationStatus::UNKNOWN ];
+        $data[] = [ [ 'endpoint14432' ], PushNotificationStatus::UNKNOWN ];
 
         // return unknown status if endpoint absent
         $data[] = [
@@ -92,8 +92,8 @@ class JPushBatchResponseGetStatusTest extends JPushBatchResponseTest
     /**
      * Test the get_status() behavior.
      *
-     * @param array   $statuses Endpoints statuses
-     * @param integer $status   Expected function result
+     * @param array $statuses Endpoints statuses
+     * @param int   $status   Expected function result
      *
      * @dataProvider endpointDataProvider
      * @covers       \Lunr\Vortex\JPush\JPushBatchResponse::get_status
