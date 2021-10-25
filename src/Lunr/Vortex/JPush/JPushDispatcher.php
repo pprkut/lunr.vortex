@@ -104,11 +104,11 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
      *
      * @param Requests_Response $http_response Requests_Response object.
      * @param array             $endpoints     The endpoints the message was sent to (in the same order as sent).
-     * @param array             $payload       Raw payload that was sent to JPush.
+     * @param string            $payload       Raw payload that was sent to JPush.
      *
      * @return JPushBatchResponse
      */
-    public function get_batch_response(Requests_Response $http_response, array $endpoints, array $payload): JPushBatchResponse
+    public function get_batch_response(Requests_Response $http_response, array $endpoints, string $payload): JPushBatchResponse
     {
         return new JPushBatchResponse($this->http, $this->logger, $http_response, $endpoints, $payload);
     }
@@ -153,9 +153,11 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
         $tmp_payload                                = $payload->get_payload();
         $tmp_payload['audience']['registration_id'] = $endpoints;
 
+        $json_payload = json_encode($tmp_payload);
+
         try
         {
-            $http_response = $this->http->post(static::JPUSH_SEND_URL, [], json_encode($tmp_payload), []);
+            $http_response = $this->http->post(static::JPUSH_SEND_URL, [], $json_payload, []);
         }
         catch (Requests_Exception $e)
         {
@@ -171,7 +173,7 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
             }
         }
 
-        return $this->get_batch_response($http_response, $endpoints, $tmp_payload);
+        return $this->get_batch_response($http_response, $endpoints, $json_payload);
     }
 
     /**

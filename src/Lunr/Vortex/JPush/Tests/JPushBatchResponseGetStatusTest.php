@@ -38,7 +38,7 @@ class JPushBatchResponseGetStatusTest extends JPushBatchResponseTest
         $this->response->status_code = 200;
         $this->response->body        = $content;
 
-        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], []);
+        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
         $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
     }
 

@@ -78,7 +78,7 @@ class JPushDispatcherBaseTest extends JPushDispatcherTest
     public function testGetBatchResponseReturnsJPushBatchResponseObject(): void
     {
         $method = $this->get_accessible_reflection_method('get_batch_response');
-        $result = $method->invokeArgs($this->class, [ $this->response, [ 'endpoint' ], [] ]);
+        $result = $method->invokeArgs($this->class, [ $this->response, [ 'endpoint' ], '[]' ]);
 
         $this->assertInstanceOf('Lunr\Vortex\JPush\JPushBatchResponse', $result);
     }

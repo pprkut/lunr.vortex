@@ -51,9 +51,9 @@ class JPushBatchResponse
 
     /**
      * Raw payload that was sent to JPush.
-     * @var array
+     * @var string
      */
-    protected array $payload;
+    protected string $payload;
 
     /**
      * Message ID.
@@ -74,9 +74,9 @@ class JPushBatchResponse
      * @param LoggerInterface   $logger    Shared instance of a Logger.
      * @param Requests_Response $response  Requests_Response object.
      * @param array             $endpoints The endpoints the message was sent to (in the same order as sent).
-     * @param array             $payload   Raw payload that was sent to JPush.
+     * @param string            $payload   Raw payload that was sent to JPush.
      */
-    public function __construct(Requests_Session $http, LoggerInterface $logger, Requests_Response $response, array $endpoints, array $payload)
+    public function __construct(Requests_Session $http, LoggerInterface $logger, Requests_Response $response, array $endpoints, string $payload)
     {
         $this->statuses  = [];
         $this->http      = $http;
