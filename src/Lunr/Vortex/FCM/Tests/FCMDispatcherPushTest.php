@@ -259,6 +259,44 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
     }
 
     /**
+     * Test that push() generates a payload that doesn't encode unicode characters.
+     *
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::push
+     */
+    public function testPushRequestWithMultibyteCharacters(): void
+    {
+        $endpoints = [ 'endpoint' ];
+
+        $this->payload->expects($this->once())
+                      ->method('get_payload')
+                      ->willReturn('{"collapse_key":"abcde-12345","data":{"message":"凄い"}}');
+
+        $this->set_reflection_property_value('auth_token', 'auth_token');
+
+        $response = $this->getMockBuilder('Requests_Response')->getMock();
+
+        $headers = [
+            'Content-Type'  => 'application/json',
+            'Authorization' => 'key=auth_token',
+        ];
+
+        $url  = 'https://fcm.googleapis.com/fcm/send';
+        $post = '{"collapse_key":"abcde-12345","data":{"message":"凄い"},"to":"endpoint"}';
+
+        $options = [
+            'timeout'         => 15,
+            'connect_timeout' => 15
+        ];
+
+        $this->http->expects($this->once())
+                   ->method('post')
+                   ->with($url, $headers, $post, $options)
+                   ->willReturn($response);
+
+        $this->class->push($this->payload, $endpoints);
+    }
+
+    /**
      * Test that push() sends correct request with multiple endpoints within one batch.
      *
      * @covers Lunr\Vortex\FCM\FCMDispatcher::push

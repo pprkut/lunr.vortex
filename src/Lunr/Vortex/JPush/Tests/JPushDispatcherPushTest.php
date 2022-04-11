@@ -270,6 +270,34 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
     }
 
     /**
+     * Test that push() generates a payload that doesn't encode unicode characters.
+     *
+     * @covers \Lunr\Vortex\JPush\JPushDispatcher::push
+     */
+    public function testPushRequestWithMultibyteCharacters(): void
+    {
+        $endpoints = [ 'endpoint' ];
+        $url       = 'https://api.jpush.cn/v3/push';
+        $post      = '{"collapse_key":"abcde-12345","alert":"hello","message":{"msg_content":"凄い"},"audience":{"registration_id":["endpoint"]}}';
+        $payload   = [ 'collapse_key' => 'abcde-12345', 'alert' => 'hello', 'message' => [ 'msg_content' => '凄い' ] ];
+
+        $this->payload->expects($this->exactly(1))
+                      ->method('get_payload')
+                      ->willReturn($payload);
+
+        $this->set_reflection_property_value('auth_token', 'auth_token');
+
+        $response = $this->getMockBuilder('Requests_Response')->getMock();
+
+        $this->http->expects($this->once())
+                   ->method('post')
+                   ->with($url, [], $post, [])
+                   ->willReturn($response);
+
+        $this->class->push($this->payload, $endpoints);
+    }
+
+    /**
      * Test that push() sends correct request with multiple endpoints within one batch.
      *
      * @covers \Lunr\Vortex\JPush\JPushDispatcher::push

@@ -153,7 +153,7 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
         $tmp_payload                                = $payload->get_payload();
         $tmp_payload['audience']['registration_id'] = $endpoints;
 
-        $json_payload = json_encode($tmp_payload);
+        $json_payload = json_encode($tmp_payload, JSON_UNESCAPED_UNICODE);
 
         try
         {

@@ -161,6 +161,8 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
             $tmp_payload['to'] = $endpoints[0];
         }
 
+        $json_payload = json_encode($tmp_payload, JSON_UNESCAPED_UNICODE);
+
         try
         {
             $options = [
@@ -168,7 +170,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
                 'connect_timeout' => 15 // timeout in seconds
             ];
 
-            $http_response = $this->http->post(static::GOOGLE_SEND_URL, $headers, json_encode($tmp_payload), $options);
+            $http_response = $this->http->post(static::GOOGLE_SEND_URL, $headers, $json_payload, $options);
         }
         catch (Requests_Exception $e)
         {
@@ -184,7 +186,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
             }
         }
 
-        return $this->get_batch_response($http_response, $this->logger, $endpoints, json_encode($tmp_payload));
+        return $this->get_batch_response($http_response, $this->logger, $endpoints, $json_payload);
     }
 
     /**
