@@ -12,7 +12,6 @@
     "rmccue/requests": "~1.8.0",
     "php": ">=7.4",
     "lunr/halo": "dev-master",
-    "lunr/config": "dev-master",
     "ext-xml": "*"
   },
   "require-dev": {
