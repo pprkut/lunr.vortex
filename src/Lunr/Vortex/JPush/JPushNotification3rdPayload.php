@@ -1,20 +1,22 @@
 <?php
 
 /**
- * This file contains functionality to generate JPush Message payloads.
+ * This file contains functionality to generate JPush Notification_3rd payloads.
  *
  * @package    Lunr\Vortex\JPush
- * @author     Sean Molenaar <s.molenaar@m2mobi.com>
- * @copyright  2020, M2Mobi BV, Amsterdam, The Netherlands
+ * @author     Heinz Wiesinger <heinz@m2mobi.com>
+ * @copyright  2022, M2Mobi BV, Amsterdam, The Netherlands
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
 namespace Lunr\Vortex\JPush;
 
+use ReflectionClass;
+
 /**
- * JPush Message Payload Generator.
+ * JPush Notification_3rd Payload Generator.
  */
-class JPushMessagePayload extends JPushPayload
+class JPushNotification3rdPayload extends JPushPayload
 {
 
     /**
@@ -43,9 +45,20 @@ class JPushMessagePayload extends JPushPayload
         $elements = $this->elements;
 
         unset($elements['notification']);
-        unset($elements['notification_3rd']);
 
         return $elements;
+    }
+
+    /**
+     * Sets the payload sound data.
+     *
+     * @param string $sound The notification sound
+     *
+     * @return JPushNotification3rdPayload Self Reference
+     */
+    public function set_sound(string $sound): self
+    {
+        return $this->set_notification_3rd_data('sound', $sound);
     }
 
 }

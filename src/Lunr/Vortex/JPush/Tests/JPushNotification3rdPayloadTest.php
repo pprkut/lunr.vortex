@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file contains the JPushMessagePayloadTest class.
+ * This file contains the JPushNotification3rdPayloadTest class.
  *
  * @package    Lunr\Vortex\JPush
- * @author     Sean Molenaar <s.molenaar@m2mobi.com>
- * @copyright  2020, M2Mobi BV, Amsterdam, The Netherlands
+ * @author     Heinz Wiesinger <heinz@m2mobi.com>
+ * @copyright  2022, M2Mobi BV, Amsterdam, The Netherlands
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
 namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Halo\LunrBaseTest;
-use Lunr\Vortex\JPush\JPushMessagePayload;
+use Lunr\Vortex\JPush\JPushNotification3rdPayload;
 use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers
- * and shared attributes for testing the JPushMessagePayload class.
+ * and shared attributes for testing the JPushNotification3rdPayload class.
  *
- * @covers Lunr\Vortex\JPush\JPushMessagePayload
+ * @covers Lunr\Vortex\JPush\JPushNotification3rdPayload
  */
-class JPushMessagePayloadTest extends LunrBaseTest
+class JPushNotification3rdPayloadTest extends LunrBaseTest
 {
 
     /**
@@ -47,9 +47,9 @@ class JPushMessagePayloadTest extends LunrBaseTest
 
         $this->payload = json_encode($elements_array);
 
-        $this->class = new JPushMessagePayload();
+        $this->class = new JPushNotification3rdPayload();
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushMessagePayload');
+        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushNotification3rdPayload');
     }
 
     /**

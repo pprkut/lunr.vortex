@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the JPushPayloadTest class.
+ * This file contains the JPushNotificationPayloadTest class.
  *
  * @package    Lunr\Vortex\JPush
  * @author     Sean Molenaar <s.molenaar@m2mobi.com>
@@ -13,14 +13,13 @@ namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\JPush\JPushNotificationPayload;
-use Lunr\Vortex\JPush\JPushPayload;
 use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers
- * and shared attributes for testing the JPushPayload class.
+ * and shared attributes for testing the JPushNotificationPayload class.
  *
- * @covers Lunr\Vortex\JPush\JPushPayload
+ * @covers Lunr\Vortex\JPush\JPushNotificationPayload
  */
 class JPushNotificationPayloadTest extends LunrBaseTest
 {

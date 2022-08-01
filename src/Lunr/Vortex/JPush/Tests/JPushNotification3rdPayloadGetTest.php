@@ -1,30 +1,30 @@
 <?php
 
 /**
- * This file contains the JPushNotificationPayloadGetTest class.
+ * This file contains the JPushNotification3rdPayloadGetTest class.
  *
  * @package    Lunr\Vortex\JPush
- * @author     Sean Molenaar <s.molenaar@m2mobi.com>
- * @copyright  2020, M2Mobi BV, Amsterdam, The Netherlands
+ * @author     Heinz Wiesinger <heinz@m2mobi.com>
+ * @copyright  2022, M2Mobi BV, Amsterdam, The Netherlands
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
 namespace Lunr\Vortex\JPush\Tests;
 
 /**
- * This class contains tests for the getters of the JPushNotificationPayload class.
+ * This class contains tests for the getters of the JPushNotification3rdPayload class.
  *
- * @covers \Lunr\Vortex\JPush\JPushNotificationPayload
+ * @covers \Lunr\Vortex\JPush\JPushNotification3rdPayload
  */
-class JPushNotificationPayloadGetTest extends JPushNotificationPayloadTest
+class JPushNotification3rdPayloadGetTest extends JPushNotification3rdPayloadTest
 {
 
     /**
-     * Test notification get_payload() with everything being present.
+     * Test message get_payload() with everything being present.
      *
-     * @covers \Lunr\Vortex\JPush\JPushNotificationPayload::get_payload
+     * @covers \Lunr\Vortex\JPush\JPushNotification3rdPayload::get_payload
      */
-    public function testGetPayloadNotification(): void
+    public function testGetPayloadMessage(): void
     {
         $elements = [
             'registration_id' => [ 'one', 'two', 'three' ],
@@ -46,13 +46,11 @@ class JPushNotificationPayloadGetTest extends JPushNotificationPayloadTest
         ];
         $expected = [
             'registration_id' => [ 'one', 'two', 'three' ],
-            'notification'    => [
-                'android' => [
-                    'alert' => 'a'
-                ],
-                'ios' => [
-                    'alert' => 'a'
-                ],
+            'message'    => [
+                'title' => 'title'
+            ],
+            'notification_3rd' => [
+                'title' => 'title'
             ],
             'time_to_live'     => 10,
         ];

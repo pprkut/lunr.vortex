@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the JPushPayloadBaseTest class.
+ * This file contains the JPushMessagePayloadBaseTest class.
  *
  * @package    Lunr\Vortex\JPush
  * @author     Sean Molenaar <s.molenaar@m2mobi.com>
@@ -12,9 +12,9 @@
 namespace Lunr\Vortex\JPush\Tests;
 
 /**
- * This class contains the Base tests of the JPushPayload class.
+ * This class contains the Base tests of the JPushMessagePayload class.
  *
- * @covers \Lunr\Vortex\JPush\JPushNotificationPayload
+ * @covers \Lunr\Vortex\JPush\JPushMessagePayload
  */
 class JPushMessagePayloadBaseTest extends JPushMessagePayloadTest
 {
@@ -30,6 +30,7 @@ class JPushMessagePayloadBaseTest extends JPushMessagePayloadTest
             'platform' => [ 'ios', 'android' ],
             'audience' => [],
             'notification' => [],
+            'notification_3rd' => [],
             'message' => []
         ]);
     }

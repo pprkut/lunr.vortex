@@ -51,12 +51,15 @@
         </testsuite>
         <testsuite name="JPush">
             <file>../src/Lunr/Vortex/JPush/Tests/JPushPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushMessagePayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushMessagePayloadSetTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushPayloadSetTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushMessagePayloadBaseTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushMessagePayloadGetTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotificationPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushNotificationPayloadGetTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushNotificationPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotificationPayloadBaseTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotification3rdPayloadBaseTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotification3rdPayloadGetTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotification3rdPayloadSetTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushBatchResponseBasePushErrorTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushBatchResponseBasePushSuccessTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushBatchResponseGetStatusTest.php</file>

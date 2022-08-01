@@ -30,6 +30,7 @@ class JPushNotificationPayloadBaseTest extends JPushNotificationPayloadTest
             'notification' => [
                 'android' => [ 'priority' => 2 ],
             ],
+            'notification_3rd' => [],
             'message' => []
         ]);
     }

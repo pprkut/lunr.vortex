@@ -12,11 +12,11 @@
 namespace Lunr\Vortex\JPush\Tests;
 
 /**
- * This class contains tests for the setters of the JPushPayload class.
+ * This class contains the Set tests of the JPushPayload class.
  *
  * @covers \Lunr\Vortex\JPush\JPushPayload
  */
-class JPushMessagePayloadSetTest extends JPushMessagePayloadTest
+class JPushPayloadSetTest extends JPushPayloadTest
 {
 
     /**
@@ -82,6 +82,7 @@ class JPushMessagePayloadSetTest extends JPushMessagePayloadTest
 
         $this->assertArrayHasKey('extras', $value['notification']['android']);
         $this->assertEquals([ 'key' => 'value' ], $value['notification']['android']['extras']);
+        $this->assertEquals([ 'key' => 'value' ], $value['notification_3rd']['extras']);
         $this->assertEquals([ 'key' => 'value' ], $value['message']['extras']);
     }
 
@@ -133,6 +134,7 @@ class JPushMessagePayloadSetTest extends JPushMessagePayloadTest
 
         $this->assertArrayHasKey('alert', $value['notification']['android']);
         $this->assertEquals('BODY', $value['notification']['android']['alert']);
+        $this->assertEquals('BODY', $value['notification_3rd']['content']);
         $this->assertEquals('BODY', $value['message']['msg_content']);
     }
 
@@ -159,6 +161,7 @@ class JPushMessagePayloadSetTest extends JPushMessagePayloadTest
 
         $this->assertArrayHasKey('title', $value['notification']['android']);
         $this->assertEquals('Title', $value['notification']['android']['title']);
+        $this->assertEquals('Title', $value['notification_3rd']['title']);
         $this->assertEquals('Title', $value['message']['title']);
     }
 

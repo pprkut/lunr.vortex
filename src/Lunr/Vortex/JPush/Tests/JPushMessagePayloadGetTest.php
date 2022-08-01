@@ -12,9 +12,9 @@
 namespace Lunr\Vortex\JPush\Tests;
 
 /**
- * This class contains tests for the getters of the JPushPayload class.
+ * This class contains tests for the getters of the JPushMessagePayload class.
  *
- * @covers \Lunr\Vortex\JPush\JPushPayload
+ * @covers \Lunr\Vortex\JPush\JPushMessagePayload
  */
 class JPushMessagePayloadGetTest extends JPushMessagePayloadTest
 {
@@ -38,6 +38,9 @@ class JPushMessagePayloadGetTest extends JPushMessagePayloadTest
                 'ios' => [
                     'alert' => 'a'
                 ],
+            ],
+            'notification_3rd' => [
+                'title' => 'title'
             ],
             'time_to_live'     => 10,
         ];

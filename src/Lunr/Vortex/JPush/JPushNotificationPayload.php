@@ -47,6 +47,7 @@ class JPushNotificationPayload extends JPushPayload
         $elements = $this->elements;
 
         unset($elements['message']);
+        unset($elements['notification_3rd']);
 
         return $elements;
     }

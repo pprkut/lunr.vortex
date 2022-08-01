@@ -36,10 +36,11 @@ abstract class JPushPayload
     {
         $this->elements = [];
 
-        $this->elements['platform']     = self::PLATFORMS;
-        $this->elements['audience']     = [];
-        $this->elements['notification'] = [];
-        $this->elements['message']      = [];
+        $this->elements['platform']         = self::PLATFORMS;
+        $this->elements['audience']         = [];
+        $this->elements['notification']     = [];
+        $this->elements['notification_3rd'] = [];
+        $this->elements['message']          = [];
     }
 
     /**
@@ -81,6 +82,7 @@ abstract class JPushPayload
     public function set_body(string $message): self
     {
         return $this->set_message_data('msg_content', $message)
+                    ->set_notification_3rd_data('content', $message)
                     ->set_notification_data('alert', $message);
     }
 
@@ -94,6 +96,7 @@ abstract class JPushPayload
     public function set_title(string $message): self
     {
         return $this->set_message_data('title', $message)
+                    ->set_notification_3rd_data('title', $message)
                     ->set_notification_data('title', $message, [ 'android' ]);
     }
 
@@ -109,6 +112,7 @@ abstract class JPushPayload
     public function set_data(array $data): self
     {
         return $this->set_message_data('extras', $data)
+                    ->set_notification_3rd_data('extras', $data)
                     ->set_notification_data('extras', $data);
     }
 
@@ -209,6 +213,21 @@ abstract class JPushPayload
     protected function set_message_data(string $key, $value): self
     {
         $this->elements['message'][$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set notification value for one or more platforms.
+     *
+     * @param string $key   The key in the notification->platform object.
+     * @param mixed  $value The value accompanying that key.
+     *
+     * @return JPushPayload Self Reference
+     */
+    protected function set_notification_3rd_data(string $key, $value): self
+    {
+        $this->elements['notification_3rd'][$key] = $value;
 
         return $this;
     }
