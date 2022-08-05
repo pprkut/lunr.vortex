@@ -1,7 +1,7 @@
 parameters:
     bootstrapFiles:
-        - test.bootstrap.inc.php
-    excludes_analyse:
+        - phpstan.autoload.inc.php
+    excludePaths:
         - ../src/*/Tests/*
     ignoreErrors:
         -
