@@ -30,8 +30,14 @@ class EmailPayloadSetTest extends EmailPayloadTest
 
         $value = $this->get_reflection_property_value('elements');
 
+        $expected = [
+            'charset'  => 'UTF-8',
+            'encoding' => 'base64',
+            'subject'  => 'subject',
+        ];
+
         $this->assertArrayHasKey('subject', $value);
-        $this->assertEquals([ 'subject' => 'subject' ], $value);
+        $this->assertEquals($expected, $value);
     }
 
     /**
@@ -55,8 +61,14 @@ class EmailPayloadSetTest extends EmailPayloadTest
 
         $value = $this->get_reflection_property_value('elements');
 
+        $expected = [
+            'charset'  => 'UTF-8',
+            'encoding' => 'base64',
+            'body'     => 'body',
+        ];
+
         $this->assertArrayHasKey('body', $value);
-        $this->assertEquals([ 'body' => 'body' ], $value);
+        $this->assertEquals($expected, $value);
     }
 
     /**
@@ -67,6 +79,66 @@ class EmailPayloadSetTest extends EmailPayloadTest
     public function testSetBodyReturnsSelfReference(): void
     {
         $this->assertSame($this->class, $this->class->set_body('subject'));
+    }
+
+    /**
+     * Test set_charset() works correctly.
+     *
+     * @covers Lunr\Vortex\Email\EmailPayload::set_charset
+     */
+    public function testSetCharset(): void
+    {
+        $this->class->set_charset('UTF-16');
+
+        $value = $this->get_reflection_property_value('elements');
+
+        $expected = [
+            'charset'  => 'UTF-16',
+            'encoding' => 'base64',
+        ];
+
+        $this->assertArrayHasKey('charset', $value);
+        $this->assertEquals($expected, $value);
+    }
+
+    /**
+     * Test fluid interface of set_charset().
+     *
+     * @covers Lunr\Vortex\Email\EmailPayload::set_charset
+     */
+    public function testSetCharsetReturnsSelfReference(): void
+    {
+        $this->assertSame($this->class, $this->class->set_charset('UTF-16'));
+    }
+
+    /**
+     * Test set_encoding() works correctly.
+     *
+     * @covers Lunr\Vortex\Email\EmailPayload::set_encoding
+     */
+    public function testSetEncoding(): void
+    {
+        $this->class->set_encoding('binary');
+
+        $value = $this->get_reflection_property_value('elements');
+
+        $expected = [
+            'charset'  => 'UTF-8',
+            'encoding' => 'binary',
+        ];
+
+        $this->assertArrayHasKey('encoding', $value);
+        $this->assertEquals($expected, $value);
+    }
+
+    /**
+     * Test fluid interface of set_encoding().
+     *
+     * @covers Lunr\Vortex\Email\EmailPayload::set_encoding
+     */
+    public function testSetEncodingReturnsSelfReference(): void
+    {
+        $this->assertSame($this->class, $this->class->set_encoding('binary'));
     }
 
 }

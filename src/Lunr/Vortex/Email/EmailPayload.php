@@ -28,7 +28,10 @@ class EmailPayload
      */
     public function __construct()
     {
-        $this->elements = [];
+        $this->elements = [
+            'charset'  => 'UTF-8',
+            'encoding' => 'base64',
+        ];
     }
 
     /**
@@ -73,6 +76,38 @@ class EmailPayload
     public function set_subject(string $subject): self
     {
         $this->elements['subject'] = $subject;
+
+        return $this;
+    }
+
+    /**
+     * Sets the email character set of the payload.
+     *
+     * Default character set is UTF-8.
+     *
+     * @param string $charset The character set of the email
+     *
+     * @return EmailPayload Self Reference
+     */
+    public function set_charset(string $charset): self
+    {
+        $this->elements['charset'] = $charset;
+
+        return $this;
+    }
+
+    /**
+     * Sets the email encoding of the payload.
+     *
+     * Default encoding is base64.
+     *
+     * @param string $encoding The encoding of the email
+     *
+     * @return EmailPayload Self Reference
+     */
+    public function set_encoding(string $encoding): self
+    {
+        $this->elements['encoding'] = $encoding;
 
         return $this;
     }

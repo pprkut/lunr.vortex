@@ -91,8 +91,11 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
         // PHPMailer is not reentrant, so we have to clone it before we can do endpoint specific configuration.
         $mail_transport = $this->clone_mail();
         $mail_transport->setFrom($this->source);
-        $mail_transport->Subject = $payload_array['subject'];
-        $mail_transport->Body    = $payload_array['body'];
+
+        $mail_transport->Subject  = $payload_array['subject'];
+        $mail_transport->Body     = $payload_array['body'];
+        $mail_transport->CharSet  = $payload_array['charset'];
+        $mail_transport->Encoding = $payload_array['encoding'];
 
         $mail_results = [];
 

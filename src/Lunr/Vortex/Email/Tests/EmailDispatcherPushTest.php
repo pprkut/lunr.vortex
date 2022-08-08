@@ -32,7 +32,7 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn('{"subject": "subject", "body": "body"}');
+                      ->willReturn('{"subject": "subject", "body": "body", "charset": "UTF-8", "encoding": "base64"}');
 
         $this->set_reflection_property_value('source', 'sender@domain.com');
 
@@ -61,6 +61,8 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->assertEquals($this->mail_transport->Subject, 'subject');
         $this->assertEquals($this->mail_transport->Body, 'body');
+        $this->assertEquals($this->mail_transport->CharSet, 'UTF-8');
+        $this->assertEquals($this->mail_transport->Encoding, 'base64');
 
         $this->unmock_method([ $this->class, 'clone_mail' ]);
     }
@@ -76,7 +78,7 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn('{"subject": "subject", "body": "body"}');
+                      ->willReturn('{"subject": "subject", "body": "body", "charset": "UTF-8", "encoding": "base64"}');
 
         $this->set_reflection_property_value('source', 'sender@domain.com');
 
@@ -105,6 +107,8 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->assertEquals($this->mail_transport->Subject, 'subject');
         $this->assertEquals($this->mail_transport->Body, 'body');
+        $this->assertEquals($this->mail_transport->CharSet, 'UTF-8');
+        $this->assertEquals($this->mail_transport->Encoding, 'base64');
 
         $this->unmock_method([ $this->class, 'clone_mail' ]);
     }
@@ -120,7 +124,7 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn('{"subject": "subject", "body": "body"}');
+                      ->willReturn('{"subject": "subject", "body": "body", "charset": "UTF-8", "encoding": "base64"}');
 
         $this->set_reflection_property_value('source', 'sender@domain.com');
 
