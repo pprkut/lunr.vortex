@@ -7,14 +7,14 @@
   "license": "MIT",
   "require": {
     "psr/log": "~1.1.0",
-    "m2mobi/apns-php": "dev-master#221a194e2f887f84feae4f3cc4e086e729150e01",
+    "m2mobi/apns-php": "dev-master",
     "phpmailer/phpmailer": "~6.4",
     "rmccue/requests": "~1.8.0",
     "php": ">=7.4",
     "ext-xml": "*"
   },
   "require-dev": {
-    "lunr/halo": "~0.7.0",
+    "lunr/halo": "dev-master",
     "phpunit/phpunit": ">=8.5",
     "ext-xdebug": ">=3.0"
   },
