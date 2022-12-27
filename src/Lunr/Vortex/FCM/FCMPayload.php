@@ -3,7 +3,7 @@
 /**
  * This file contains functionality to generate Firebase Cloud Messaging Push Notification payloads.
  *
- * @package    Lunr\Vortex\GCM
+ * @package    Lunr\Vortex\FCM
  * @author     Patrick Valk <p.valk@m2mobi.com>
  * @copyright  2017-2018, M2Mobi BV, Amsterdam, The Netherlands
  * @license    http://lunr.nl/LICENSE MIT License
@@ -14,7 +14,7 @@ namespace Lunr\Vortex\FCM;
 use ReflectionClass;
 
 /**
- * Google Cloud Messaging Push Notification Payload Generator.
+ * Firebase Cloud Messaging Push Notification Payload Generator.
  */
 class FCMPayload
 {
@@ -89,7 +89,7 @@ class FCMPayload
     /**
      * Sets the payload key time_to_live.
      *
-     * It defines how long (in seconds) the message should be kept on GCM storage,
+     * It defines how long (in seconds) the message should be kept on FCM storage,
      * if the device is offline.
      *
      * @param int $ttl The time in seconds for the notification to stay alive

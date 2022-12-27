@@ -12,7 +12,7 @@
 namespace Lunr\Vortex\Email\Tests;
 
 /**
- * This class contains the Base tests of the GCMPayload class.
+ * This class contains the Base tests of the EmailPayload class.
  *
  * @covers Lunr\Vortex\Email\EmailPayload
  */

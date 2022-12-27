@@ -19,7 +19,7 @@ use Requests_Response;
 use Requests_Session;
 
 /**
- * Google Cloud Messaging Push Notification Dispatcher.
+ * Firebase Cloud Messaging Push Notification Dispatcher.
  */
 class FCMDispatcher implements PushNotificationMultiDispatcherInterface
 {
@@ -119,20 +119,20 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
      */
     public function push(object $payload, array &$endpoints): PushNotificationResponseInterface
     {
-        $gcm_response = $this->get_response();
+        $fcm_response = $this->get_response();
 
         foreach (array_chunk($endpoints, static::BATCH_SIZE) as &$batch)
         {
             $batch_response = $this->push_batch($payload, $batch);
 
-            $gcm_response->add_batch_response($batch_response, $batch);
+            $fcm_response->add_batch_response($batch_response, $batch);
 
             unset($batch_response);
         }
 
         unset($batch);
 
-        return $gcm_response;
+        return $fcm_response;
     }
 
     /**
@@ -192,7 +192,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Set the the auth token for the http headers.
      *
-     * @param string $auth_token The auth token for the gcm push notifications
+     * @param string $auth_token The auth token for the fcm push notifications
      *
      * @return FCMDispatcher Self reference
      */
