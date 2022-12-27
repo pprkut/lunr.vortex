@@ -71,19 +71,6 @@
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherSetTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherPushTest.php</file>
         </testsuite>
-        <testsuite name="PAP">
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseErrorTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseInvalidXMLTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseSetTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPResponseSuccessTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherBaseTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherPushTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherSetTest.php</file>
-            <file>../src/Lunr/Vortex/PAP/Tests/PAPDispatcherTest.php</file>
-        </testsuite>
         <testsuite name="WNS">
             <file>../src/Lunr/Vortex/WNS/Tests/WNSPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/WNS/Tests/WNSToastPayloadSetTest.php</file>
@@ -114,7 +101,6 @@
                 <directory>../src/Lunr/Vortex/JPush/Tests/</directory>
                 <directory>../src/Lunr/Vortex/Email/Tests/</directory>
                 <directory>../src/Lunr/Vortex/WNS/Tests/</directory>
-                <directory>../src/Lunr/Vortex/PAP/Tests/</directory>
             </exclude>
         </whitelist>
     </filter>
