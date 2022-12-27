@@ -71,20 +71,6 @@
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherSetTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherPushTest.php</file>
         </testsuite>
-        <testsuite name="MPNS">
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSPayloadTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSPayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSToastPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSToastPayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSTilePayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSTilePayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSResponseErrorTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSResponseSuccessTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSResponseSetTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherBaseTest.php</file>
-            <file>../src/Lunr/Vortex/MPNS/Tests/MPNSDispatcherPushTest.php</file>
-        </testsuite>
         <testsuite name="PAP">
             <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/PAP/Tests/PAPPayloadGetTest.php</file>
@@ -127,7 +113,6 @@
                 <directory>../src/Lunr/Vortex/FCM/Tests/</directory>
                 <directory>../src/Lunr/Vortex/JPush/Tests/</directory>
                 <directory>../src/Lunr/Vortex/Email/Tests/</directory>
-                <directory>../src/Lunr/Vortex/MPNS/Tests/</directory>
                 <directory>../src/Lunr/Vortex/WNS/Tests/</directory>
                 <directory>../src/Lunr/Vortex/PAP/Tests/</directory>
             </exclude>
