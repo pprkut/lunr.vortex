@@ -49,10 +49,11 @@
         }
     },
     "Requests": {
-        "url": "https://github.com/rmccue/Requests.git",
-        "version": "1.8.0",
-        "psr0": {
-            "path": "/library/"
+        "url": "https://github.com/WordPress/Requests.git",
+        "version": "2.0.5",
+        "psr4": {
+            "prefix": "WpOrg\\Requests",
+            "search-path": "/src/"
         }
     }
 }

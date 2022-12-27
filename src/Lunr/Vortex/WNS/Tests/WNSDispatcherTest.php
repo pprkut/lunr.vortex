@@ -14,6 +14,8 @@ namespace Lunr\Vortex\WNS\Tests;
 use Lunr\Vortex\WNS\WNSDispatcher;
 use Lunr\Vortex\WNS\WNSType;
 use Lunr\Halo\LunrBaseTest;
+use WpOrg\Requests\Response;
+use WpOrg\Requests\Session;
 use ReflectionClass;
 
 /**
@@ -26,8 +28,8 @@ abstract class WNSDispatcherTest extends LunrBaseTest
 {
 
     /**
-     * Mock instance of the Requests_Session class.
-     * @var \Requests_Session
+     * Mock instance of the Requests\Session class.
+     * @var Session
      */
     protected $http;
 
@@ -38,8 +40,8 @@ abstract class WNSDispatcherTest extends LunrBaseTest
     protected $logger;
 
     /**
-     * Mock instance of the Requests_Response class.
-     * @var \Requests_Response
+     * Mock instance of the Requests\Response class.
+     * @var Response
      */
     protected $response;
 
@@ -54,9 +56,9 @@ abstract class WNSDispatcherTest extends LunrBaseTest
      */
     public function setUp(): void
     {
-        $this->http = $this->getMockBuilder('Requests_Session')->getMock();
+        $this->http = $this->getMockBuilder('WpOrg\Requests\Session')->getMock();
 
-        $this->response = $this->getMockBuilder('Requests_Response')->getMock();
+        $this->response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $this->logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 

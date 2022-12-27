@@ -13,6 +13,7 @@ namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Vortex\JPush\JPushBatchResponse;
 use Lunr\Vortex\PushNotificationStatus;
+use WpOrg\Requests\Exception as RequestsException;
 
 use ReflectionClass;
 
@@ -118,7 +119,7 @@ class JPushBatchResponseGetStatusTest extends JPushBatchResponseTest
         $this->set_reflection_property_value('statuses', []);
         $this->set_reflection_property_value('message_id', 1453658564165);
 
-        $report_response = $this->getMockBuilder('Requests_Response')->getMock();
+        $report_response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $content = '{"msg_id": "1453658564165"}';
 
@@ -132,7 +133,7 @@ class JPushBatchResponseGetStatusTest extends JPushBatchResponseTest
 
         $report_response->expects($this->once())
                         ->method('throw_for_status')
-                        ->will($this->throwException(new \Requests_Exception('Message', 'type')));
+                        ->will($this->throwException(new RequestsException('Message', 'type')));
 
         $result = $this->class->get_status('endpoint_param');
 
@@ -149,7 +150,7 @@ class JPushBatchResponseGetStatusTest extends JPushBatchResponseTest
         $this->set_reflection_property_value('statuses', []);
         $this->set_reflection_property_value('message_id', 1453658564165);
 
-        $report_response = $this->getMockBuilder('Requests_Response')->getMock();
+        $report_response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $content = '{"msg_id": "1453658564165"}';
 

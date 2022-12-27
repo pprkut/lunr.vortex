@@ -12,7 +12,7 @@
 namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Vortex\PushNotificationStatus;
-use Requests_Exception;
+use WpOrg\Requests\Exception as RequestsException;
 
 /**
  * This class contains test for the push() method of the JPushDispatcher class.
@@ -47,7 +47,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
     {
         $endpoints = [ 'endpoint' ];
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $this->http->expects($this->once())
                    ->method('post')
@@ -89,7 +89,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $this->http->expects($this->once())
                    ->method('post')
@@ -121,7 +121,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $this->http->expects($this->once())
                    ->method('post')
                    ->with($url, [], $post, [])
-                   ->will($this->throwException(new Requests_Exception('cURL error 10: Request error', 'curlerror', NULL)));
+                   ->will($this->throwException(new RequestsException('cURL error 10: Request error', 'curlerror', NULL)));
 
         $message = 'Dispatching JPush notification(s) failed: {message}';
         $context = [ 'message' => 'cURL error 10: Request error' ];
@@ -158,7 +158,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $this->http->expects($this->once())
                    ->method('post')
                    ->with($url, [], $post, [])
-                   ->will($this->throwException(new Requests_Exception('cURL error 28: Request timed out', 'curlerror', NULL)));
+                   ->will($this->throwException(new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL)));
 
         $message = 'Dispatching JPush notification(s) failed: {message}';
         $context = [ 'message' => 'cURL error 28: Request timed out' ];
@@ -192,7 +192,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
                       ->method('get_payload')
                       ->willReturn($payload);
 
-        $response              = $this->getMockBuilder('Requests_Response')->getMock();
+        $response              = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
         $response->success     = FALSE;
         $response->status_code = 400;
 
@@ -231,7 +231,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
                       ->method('get_payload')
                       ->willReturn($payload);
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $this->http->expects($this->once())
                    ->method('post')
@@ -259,7 +259,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $this->http->expects($this->once())
                    ->method('post')
@@ -287,7 +287,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $this->http->expects($this->once())
                    ->method('post')
@@ -315,7 +315,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $headers = [
             'Content-Type'  => 'application/json',
@@ -346,7 +346,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $url = 'https://api.jpush.cn/v3/push';
 

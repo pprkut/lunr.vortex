@@ -15,9 +15,9 @@ namespace Lunr\Vortex\WNS;
 use Lunr\Vortex\PushNotificationDispatcherInterface;
 use Lunr\Vortex\PushNotificationResponseInterface;
 use Psr\Log\LoggerInterface;
-use Requests_Exception;
-use Requests_Response;
-use Requests_Session;
+use WpOrg\Requests\Exception as RequestsException;
+use WpOrg\Requests\Response;
+use WpOrg\Requests\Session;
 
 /**
  * Windows Push Notification Dispatcher.
@@ -49,10 +49,10 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
     private string $type;
 
     /**
-     * Shared instance of the Requests_Session class.
-     * @var Requests_Session
+     * Shared instance of the Requests\Session class.
+     * @var Session
      */
-    private Requests_Session $http;
+    private Session $http;
 
     /**
      * Shared instance of a Logger class.
@@ -76,10 +76,10 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
     /**
      * Constructor.
      *
-     * @param Requests_Session $http   Shared instance of the Requests_Session class.
+     * @param Session          $http   Shared instance of the Requests\Session class.
      * @param LoggerInterface  $logger Shared instance of a Logger.
      */
-    public function __construct(Requests_Session $http, LoggerInterface $logger)
+    public function __construct(Session $http, LoggerInterface $logger)
     {
         $this->http          = $http;
         $this->logger        = $logger;
@@ -161,7 +161,7 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
         {
             $response = $this->http->post($endpoints[0], $headers, $raw_payload);
         }
-        catch (Requests_Exception $e)
+        catch (RequestsException $e)
         {
             $response = $this->get_new_response_object_for_failed_request($endpoints[0]);
             $context  = [ 'error' => $e->getMessage(), 'endpoint' => $endpoints[0] ];
@@ -235,9 +235,10 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
 
         try
         {
+            /** @var Response */
             $response = $this->http->post(self::TOKEN_URL, $headers, $request_post);
         }
-        catch (Requests_Exception $e)
+        catch (RequestsException $e)
         {
             $this->logger->warning('Requesting token failed: No response');
             return FALSE;
@@ -273,15 +274,15 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
     }
 
     /**
-     * Get a Requests_Response object for a failed request.
+     * Get a Requests\Response object for a failed request.
      *
      * @param string $endpoint Endpoint to send to
      *
-     * @return Requests_Response New instance of a Requests_Response object.
+     * @return Response New instance of a Requests\Response object.
      */
-    protected function get_new_response_object_for_failed_request(string $endpoint): Requests_Response
+    protected function get_new_response_object_for_failed_request(string $endpoint): Response
     {
-        $http_response = new Requests_Response();
+        $http_response = new Response();
 
         $http_response->url = $endpoint;
 

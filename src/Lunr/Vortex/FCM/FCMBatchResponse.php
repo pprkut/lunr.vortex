@@ -12,6 +12,8 @@
 namespace Lunr\Vortex\FCM;
 
 use Lunr\Vortex\PushNotificationStatus;
+use Psr\Log\LoggerInterface;
+use WpOrg\Requests\Response;
 
 /**
  * FCM response for a batch push notification.
@@ -21,7 +23,7 @@ class FCMBatchResponse
 
     /**
      * Shared instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
     private $logger;
 
@@ -52,10 +54,10 @@ class FCMBatchResponse
     /**
      * Constructor.
      *
-     * @param \Requests_Response       $response  Requests_Response object.
-     * @param \Psr\Log\LoggerInterface $logger    Shared instance of a Logger.
-     * @param array                    $endpoints The endpoints the message was sent to (in the same order as sent).
-     * @param string                   $payload   Raw payload that was sent to FCM.
+     * @param Response        $response  Requests\Response object.
+     * @param LoggerInterface $logger    Shared instance of a Logger.
+     * @param array           $endpoints The endpoints the message was sent to (in the same order as sent).
+     * @param string          $payload   Raw payload that was sent to FCM.
      */
     public function __construct($response, $logger, $endpoints, $payload)
     {

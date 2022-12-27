@@ -14,9 +14,9 @@ namespace Lunr\Vortex\JPush;
 use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
 use Lunr\Vortex\PushNotificationResponseInterface;
 use Psr\Log\LoggerInterface;
-use Requests_Exception;
-use Requests_Response;
-use Requests_Session;
+use WpOrg\Requests\Exception as RequestsException;
+use WpOrg\Requests\Response;
+use WpOrg\Requests\Session;
 
 /**
  * JPush Push Notification Dispatcher.
@@ -49,10 +49,10 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
     protected ?string $auth_token;
 
     /**
-     * Shared instance of the Requests_Session class.
-     * @var Requests_Session
+     * Shared instance of the Requests\Session class.
+     * @var Session
      */
-    protected Requests_Session $http;
+    protected Session $http;
 
     /**
      * Shared instance of a Logger class.
@@ -64,10 +64,10 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Constructor.
      *
-     * @param Requests_Session $http   Shared instance of the Requests_Session class.
-     * @param LoggerInterface  $logger Shared instance of a Logger.
+     * @param Session         $http   Shared instance of the Requests\Session class.
+     * @param LoggerInterface $logger Shared instance of a Logger.
      */
-    public function __construct(Requests_Session $http, LoggerInterface $logger)
+    public function __construct(Session $http, LoggerInterface $logger)
     {
         $this->http       = $http;
         $this->logger     = $logger;
@@ -102,13 +102,13 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Getter for JPushBatchResponse.
      *
-     * @param Requests_Response $http_response Requests_Response object.
-     * @param array             $endpoints     The endpoints the message was sent to (in the same order as sent).
-     * @param string            $payload       Raw payload that was sent to JPush.
+     * @param Response $http_response Requests\Response object.
+     * @param array    $endpoints     The endpoints the message was sent to (in the same order as sent).
+     * @param string   $payload       Raw payload that was sent to JPush.
      *
      * @return JPushBatchResponse
      */
-    public function get_batch_response(Requests_Response $http_response, array $endpoints, string $payload): JPushBatchResponse
+    public function get_batch_response(Response $http_response, array $endpoints, string $payload): JPushBatchResponse
     {
         return new JPushBatchResponse($this->http, $this->logger, $http_response, $endpoints, $payload);
     }
@@ -159,7 +159,7 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
         {
             $http_response = $this->http->post(static::JPUSH_SEND_URL, [], $json_payload, []);
         }
-        catch (Requests_Exception $e)
+        catch (RequestsException $e)
         {
             $this->logger->warning(
                 'Dispatching ' . static::SERVICE_NAME . ' notification(s) failed: {message}',
@@ -196,13 +196,13 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
     }
 
     /**
-     * Get a Requests_Response object for a failed request.
+     * Get a Requests\Response object for a failed request.
      *
-     * @return Requests_Response New instance of a Requests_Response object.
+     * @return Response New instance of a Requests\Response object.
      */
-    protected function get_new_response_object_for_failed_request(): Requests_Response
+    protected function get_new_response_object_for_failed_request(): Response
     {
-        $http_response = new Requests_Response();
+        $http_response = new Response();
 
         $http_response->url = static::JPUSH_SEND_URL;
 

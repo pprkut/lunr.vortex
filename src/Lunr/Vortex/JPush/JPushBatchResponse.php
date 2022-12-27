@@ -13,10 +13,10 @@ namespace Lunr\Vortex\JPush;
 
 use Lunr\Vortex\PushNotificationStatus;
 use Psr\Log\LoggerInterface;
-use Requests_Exception;
-use Requests_Exception_HTTP;
-use Requests_Response;
-use Requests_Session;
+use WpOrg\Requests\Exception as RequestsException;
+use WpOrg\Requests\Exception\HTTP as RequestsExceptionHTTP;
+use WpOrg\Requests\Response;
+use WpOrg\Requests\Session;
 
 /**
  * JPush response for a batch push notification.
@@ -32,16 +32,15 @@ class JPushBatchResponse
 
     /**
      * Shared instance of a Logger class.
-     *
      * @var LoggerInterface
      */
     private LoggerInterface $logger;
 
     /**
-     * Shared instance of the Requests_Session class.
-     * @var Requests_Session
+     * Shared instance of the Requests\Session class.
+     * @var Session
      */
-    protected Requests_Session $http;
+    protected Session $http;
 
     /**
      * The statuses per endpoint.
@@ -70,13 +69,13 @@ class JPushBatchResponse
     /**
      * Constructor.
      *
-     * @param Requests_Session  $http      Shared instance of the Requests_Session class.
-     * @param LoggerInterface   $logger    Shared instance of a Logger.
-     * @param Requests_Response $response  Requests_Response object.
-     * @param array             $endpoints The endpoints the message was sent to (in the same order as sent).
-     * @param string            $payload   Raw payload that was sent to JPush.
+     * @param Session         $http      Shared instance of the Requests\Session class.
+     * @param LoggerInterface $logger    Shared instance of a Logger.
+     * @param Response        $response  Requests\Response object.
+     * @param array           $endpoints The endpoints the message was sent to (in the same order as sent).
+     * @param string          $payload   Raw payload that was sent to JPush.
      */
-    public function __construct(Requests_Session $http, LoggerInterface $logger, Requests_Response $response, array $endpoints, string $payload)
+    public function __construct(Session $http, LoggerInterface $logger, Response $response, array $endpoints, string $payload)
     {
         $this->statuses  = [];
         $this->http      = $http;
@@ -132,12 +131,12 @@ class JPushBatchResponse
             $response = $this->http->post(static::JPUSH_REPORT_URL, [], json_encode($payload), []);
             $response->throw_for_status();
         }
-        catch (Requests_Exception_HTTP $e)
+        catch (RequestsExceptionHTTP $e)
         {
             $this->report_error($this->endpoints, $response);
             return;
         }
-        catch (Requests_Exception $e)
+        catch (RequestsException $e)
         {
             foreach ($this->endpoints as $endpoint)
             {
@@ -183,14 +182,14 @@ class JPushBatchResponse
     /**
      * Report an error with the push notification.
      *
-     * @param array             $endpoints The endpoints the message was sent to
-     * @param Requests_Response $response  The HTTP Response
+     * @param array    $endpoints The endpoints the message was sent to
+     * @param Response $response  The HTTP Response
      *
      * @see https://docs.jiguang.cn/en/jpush/server/push/rest_api_v3_push/#call-return
      *
      * @return void
      */
-    private function report_error(array &$endpoints, Requests_Response $response): void
+    private function report_error(array &$endpoints, Response $response): void
     {
         $upstream_msg = NULL;
         if (!empty($response->body))

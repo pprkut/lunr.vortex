@@ -14,9 +14,9 @@ namespace Lunr\Vortex\FCM;
 use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
 use Lunr\Vortex\PushNotificationResponseInterface;
 use Psr\Log\LoggerInterface;
-use Requests_Exception;
-use Requests_Response;
-use Requests_Session;
+use WpOrg\Requests\Exception as RequestsException;
+use WpOrg\Requests\Response;
+use WpOrg\Requests\Session;
 
 /**
  * Firebase Cloud Messaging Push Notification Dispatcher.
@@ -37,10 +37,10 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     protected string $auth_token;
 
     /**
-     * Shared instance of the Requests_Session class.
-     * @var Requests_Session
+     * Shared instance of the Requests\Session class.
+     * @var Session
      */
-    protected Requests_Session $http;
+    protected Session $http;
 
     /**
      * Shared instance of a Logger class.
@@ -64,10 +64,10 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Constructor.
      *
-     * @param Requests_Session $http   Shared instance of the Requests_Session class.
+     * @param Session          $http   Shared instance of the Requests\Session class.
      * @param LoggerInterface  $logger Shared instance of a Logger.
      */
-    public function __construct(Requests_Session $http, LoggerInterface $logger)
+    public function __construct(Session $http, LoggerInterface $logger)
     {
         $this->http       = $http;
         $this->logger     = $logger;
@@ -97,14 +97,14 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Getter for FCMBatchResponse.
      *
-     * @param Requests_Response $http_response Requests_Response object.
+     * @param Response          $http_response Requests\Response object.
      * @param LoggerInterface   $logger        Shared instance of a Logger.
      * @param array             $endpoints     The endpoints the message was sent to (in the same order as sent).
      * @param string            $payload       Raw payload that was sent to FCM.
      *
      * @return FCMBatchResponse
      */
-    public function get_batch_response(Requests_Response $http_response, LoggerInterface $logger, array $endpoints, string $payload): FCMBatchResponse
+    public function get_batch_response(Response $http_response, LoggerInterface $logger, array $endpoints, string $payload): FCMBatchResponse
     {
         return new FCMBatchResponse($http_response, $logger, $endpoints, $payload);
     }
@@ -172,7 +172,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
 
             $http_response = $this->http->post(static::GOOGLE_SEND_URL, $headers, $json_payload, $options);
         }
-        catch (Requests_Exception $e)
+        catch (RequestsException $e)
         {
             $this->logger->warning(
                 'Dispatching ' . static::SERVICE_NAME . ' notification(s) failed: {message}',
@@ -204,13 +204,13 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     }
 
     /**
-     * Get a Requests_Response object for a failed request.
+     * Get a Requests\Response object for a failed request.
      *
-     * @return Requests_Response New instance of a Requests_Response object.
+     * @return Response New instance of a Requests\Response object.
      */
-    protected function get_new_response_object_for_failed_request(): Requests_Response
+    protected function get_new_response_object_for_failed_request(): Response
     {
-        $http_response = new Requests_Response();
+        $http_response = new Response();
 
         $http_response->url = static::GOOGLE_SEND_URL;
 

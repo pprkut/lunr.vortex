@@ -12,7 +12,7 @@
 namespace Lunr\Vortex\WNS\Tests;
 
 use Lunr\Vortex\WNS\WNSType;
-use Requests_Exception;
+use WpOrg\Requests\Exception as RequestsException;
 
 /**
  * This class contains test for the push() method of the WNSDispatcher class.
@@ -197,7 +197,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
         $this->http->expects($this->once())
                    ->method('post')
                    ->with('endpoint', $headers, 'payload')
-                   ->will($this->throwException(new Requests_Exception('Network error!', 'curlerror', NULL)));
+                   ->will($this->throwException(new RequestsException('Network error!', 'curlerror', NULL)));
 
         $message = 'Dispatching push notification to {endpoint} failed: {error}';
         $context = [ 'endpoint' => 'endpoint', 'error' => 'Network error!' ];
@@ -270,7 +270,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
         $this->http->expects($this->once())
                    ->method('post')
                    ->with('endpoint', $headers, 'payload')
-                   ->will($this->throwException(new Requests_Exception('Network error!', 'curlerror', NULL)));
+                   ->will($this->throwException(new RequestsException('Network error!', 'curlerror', NULL)));
 
         $message = 'Dispatching push notification to {endpoint} failed: {error}';
         $context = [ 'endpoint' => 'endpoint', 'error' => 'Network error!' ];

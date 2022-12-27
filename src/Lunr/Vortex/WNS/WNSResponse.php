@@ -14,8 +14,8 @@ namespace Lunr\Vortex\WNS;
 
 use Lunr\Vortex\PushNotificationResponseInterface;
 use Lunr\Vortex\PushNotificationStatus;
-use Requests_Response;
-use Requests_Response_Headers;
+use WpOrg\Requests\Response;
+use WpOrg\Requests\Response\Headers;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -26,7 +26,7 @@ class WNSResponse implements PushNotificationResponseInterface
 
     /**
      * HTTP headers of the response.
-     * @var Requests_Response_Headers
+     * @var Headers
      */
     private $headers;
 
@@ -57,11 +57,11 @@ class WNSResponse implements PushNotificationResponseInterface
     /**
      * Constructor.
      *
-     * @param Requests_Response $response Requests_Response object.
+     * @param Response          $response Requests\Response object.
      * @param LoggerInterface   $logger   Shared instance of a Logger.
      * @param string|null       $payload  Raw payload that was sent to WNS.
      */
-    public function __construct(Requests_Response $response, LoggerInterface $logger, ?string $payload)
+    public function __construct(Response $response, LoggerInterface $logger, ?string $payload)
     {
         $this->http_code = $response->status_code;
         $this->endpoint  = $response->url;

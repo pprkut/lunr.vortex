@@ -12,6 +12,8 @@
 namespace Lunr\Vortex\FCM\Tests;
 
 use Lunr\Halo\LunrBaseTest;
+use Psr\Log\LoggerInterface;
+use WpOrg\Requests\Response;
 
 /**
  * This class contains common setup routines, providers
@@ -24,13 +26,13 @@ abstract class FCMBatchResponseTest extends LunrBaseTest
 
     /**
      * Mock instance of the Logger class.
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
     protected $logger;
 
     /**
-     * Mock instance of the Requests_Response class.
-     * @var \Requests_Response
+     * Mock instance of the Requests\Response class.
+     * @var Response
      */
     protected $response;
 
@@ -43,7 +45,7 @@ abstract class FCMBatchResponseTest extends LunrBaseTest
     {
         $this->logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 
-        $this->response = $this->getMockBuilder('Requests_Response')->getMock();
+        $this->response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
     }
 
     /**

@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
-use Requests_Exception;
+use WpOrg\Requests\Exception as RequestsException;
 
 /**
  * Class WNSDispatcherOAuthTest tests the Authentication to the WNS Server
@@ -85,7 +85,7 @@ class WNSDispatcherOAuthTest extends WNSDispatcherTest
         $this->http->expects($this->once())
                    ->method('post')
                    ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo($request_post))
-                   ->will($this->throwException(new Requests_Exception('Network error!', 'curlerror', NULL)));
+                   ->will($this->throwException(new RequestsException('Network error!', 'curlerror', NULL)));
 
         $this->logger->expects($this->once())
                      ->method('warning')

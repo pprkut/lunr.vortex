@@ -13,6 +13,8 @@ namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Halo\LunrBaseTest;
 use PHPUnit\Framework\MockObject\MockObject;
+use WpOrg\Requests\Response;
+use WpOrg\Requests\Session;
 
 /**
  * This class contains common setup routines, providers
@@ -24,20 +26,20 @@ abstract class JPushBatchResponseTest extends LunrBaseTest
 {
 
     /**
-     * Mock instance of the Requests_Session class.
-     * @var \Requests_Session|MockObject
+     * Mock instance of the Requests\Session class.
+     * @var Session|MockObject
      */
     protected $http;
 
     /**
      * Mock instance of the Logger class.
-     * @var \Psr\Log\LoggerInterface|MockObject
+     * @var LoggerInterface|MockObject
      */
     protected $logger;
 
     /**
-     * Mock instance of the Requests_Response class.
-     * @var \Requests_Response|MockObject
+     * Mock instance of the Requests\Response class.
+     * @var Response|MockObject
      */
     protected $response;
 
@@ -48,11 +50,11 @@ abstract class JPushBatchResponseTest extends LunrBaseTest
      */
     public function setUp(): void
     {
-        $this->http = $this->getMockBuilder('Requests_Session')->getMock();
+        $this->http = $this->getMockBuilder('WpOrg\Requests\Session')->getMock();
 
         $this->logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 
-        $this->response = $this->getMockBuilder('Requests_Response')->getMock();
+        $this->response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
     }
 
     /**

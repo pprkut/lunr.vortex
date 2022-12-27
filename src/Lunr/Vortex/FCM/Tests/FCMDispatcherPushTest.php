@@ -12,7 +12,7 @@
 namespace Lunr\Vortex\FCM\Tests;
 
 use Lunr\Vortex\PushNotificationStatus;
-use Requests_Exception;
+use WpOrg\Requests\Exception as RequestsException;
 
 /**
  * This class contains test for the push() method of the FCMDispatcher class.
@@ -47,7 +47,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
     {
         $endpoints = [ 'endpoint' ];
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $this->http->expects($this->once())
                    ->method('post')
@@ -89,7 +89,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $this->http->expects($this->once())
                    ->method('post')
@@ -127,7 +127,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $this->http->expects($this->once())
                    ->method('post')
                    ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo($post), $this->equalTo($options))
-                   ->will($this->throwException(new Requests_Exception('cURL error 10: Request error', 'curlerror', NULL)));
+                   ->will($this->throwException(new RequestsException('cURL error 10: Request error', 'curlerror', NULL)));
 
         $message = 'Dispatching FCM notification(s) failed: {message}';
         $context = [ 'message' => 'cURL error 10: Request error' ];
@@ -170,7 +170,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $this->http->expects($this->once())
                    ->method('post')
                    ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo($post), $this->equalTo($options))
-                   ->will($this->throwException(new Requests_Exception('cURL error 28: Request timed out', 'curlerror', NULL)));
+                   ->will($this->throwException(new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL)));
 
         $message = 'Dispatching FCM notification(s) failed: {message}';
         $context = [ 'message' => 'cURL error 28: Request timed out' ];
@@ -197,7 +197,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
     {
         $endpoints = [ 'endpoint' ];
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $headers = [
             'Content-Type'  => 'application/json',
@@ -235,7 +235,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $headers = [
             'Content-Type'  => 'application/json',
@@ -273,7 +273,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $headers = [
             'Content-Type'  => 'application/json',
@@ -311,7 +311,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $headers = [
             'Content-Type'  => 'application/json',
@@ -349,7 +349,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
 
         $this->set_reflection_property_value('auth_token', 'auth_token');
 
-        $response = $this->getMockBuilder('Requests_Response')->getMock();
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $headers = [
             'Content-Type'  => 'application/json',

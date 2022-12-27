@@ -25,7 +25,7 @@ class JPushDispatcherBaseTest extends JPushDispatcherTest
     use PsrLoggerTestTrait;
 
     /**
-     * Test that the passed Requests_Session object is set correctly.
+     * Test that the passed Requests\Session object is set correctly.
      */
     public function testRequestsSessionIsSetCorrectly(): void
     {
@@ -54,7 +54,7 @@ class JPushDispatcherBaseTest extends JPushDispatcherTest
 
         $result = $method->invoke($this->class);
 
-        $this->assertInstanceOf('\Requests_Response', $result);
+        $this->assertInstanceOf('WpOrg\Requests\Response', $result);
         $this->assertEquals('https://api.jpush.cn/v3/push', $result->url);
     }
 

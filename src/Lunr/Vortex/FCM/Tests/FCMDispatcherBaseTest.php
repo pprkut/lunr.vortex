@@ -26,7 +26,7 @@ class FCMDispatcherBaseTest extends FCMDispatcherTest
     use PsrLoggerTestTrait;
 
     /**
-     * Test that the passed Requests_Session object is set correctly.
+     * Test that the passed Requests\Session object is set correctly.
      */
     public function testRequestsSessionIsSetCorrectly(): void
     {
@@ -52,7 +52,7 @@ class FCMDispatcherBaseTest extends FCMDispatcherTest
 
         $result = $method->invoke($this->class);
 
-        $this->assertInstanceOf('\Requests_Response', $result);
+        $this->assertInstanceOf('WpOrg\Requests\Response', $result);
         $this->assertEquals('https://fcm.googleapis.com/fcm/send', $result->url);
     }
 

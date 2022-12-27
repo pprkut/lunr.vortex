@@ -12,8 +12,8 @@
 namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Vortex\JPush\JPushBatchResponse;
-use Requests_Exception_HTTP_400;
-use Requests_Exception;
+use WpOrg\Requests\Exception\Http\Status400 as RequestsExceptionHTTP400;
+use WpOrg\Requests\Exception as RequestsException;
 use ReflectionClass;
 
 /**
@@ -52,7 +52,7 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
         $this->set_reflection_property_value('message_id', 1453658564165);
         $this->set_reflection_property_value('endpoints', [ 'endpoint1' ]);
 
-        $report_response = $this->getMockBuilder('Requests_Response')->getMock();
+        $report_response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $content = '{"msg_id": "1453658564165"}';
 
@@ -68,7 +68,7 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
 
         $report_response->expects($this->once())
                         ->method('throw_for_status')
-                        ->will($this->throwException(new Requests_Exception_HTTP_400(NULL, $this->response)));
+                        ->will($this->throwException(new RequestsExceptionHTTP400(NULL, $this->response)));
 
         $context = [
             'error' => 'Invalid request',
@@ -95,7 +95,7 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
         $this->set_reflection_property_value('message_id', 1453658564165);
         $this->set_reflection_property_value('endpoints', [ 'endpoint1' ]);
 
-        $report_response = $this->getMockBuilder('Requests_Response')->getMock();
+        $report_response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $content = '{"msg_id": "1453658564165"}';
 
@@ -109,7 +109,7 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
 
         $report_response->expects($this->once())
                         ->method('throw_for_status')
-                        ->will($this->throwException(new Requests_Exception('cURL error 0001: Network error', 'curlerror', NULL)));
+                        ->will($this->throwException(new RequestsException('cURL error 0001: Network error', 'curlerror', NULL)));
 
         $context = [
             'error' => 'cURL error 0001: Network error',
@@ -136,7 +136,7 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
         $this->set_reflection_property_value('message_id', 1453658564165);
         $this->set_reflection_property_value('endpoints', [ 'endpoint1' ]);
 
-        $report_response = $this->getMockBuilder('Requests_Response')->getMock();
+        $report_response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $content = '{"msg_id": "1453658564165"}';
 
@@ -176,7 +176,7 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
         $this->set_reflection_property_value('message_id', 1453658564165);
         $this->set_reflection_property_value('endpoints', [ 'endpoint1' ]);
 
-        $report_response = $this->getMockBuilder('Requests_Response')->getMock();
+        $report_response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $content = '{"msg_id": "1453658564165"}';
 
@@ -216,7 +216,7 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
         $this->set_reflection_property_value('message_id', 1453658564165);
         $this->set_reflection_property_value('endpoints', $endpoints);
 
-        $report_response = $this->getMockBuilder('Requests_Response')->getMock();
+        $report_response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $content = '{"msg_id": "1453658564165"}';
 

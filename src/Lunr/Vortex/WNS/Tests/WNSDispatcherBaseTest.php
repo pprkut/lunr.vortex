@@ -51,7 +51,7 @@ class WNSDispatcherBaseTest extends WNSDispatcherTest
 
         $result = $method->invokeArgs($this->class, [ 'http://localhost/' ]);
 
-        $this->assertInstanceOf('\Requests_Response', $result);
+        $this->assertInstanceOf('WpOrg\Requests\Response', $result);
         $this->assertEquals('http://localhost/', $result->url);
     }
 
