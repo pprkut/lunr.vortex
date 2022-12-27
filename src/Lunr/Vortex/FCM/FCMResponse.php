@@ -15,7 +15,7 @@ use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\PushNotificationResponseInterface;
 
 /**
- * Google Cloud Messaging Push Notification response wrapper.
+ * Firebase Cloud Messaging Push Notification response wrapper.
  */
 class FCMResponse implements PushNotificationResponseInterface
 {

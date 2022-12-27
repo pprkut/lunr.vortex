@@ -26,7 +26,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
      */
     public function testGetPayloadWithCollapseKey(): void
     {
-        $file     = TEST_STATICS . '/Vortex/gcm/collapse_key.json';
+        $file     = TEST_STATICS . '/Vortex/fcm/collapse_key.json';
         $elements = [ 'collapse_key' => 'test' ];
 
         $this->set_reflection_property_value('elements', $elements);
@@ -41,7 +41,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
      */
     public function testGetPayloadWithData(): void
     {
-        $file     = TEST_STATICS . '/Vortex/gcm/data.json';
+        $file     = TEST_STATICS . '/Vortex/fcm/data.json';
         $elements = [
             'data' => [
                 'key1' => 'value1',
@@ -61,7 +61,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
      */
     public function testGetPayloadWithTimeToLive(): void
     {
-        $file     = TEST_STATICS . '/Vortex/gcm/time_to_live.json';
+        $file     = TEST_STATICS . '/Vortex/fcm/time_to_live.json';
         $elements = [ 'time_to_live' => 10 ];
 
         $this->set_reflection_property_value('elements', $elements);
@@ -76,7 +76,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
      */
     public function testGetPayload(): void
     {
-        $file     = TEST_STATICS . '/Vortex/gcm/gcm.json';
+        $file     = TEST_STATICS . '/Vortex/fcm/fcm.json';
         $elements = [
             'registration_ids' => [ 'one', 'two', 'three' ],
             'collapse_key'     => 'test',

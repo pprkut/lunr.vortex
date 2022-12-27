@@ -33,7 +33,7 @@ class JPushBatchResponseSetStatusesTest extends JPushBatchResponseTest
     {
         parent::setUp();
 
-        $content = file_get_contents(TEST_STATICS . '/Vortex/gcm/response_single_success.json');
+        $content = file_get_contents(TEST_STATICS . '/Vortex/jpush/response_single_success.json');
 
         $this->response->status_code = 200;
         $this->response->body        = $content;
