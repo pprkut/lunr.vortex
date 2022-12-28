@@ -12,7 +12,6 @@
 namespace Lunr\Vortex\WNS\Tests;
 
 use Lunr\Vortex\WNS\WNSDispatcher;
-use Lunr\Vortex\WNS\WNSPriority;
 use Lunr\Vortex\WNS\WNSType;
 use Lunr\Halo\LunrBaseTest;
 use ReflectionClass;
@@ -81,27 +80,6 @@ abstract class WNSDispatcherTest extends LunrBaseTest
         unset($this->http);
         unset($this->logger);
         unset($this->response);
-    }
-
-    /**
-     * Unit test data provider for valid WNS Priorities.
-     *
-     * @return array $priorities Array of WNS priorities.
-     */
-    public function validPriorityProvider(): array
-    {
-        $priorities   = [];
-        $priorities[] = [ WNSPriority::TILE_IMMEDIATELY ];
-        $priorities[] = [ WNSPriority::TOAST_IMMEDIATELY ];
-        $priorities[] = [ WNSPriority::RAW_IMMEDIATELY ];
-        $priorities[] = [ WNSPriority::TILE_WAIT_450 ];
-        $priorities[] = [ WNSPriority::TOAST_WAIT_450 ];
-        $priorities[] = [ WNSPriority::RAW_WAIT_450 ];
-        $priorities[] = [ WNSPriority::TILE_WAIT_900 ];
-        $priorities[] = [ WNSPriority::TOAST_WAIT_900 ];
-        $priorities[] = [ WNSPriority::RAW_WAIT_900 ];
-
-        return $priorities;
     }
 
     /**

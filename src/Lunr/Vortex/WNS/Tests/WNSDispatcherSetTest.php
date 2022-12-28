@@ -11,7 +11,6 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
-use Lunr\Vortex\WNS\WNSPriority;
 use Lunr\Vortex\WNS\WNSType;
 
 /**
