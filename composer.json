@@ -15,7 +15,7 @@
   },
   "require-dev": {
     "lunr/halo": "dev-master",
-    "phpunit/phpunit": ">=8.5",
+    "phpunit/phpunit": ">=9.0 <9.6",
     "ext-xdebug": ">=3.0"
   },
   "config": {
