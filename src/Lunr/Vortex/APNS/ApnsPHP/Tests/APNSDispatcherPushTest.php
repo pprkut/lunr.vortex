@@ -171,16 +171,16 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn([ 'badge' => 'yo' ]);
+                      ->willReturn([ 'badge' => -1 ]);
 
         $this->apns_message->expects($this->once())
                            ->method('setBadge')
-                           ->with('yo')
-                           ->will($this->throwException(new MessageException('Invalid badge: yo')));
+                           ->with(-1)
+                           ->will($this->throwException(new MessageException('Invalid badge: -1')));
 
         $this->logger->expects($this->once())
                      ->method('warning')
-                     ->with('Invalid badge: yo');
+                     ->with('Invalid badge: -1');
 
         $result = $this->class->push($this->payload, $endpoints);
 
