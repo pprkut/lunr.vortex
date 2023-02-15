@@ -1,10 +1,10 @@
 <?php
 /**
- * This file contains the WNSDispatcherOAuthTest Class
+ * This file contains the WNSDispatcherConfigureOAuthTokenTest Class
  *
  * @package    Lunr\Vortex\WNS
- * @author     Sean Molenaar <sean@m2mobi.com>
- * @copyright  2013-2018, M2Mobi BV, Amsterdam, The Netherlands
+ * @author     Heinz Wiesinger <heinz.wiesinger@moveagency.com>
+ * @copyright  2023, Move Agency Group B.V., Zwolle, The Netherlands
  * @license    http://lunr.nl/LICENSE MIT License
  */
 
@@ -13,10 +13,10 @@ namespace Lunr\Vortex\WNS\Tests;
 use WpOrg\Requests\Exception as RequestsException;
 
 /**
- * Class WNSDispatcherOAuthTest tests the Authentication to the WNS Server
+ * Class WNSDispatcherConfigureOAuthTokenTest tests the Authentication to the WNS Server
  * @covers Lunr\Vortex\WNS\WNSDispatcher
  */
-class WNSDispatcherOAuthTest extends WNSDispatcherTest
+class WNSDispatcherConfigureOAuthTokenTest extends WNSDispatcherTest
 {
 
     /**
@@ -34,11 +34,11 @@ class WNSDispatcherOAuthTest extends WNSDispatcherTest
     }
 
     /**
-     * Test that using get_oauth_token queries with config variables.
+     * Test that using configure_oauth_token queries with config variables.
      *
-     * @covers Lunr\Vortex\WNS\WNSDispatcher::get_oauth_token
+     * @covers Lunr\Vortex\WNS\WNSDispatcher::configure_oauth_token
      */
-    public function testGetOauthMakesCorrectRequest(): void
+    public function testConfigureOauthTokenMakesCorrectRequest(): void
     {
         $request_post = [
             'grant_type'    => 'client_credentials',
@@ -60,15 +60,17 @@ class WNSDispatcherOAuthTest extends WNSDispatcherTest
                    ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo($request_post))
                    ->will($this->returnValue($this->response));
 
-        $this->class->get_oauth_token();
+        $this->class->configure_oauth_token();
+
+        $this->assertPropertySame('oauth_token', 'access_token');
     }
 
     /**
-     * Test that using get_oauth_token responds with FALSE if the response is erroneous.
+     * Test that using configure_oauth_token responds with FALSE if the response is erroneous.
      *
-     * @covers Lunr\Vortex\WNS\WNSDispatcher::get_oauth_token
+     * @covers Lunr\Vortex\WNS\WNSDispatcher::configure_oauth_token
      */
-    public function testGetOauthRespondsFalseIfRequestError(): void
+    public function testConfigureOauthTokenRespondsFalseIfRequestError(): void
     {
         $request_post = [
             'grant_type'    => 'client_credentials',
@@ -94,15 +96,15 @@ class WNSDispatcherOAuthTest extends WNSDispatcherTest
         $this->expectException('RuntimeException');
         $this->expectExceptionMessage('Requesting token failed: No response');
 
-        $this->class->get_oauth_token();
+        $this->class->configure_oauth_token();
     }
 
     /**
-     * Test that using get_oauth_token responds with FALSE if the response is invalid JSON.
+     * Test that using configure_oauth_token responds with FALSE if the response is invalid JSON.
      *
-     * @covers Lunr\Vortex\WNS\WNSDispatcher::get_oauth_token
+     * @covers Lunr\Vortex\WNS\WNSDispatcher::configure_oauth_token
      */
-    public function testGetOauthRespondsFalseIfInvalidJSON(): void
+    public function testConfigureOauthTokenRespondsFalseIfInvalidJSON(): void
     {
         $request_post = [
             'grant_type'    => 'client_credentials',
@@ -131,15 +133,15 @@ class WNSDispatcherOAuthTest extends WNSDispatcherTest
         $this->expectException('UnexpectedValueException');
         $this->expectExceptionMessage('Requesting token failed: Malformed JSON response');
 
-        $this->class->get_oauth_token();
+        $this->class->configure_oauth_token();
     }
 
     /**
-     * Test that using get_oauth_token responds with FALSE if the response is incomplete JSON.
+     * Test that using configure_oauth_token responds with FALSE if the response is incomplete JSON.
      *
-     * @covers Lunr\Vortex\WNS\WNSDispatcher::get_oauth_token
+     * @covers Lunr\Vortex\WNS\WNSDispatcher::configure_oauth_token
      */
-    public function testGetOauthRespondsFalseIfIncompleteJSON(): void
+    public function testConfigureOauthTokenRespondsFalseIfIncompleteJSON(): void
     {
         $request_post = [
             'grant_type'    => 'client_credentials',
@@ -168,15 +170,15 @@ class WNSDispatcherOAuthTest extends WNSDispatcherTest
         $this->expectException('UnexpectedValueException');
         $this->expectExceptionMessage('Requesting token failed: Not a valid JSON response');
 
-        $this->class->get_oauth_token();
+        $this->class->configure_oauth_token();
     }
 
     /**
-     * Test that using get_oauth_token response.
+     * Test that using configure_oauth_token response.
      *
-     * @covers Lunr\Vortex\WNS\WNSDispatcher::get_oauth_token
+     * @covers Lunr\Vortex\WNS\WNSDispatcher::configure_oauth_token
      */
-    public function testGetOauthRespondsCorrectly(): void
+    public function testConfigureOauthTokenRespondsCorrectly(): void
     {
         $request_post = [
             'grant_type'    => 'client_credentials',
@@ -198,7 +200,9 @@ class WNSDispatcherOAuthTest extends WNSDispatcherTest
                    ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo($request_post))
                    ->will($this->returnValue($this->response));
 
-        $this->assertSame('access_token', $this->class->get_oauth_token());
+        $this->class->configure_oauth_token();
+
+        $this->assertPropertySame('oauth_token', 'access_token');
     }
 
 }

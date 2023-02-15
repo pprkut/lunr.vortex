@@ -84,7 +84,8 @@
             <file>../src/Lunr/Vortex/WNS/Tests/WNSResponseSuccessTest.php</file>
             <file>../src/Lunr/Vortex/WNS/Tests/WNSResponseErrorTest.php</file>
             <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherBaseTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherOAuthTest.php</file>
+            <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherGetOAuthTokenTest.php</file>
+            <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherConfigureOAuthTokenTest.php</file>
             <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherPushTest.php</file>
             <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherSetTest.php</file>
         </testsuite>

@@ -276,6 +276,16 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
     }
 
     /**
+     * Request and set an oauth token from microsoft.
+     *
+     * @return void
+     */
+    public function configure_oauth_token(): void
+    {
+        $this->set_oauth_token($this->get_oauth_token());
+    }
+
+    /**
      * Get a Requests\Response object for a failed request.
      *
      * @param string $endpoint Endpoint to send to
