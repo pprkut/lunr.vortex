@@ -95,8 +95,8 @@ class APNSPayload
      */
     public function set_priority(int $priority): self
     {
-        $priority       = $priority;
         $priority_class = new ReflectionClass('\Lunr\Vortex\APNS\APNSPriority');
+
         if (in_array($priority, array_values($priority_class->getConstants())))
         {
             $this->elements['priority'] = $priority;
