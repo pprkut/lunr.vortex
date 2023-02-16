@@ -91,7 +91,10 @@ class WNSDispatcherOAuthTest extends WNSDispatcherTest
                      ->method('warning')
                      ->with('Requesting token failed: No response');
 
-        $this->assertFalse($this->class->get_oauth_token());
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Requesting token failed: No response');
+
+        $this->class->get_oauth_token();
     }
 
     /**
@@ -125,7 +128,10 @@ class WNSDispatcherOAuthTest extends WNSDispatcherTest
                      ->method('warning')
                      ->with('Requesting token failed: Malformed JSON response');
 
-        $this->assertFalse($this->class->get_oauth_token());
+        $this->expectException('UnexpectedValueException');
+        $this->expectExceptionMessage('Requesting token failed: Malformed JSON response');
+
+        $this->class->get_oauth_token();
     }
 
     /**
@@ -159,7 +165,10 @@ class WNSDispatcherOAuthTest extends WNSDispatcherTest
                      ->method('warning')
                      ->with('Requesting token failed: Not a valid JSON response');
 
-        $this->assertFalse($this->class->get_oauth_token());
+        $this->expectException('UnexpectedValueException');
+        $this->expectExceptionMessage('Requesting token failed: Not a valid JSON response');
+
+        $this->class->get_oauth_token();
     }
 
     /**

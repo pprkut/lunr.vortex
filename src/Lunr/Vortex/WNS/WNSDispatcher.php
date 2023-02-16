@@ -18,6 +18,8 @@ use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Exception as RequestsException;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
+use RuntimeException;
+use UnexpectedValueException;
 
 /**
  * Windows Push Notification Dispatcher.
@@ -220,9 +222,9 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
     /**
      * Get an oath token from the microsoft webservice.
      *
-     * @return string|boolean the oauth access token or FALSE if it failed.
+     * @return string the oauth access token.
      */
-    public function get_oauth_token()
+    public function get_oauth_token(): string
     {
         $request_post = [
             'grant_type'    => 'client_credentials',
@@ -241,7 +243,7 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
         catch (RequestsException $e)
         {
             $this->logger->warning('Requesting token failed: No response');
-            return FALSE;
+            throw new RuntimeException('Requesting token failed: No response');
         }
 
         $response_object = json_decode($response->body);
@@ -249,13 +251,13 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
         if (!(json_last_error() === JSON_ERROR_NONE))
         {
             $this->logger->warning('Requesting token failed: Malformed JSON response');
-            return FALSE;
+            throw new UnexpectedValueException('Requesting token failed: Malformed JSON response');
         }
 
         if (!property_exists($response_object, 'access_token'))
         {
             $this->logger->warning('Requesting token failed: Not a valid JSON response');
-            return FALSE;
+            throw new UnexpectedValueException('Requesting token failed: Not a valid JSON response');
         }
 
         return $response_object->access_token;
