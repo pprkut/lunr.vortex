@@ -3,11 +3,9 @@
 /**
  * This file contains the FCMBatchResponseGetStatusTest class.
  *
- * @package    Lunr\Vortex\FCM
- * @author     Damien Tardy-Panis <damien@m2mobi.com>
- * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @copyright  2016-2018, M2Mobi BV, Amsterdam, The Netherlands
- * @license    http://lunr.nl/LICENSE MIT License
+ * SPDX-FileCopyrightText: Copyright 2016 M2mobi B.V., Amsterdam, The Netherlands
+ * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
+ * SPDX-License-Identifier: MIT
  */
 
 namespace Lunr\Vortex\FCM\Tests;

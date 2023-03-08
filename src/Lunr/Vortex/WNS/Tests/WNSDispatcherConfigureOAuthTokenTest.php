@@ -2,10 +2,9 @@
 /**
  * This file contains the WNSDispatcherConfigureOAuthTokenTest Class
  *
- * @package    Lunr\Vortex\WNS
- * @author     Heinz Wiesinger <heinz.wiesinger@moveagency.com>
- * @copyright  2023, Move Agency Group B.V., Zwolle, The Netherlands
- * @license    http://lunr.nl/LICENSE MIT License
+ * SPDX-FileCopyrightText: Copyright 2013 M2mobi B.V., Amsterdam, The Netherlands
+ * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
+ * SPDX-License-Identifier: MIT
  */
 
 namespace Lunr\Vortex\WNS\Tests;

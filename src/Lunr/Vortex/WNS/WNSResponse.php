@@ -3,11 +3,9 @@
 /**
  * This file contains an abstraction for the response from the WNS server.
  *
- * @package    Lunr\Vortex\WNS
- * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @author     Sean Molenaar <sean@m2mobi.com>
- * @copyright  2013-2018, M2Mobi BV, Amsterdam, The Netherlands
- * @license    http://lunr.nl/LICENSE MIT License
+ * SPDX-FileCopyrightText: Copyright 2013 M2mobi B.V., Amsterdam, The Netherlands
+ * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
+ * SPDX-License-Identifier: MIT
  */
 
 namespace Lunr\Vortex\WNS;

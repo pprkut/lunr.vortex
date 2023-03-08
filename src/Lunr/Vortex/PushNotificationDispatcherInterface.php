@@ -4,11 +4,9 @@
  * This file contains the PushNotificationDispatcherInterface interface which
  * is the base of all push notifications.
  *
- * @package    Lunr\Vortex
- * @author     Heinz Wiesinger <heinz@m2mobi.com>
- * @author     Olivier Wizen <olivier@m2mobi.com>
- * @copyright  2013-2018, M2Mobi BV, Amsterdam, The Netherlands
- * @license    http://lunr.nl/LICENSE MIT License
+ * SPDX-FileCopyrightText: Copyright 2013 M2mobi B.V., Amsterdam, The Netherlands
+ * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
+ * SPDX-License-Identifier: MIT
  */
 
 namespace Lunr\Vortex;
