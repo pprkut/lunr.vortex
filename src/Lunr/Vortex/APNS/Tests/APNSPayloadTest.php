@@ -59,11 +59,11 @@ class APNSPayloadTest extends LunrBaseTest
     public function payloadProvider(): array
     {
         $values   = [];
-        $values[] = [ '/Vortex/apns/libcapn/alert.json', [ 'alert' => 'apnsmessage' ] ];
-        $values[] = [ '/Vortex/apns/libcapn/custom_data.json', [ 'custom_data' => [ 'key1' => 'value1', 'key2' => 'value2' ] ] ];
-        $values[] = [ '/Vortex/apns/libcapn/badge.json', [ 'badge' => 10 ] ];
+        $values[] = [ '/Vortex/apns/alert.json', [ 'alert' => 'apnsmessage' ] ];
+        $values[] = [ '/Vortex/apns/custom_data.json', [ 'custom_data' => [ 'key1' => 'value1', 'key2' => 'value2' ] ] ];
+        $values[] = [ '/Vortex/apns/badge.json', [ 'badge' => 10 ] ];
         $values[] = [
-            '/Vortex/apns/libcapn/apns.json',
+            '/Vortex/apns/apns.json',
             [
                 'alert'       => 'apnsmessage',
                 'badge'       => 10,
