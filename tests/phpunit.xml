@@ -70,6 +70,11 @@
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherBaseTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherSetTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherPushTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushReportBaseTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushReportGetReportTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushReportGetStatusesTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushReportReportEndpointErrorTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushReportReportErrorTest.php</file>
         </testsuite>
         <testsuite name="MPNS">
             <file>../src/Lunr/Vortex/MPNS/Tests/MPNSPayloadTest.php</file>
