@@ -51,24 +51,8 @@ class JPushBatchResponseGetStatusTest extends JPushBatchResponseTest
     {
         $data = [];
 
-        // return unknown status if no status set
-        $data[] = [ [ 'endpoint14432' ], PushNotificationStatus::UNKNOWN ];
-
-        // return unknown status if endpoint absent
-        $data[] = [
-            [
-                'endpoint1' => PushNotificationStatus::INVALID_ENDPOINT,
-            ],
-            PushNotificationStatus::UNKNOWN,
-        ];
-        $data[] = [
-            [
-                'endpoint1' => PushNotificationStatus::ERROR,
-                'endpoint2' => PushNotificationStatus::INVALID_ENDPOINT,
-                'endpoint3' => PushNotificationStatus::SUCCESS,
-            ],
-            PushNotificationStatus::UNKNOWN,
-        ];
+        // return deferred status if no status set
+        $data[] = [ [], PushNotificationStatus::DEFERRED ];
 
         // return endpoint own status if present
         $data[] = [
@@ -106,70 +90,6 @@ class JPushBatchResponseGetStatusTest extends JPushBatchResponseTest
         $result = $this->class->get_status('endpoint_param');
 
         $this->assertEquals($status, $result);
-    }
-
-    /**
-     * Test the get_status() behavior to fetch new statuses if it fails.
-     *
-     * @covers       \Lunr\Vortex\JPush\JPushBatchResponse::get_status
-     */
-    public function testGetStatusWillFetchUpstreamFails(): void
-    {
-        $this->set_reflection_property_value('statuses', []);
-        $this->set_reflection_property_value('message_id', 1453658564165);
-
-        $report_response = $this->getMockBuilder('Requests_Response')->getMock();
-
-        $content = '{"msg_id": "1453658564165"}';
-
-        $this->response->success = TRUE;
-        $this->response->body    = $content;
-
-        $this->http->expects($this->once())
-                   ->method('post')
-                   ->with('https://report.jpush.cn/v3/status/message', [], '{"msg_id":1453658564165,"registration_ids":["endpoint1"]}', [])
-                   ->will($this->returnValue($report_response));
-
-        $report_response->expects($this->once())
-                        ->method('throw_for_status')
-                        ->will($this->throwException(new \Requests_Exception('Message', 'type')));
-
-        $result = $this->class->get_status('endpoint_param');
-
-        $this->assertEquals(0, $result);
-    }
-
-    /**
-     * Test the get_status() behavior to fetch new statuses if it fails.
-     *
-     * @covers       \Lunr\Vortex\JPush\JPushBatchResponse::get_status
-     */
-    public function testGetStatusWillFetchUpstreamSingle(): void
-    {
-        $this->set_reflection_property_value('statuses', []);
-        $this->set_reflection_property_value('message_id', 1453658564165);
-
-        $report_response = $this->getMockBuilder('Requests_Response')->getMock();
-
-        $content = '{"msg_id": "1453658564165"}';
-
-        $this->response->success = TRUE;
-        $this->response->body    = $content;
-
-        $report_response->success = TRUE;
-        $report_response->body    = '{"endpoint1": {"status":5}}';
-
-        $this->http->expects($this->once())
-                   ->method('post')
-                   ->with('https://report.jpush.cn/v3/status/message', [], '{"msg_id":1453658564165,"registration_ids":["endpoint1"]}', [])
-                   ->will($this->returnValue($report_response));
-
-        $report_response->expects($this->once())
-                        ->method('throw_for_status');
-
-        $result = $this->class->get_status('endpoint_param');
-
-        $this->assertEquals(0, $result);
     }
 
 }
