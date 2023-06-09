@@ -12,8 +12,6 @@ namespace Lunr\Vortex\JPush;
 
 use Lunr\Vortex\PushNotificationStatus;
 use Psr\Log\LoggerInterface;
-use WpOrg\Requests\Exception as RequestsException;
-use WpOrg\Requests\Exception\HTTP as RequestsExceptionHTTP;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
 
@@ -22,12 +20,6 @@ use WpOrg\Requests\Session;
  */
 class JPushBatchResponse
 {
-
-    /**
-     * JPush Report API URL.
-     * @var string
-     */
-    private const JPUSH_REPORT_URL = 'https://report.jpush.cn/v3/status/message';
 
     /**
      * Shared instance of a Logger class.
@@ -55,7 +47,7 @@ class JPushBatchResponse
 
     /**
      * Message ID.
-     * @var integer
+     * @var int
      */
     protected int $message_id;
 
@@ -113,55 +105,6 @@ class JPushBatchResponse
     }
 
     /**
-     * Define the status result for each endpoint.
-     *
-     * @return void
-     */
-    private function set_statuses(): void
-    {
-
-        $payload = [
-            'msg_id'           => $this->message_id,
-            'registration_ids' => $this->endpoints,
-        ];
-
-        try
-        {
-            $response = $this->http->post(static::JPUSH_REPORT_URL, [], json_encode($payload), []);
-            $response->throw_for_status();
-        }
-        catch (RequestsExceptionHTTP $e)
-        {
-            $this->report_error($this->endpoints, $response);
-            return;
-        }
-        catch (RequestsException $e)
-        {
-            foreach ($this->endpoints as $endpoint)
-            {
-                $this->statuses[$endpoint] = PushNotificationStatus::ERROR;
-            }
-
-            $context = [ 'error' => $e->getMessage() ];
-            $this->logger->warning('Dispatching JPush notification failed: {error}', $context);
-
-            return;
-        }
-
-        foreach (json_decode($response->body, TRUE) as $endpoint => $result)
-        {
-            if ($result['status'] === 0)
-            {
-                $this->statuses[$endpoint] = PushNotificationStatus::SUCCESS;
-            }
-            else
-            {
-                $this->report_endpoint_error($endpoint, $result['status']);
-            }
-        }
-    }
-
-    /**
      * Get notification delivery status for an endpoint.
      *
      * @param string $endpoint Endpoint
@@ -170,12 +113,17 @@ class JPushBatchResponse
      */
     public function get_status(string $endpoint): int
     {
-        if ($this->statuses === [])
-        {
-            $this->set_statuses();
-        }
+        return $this->statuses[$endpoint] ?? PushNotificationStatus::DEFERRED;
+    }
 
-        return $this->statuses[$endpoint] ?? PushNotificationStatus::UNKNOWN;
+    /**
+     * Get message_id of the batch.
+     *
+     * @return null|int Message id of the notification batch, NULL if batch failed
+     */
+    public function get_message_id(): ?int
+    {
+        return $this->message_id ?? NULL;
     }
 
     /**
@@ -230,48 +178,6 @@ class JPushBatchResponse
 
         $context = [ 'error' => $error_message ];
         $this->logger->warning('Dispatching JPush notification failed: {error}', $context);
-    }
-
-    /**
-     * Report an error with the push notification for one endpoint.
-     *
-     * @param string $endpoint   Endpoint for which the push failed
-     * @param string $error_code Error response code
-     *
-     * @see https://docs.jiguang.cn/en/jpush/server/push/rest_api_v3_report/#inquiry-of-service-status
-     *
-     * @return void
-     */
-    private function report_endpoint_error(string $endpoint, string $error_code): void
-    {
-        switch ($error_code)
-        {
-            case 1:
-                $status        = PushNotificationStatus::UNKNOWN;
-                $error_message = 'Not delivered';
-                break;
-            case 2:
-                $status        = PushNotificationStatus::INVALID_ENDPOINT;
-                $error_message = 'Registration_id does not belong to the application';
-                break;
-            case 3:
-                $status        = PushNotificationStatus::ERROR;
-                $error_message = 'Registration_id belongs to the application, but it is not the target of the message';
-                break;
-            case 4:
-                $status        = PushNotificationStatus::TEMPORARY_ERROR;
-                $error_message = 'The system is abnormal';
-                break;
-            default:
-                $status        = PushNotificationStatus::UNKNOWN;
-                $error_message = $error_code;
-                break;
-        }
-
-        $context = [ 'endpoint' => $endpoint, 'error' => $error_message ];
-        $this->logger->warning('Dispatching push notification failed for endpoint {endpoint}: {error}', $context);
-
-        $this->statuses[$endpoint] = $status;
     }
 
 }

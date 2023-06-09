@@ -58,6 +58,12 @@ class PushNotificationStatus
      */
     public const NOT_HANDLED = 6;
 
+    /**
+     * Push notification status will be fetched at a later time.
+     * @var integer
+     */
+    public const DEFERRED = 7;
+
 }
 
 ?>
