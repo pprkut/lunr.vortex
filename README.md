@@ -34,12 +34,12 @@ If you encounter any issues when using Lunr you can report them [on github][7]
 About Us
 --------
 
-Lunr development is spearheaded by [M2mobi][1].
+Lunr development is spearheaded by [Move][1].
 
-  [1]: https://m2mobi.com
+  [1]: https://moveagency.com
   [2]: https://semver.org
   [3]: https://groups.google.com/forum/#!forum/lunr-users
   [4]: https://groups.google.com/forum/#!forum/lunr-developers
-  [5]: https://github.com/M2Mobi/lunr.vortex
+  [5]: https://github.com/lunr-php/lunr.vortex
   [6]: https://reviews.lunr.nl
-  [7]: https://github.com/M2Mobi/lunr.vortex/issues
+  [7]: https://github.com/lunr-php/lunr.vortex/issues

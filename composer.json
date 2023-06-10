@@ -2,7 +2,7 @@
   "name": "lunr/vortex",
   "description": "Lunr.Vortex is a set of notification dispatchers for various platforms.",
   "keywords": [ "notifications", "apns", "fcm", "wns", "jpush", "email" ],
-  "homepage": "https://github.com/M2Mobi/lunr.vortex",
+  "homepage": "https://github.com/lunr-php/lunr.vortex",
   "type": "library",
   "license": "MIT",
   "require": {
