@@ -44,8 +44,7 @@ class JPushReportGetReportTest extends JPushReportTest
 
         $this->expectOutputString('400');
 
-        $method = $this->get_accessible_reflection_method('get_report');
-        $method->invokeArgs($this->class, [ 1453658564165, [ 'endpoint1' ] ]);
+        $this->class->get_report(1453658564165, [ 'endpoint1' ]);
 
         $this->assertPropertyEquals('statuses', []);
 
@@ -76,8 +75,7 @@ class JPushReportGetReportTest extends JPushReportTest
                      ->method('warning')
                      ->with('Getting JPush notification report failed: {error}', $context);
 
-        $method = $this->get_accessible_reflection_method('get_report');
-        $method->invokeArgs($this->class, [ 1453658564165, [ 'endpoint1' ] ]);
+        $this->class->get_report(1453658564165, [ 'endpoint1' ]);
 
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => 5 ]);
     }
@@ -115,8 +113,7 @@ class JPushReportGetReportTest extends JPushReportTest
                          [ $log_message, [ 'endpoint' => 'endpoint6','error' => 6 ]]
                      );
 
-        $method = $this->get_accessible_reflection_method('get_report');
-        $method->invokeArgs($this->class, [ 1453658564165, $endpoints ]);
+        $this->class->get_report(1453658564165, $endpoints);
 
         $this->assertPropertyEquals('statuses', [
             'endpoint1' => 0,
