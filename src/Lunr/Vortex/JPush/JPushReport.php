@@ -162,6 +162,11 @@ class JPushReport
         switch ($response->status_code)
         {
             case 400:
+                if ($upstream_msg === 'Msgid does not exist')
+                {
+                    $status = PushNotificationStatus::DEFERRED;
+                }
+
                 $error_message = $upstream_msg ?? 'Invalid request';
                 break;
             case 401:
