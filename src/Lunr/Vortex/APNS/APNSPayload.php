@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\APNS;
 
-use \ReflectionClass;
+use ReflectionClass;
 
 /**
  * Apple Push Notification Service Payload Generator.

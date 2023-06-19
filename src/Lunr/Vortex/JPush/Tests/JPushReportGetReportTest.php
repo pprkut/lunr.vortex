@@ -87,13 +87,29 @@ class JPushReportGetReportTest extends JPushReportTest
     {
         $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3', 'endpoint4', 'endpoint5', 'endpoint6', 'endpoint7' ];
 
-        $report_content          = '{"endpoint1": {"status":1},"endpoint2": {"status":2},"endpoint3": {"status":3},"endpoint4": {"status":4},"endpoint5": {"status":5},"endpoint6": {"status":6},"endpoint7": {"status":0}}';
+        $report_content  = '{"endpoint1": {"status":1},"endpoint2": {"status":2},"endpoint3": {"status":3},';
+        $report_content .= '"endpoint4": {"status":4},"endpoint5": {"status":5},"endpoint6": {"status":6},';
+        $report_content .= '"endpoint7": {"status":0}}';
+
         $this->response->success = TRUE;
         $this->response->body    = $report_content;
 
+        $request_body = [
+            'msg_id'           => 1453658564165,
+            'registration_ids' => [
+                'endpoint1',
+                'endpoint2',
+                'endpoint3',
+                'endpoint4',
+                'endpoint5',
+                'endpoint6',
+                'endpoint7',
+            ],
+        ];
+
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with('https://report.jpush.cn/v3/status/message', [], '{"msg_id":1453658564165,"registration_ids":["endpoint1","endpoint2","endpoint3","endpoint4","endpoint5","endpoint6","endpoint7"]}', [])
+                   ->with('https://report.jpush.cn/v3/status/message', [], json_encode($request_body), [])
                    ->willReturn($this->response);
 
         $this->response->expects($this->once())
@@ -103,12 +119,48 @@ class JPushReportGetReportTest extends JPushReportTest
         $this->logger->expects($this->exactly(6))
                      ->method('warning')
                      ->withConsecutive(
-                         [ $log_message, [ 'endpoint' => 'endpoint1','error' => 'Not delivered' ]],
-                         [ $log_message, [ 'endpoint' => 'endpoint2','error' => 'Registration_id does not belong to the application' ]],
-                         [ $log_message, [ 'endpoint' => 'endpoint3','error' => 'Registration_id belongs to the application, but it is not the target of the message' ]],
-                         [ $log_message, [ 'endpoint' => 'endpoint4','error' => 'The system is abnormal' ]],
-                         [ $log_message, [ 'endpoint' => 'endpoint5','error' => 5 ]],
-                         [ $log_message, [ 'endpoint' => 'endpoint6','error' => 6 ]]
+                        [
+                            $log_message,
+                            [
+                                'endpoint' => 'endpoint1',
+                                'error'    => 'Not delivered'
+                            ],
+                        ],
+                        [
+                            $log_message,
+                            [
+                                'endpoint' => 'endpoint2',
+                                'error'    => 'Registration_id does not belong to the application'
+                            ],
+                        ],
+                        [
+                            $log_message,
+                            [
+                                'endpoint' => 'endpoint3',
+                                'error'    => 'Registration_id belongs to the application, but it is not the target of the message'
+                            ],
+                        ],
+                        [
+                            $log_message,
+                            [
+                                'endpoint' => 'endpoint4',
+                                'error'    => 'The system is abnormal'
+                            ],
+                        ],
+                        [
+                            $log_message,
+                            [
+                                'endpoint' => 'endpoint5',
+                                'error'    => 5
+                            ],
+                        ],
+                        [
+                            $log_message,
+                            [
+                                'endpoint' => 'endpoint6',
+                                'error'    => 6
+                            ],
+                        ],
                      );
 
         $this->class->get_report(1453658564165, $endpoints);

@@ -12,7 +12,6 @@ namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
 use Lunr\Vortex\APNS\ApnsPHP\APNSResponse;
 use Lunr\Vortex\PushNotificationStatus;
-
 use ReflectionClass;
 
 /**
@@ -530,3 +529,5 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
     }
 
 }
+
+?>

@@ -40,3 +40,5 @@ class EmailResponseGetErrorStatusTest extends EmailResponseTest
     }
 
 }
+
+?>

@@ -110,3 +110,5 @@ abstract class WNSResponseTest extends LunrBaseTest
     }
 
 }
+
+?>

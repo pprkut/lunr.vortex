@@ -76,8 +76,8 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
     /**
      * Constructor.
      *
-     * @param Session          $http   Shared instance of the Requests\Session class.
-     * @param LoggerInterface  $logger Shared instance of a Logger.
+     * @param Session         $http   Shared instance of the Requests\Session class.
+     * @param LoggerInterface $logger Shared instance of a Logger.
      */
     public function __construct(Session $http, LoggerInterface $logger)
     {

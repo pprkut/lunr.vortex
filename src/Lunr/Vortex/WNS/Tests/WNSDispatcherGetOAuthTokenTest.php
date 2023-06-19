@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file contains the WNSDispatcherGetOAuthTokenTest Class
  *
@@ -201,3 +202,5 @@ class WNSDispatcherGetOAuthTokenTest extends WNSDispatcherTest
     }
 
 }
+
+?>

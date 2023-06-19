@@ -10,9 +10,9 @@
 
 namespace Lunr\Vortex\APNS\ApnsPHP;
 
-use \ApnsPHP\Message;
-use \ApnsPHP\Message\Exception as MessageException;
-use \ApnsPHP\Exception as ApnsPHPException;
+use ApnsPHP\Message;
+use ApnsPHP\Message\Exception as MessageException;
+use ApnsPHP\Exception as ApnsPHPException;
 use ApnsPHP\Push;
 use Lunr\Vortex\APNS\APNSPayload;
 use Lunr\Vortex\PushNotificationMultiDispatcherInterface;

@@ -58,3 +58,5 @@ abstract class APNSResponseTest extends LunrBaseTest
     }
 
 }
+
+?>

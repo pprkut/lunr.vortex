@@ -113,3 +113,5 @@ abstract class EmailResponseTest extends LunrBaseTest
     }
 
 }
+
+?>

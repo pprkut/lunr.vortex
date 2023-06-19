@@ -26,11 +26,36 @@ class JPushReportReportEndpointErrorTest extends JPushReportTest
     {
         $return = [];
 
-        $return['Unknown failure']                = [ 'endpoint1', 1, 0, 'Not delivered' ];
-        $return['Registration ID unknown']        = [ 'endpoint2', 2, 3, 'Registration_id does not belong to the application' ];
-        $return['Registration ID not in message'] = [ 'endpoint3', 3, 5, 'Registration_id belongs to the application, but it is not the target of the message' ];
-        $return['System failure']                 = [ 'endpoint4', 4, 2, 'The system is abnormal' ];
-        $return['Failure not matched']            = [ 'endpoint5', 5, 0, 5 ];
+        $return['Unknown failure']                = [
+            'endpoint1',
+            1,
+            0,
+            'Not delivered'
+        ];
+        $return['Registration ID unknown']        = [
+            'endpoint2',
+            2,
+            3,
+            'Registration_id does not belong to the application'
+        ];
+        $return['Registration ID not in message'] = [
+            'endpoint3',
+            3,
+            5,
+            'Registration_id belongs to the application, but it is not the target of the message'
+        ];
+        $return['System failure']                 = [
+            'endpoint4',
+            4,
+            2,
+            'The system is abnormal'
+        ];
+        $return['Failure not matched']            = [
+            'endpoint5',
+            5,
+            0,
+            5
+        ];
 
         return $return;
     }
@@ -48,9 +73,16 @@ class JPushReportReportEndpointErrorTest extends JPushReportTest
      */
     public function testReportEndpointErrorSucceeds($endpoint, $error_code, $status, $message): void
     {
+        $log_message = 'Dispatching push notification failed for endpoint {endpoint}: {error}';
+
+        $context = [
+            'endpoint' => $endpoint,
+            'error'    => $message
+        ];
+
         $this->logger->expects($this->once())
                      ->method('warning')
-                     ->with('Dispatching push notification failed for endpoint {endpoint}: {error}', [ 'endpoint' => $endpoint,'error' => $message ]);
+                     ->with($log_message, $context);
 
         $method = $this->get_accessible_reflection_method('report_endpoint_error');
         $method->invokeArgs($this->class, [ $endpoint, $error_code ]);

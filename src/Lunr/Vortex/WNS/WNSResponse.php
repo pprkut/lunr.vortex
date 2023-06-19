@@ -55,9 +55,9 @@ class WNSResponse implements PushNotificationResponseInterface
     /**
      * Constructor.
      *
-     * @param Response          $response Requests\Response object.
-     * @param LoggerInterface   $logger   Shared instance of a Logger.
-     * @param string|null       $payload  Raw payload that was sent to WNS.
+     * @param Response        $response Requests\Response object.
+     * @param LoggerInterface $logger   Shared instance of a Logger.
+     * @param string|null     $payload  Raw payload that was sent to WNS.
      */
     public function __construct(Response $response, LoggerInterface $logger, ?string $payload)
     {

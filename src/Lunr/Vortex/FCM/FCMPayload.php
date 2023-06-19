@@ -105,7 +105,7 @@ class FCMPayload
     /**
      * Check whether a condition is set
      *
-     * @return boolean TRUE if condition is present.
+     * @return bool TRUE if condition is present.
      */
     public function has_condition(): bool
     {
@@ -115,7 +115,7 @@ class FCMPayload
     /**
      * Check whether a condition is set
      *
-     * @return boolean TRUE if condition is present.
+     * @return bool TRUE if condition is present.
      */
     public function has_topic(): bool
     {

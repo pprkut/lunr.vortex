@@ -12,7 +12,6 @@ namespace Lunr\Vortex\FCM\Tests;
 
 use Lunr\Vortex\FCM\FCMBatchResponse;
 use Lunr\Vortex\PushNotificationStatus;
-
 use ReflectionClass;
 
 /**

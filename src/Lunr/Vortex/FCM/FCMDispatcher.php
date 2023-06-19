@@ -63,8 +63,8 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Constructor.
      *
-     * @param Session          $http   Shared instance of the Requests\Session class.
-     * @param LoggerInterface  $logger Shared instance of a Logger.
+     * @param Session         $http   Shared instance of the Requests\Session class.
+     * @param LoggerInterface $logger Shared instance of a Logger.
      */
     public function __construct(Session $http, LoggerInterface $logger)
     {
@@ -96,10 +96,10 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Getter for FCMBatchResponse.
      *
-     * @param Response          $http_response Requests\Response object.
-     * @param LoggerInterface   $logger        Shared instance of a Logger.
-     * @param array             $endpoints     The endpoints the message was sent to (in the same order as sent).
-     * @param string            $payload       Raw payload that was sent to FCM.
+     * @param Response        $http_response Requests\Response object.
+     * @param LoggerInterface $logger        Shared instance of a Logger.
+     * @param array           $endpoints     The endpoints the message was sent to (in the same order as sent).
+     * @param string          $payload       Raw payload that was sent to FCM.
      *
      * @return FCMBatchResponse
      */
