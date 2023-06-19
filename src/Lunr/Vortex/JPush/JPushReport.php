@@ -78,7 +78,7 @@ class JPushReport
      *
      * @return void
      */
-    private function get_report($message_id, $endpoints): void
+    public function get_report($message_id, $endpoints): void
     {
         $payload = [
             'msg_id'           => $message_id,
@@ -121,18 +121,15 @@ class JPushReport
     }
 
     /**
-     * Get notification delivery statuses.
+     * Get notification delivery status for an endpoint.
      *
-     * @return array Delivery statuses for the endpoints
+     * @param string $endpoint Endpoint
+     *
+     * @return PushNotificationStatus::* Delivery status for the endpoint
      */
-    public function get_statuses(): array
+    public function get_status(string $endpoint): int
     {
-        if ($this->statuses === [])
-        {
-            $this->get_report();
-        }
-
-        return $this->statuses;
+        return $this->statuses[$endpoint] ?? PushNotificationStatus::UNKNOWN;
     }
 
     /**
@@ -160,6 +157,11 @@ class JPushReport
         switch ($response->status_code)
         {
             case 400:
+                if ($upstream_msg === 'Msgid does not exist')
+                {
+                    $status = PushNotificationStatus::DEFERRED;
+                }
+
                 $error_message = $upstream_msg ?? 'Invalid request';
                 break;
             case 401:

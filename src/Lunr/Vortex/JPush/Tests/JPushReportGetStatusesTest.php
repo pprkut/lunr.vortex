@@ -9,6 +9,8 @@
 
 namespace Lunr\Vortex\JPush\Tests;
 
+use Lunr\Vortex\PushNotificationStatus;
+
 /**
  * This class contains test for the constructor of the JPushReport class.
  *
@@ -18,43 +20,31 @@ class JPushReportGetStatusesTest extends JPushReportTest
 {
 
     /**
-     * Test that get_statuses calls get report and returns statuses.
+     * Test that get_status returns status.
      *
-     * @covers \Lunr\Vortex\JPush\JPushReport::get_statuses
+     * @covers \Lunr\Vortex\JPush\JPushReport::get_status
      */
-    public function testGetStatusesCallsGetReport(): void
+    public function testGetStatusReturnsStatus(): void
     {
-        $this->mock_method([ $this->class, 'get_report' ], function () { echo 'get_report'; });
+        $this->set_reflection_property_value('statuses', [ 'endpoint1' => 1 ]);
 
-        $this->set_reflection_property_value('statuses', []);
+        $result = $this->class->get_status('endpoint1');
 
-        $this->expectOutputString('get_report');
-
-        $result = $this->class->get_statuses();
-
-        $this->assertSame([], $result);
-
-        $this->unmock_method([ $this->class, 'get_report' ]);
+        $this->assertSame(PushNotificationStatus::SUCCESS, $result);
     }
 
     /**
-     * Test that get_statuses does not call get_report but returns statuses
+     * Test that get_status returns UNKNOWN status if endpoint does not exists
      *
-     * @covers \Lunr\Vortex\JPush\JPushReport::get_statuses
+     * @covers \Lunr\Vortex\JPush\JPushReport::get_status
      */
-    public function testGetStatusesDoesNotCallGetReportButReturnsStatuses(): void
+    public function testGetStatusReturnsUnknownIfEndpointDoesNotExists(): void
     {
-        $this->mock_method([ $this->class, 'get_report' ], function () { echo 'get_report'; });
-
         $this->set_reflection_property_value('statuses', [ 'endpoint1' => 1 ]);
 
-        $this->expectOutputString('');
+        $result = $this->class->get_status('endpoint_unknown');
 
-        $result = $this->class->get_statuses();
-
-        $this->assertSame([ 'endpoint1' => 1 ], $result);
-
-        $this->unmock_method([ $this->class, 'get_report' ]);
+        $this->assertSame(PushNotificationStatus::UNKNOWN, $result);
     }
 
 }

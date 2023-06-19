@@ -9,6 +9,8 @@
 
 namespace Lunr\Vortex\JPush\Tests;
 
+use Lunr\Vortex\PushNotificationStatus;
+
 /**
  * This class contains tests for the get_report function of the JPushReport class.
  *
@@ -26,12 +28,12 @@ class JPushReportReportErrorTest extends JPushReportTest
     {
         $return = [];
 
-        $return['http400'] = [ 400, 5, 'Invalid request' ];
-        $return['http401'] = [ 401, 5, 'Error with authentication' ];
-        $return['http402'] = [ 402, 0, 'Unknown error' ];
-        $return['http403'] = [ 403, 5, 'Error with configuration' ];
-        $return['http412'] = [ 412, 0, 'Unknown error' ];
-        $return['http500'] = [ 500, 2, 'Internal error' ];
+        $return['http400'] = [ 400, PushNotificationStatus::ERROR, 'Invalid request' ];
+        $return['http401'] = [ 401, PushNotificationStatus::ERROR, 'Error with authentication' ];
+        $return['http402'] = [ 402, PushNotificationStatus::UNKNOWN, 'Unknown error' ];
+        $return['http403'] = [ 403, PushNotificationStatus::ERROR, 'Error with configuration' ];
+        $return['http412'] = [ 412, PushNotificationStatus::UNKNOWN, 'Unknown error' ];
+        $return['http500'] = [ 500, PushNotificationStatus::TEMPORARY_ERROR, 'Internal error' ];
 
         return $return;
     }
@@ -81,7 +83,29 @@ class JPushReportReportErrorTest extends JPushReportTest
         $method = $this->get_accessible_reflection_method('report_error');
         $method->invokeArgs($this->class, [ $this->response, &$endpoints ]);
 
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => 5 ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
+    }
+
+    /**
+     * Test the report_error() succeeds with when response is deferred.
+     *
+     * @covers \Lunr\Vortex\JPush\JPushReport::report_error
+     */
+    public function testReportEndpointErrorSucceedsWhenResponseIsDeferred(): void
+    {
+        $endpoints = [ 'endpoint1' ];
+
+        $this->logger->expects($this->once())
+                     ->method('warning')
+                     ->with('Getting JPush notification report failed: {error}', [ 'error' => 'Msgid does not exist' ]);
+
+        $this->response->status_code = 400;
+        $this->response->body        = '{"error":{"message":"Msgid does not exist"}}';
+
+        $method = $this->get_accessible_reflection_method('report_error');
+        $method->invokeArgs($this->class, [ $this->response, &$endpoints ]);
+
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::DEFERRED ]);
     }
 
 }
