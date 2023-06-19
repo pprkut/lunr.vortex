@@ -16,6 +16,7 @@ use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Exception as RequestsException;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
+use InvalidArgumentException;
 
 /**
  * JPush Push Notification Dispatcher.
@@ -115,13 +116,18 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Push the notification.
      *
-     * @param JPushPayload $payload   Payload object
-     * @param string[]     $endpoints Endpoints to send to in this batch
+     * @param object   $payload   Payload object
+     * @param string[] $endpoints Endpoints to send to in this batch
      *
-     * @return PushNotificationResponseInterface&JPushResponse Response object
+     * @return JPushResponse Response object
      */
-    public function push(object $payload, array &$endpoints): PushNotificationResponseInterface
+    public function push(object $payload, array &$endpoints): JPushResponse
     {
+        if (!$payload instanceof JPushPayload)
+        {
+            throw new InvalidArgumentException('Invalid payload object!');
+        }
+
         $response = $this->get_response();
 
         foreach (array_chunk($endpoints, self::BATCH_SIZE) as &$batch)

@@ -11,6 +11,10 @@
 namespace Lunr\Vortex\WNS\Tests;
 
 use Lunr\Vortex\WNS\WNSType;
+use Lunr\Vortex\APNS\APNSPayload;
+use Lunr\Vortex\Email\EmailPayload;
+use Lunr\Vortex\FCM\FCMPayload;
+use Lunr\Vortex\JPush\JPushMessagePayload;
 use WpOrg\Requests\Exception as RequestsException;
 
 /**
@@ -20,6 +24,40 @@ use WpOrg\Requests\Exception as RequestsException;
  */
 class WNSDispatcherPushTest extends WNSDispatcherTest
 {
+
+    /**
+     * Unit test data provider for unsupported payload objects.
+     *
+     * @return array Unsupported payload objects
+     */
+    public static function unsupportedPayloadProvider(): array
+    {
+        $data          = [];
+        $data['apns']  = [ new APNSPayload() ];
+        $data['email'] = [ new EmailPayload() ];
+        $data['fcm']   = [ new FCMPayload() ];
+        $data['jpush'] = [ new JPushMessagePayload() ];
+
+        return $data;
+    }
+
+    /**
+     * Test that push() throws an exception is the passed payload object is not supported.
+     *
+     * @param object $payload Unsupported payload object
+     *
+     * @dataProvider unsupportedPayloadProvider
+     * @covers       Lunr\Vortex\WNS\WNSDispatcher::push
+     */
+    public function testPushingWithUnsupportedPayloadThrowsException($payload): void
+    {
+        $endpoints = [ 'endpoint' ];
+
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Invalid payload object!');
+
+        $this->class->push($payload, $endpoints);
+    }
 
     /**
      * Test that the response will be null if no authentication is done.

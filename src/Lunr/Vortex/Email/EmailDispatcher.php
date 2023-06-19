@@ -15,6 +15,7 @@ use Lunr\Vortex\PushNotificationResponseInterface;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use PHPMailer\PHPMailer\PHPMailer;
 use Psr\Log\LoggerInterface;
+use InvalidArgumentException;
 
 /**
  * Email Notification Dispatcher.
@@ -78,13 +79,18 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Send the notification.
      *
-     * @param EmailPayload $payload   Payload object
-     * @param array        $endpoints Endpoints to send to in this batch
+     * @param object $payload   Payload object
+     * @param array  $endpoints Endpoints to send to in this batch
      *
-     * @return PushNotificationResponseInterface&EmailResponse Response object
+     * @return EmailResponse Response object
      */
-    public function push(object $payload, array &$endpoints): PushNotificationResponseInterface
+    public function push(object $payload, array &$endpoints): EmailResponse
     {
+        if (!$payload instanceof EmailPayload)
+        {
+            throw new InvalidArgumentException('Invalid payload object!');
+        }
+
         $payload_array = json_decode($payload->get_payload(), TRUE);
 
         // PHPMailer is not reentrant, so we have to clone it before we can do endpoint specific configuration.

@@ -11,6 +11,10 @@
 namespace Lunr\Vortex\FCM\Tests;
 
 use Lunr\Vortex\PushNotificationStatus;
+use Lunr\Vortex\APNS\APNSPayload;
+use Lunr\Vortex\Email\EmailPayload;
+use Lunr\Vortex\JPush\JPushMessagePayload;
+use Lunr\Vortex\WNS\WNSTilePayload;
 use WpOrg\Requests\Exception as RequestsException;
 
 /**
@@ -20,6 +24,40 @@ use WpOrg\Requests\Exception as RequestsException;
  */
 class FCMDispatcherPushTest extends FCMDispatcherTest
 {
+
+    /**
+     * Unit test data provider for unsupported payload objects.
+     *
+     * @return array Unsupported payload objects
+     */
+    public static function unsupportedPayloadProvider(): array
+    {
+        $data          = [];
+        $data['apns']  = [ new APNSPayload() ];
+        $data['email'] = [ new EmailPayload() ];
+        $data['jpush'] = [ new JPushMessagePayload() ];
+        $data['wns']   = [ new WNSTilePayload() ];
+
+        return $data;
+    }
+
+    /**
+     * Test that push() throws an exception is the passed payload object is not supported.
+     *
+     * @param object $payload Unsupported payload object
+     *
+     * @dataProvider unsupportedPayloadProvider
+     * @covers       Lunr\Vortex\FCM\FCMDispatcher::push
+     */
+    public function testPushingWithUnsupportedPayloadThrowsException($payload): void
+    {
+        $endpoints = [ 'endpoint' ];
+
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Invalid payload object!');
+
+        $this->class->push($payload, $endpoints);
+    }
 
     /**
      * Test that push() returns FCMResponseObject.

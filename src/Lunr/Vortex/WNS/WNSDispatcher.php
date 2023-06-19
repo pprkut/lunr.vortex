@@ -16,6 +16,7 @@ use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Exception as RequestsException;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
+use InvalidArgumentException;
 use RuntimeException;
 use UnexpectedValueException;
 
@@ -105,13 +106,18 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
     /**
      * Push the notification.
      *
-     * @param WNSPayload $payload   Payload object
-     * @param array      $endpoints Endpoints to send to in this batch
+     * @param object $payload   Payload object
+     * @param array  $endpoints Endpoints to send to in this batch
      *
-     * @return PushNotificationResponseInterface&WNSResponse Response object
+     * @return WNSResponse Response object
      */
-    public function push(object $payload, array &$endpoints): PushNotificationResponseInterface
+    public function push(object $payload, array &$endpoints): WNSResponse
     {
+        if (!$payload instanceof WNSPayload)
+        {
+            throw new InvalidArgumentException('Invalid payload object!');
+        }
+
         if (!isset($this->oauth_token))
         {
             $this->logger->warning('Tried to push notification to {endpoint} but wasn\'t authenticated.', [ 'endpoint' => $endpoints[0] ]);

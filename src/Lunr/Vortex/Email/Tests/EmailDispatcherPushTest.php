@@ -10,6 +10,10 @@
 
 namespace Lunr\Vortex\Email\Tests;
 
+use Lunr\Vortex\APNS\APNSPayload;
+use Lunr\Vortex\FCM\FCMPayload;
+use Lunr\Vortex\JPush\JPushMessagePayload;
+use Lunr\Vortex\WNS\WNSTilePayload;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
 /**
@@ -19,6 +23,40 @@ use PHPMailer\PHPMailer\Exception as PHPMailerException;
  */
 class EmailDispatcherPushTest extends EmailDispatcherTest
 {
+
+    /**
+     * Unit test data provider for unsupported payload objects.
+     *
+     * @return array Unsupported payload objects
+     */
+    public static function unsupportedPayloadProvider(): array
+    {
+        $data          = [];
+        $data['apns']  = [ new APNSPayload() ];
+        $data['fcm']   = [ new FCMPayload() ];
+        $data['jpush'] = [ new JPushMessagePayload() ];
+        $data['wns']   = [ new WNSTilePayload() ];
+
+        return $data;
+    }
+
+    /**
+     * Test that push() throws an exception is the passed payload object is not supported.
+     *
+     * @param object $payload Unsupported payload object
+     *
+     * @dataProvider unsupportedPayloadProvider
+     * @covers       Lunr\Vortex\Email\EmailDispatcher::push
+     */
+    public function testPushingWithUnsupportedPayloadThrowsException($payload): void
+    {
+        $endpoints = [ 'endpoint' ];
+
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Invalid payload object!');
+
+        $this->class->push($payload, $endpoints);
+    }
 
     /**
      * Test that push() returns EmailResponseObject.

@@ -16,6 +16,7 @@ use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Exception as RequestsException;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
+use InvalidArgumentException;
 
 /**
  * Firebase Cloud Messaging Push Notification Dispatcher.
@@ -111,13 +112,18 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Push the notification.
      *
-     * @param FCMPayload $payload   Payload object
-     * @param array      $endpoints Endpoints to send to in this batch
+     * @param object $payload   Payload object
+     * @param array  $endpoints Endpoints to send to in this batch
      *
-     * @return PushNotificationResponseInterface&FCMResponse Response object
+     * @return FCMResponse Response object
      */
-    public function push(object $payload, array &$endpoints): PushNotificationResponseInterface
+    public function push(object $payload, array &$endpoints): FCMResponse
     {
+        if (!$payload instanceof FCMPayload)
+        {
+            throw new InvalidArgumentException('Invalid payload object!');
+        }
+
         $fcm_response = $this->get_response();
 
         foreach (array_chunk($endpoints, self::BATCH_SIZE) as &$batch)

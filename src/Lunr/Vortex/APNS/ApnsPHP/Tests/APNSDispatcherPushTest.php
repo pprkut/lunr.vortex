@@ -10,6 +10,10 @@
 
 namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
+use Lunr\Vortex\Email\EmailPayload;
+use Lunr\Vortex\FCM\FCMPayload;
+use Lunr\Vortex\JPush\JPushMessagePayload;
+use Lunr\Vortex\WNS\WNSTilePayload;
 use ApnsPHP\Exception as ApnsPHPException;
 use ApnsPHP\Message\Exception as MessageException;
 use ApnsPHP\Push\Exception as PushException;
@@ -21,6 +25,40 @@ use ApnsPHP\Push\Exception as PushException;
  */
 class APNSDispatcherPushTest extends APNSDispatcherTest
 {
+
+    /**
+     * Unit test data provider for unsupported payload objects.
+     *
+     * @return array Unsupported payload objects
+     */
+    public static function unsupportedPayloadProvider(): array
+    {
+        $data          = [];
+        $data['email'] = [ new EmailPayload() ];
+        $data['fcm']   = [ new FCMPayload() ];
+        $data['jpush'] = [ new JPushMessagePayload() ];
+        $data['wns']   = [ new WNSTilePayload() ];
+
+        return $data;
+    }
+
+    /**
+     * Test that push() throws an exception is the passed payload object is not supported.
+     *
+     * @param object $payload Unsupported payload object
+     *
+     * @dataProvider unsupportedPayloadProvider
+     * @covers       Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher::push
+     */
+    public function testPushingWithUnsupportedPayloadThrowsException($payload): void
+    {
+        $endpoints = [ 'endpoint' ];
+
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Invalid payload object!');
+
+        $this->class->push($payload, $endpoints);
+    }
 
     /**
      * Test that push() returns APNSResponseObject.
