@@ -165,12 +165,12 @@ abstract class JPushPayload
     /**
      * Set additional JPush values in the 'options' key.
      *
-     * @param string $key   Options key.
-     * @param string $value Options value.
+     * @param string                $key   Options key.
+     * @param string|int|float|bool $value Options value.
      *
      * @return JPushPayload Self Reference
      */
-    public function set_options(string $key, string $value): self
+    public function set_options(string $key, $value): self
     {
         if (!isset($this->elements['options']))
         {

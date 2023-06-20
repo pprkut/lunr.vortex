@@ -124,7 +124,7 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
     {
         $response = $this->get_response();
 
-        foreach (array_chunk($endpoints, static::BATCH_SIZE) as &$batch)
+        foreach (array_chunk($endpoints, self::BATCH_SIZE) as &$batch)
         {
             $batch_response = $this->push_batch($payload, $batch);
 
@@ -156,12 +156,12 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
 
         try
         {
-            $http_response = $this->http->post(static::JPUSH_SEND_URL, [], $json_payload, []);
+            $http_response = $this->http->post(self::JPUSH_SEND_URL, [], $json_payload, []);
         }
         catch (RequestsException $e)
         {
             $this->logger->warning(
-                'Dispatching ' . static::SERVICE_NAME . ' notification(s) failed: {message}',
+                'Dispatching ' . self::SERVICE_NAME . ' notification(s) failed: {message}',
                 [ 'message' => $e->getMessage() ]
             );
             $http_response = $this->get_new_response_object_for_failed_request();
@@ -203,7 +203,7 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
     {
         $http_response = new Response();
 
-        $http_response->url = static::JPUSH_SEND_URL;
+        $http_response->url = self::JPUSH_SEND_URL;
 
         return $http_response;
     }

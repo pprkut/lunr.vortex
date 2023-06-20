@@ -7,8 +7,3 @@ parameters:
         - phpstan.autoload.inc.php
     excludePaths:
         - ../src/*/Tests/*
-    ignoreErrors:
-        -
-            message: '#Variable \$(response|result) might not be defined.#'
-            paths:
-                - ../src/Lunr/Vortex/JPush/JPushBatchResponse.php

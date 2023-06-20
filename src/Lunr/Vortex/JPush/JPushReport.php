@@ -12,7 +12,7 @@ namespace Lunr\Vortex\JPush;
 use Lunr\Vortex\PushNotificationStatus;
 use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Exception as RequestsException;
-use WpOrg\Requests\Exception\HTTP as RequestsExceptionHTTP;
+use WpOrg\Requests\Exception\Http as RequestsExceptionHTTP;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
 
@@ -87,7 +87,7 @@ class JPushReport
 
         try
         {
-            $response = $this->http->post(static::JPUSH_REPORT_URL, [], json_encode($payload), []);
+            $response = $this->http->post(self::JPUSH_REPORT_URL, [], json_encode($payload), []);
             $response->throw_for_status();
         }
         catch (RequestsExceptionHTTP $e)

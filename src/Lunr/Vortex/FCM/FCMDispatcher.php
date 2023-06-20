@@ -120,7 +120,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     {
         $fcm_response = $this->get_response();
 
-        foreach (array_chunk($endpoints, static::BATCH_SIZE) as &$batch)
+        foreach (array_chunk($endpoints, self::BATCH_SIZE) as &$batch)
         {
             $batch_response = $this->push_batch($payload, $batch);
 
@@ -169,12 +169,12 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
                 'connect_timeout' => 15 // timeout in seconds
             ];
 
-            $http_response = $this->http->post(static::GOOGLE_SEND_URL, $headers, $json_payload, $options);
+            $http_response = $this->http->post(self::GOOGLE_SEND_URL, $headers, $json_payload, $options);
         }
         catch (RequestsException $e)
         {
             $this->logger->warning(
-                'Dispatching ' . static::SERVICE_NAME . ' notification(s) failed: {message}',
+                'Dispatching ' . self::SERVICE_NAME . ' notification(s) failed: {message}',
                 [ 'message' => $e->getMessage() ]
             );
             $http_response = $this->get_new_response_object_for_failed_request();
@@ -211,7 +211,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     {
         $http_response = new Response();
 
-        $http_response->url = static::GOOGLE_SEND_URL;
+        $http_response->url = self::GOOGLE_SEND_URL;
 
         return $http_response;
     }

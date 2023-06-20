@@ -88,7 +88,7 @@ class APNSPayload
     /**
      * Mark the notification priority.
      *
-     * @param \Lunr\Vortex\APNS\APNSPriority|int $priority Notification priority value.
+     * @param APNSPriority::* $priority Notification priority value.
      *
      * @return APNSPayload Self Reference
      */

@@ -84,7 +84,7 @@ class JPushResponse implements PushNotificationDeferredResponseInterface
      *
      * @param string $endpoint Endpoint
      *
-     * @return ?int Delivery batch info for an endpoint
+     * @return ?string Delivery batch info for an endpoint
      */
     public function get_message_id(string $endpoint): ?string
     {
