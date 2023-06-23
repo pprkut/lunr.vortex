@@ -3,10 +3,8 @@
 /**
  * This file contains the JPushResponseGetMessageIdTest class.
  *
- * @package    Lunr\Vortex\JPush
- * @author     Brian Stoop <brian.stoop@moveagency.com>
- * @copyright  2020, M2Mobi BV, Amsterdam, The Netherlands
- * @license    http://lunr.nl/LICENSE MIT License
+ * SPDX-FileCopyrightText: Copyright 2023 Move Agency Group B.V., Zwolle, The Netherlands
+ * SPDX-License-Identifier: MIT
  */
 
 namespace Lunr\Vortex\JPush\Tests;
