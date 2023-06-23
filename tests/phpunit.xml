@@ -66,6 +66,7 @@
             <file>../src/Lunr/Vortex/JPush/Tests/JPushBatchResponseGetStatusTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushResponseBaseTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushResponseAddBatchResponseTest.php</file>
+            <file>../src/Lunr/Vortex/JPush/Tests/JPushResponseGetMessageIdTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushResponseGetStatusTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherBaseTest.php</file>
             <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherSetTest.php</file>
