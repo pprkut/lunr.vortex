@@ -11,17 +11,17 @@
 namespace Lunr\Vortex\JPush;
 
 use Lunr\Vortex\PushNotificationStatus;
-use Lunr\Vortex\PushNotificationResponseInterface;
+use Lunr\Vortex\PushNotificationDeferredResponseInterface;
 
 /**
  * Google Cloud Messaging Push Notification response wrapper.
  */
-class JPushResponse implements PushNotificationResponseInterface
+class JPushResponse implements PushNotificationDeferredResponseInterface
 {
 
     /**
      * The statuses per endpoint.
-     * @var array<string,PushNotificationStatus::*>
+     * @var array<string,array{"status": PushNotificationStatus::*, "message_id": string|null}>
      */
     protected array $statuses;
 
@@ -49,11 +49,21 @@ class JPushResponse implements PushNotificationResponseInterface
      *
      * @return void
      */
-    public function add_batch_response(JPushBatchResponse $batch_response, array $endpoints)
+    public function add_batch_response(JPushBatchResponse $batch_response, array $endpoints): void
     {
+        $message_id = $batch_response->get_message_id();
+
+        if ($message_id !== NULL)
+        {
+            $message_id = (string) $message_id;
+        }
+
         foreach ($endpoints as $endpoint)
         {
-            $this->statuses[$endpoint] = $batch_response->get_status($endpoint);
+            $this->statuses[$endpoint] = [
+                'status'     => $batch_response->get_status($endpoint),
+                'message_id' => $message_id
+            ];
         }
     }
 
@@ -66,7 +76,19 @@ class JPushResponse implements PushNotificationResponseInterface
      */
     public function get_status(string $endpoint): int
     {
-        return isset($this->statuses[$endpoint]) ? $this->statuses[$endpoint] : PushNotificationStatus::UNKNOWN;
+        return $this->statuses[$endpoint]['status'] ?? PushNotificationStatus::UNKNOWN;
+    }
+
+    /**
+     * Get message_id for an endpoint.
+     *
+     * @param string $endpoint Endpoint
+     *
+     * @return ?int Delivery batch info for an endpoint
+     */
+    public function get_message_id(string $endpoint): ?string
+    {
+        return $this->statuses[$endpoint]['message_id'] ?? NULL;
     }
 
 }
