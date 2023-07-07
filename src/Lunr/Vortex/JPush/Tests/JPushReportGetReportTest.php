@@ -29,11 +29,18 @@ class JPushReportGetReportTest extends JPushReportTest
     {
         $this->mock_method([ $this->class, 'report_error' ], function ($response) { echo $response->status_code; });
 
+        $this->set_reflection_property_value('auth_token', 'auth_token_24412');
+
+        $headers = [
+            'Content-Type'  => 'application/json',
+            'Authorization' => 'Basic auth_token_24412',
+        ];
+
         $this->response->status_code = 400;
 
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with('https://report.jpush.cn/v3/status/message', [], '{"msg_id":1453658564165,"registration_ids":["endpoint1"]}', [])
+                   ->with('https://report.jpush.cn/v3/status/message', $headers, '{"msg_id":1453658564165,"registration_ids":["endpoint1"]}', [])
                    ->willReturn($this->response);
 
         $this->response->expects($this->once())
@@ -56,9 +63,16 @@ class JPushReportGetReportTest extends JPushReportTest
      */
     public function testGetReportWithCurlErrors(): void
     {
+        $this->set_reflection_property_value('auth_token', 'auth_token_24412');
+
+        $headers = [
+            'Content-Type'  => 'application/json',
+            'Authorization' => 'Basic auth_token_24412',
+        ];
+
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with('https://report.jpush.cn/v3/status/message', [], '{"msg_id":1453658564165,"registration_ids":["endpoint1"]}', [])
+                   ->with('https://report.jpush.cn/v3/status/message', $headers, '{"msg_id":1453658564165,"registration_ids":["endpoint1"]}', [])
                    ->willReturn($this->response);
 
         $this->response->expects($this->once())
@@ -94,6 +108,13 @@ class JPushReportGetReportTest extends JPushReportTest
         $this->response->success = TRUE;
         $this->response->body    = $report_content;
 
+        $this->set_reflection_property_value('auth_token', 'auth_token_24412');
+
+        $headers = [
+            'Content-Type'  => 'application/json',
+            'Authorization' => 'Basic auth_token_24412',
+        ];
+
         $request_body = [
             'msg_id'           => 1453658564165,
             'registration_ids' => [
@@ -109,7 +130,7 @@ class JPushReportGetReportTest extends JPushReportTest
 
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with('https://report.jpush.cn/v3/status/message', [], json_encode($request_body), [])
+                   ->with('https://report.jpush.cn/v3/status/message', $headers, json_encode($request_body), [])
                    ->willReturn($this->response);
 
         $this->response->expects($this->once())

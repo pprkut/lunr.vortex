@@ -37,6 +37,26 @@ class JPushReportBaseTest extends JPushReportTest
         $this->assertPropertyEquals('statuses', []);
     }
 
+    /**
+     * Test auth_token is initialized as NULL.
+     */
+    public function testAuthTokenIsInitializedAsNull(): void
+    {
+        $this->assertNull($this->get_reflection_property_value('auth_token'));
+    }
+
+    /**
+     * Test the set_auth_token() sets auth token.
+     *
+     * @covers \Lunr\Vortex\JPush\JPushReport::set_auth_token
+     */
+    public function testSetAuthTokenSetsAuthToken(): void
+    {
+        $this->class->set_auth_token('auth_token_24412');
+
+        $this->assertPropertySame('auth_token', 'auth_token_24412');
+    }
+
 }
 
 ?>

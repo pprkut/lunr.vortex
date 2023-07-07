@@ -42,6 +42,12 @@ class JPushReport
     protected Session $http;
 
     /**
+     * Push Notification authentication token.
+     * @var string|null
+     */
+    protected ?string $auth_token;
+
+    /**
      * The statuses per endpoint.
      * @var array
      */
@@ -55,9 +61,10 @@ class JPushReport
      */
     public function __construct(Session $http, LoggerInterface $logger)
     {
-        $this->statuses = [];
-        $this->http     = $http;
-        $this->logger   = $logger;
+        $this->statuses   = [];
+        $this->http       = $http;
+        $this->logger     = $logger;
+        $this->auth_token = NULL;
     }
 
     /**
@@ -68,6 +75,7 @@ class JPushReport
         unset($this->http);
         unset($this->logger);
         unset($this->statuses);
+        unset($this->auth_token);
     }
 
     /**
@@ -85,9 +93,14 @@ class JPushReport
             'registration_ids' => $endpoints,
         ];
 
+        $headers = [
+            'Content-Type'  => 'application/json',
+            'Authorization' => 'Basic ' . $this->auth_token,
+        ];
+
         try
         {
-            $response = $this->http->post(self::JPUSH_REPORT_URL, [], json_encode($payload), []);
+            $response = $this->http->post(self::JPUSH_REPORT_URL, $headers, json_encode($payload), []);
             $response->throw_for_status();
         }
         catch (RequestsExceptionHTTP $e)
@@ -231,6 +244,18 @@ class JPushReport
         $this->logger->warning('Dispatching push notification failed for endpoint {endpoint}: {error}', $context);
 
         $this->statuses[$endpoint] = $status;
+    }
+
+    /**
+     * Set the the auth token for the http headers.
+     *
+     * @param string $auth_token The auth token for the JPush push notifications
+     *
+     * @return void
+     */
+    public function set_auth_token(string $auth_token): void
+    {
+        $this->auth_token = $auth_token;
     }
 
 }
