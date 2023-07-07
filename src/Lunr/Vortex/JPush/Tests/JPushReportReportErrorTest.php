@@ -99,10 +99,10 @@ class JPushReportReportErrorTest extends JPushReportTest
 
         $this->logger->expects($this->once())
                      ->method('warning')
-                     ->with('Getting JPush notification report failed: {error}', [ 'error' => 'Msgid does not exist' ]);
+                     ->with('Getting JPush notification report failed: {error}', [ 'error' => 'Msgid does not exist.' ]);
 
         $this->response->status_code = 400;
-        $this->response->body        = '{"error":{"message":"Msgid does not exist"}}';
+        $this->response->body        = '{"error":{"message":"Msgid does not exist.","code":3002}}';
 
         $method = $this->get_accessible_reflection_method('report_error');
         $method->invokeArgs($this->class, [ $this->response, &$endpoints ]);
