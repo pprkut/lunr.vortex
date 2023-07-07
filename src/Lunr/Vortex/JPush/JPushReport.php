@@ -157,12 +157,14 @@ class JPushReport
      */
     private function report_error(Response $response, array &$endpoints): void
     {
-        $upstream_msg = NULL;
+        $upstream_msg  = NULL;
+        $upstream_code = NULL;
 
         if (!empty($response->body))
         {
-            $body         = json_decode($response->body, TRUE);
-            $upstream_msg = $body['error']['message'] ?? NULL;
+            $body          = json_decode($response->body, TRUE);
+            $upstream_msg  = $body['error']['message'] ?? NULL;
+            $upstream_code = $body['error']['code'] ?? NULL;
         }
 
         $status = PushNotificationStatus::ERROR;
@@ -170,7 +172,7 @@ class JPushReport
         switch ($response->status_code)
         {
             case 400:
-                if ($upstream_msg === 'Msgid does not exist')
+                if ($upstream_code === 3002)
                 {
                     $status = PushNotificationStatus::DEFERRED;
                 }
