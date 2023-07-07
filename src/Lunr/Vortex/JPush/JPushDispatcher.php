@@ -103,7 +103,7 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
      * Getter for JPushBatchResponse.
      *
      * @param Response $http_response Requests\Response object.
-     * @param array    $endpoints     The endpoints the message was sent to (in the same order as sent).
+     * @param string[] $endpoints     The endpoints the message was sent to (in the same order as sent).
      * @param string   $payload       Raw payload that was sent to JPush.
      *
      * @return JPushBatchResponse

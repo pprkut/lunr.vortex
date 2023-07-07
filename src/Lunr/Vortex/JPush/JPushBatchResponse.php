@@ -63,7 +63,7 @@ class JPushBatchResponse
      * @param Session         $http      Shared instance of the Requests\Session class.
      * @param LoggerInterface $logger    Shared instance of a Logger.
      * @param Response        $response  Requests\Response object.
-     * @param array           $endpoints The endpoints the message was sent to (in the same order as sent).
+     * @param string[]        $endpoints The endpoints the message was sent to (in the same order as sent).
      * @param string          $payload   Raw payload that was sent to JPush.
      */
     public function __construct(Session $http, LoggerInterface $logger, Response $response, array $endpoints, string $payload)
@@ -129,7 +129,7 @@ class JPushBatchResponse
     /**
      * Report an error with the push notification.
      *
-     * @param array    $endpoints The endpoints the message was sent to
+     * @param string[] $endpoints The endpoints the message was sent to
      * @param Response $response  The HTTP Response
      *
      * @see https://docs.jiguang.cn/en/jpush/server/push/rest_api_v3_push/#call-return

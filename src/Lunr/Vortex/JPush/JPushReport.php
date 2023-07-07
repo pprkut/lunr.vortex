@@ -49,7 +49,7 @@ class JPushReport
 
     /**
      * The statuses per endpoint.
-     * @var array
+     * @var array<int,string[]>
      */
     private array $statuses;
 
@@ -81,12 +81,12 @@ class JPushReport
     /**
      * Fetch report from JPush and set statuses when report is fetched successfully
      *
-     * @param int   $message_id JPush Batch ID
-     * @param array $endpoints  The endpoints the message was sent to (in the same order as sent).
+     * @param int      $message_id JPush Batch ID
+     * @param string[] $endpoints  The endpoints the message was sent to (in the same order as sent).
      *
      * @return void
      */
-    public function get_report($message_id, $endpoints): void
+    public function get_report(int $message_id, array $endpoints): void
     {
         $payload = [
             'msg_id'           => $message_id,
@@ -149,7 +149,7 @@ class JPushReport
      * Report an error with the push notification.
      *
      * @param Response $response  The HTTP Response
-     * @param array    $endpoints The endpoints the message was sent to (in the same order as sent).
+     * @param string[] $endpoints The endpoints the message was sent to (in the same order as sent).
      *
      * @see https://docs.jiguang.cn/en/jpush/server/push/rest_api_v3_push/#call-return
      *
