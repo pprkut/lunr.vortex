@@ -10,18 +10,18 @@
     "m2mobi/apns-php": "dev-master",
     "phpmailer/phpmailer": "~6.4",
     "rmccue/requests": "~2.0",
-    "php": ">=7.4",
+    "php": ">=8.1",
     "ext-xml": "*"
   },
   "require-dev": {
     "lunr/halo": "dev-master",
     "phpunit/phpunit": ">=9.0 <9.6",
-    "ext-xdebug": ">=3.0"
+    "ext-xdebug": ">=3.1"
   },
   "config": {
     "optimize-autoloader": true,
     "platform": {
-        "php": "7.4.0"
+        "php": "8.1.0"
     }
   },
   "autoload": {
