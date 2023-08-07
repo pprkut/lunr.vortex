@@ -144,7 +144,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
      */
     public function testPushWithFailedRequest(): void
     {
-        $this->mock_function('curl_errno', function (){ return 10; });
+        $this->mock_function('curl_errno', function () { return 10; });
 
         $endpoints = [ 'endpoint' ];
 
@@ -187,7 +187,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
      */
     public function testPushWithTimeoutRequest()
     {
-        $this->mock_function('curl_errno', function (){ return 28; });
+        $this->mock_function('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint' ];
 

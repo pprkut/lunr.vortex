@@ -144,7 +144,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
      */
     public function testPushWithFailedRequest(): void
     {
-        $this->mock_function('curl_errno', function (){ return 10; });
+        $this->mock_function('curl_errno', function () { return 10; });
 
         $endpoints = [ 'endpoint' ];
         $url       = 'https://api.jpush.cn/v3/push';
@@ -181,7 +181,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
      */
     public function testPushWithTimeoutRequest()
     {
-        $this->mock_function('curl_errno', function (){ return 28; });
+        $this->mock_function('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint' ];
         $url       = 'https://api.jpush.cn/v3/push';
