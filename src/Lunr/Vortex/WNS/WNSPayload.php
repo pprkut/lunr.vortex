@@ -58,7 +58,7 @@ abstract class WNSPayload
      *
      * @return string Payload
      */
-    public abstract function get_payload(): string;
+    abstract public function get_payload(): string;
 
 }
 

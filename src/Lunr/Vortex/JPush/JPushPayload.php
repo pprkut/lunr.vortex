@@ -55,7 +55,7 @@ abstract class JPushPayload
      *
      * @return array JPushPayload
      */
-    public abstract function get_payload(): array;
+    abstract public function get_payload(): array;
 
     /**
      * Sets the notification identifier.
