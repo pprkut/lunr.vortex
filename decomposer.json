@@ -1,7 +1,7 @@
 {
     "Lunr.Halo": {
         "url": "https://github.com/lunr-php/lunr.halo.git",
-        "version": "0.8",
+        "version": "0.9",
         "revision": "master",
         "psr4": {
             "prefix": "Lunr\\Halo",
@@ -18,7 +18,7 @@
     },
     "ApnsPHP": {
         "url": "https://github.com/move-backend/apnsphp.git",
-        "version": "2.0.0",
+        "version": "4.0.0",
         "revision": "master",
         "psr0": {
             "path": "/"
