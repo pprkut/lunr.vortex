@@ -45,7 +45,7 @@ class JPushReportGetReportTest extends JPushReportTest
 
         $this->response->expects($this->once())
                        ->method('throw_for_status')
-                       ->willThrowException(new RequestsExceptionHTTP400(NULL, NULL));
+                       ->willThrowException(new RequestsExceptionHTTP400(NULL, $this->response));
 
         $this->expectOutputString('400');
 

@@ -105,6 +105,9 @@ class JPushReport
         }
         catch (RequestsExceptionHTTP $e)
         {
+            /** @var Response $response */
+            $response = $e->getData();
+
             $this->report_error($response, $endpoints);
             return;
         }
