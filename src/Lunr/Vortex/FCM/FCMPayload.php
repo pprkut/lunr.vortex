@@ -201,7 +201,7 @@ class FCMPayload
     /**
      * Mark the notification priority.
      *
-     * @param FCMPriority::* $priority Notification priority value.
+     * @param string $priority Notification priority value.
      *
      * @return FCMPayload Self Reference
      */

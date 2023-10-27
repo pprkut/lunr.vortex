@@ -90,7 +90,7 @@ class JPushNotificationPayload extends JPushPayload
     /**
      * Mark the notification priority.
      *
-     * @param JPushPriority::* $priority Notification priority value.
+     * @param int $priority Notification priority value.
      *
      * @return JPushNotificationPayload Self Reference
      */
