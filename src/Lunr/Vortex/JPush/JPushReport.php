@@ -224,7 +224,7 @@ class JPushReport
         switch ($error_code)
         {
             case 1:
-                $status        = PushNotificationStatus::UNKNOWN;
+                $status        = PushNotificationStatus::DEFERRED;
                 $error_message = 'Not delivered';
                 break;
             case 2:
