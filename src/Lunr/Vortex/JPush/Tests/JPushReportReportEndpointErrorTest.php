@@ -28,7 +28,7 @@ class JPushReportReportEndpointErrorTest extends JPushReportTest
     {
         $return = [];
 
-        $return['Unknown failure']                = [ 'endpoint1', 1, 0, 'Not delivered' ];
+        $return['Unknown failure']                = [ 'endpoint1', 1, 7, 'Not delivered' ];
         $return['Registration ID unknown']        = [ 'endpoint2', 2, 3, 'Registration_id does not belong to the application' ];
         $return['Registration ID not in message'] = [ 'endpoint3', 3, 5, 'Registration_id belongs to the application, but it is not the target of the message' ];
         $return['System failure']                 = [ 'endpoint4', 4, 2, 'The system is abnormal' ];
