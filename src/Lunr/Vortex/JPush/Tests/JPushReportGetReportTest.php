@@ -187,7 +187,7 @@ class JPushReportGetReportTest extends JPushReportTest
         $this->class->get_report(1453658564165, $endpoints);
 
         $this->assertPropertyEquals('statuses', [
-            'endpoint1' => 0,
+            'endpoint1' => 7,
             'endpoint2' => 3,
             'endpoint3' => 5,
             'endpoint4' => 2,

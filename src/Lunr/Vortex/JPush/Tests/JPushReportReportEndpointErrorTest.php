@@ -29,7 +29,7 @@ class JPushReportReportEndpointErrorTest extends JPushReportTest
         $return['Unknown failure']                = [
             'endpoint1',
             1,
-            0,
+            7,
             'Not delivered'
         ];
         $return['Registration ID unknown']        = [
