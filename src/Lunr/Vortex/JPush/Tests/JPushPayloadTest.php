@@ -12,6 +12,8 @@ namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\JPush\JPushPayload;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use ReflectionClass;
 
 /**
@@ -28,6 +30,12 @@ class JPushPayloadTest extends LunrBaseTest
      * @var string
      */
     protected $payload;
+
+    /**
+     * Instance of the tested class.
+     * @var JPushPayload&MockObject&Stub
+     */
+    protected JPushPayload&MockObject&Stub $class;
 
     /**
      * Testcase Constructor.
@@ -49,7 +57,7 @@ class JPushPayloadTest extends LunrBaseTest
         $this->class = $this->getMockBuilder('Lunr\Vortex\JPush\JPushPayload')
                             ->getMockForAbstractClass();
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushPayload');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -59,7 +67,8 @@ class JPushPayloadTest extends LunrBaseTest
     {
         unset($this->payload);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

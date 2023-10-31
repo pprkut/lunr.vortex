@@ -11,6 +11,9 @@
 namespace Lunr\Vortex\APNS\Tests;
 
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\APNS\APNSPayload;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use ReflectionClass;
 
 /**
@@ -29,6 +32,12 @@ class APNSPayloadTest extends LunrBaseTest
     protected $payload;
 
     /**
+     * Instance of the tested class.
+     * @var APNSPayload&MockObject&Stub
+     */
+    protected APNSPayload&MockObject&Stub $class;
+
+    /**
      * Testcase Constructor.
      */
     public function setUp(): void
@@ -45,10 +54,21 @@ class APNSPayloadTest extends LunrBaseTest
 
         $this->payload = json_encode($elements_array);
 
-        $this->class = $this->getMockBuilder('Lunr\Vortex\APNS\APNSPayload')
+        $this->class = $this->getMockBuilder(APNSPayload::class)
                             ->getMockForAbstractClass();
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\APNS\APNSPayload');
+        parent::baseSetUp($this->class);
+    }
+
+    /**
+     * TestCase Destructor.
+     */
+    public function tearDown(): void
+    {
+        unset($this->payload);
+        unset($this->class);
+
+        parent::tearDown();
     }
 
     /**
@@ -73,16 +93,6 @@ class APNSPayloadTest extends LunrBaseTest
         ];
 
         return $values;
-    }
-
-    /**
-     * Testcase Destructor.
-     */
-    public function tearDown(): void
-    {
-        unset($this->payload);
-        unset($this->class);
-        unset($this->reflection);
     }
 
 }

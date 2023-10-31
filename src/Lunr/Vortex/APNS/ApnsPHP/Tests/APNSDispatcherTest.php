@@ -12,6 +12,8 @@ namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
 use Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher;
 use Lunr\Halo\LunrBaseTest;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use ReflectionClass;
 
 /**
@@ -22,6 +24,12 @@ use ReflectionClass;
  */
 abstract class APNSDispatcherTest extends LunrBaseTest
 {
+
+    /**
+     * Instance of the tested class.
+     * @var APNSDispatcher&MockObject&Stub
+     */
+    protected APNSDispatcher&MockObject&Stub $class;
 
     /**
      * Mock instance of a Logger class.
@@ -69,14 +77,13 @@ abstract class APNSDispatcherTest extends LunrBaseTest
         $this->class = $this->getMockBuilder('Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher')
                             ->setConstructorArgs([ $this->logger, $this->apns_push ])
                             ->setMethods([ 'get_new_apns_message' ])
-                            ->setMockClassName('APNSDispatcher_Mock')
                             ->getMock();
 
         $this->class->expects($this->any())
                     ->method('get_new_apns_message')
                     ->willReturn($this->apns_message);
 
-        $this->reflection = new ReflectionClass('APNSDispatcher_Mock');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -89,7 +96,8 @@ abstract class APNSDispatcherTest extends LunrBaseTest
         unset($this->apns_message);
         unset($this->payload);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

@@ -50,6 +50,12 @@ abstract class JPushDispatcherTest extends LunrBaseTest
     protected $payload;
 
     /**
+     * Instance of the tested class.
+     * @var JPushDispatcher
+     */
+    protected JPushDispatcher $class;
+
+    /**
      * Testcase Constructor.
      */
     public function setUp(): void
@@ -63,7 +69,7 @@ abstract class JPushDispatcherTest extends LunrBaseTest
 
         $this->class = new JPushDispatcher($this->http, $this->logger);
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushDispatcher');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -76,7 +82,8 @@ abstract class JPushDispatcherTest extends LunrBaseTest
         unset($this->logger);
         unset($this->payload);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

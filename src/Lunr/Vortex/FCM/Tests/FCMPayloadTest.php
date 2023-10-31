@@ -11,6 +11,9 @@
 namespace Lunr\Vortex\FCM\Tests;
 
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\FCM\FCMPayload;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use ReflectionClass;
 
 /**
@@ -27,6 +30,12 @@ class FCMPayloadTest extends LunrBaseTest
      * @var string
      */
     protected $payload;
+
+    /**
+     * Instance of the tested class.
+     * @var FCMPayload&MockObject&Stub
+     */
+    protected FCMPayload&MockObject&Stub $class;
 
     /**
      * Testcase Constructor.
@@ -48,7 +57,7 @@ class FCMPayloadTest extends LunrBaseTest
         $this->class = $this->getMockBuilder('Lunr\Vortex\FCM\FCMPayload')
                             ->getMockForAbstractClass();
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\FCM\FCMPayload');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -58,7 +67,8 @@ class FCMPayloadTest extends LunrBaseTest
     {
         unset($this->payload);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

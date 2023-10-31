@@ -29,6 +29,12 @@ class JPushNotification3rdPayloadTest extends LunrBaseTest
     protected $payload;
 
     /**
+     * Instance of the tested class.
+     * @var JPushNotification3rdPayload
+     */
+    protected JPushNotification3rdPayload $class;
+
+    /**
      * Testcase Constructor.
      */
     public function setUp(): void
@@ -47,7 +53,7 @@ class JPushNotification3rdPayloadTest extends LunrBaseTest
 
         $this->class = new JPushNotification3rdPayload();
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushNotification3rdPayload');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -57,7 +63,8 @@ class JPushNotification3rdPayloadTest extends LunrBaseTest
     {
         unset($this->payload);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

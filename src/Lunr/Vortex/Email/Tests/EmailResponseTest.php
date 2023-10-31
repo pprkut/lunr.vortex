@@ -29,6 +29,12 @@ abstract class EmailResponseTest extends LunrBaseTest
     protected $logger;
 
     /**
+     * Instance of the tested class.
+     * @var EmailResponse
+     */
+    protected EmailResponse $class;
+
+    /**
      * Testcase Constructor.
      *
      * @return void
@@ -37,8 +43,9 @@ abstract class EmailResponseTest extends LunrBaseTest
     {
         $this->logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 
-        $this->class      = new EmailResponse([], $this->logger, 'The email');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\Email\EmailResponse');
+        $this->class = new EmailResponse([], $this->logger, 'The email');
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -72,8 +79,9 @@ abstract class EmailResponseTest extends LunrBaseTest
                $this->equalTo([ 'endpoint' => 'error-endpoint', 'message' => 'ErrorInfo' ])
              );
 
-        $this->class      = new EmailResponse($mail_results, $this->logger, 'The email');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\Email\EmailResponse');
+        $this->class = new EmailResponse($mail_results, $this->logger, 'The email');
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -98,8 +106,9 @@ abstract class EmailResponseTest extends LunrBaseTest
             ]
         ];
 
-        $this->class      = new EmailResponse($mail_results, $this->logger, 'The email');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\Email\EmailResponse');
+        $this->class = new EmailResponse($mail_results, $this->logger, 'The email');
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -109,7 +118,8 @@ abstract class EmailResponseTest extends LunrBaseTest
     {
         unset($this->logger);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

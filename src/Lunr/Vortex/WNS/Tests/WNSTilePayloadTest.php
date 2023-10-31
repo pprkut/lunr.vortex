@@ -24,13 +24,19 @@ abstract class WNSTilePayloadTest extends LunrBaseTest
 {
 
     /**
+     * Instance of the tested class.
+     * @var WNSTilePayload
+     */
+    protected WNSTilePayload $class;
+
+    /**
      * Testcase Constructor.
      */
     public function setUp(): void
     {
         $this->class = new WNSTilePayload();
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\WNS\WNSTilePayload');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -39,7 +45,8 @@ abstract class WNSTilePayloadTest extends LunrBaseTest
     public function tearDown(): void
     {
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

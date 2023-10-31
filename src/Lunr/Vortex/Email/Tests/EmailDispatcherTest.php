@@ -23,6 +23,7 @@ use ReflectionClass;
  */
 abstract class EmailDispatcherTest extends LunrBaseTest
 {
+
     /**
      * Mock instance of the PHPMailer class.
      * @var \PHPMailer\PHPMailer\PHPMailer
@@ -42,6 +43,12 @@ abstract class EmailDispatcherTest extends LunrBaseTest
     protected $payload;
 
     /**
+     * Instance of the tested class.
+     * @var EmailDispatcher
+     */
+    protected EmailDispatcher $class;
+
+    /**
      * Testcase Constructor.
      */
     public function setUp(): void
@@ -56,7 +63,7 @@ abstract class EmailDispatcherTest extends LunrBaseTest
 
         $this->class = new EmailDispatcher($this->mail_transport, $this->logger);
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\Email\EmailDispatcher');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -68,7 +75,8 @@ abstract class EmailDispatcherTest extends LunrBaseTest
         unset($this->mail_transport);
         unset($this->payload);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

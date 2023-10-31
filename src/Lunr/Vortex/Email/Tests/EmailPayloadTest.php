@@ -11,6 +11,9 @@
 namespace Lunr\Vortex\Email\Tests;
 
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\Email\EmailPayload;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use ReflectionClass;
 
 /**
@@ -29,6 +32,12 @@ abstract class EmailPayloadTest extends LunrBaseTest
     protected $payload;
 
     /**
+     * Instance of the tested class.
+     * @var EmailPayload&MockObject&Stub
+     */
+    protected EmailPayload&MockObject&Stub $class;
+
+    /**
      * Testcase Constructor.
      */
     public function setUp(): void
@@ -43,7 +52,7 @@ abstract class EmailPayloadTest extends LunrBaseTest
         $this->class = $this->getMockBuilder('Lunr\Vortex\Email\EmailPayload')
                             ->getMockForAbstractClass();
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\Email\EmailPayload');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -53,7 +62,8 @@ abstract class EmailPayloadTest extends LunrBaseTest
     {
         unset($this->payload);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

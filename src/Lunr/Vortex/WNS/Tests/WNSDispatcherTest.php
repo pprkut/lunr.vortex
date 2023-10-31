@@ -51,6 +51,12 @@ abstract class WNSDispatcherTest extends LunrBaseTest
     protected $payload;
 
     /**
+     * Instance of the tested class.
+     * @var WNSDispatcher
+     */
+    protected WNSDispatcher $class;
+
+    /**
      * Testcase Constructor.
      */
     public function setUp(): void
@@ -67,7 +73,7 @@ abstract class WNSDispatcherTest extends LunrBaseTest
 
         $this->class = new WNSDispatcher($this->http, $this->logger);
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\WNS\WNSDispatcher');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -76,11 +82,12 @@ abstract class WNSDispatcherTest extends LunrBaseTest
     public function tearDown(): void
     {
         unset($this->class);
-        unset($this->reflection);
         unset($this->payload);
         unset($this->http);
         unset($this->logger);
         unset($this->response);
+
+        parent::tearDown();
     }
 
     /**

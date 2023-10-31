@@ -11,6 +11,7 @@
 namespace Lunr\Vortex\FCM\Tests;
 
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\FCM\FCMBatchResponse;
 use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Response;
 
@@ -36,6 +37,12 @@ abstract class FCMBatchResponseTest extends LunrBaseTest
     protected $response;
 
     /**
+     * Instance of the tested class.
+     * @var FCMBatchResponse
+     */
+    protected FCMBatchResponse $class;
+
+    /**
      * Testcase Constructor.
      *
      * @return void
@@ -55,7 +62,8 @@ abstract class FCMBatchResponseTest extends LunrBaseTest
         unset($this->logger);
         unset($this->response);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

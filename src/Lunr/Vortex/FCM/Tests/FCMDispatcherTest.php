@@ -51,6 +51,12 @@ abstract class FCMDispatcherTest extends LunrBaseTest
     protected $payload;
 
     /**
+     * Instance of the tested class.
+     * @var FCMDispatcher
+     */
+    protected FCMDispatcher $class;
+
+    /**
      * Testcase Constructor.
      */
     public function setUp(): void
@@ -64,7 +70,7 @@ abstract class FCMDispatcherTest extends LunrBaseTest
 
         $this->class = new FCMDispatcher($this->http, $this->logger);
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\FCM\FCMDispatcher');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -75,7 +81,8 @@ abstract class FCMDispatcherTest extends LunrBaseTest
         unset($this->logger);
         unset($this->payload);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

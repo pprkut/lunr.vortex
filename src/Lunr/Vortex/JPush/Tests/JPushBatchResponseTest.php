@@ -11,6 +11,7 @@
 namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\JPush\JPushBatchResponse;
 use PHPUnit\Framework\MockObject\MockObject;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
@@ -43,6 +44,12 @@ abstract class JPushBatchResponseTest extends LunrBaseTest
     protected $response;
 
     /**
+     * Instance of the tested class.
+     * @var JPushBatchResponse
+     */
+    protected JPushBatchResponse $class;
+
+    /**
      * Testcase Constructor.
      *
      * @return void
@@ -65,7 +72,8 @@ abstract class JPushBatchResponseTest extends LunrBaseTest
         unset($this->logger);
         unset($this->response);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

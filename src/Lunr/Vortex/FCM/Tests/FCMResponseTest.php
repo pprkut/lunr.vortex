@@ -30,6 +30,12 @@ abstract class FCMResponseTest extends LunrBaseTest
     protected $batch_response;
 
     /**
+     * Instance of the tested class.
+     * @var FCMResponse
+     */
+    protected FCMResponse $class;
+
+    /**
      * Testcase Constructor.
      *
      * @return void
@@ -40,8 +46,9 @@ abstract class FCMResponseTest extends LunrBaseTest
                                      ->disableOriginalConstructor()
                                      ->getMock();
 
-        $this->class      = new FCMResponse();
-        $this->reflection = new ReflectionClass('Lunr\Vortex\FCM\FCMResponse');
+        $this->class = new FCMResponse();
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -51,7 +58,8 @@ abstract class FCMResponseTest extends LunrBaseTest
     {
         unset($this->batch_response);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

@@ -24,13 +24,19 @@ abstract class WNSToastPayloadTest extends LunrBaseTest
 {
 
     /**
+     * Instance of the tested class.
+     * @var WNSToastPayload
+     */
+    protected WNSToastPayload $class;
+
+    /**
      * Testcase Constructor.
      */
     public function setUp(): void
     {
         $this->class = new WNSToastPayload();
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\WNS\WNSToastPayload');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -39,7 +45,8 @@ abstract class WNSToastPayloadTest extends LunrBaseTest
     public function tearDown(): void
     {
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

@@ -11,6 +11,7 @@
 namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\APNS\ApnsPHP\APNSResponse;
 
 /**
  * This class contains common setup routines, providers
@@ -20,6 +21,12 @@ use Lunr\Halo\LunrBaseTest;
  */
 abstract class APNSResponseTest extends LunrBaseTest
 {
+
+    /**
+     * Instance of the tested class.
+     * @var APNSResponse
+     */
+    protected APNSResponse $class;
 
     /**
      * Mock instance of the Logger class.
@@ -54,7 +61,8 @@ abstract class APNSResponseTest extends LunrBaseTest
     {
         unset($this->logger);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

@@ -31,6 +31,12 @@ abstract class WNSResponseTest extends LunrBaseTest
     protected $logger;
 
     /**
+     * Instance of the tested class.
+     * @var WNSResponse
+     */
+    protected WNSResponse $class;
+
+    /**
      * Testcase Constructor.
      *
      * @return void
@@ -44,8 +50,9 @@ abstract class WNSResponseTest extends LunrBaseTest
         $response->status_code = FALSE;
         $response->url         = 'http://localhost/';
 
-        $this->class      = new WNSResponse($response, $this->logger, '<?xml version="1.0" encoding="utf-8"?>');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\WNS\WNSResponse');
+        $this->class = new WNSResponse($response, $this->logger, '<?xml version="1.0" encoding="utf-8"?>');
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -70,8 +77,9 @@ abstract class WNSResponseTest extends LunrBaseTest
         $response->status_code = 200;
         $response->url         = 'http://localhost/';
 
-        $this->class      = new WNSResponse($response, $this->logger, '<?xml version="1.0" encoding="utf-8"?>');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\WNS\WNSResponse');
+        $this->class = new WNSResponse($response, $this->logger, '<?xml version="1.0" encoding="utf-8"?>');
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -81,7 +89,8 @@ abstract class WNSResponseTest extends LunrBaseTest
     {
         unset($this->logger);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
     /**

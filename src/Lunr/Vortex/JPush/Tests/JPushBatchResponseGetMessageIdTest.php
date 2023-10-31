@@ -34,8 +34,7 @@ class JPushBatchResponseGetMessageIdTest extends JPushBatchResponseTest
         $this->response->status_code = $http_code;
         $this->response->body        = $content;
 
-        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [], '[]');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
+        $this->class = new JPushBatchResponse($this->http, $this->logger, $this->response, [], '[]');
 
         $this->assertNull($this->class->get_message_id());
     }
@@ -52,8 +51,7 @@ class JPushBatchResponseGetMessageIdTest extends JPushBatchResponseTest
         $this->response->success = TRUE;
         $this->response->body    = json_encode($content);
 
-        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [], '[]');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
+        $this->class = new JPushBatchResponse($this->http, $this->logger, $this->response, [], '[]');
 
         $this->assertSame(121654513215, $this->class->get_message_id());
     }

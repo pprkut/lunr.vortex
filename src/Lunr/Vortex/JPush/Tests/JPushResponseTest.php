@@ -30,6 +30,12 @@ abstract class JPushResponseTest extends LunrBaseTest
     protected $batch_response;
 
     /**
+     * Instance of the tested class.
+     * @var JPushResponse
+     */
+    protected JPushResponse $class;
+
+    /**
      * Testcase Constructor.
      *
      * @return void
@@ -40,8 +46,9 @@ abstract class JPushResponseTest extends LunrBaseTest
                                      ->disableOriginalConstructor()
                                      ->getMock();
 
-        $this->class      = new JPushResponse();
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushResponse');
+        $this->class = new JPushResponse();
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -51,7 +58,8 @@ abstract class JPushResponseTest extends LunrBaseTest
     {
         unset($this->batch_response);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

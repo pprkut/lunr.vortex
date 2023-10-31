@@ -43,8 +43,9 @@ class FCMBatchResponseBasePushErrorTest extends FCMBatchResponseTest
                          [ 'error' => "Invalid JSON ({$content})" ]
                      );
 
-        $this->class      = new FCMBatchResponse($this->response, $this->logger, [ 'endpoint1' ], '{}');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\FCM\FCMBatchResponse');
+        $this->class = new FCMBatchResponse($this->response, $this->logger, [ 'endpoint1' ], '{}');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
@@ -72,8 +73,9 @@ class FCMBatchResponseBasePushErrorTest extends FCMBatchResponseTest
                          [ 'error' => 'Error with authentication' ]
                      );
 
-        $this->class      = new FCMBatchResponse($this->response, $this->logger, [ 'endpoint1' ], '{}');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\FCM\FCMBatchResponse');
+        $this->class = new FCMBatchResponse($this->response, $this->logger, [ 'endpoint1' ], '{}');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
@@ -120,8 +122,9 @@ class FCMBatchResponseBasePushErrorTest extends FCMBatchResponseTest
                          [ 'error' => 'Internal error' ]
                      );
 
-        $this->class      = new FCMBatchResponse($this->response, $this->logger, [ 'endpoint1' ], '{}');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\FCM\FCMBatchResponse');
+        $this->class = new FCMBatchResponse($this->response, $this->logger, [ 'endpoint1' ], '{}');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TEMPORARY_ERROR ]);
@@ -166,8 +169,9 @@ class FCMBatchResponseBasePushErrorTest extends FCMBatchResponseTest
                          [ 'error' => 'Unknown error' ]
                      );
 
-        $this->class      = new FCMBatchResponse($this->response, $this->logger, [ 'endpoint1' ], '{}');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\FCM\FCMBatchResponse');
+        $this->class = new FCMBatchResponse($this->response, $this->logger, [ 'endpoint1' ], '{}');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::UNKNOWN ]);

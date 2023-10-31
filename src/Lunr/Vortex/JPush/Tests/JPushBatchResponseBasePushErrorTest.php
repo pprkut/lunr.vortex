@@ -43,8 +43,9 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
                          [ 'error' => 'Invalid request' ]
                      );
 
-        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
+        $this->class = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
@@ -70,8 +71,9 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
                          [ 'error' => 'Field "collapse_key" must be a JSON string: 1463565451' ]
                      );
 
-        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
+        $this->class = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
@@ -97,8 +99,9 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
                          [ 'error' => 'Error with authentication' ]
                      );
 
-        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
+        $this->class = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
@@ -124,8 +127,9 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
                          [ 'error' => 'Error with configuration' ]
                      );
 
-        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
+        $this->class = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
@@ -170,8 +174,9 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
                          [ 'error' => 'Internal error' ]
                      );
 
-        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
+        $this->class = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TEMPORARY_ERROR ]);
@@ -214,8 +219,9 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
                          [ 'error' => 'Unknown error' ]
                      );
 
-        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
+        $this->class = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::UNKNOWN ]);
@@ -236,8 +242,9 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
                          [ 'error' => 'Unknown error' ]
                      );
 
-        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
+        $this->class = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
+
+        parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::UNKNOWN ]);

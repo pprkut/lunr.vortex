@@ -44,6 +44,12 @@ abstract class JPushReportTest extends LunrBaseTest
     protected $response;
 
     /**
+     * Instance of the tested class.
+     * @var JPushReport
+     */
+    protected JPushReport $class;
+
+    /**
      * Testcase Constructor.
      *
      * @return void
@@ -56,8 +62,9 @@ abstract class JPushReportTest extends LunrBaseTest
 
         $this->response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
-        $this->class      = new JPushReport($this->http, $this->logger, 12, [ 'endpoint1' ]);
-        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushReport');
+        $this->class = new JPushReport($this->http, $this->logger, 12, [ 'endpoint1' ]);
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -69,7 +76,8 @@ abstract class JPushReportTest extends LunrBaseTest
         unset($this->logger);
         unset($this->response);
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
 }

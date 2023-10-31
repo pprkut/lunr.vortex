@@ -11,6 +11,9 @@
 namespace Lunr\Vortex\WNS\Tests;
 
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\WNS\WNSPayload;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use ReflectionClass;
 
 /**
@@ -23,6 +26,12 @@ class WNSPayloadTest extends LunrBaseTest
 {
 
     /**
+     * Instance of the tested class.
+     * @var WNSPayload&MockObject&Stub
+     */
+    protected WNSPayload&MockObject&Stub $class;
+
+    /**
      * Testcase Constructor.
      */
     public function setUp(): void
@@ -30,7 +39,7 @@ class WNSPayloadTest extends LunrBaseTest
         $this->class = $this->getMockBuilder('Lunr\Vortex\WNS\WNSPayload')
                             ->getMockForAbstractClass();
 
-        $this->reflection = new ReflectionClass('Lunr\Vortex\WNS\WNSPayload');
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -39,7 +48,8 @@ class WNSPayloadTest extends LunrBaseTest
     public function tearDown(): void
     {
         unset($this->class);
-        unset($this->reflection);
+
+        parent::tearDown();
     }
 
     /**
