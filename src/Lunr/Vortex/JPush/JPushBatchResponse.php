@@ -140,26 +140,33 @@ class JPushBatchResponse
      */
     private function report_error(array &$endpoints, Requests_Response $response): void
     {
-        $upstream_msg = NULL;
+        $upstream_msg  = NULL;
+        $upstream_code = NULL;
+
         if (!empty($response->body))
         {
-            $body         = json_decode($response->body, TRUE);
-            $upstream_msg = $body['error']['message'] ?? NULL;
+            $body          = json_decode($response->body, TRUE);
+            $upstream_msg  = $body['error']['message'] ?? NULL;
+            $upstream_code = $body['error']['code'] ?? NULL;
         }
+
+        $status = PushNotificationStatus::ERROR;
 
         switch ($response->status_code)
         {
             case 400:
+                if ($upstream_code === 1011)
+                {
+                    $status = PushNotificationStatus::INVALID_ENDPOINT;
+                }
+
                 $error_message = $upstream_msg ?? 'Invalid request';
-                $status        = PushNotificationStatus::ERROR;
                 break;
             case 401:
                 $error_message = $upstream_msg ?? 'Error with authentication';
-                $status        = PushNotificationStatus::ERROR;
                 break;
             case 403:
                 $error_message = $upstream_msg ?? 'Error with configuration';
-                $status        = PushNotificationStatus::ERROR;
                 break;
             default:
                 $error_message = $upstream_msg ?? 'Unknown error';

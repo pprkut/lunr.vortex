@@ -80,6 +80,34 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
     }
 
     /**
+     * Test constructor behavior for error of push notification in case of an invalid endpoint.
+     *
+     * @covers \Lunr\Vortex\JPush\JPushBatchResponse::__construct
+     */
+    public function testPushErrorWithInvalidEndpoint(): void
+    {
+        $http_code = 400;
+        $content   = '{"error": {"code": 1011, "message": "cannot find user by this audience or has been inactive for more than 255 days"}}';
+
+        $this->response->status_code = $http_code;
+        $this->response->body        = $content;
+
+        $this->logger->expects($this->once())
+                     ->method('warning')
+                     ->with(
+                         'Dispatching JPush notification failed: {error}',
+                         [ 'error' => 'cannot find user by this audience or has been inactive for more than 255 days' ]
+                     );
+
+        $this->class      = new JPushBatchResponse($this->http, $this->logger, $this->response, [ 'endpoint1' ], '[]');
+        $this->reflection = new ReflectionClass('Lunr\Vortex\JPush\JPushBatchResponse');
+
+        $this->assertPropertySame('logger', $this->logger);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::INVALID_ENDPOINT ]);
+    }
+
+
+    /**
      * Test constructor behavior for error of push notification in case of authentication error.
      *
      * @covers \Lunr\Vortex\JPush\JPushBatchResponse::__construct
