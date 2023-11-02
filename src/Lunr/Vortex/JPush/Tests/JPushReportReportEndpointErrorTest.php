@@ -52,7 +52,7 @@ class JPushReportReportEndpointErrorTest extends JPushReportTest
     {
         $this->logger->expects($this->once())
                      ->method('warning')
-                     ->with('Dispatching push notification failed for endpoint {endpoint}: {error}', [ 'endpoint' => $endpoint,'error' => $message ]);
+                     ->with('Dispatching JPush notification failed for endpoint {endpoint}: {error}', [ 'endpoint' => $endpoint,'error' => $message ]);
 
         $method = $this->get_accessible_reflection_method('report_endpoint_error');
         $method->invokeArgs($this->class, [ $endpoint, $error_code ]);

@@ -65,7 +65,7 @@ class PAPResponseSetTest extends PAPResponseTest
             'description' => 'something',
         ];
 
-        $message  = 'Push notification delivery status for endpoint {endpoint}: ';
+        $message  = 'PAP notification delivery status for endpoint {endpoint}: ';
         $message .= 'failed with an error: {description}. Error #{code}';
 
         $this->logger->expects($this->once())
@@ -100,7 +100,7 @@ class PAPResponseSetTest extends PAPResponseTest
             'description' => 'Invalid or missing attribute address-value',
         ];
 
-        $message  = 'Push notification delivery status for endpoint {endpoint}: ';
+        $message  = 'PAP notification delivery status for endpoint {endpoint}: ';
         $message .= 'failed with an error: {description}. Error #{code}';
 
         $method = $this->get_accessible_reflection_method('parse_pap_response');
@@ -135,7 +135,7 @@ class PAPResponseSetTest extends PAPResponseTest
             'description' => 'The specified PIN is not recognized',
         ];
 
-        $message  = 'Push notification delivery status for endpoint {endpoint}: ';
+        $message  = 'PAP notification delivery status for endpoint {endpoint}: ';
         $message .= 'failed with an error: {description}. Error #{code}';
 
         $method = $this->get_accessible_reflection_method('parse_pap_response');
@@ -170,7 +170,7 @@ class PAPResponseSetTest extends PAPResponseTest
             'description' => 'The server is busy',
         ];
 
-        $message  = 'Push notification delivery status for endpoint {endpoint}: ';
+        $message  = 'PAP notification delivery status for endpoint {endpoint}: ';
         $message .= 'failed with an error: {description}. Error #{code}';
 
         $method = $this->get_accessible_reflection_method('parse_pap_response');
@@ -205,7 +205,7 @@ class PAPResponseSetTest extends PAPResponseTest
             'description' => 'The RIM specific request is badly formed',
         ];
 
-        $message  = 'Push notification delivery status for endpoint {endpoint}: ';
+        $message  = 'PAP notification delivery status for endpoint {endpoint}: ';
         $message .= 'failed with an error: {description}. Error #{code}';
 
         $method = $this->get_accessible_reflection_method('parse_pap_response');

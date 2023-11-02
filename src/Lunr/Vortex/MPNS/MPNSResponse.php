@@ -170,7 +170,7 @@ class MPNSResponse implements PushNotificationResponseInterface
                 'sstatus'  => $this->headers['X-Subscriptionstatus'],
             ];
 
-            $message  = 'Push notification delivery status for endpoint {endpoint}: ';
+            $message  = 'MPNS notification delivery status for endpoint {endpoint}: ';
             $message .= '{nstatus}, device {dstatus}, subscription {sstatus}';
 
             $logger->warning($message, $context);

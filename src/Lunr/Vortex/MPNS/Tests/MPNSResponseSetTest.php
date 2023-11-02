@@ -136,7 +136,7 @@ class MPNSResponseSetTest extends MPNSResponseTest
             'sstatus'  => 'N/A',
         ];
 
-        $message  = 'Push notification delivery status for endpoint {endpoint}: ';
+        $message  = 'MPNS notification delivery status for endpoint {endpoint}: ';
         $message .= '{nstatus}, device {dstatus}, subscription {sstatus}';
 
         $this->logger->expects($this->once())

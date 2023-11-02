@@ -122,7 +122,7 @@ class JPushReportGetReportTest extends JPushReportTest
         $this->response->expects($this->once())
                        ->method('throw_for_status');
 
-        $log_message = 'Dispatching push notification failed for endpoint {endpoint}: {error}';
+        $log_message = 'Dispatching JPush notification failed for endpoint {endpoint}: {error}';
         $this->logger->expects($this->exactly(6))
                      ->method('warning')
                      ->withConsecutive(

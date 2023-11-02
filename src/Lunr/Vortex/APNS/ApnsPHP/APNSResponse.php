@@ -145,7 +145,7 @@ class APNSResponse implements PushNotificationResponseInterface
                 $this->statuses[$endpoint] = $status;
 
                 $context = [ 'endpoint' => $endpoint, 'error' => $reason ?? $status_message ];
-                $this->logger->warning('Dispatching push notification failed for endpoint {endpoint}: {error}', $context);
+                $this->logger->warning('Dispatching APNS notification failed for endpoint {endpoint}: {error}', $context);
             }
         }
 

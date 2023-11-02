@@ -212,7 +212,7 @@ class MPNSDispatcherPushTest extends MPNSDispatcherTest
                    ->with('endpoint', $headers, 'payload')
                    ->will($this->throwException(new Requests_Exception('Network problem!', 'curlerror', NULL)));
 
-        $message = 'Dispatching push notification to {endpoint} failed: {error}';
+        $message = 'Dispatching MPNS notification to {endpoint} failed: {error}';
         $context = [ 'error' => 'Network problem!', 'endpoint' => 'endpoint' ];
 
         $this->logger->expects($this->once())

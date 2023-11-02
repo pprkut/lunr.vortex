@@ -131,7 +131,7 @@ class PAPDispatcher implements PushNotificationDispatcherInterface
             $response = $this->get_new_response_object_for_failed_request();
             $context  = [ 'error' => $e->getMessage(), 'endpoint' => $endpoints[0] ];
 
-            $this->logger->warning('Dispatching push notification to {endpoint} failed: {error}', $context);
+            $this->logger->warning('Dispatching PAP notification to {endpoint} failed: {error}', $context);
         }
 
         $this->push_id = '';

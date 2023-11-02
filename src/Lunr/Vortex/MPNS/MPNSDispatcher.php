@@ -105,7 +105,7 @@ class MPNSDispatcher implements PushNotificationDispatcherInterface
             $response = $this->get_new_response_object_for_failed_request($endpoints[0]);
             $context  = [ 'error' => $e->getMessage(), 'endpoint' => $endpoints[0] ];
 
-            $this->logger->warning('Dispatching push notification to {endpoint} failed: {error}', $context);
+            $this->logger->warning('Dispatching MPNS notification to {endpoint} failed: {error}', $context);
         }
 
         return new MPNSResponse($response, $this->logger, $raw_payload);

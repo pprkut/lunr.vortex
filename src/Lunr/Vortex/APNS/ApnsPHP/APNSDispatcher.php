@@ -213,7 +213,7 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
             $errors = NULL;
 
             $context = [ 'error' => $e->getMessage() ];
-            $this->logger->warning('Dispatching push notification failed: {error}', $context);
+            $this->logger->warning('Dispatching APNS notification failed: {error}', $context);
         }
 
         // Return response

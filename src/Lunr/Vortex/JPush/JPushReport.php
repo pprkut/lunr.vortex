@@ -245,7 +245,7 @@ class JPushReport
         }
 
         $context = [ 'endpoint' => $endpoint, 'error' => $error_message ];
-        $this->logger->warning('Dispatching push notification failed for endpoint {endpoint}: {error}', $context);
+        $this->logger->warning('Dispatching JPush notification failed for endpoint {endpoint}: {error}', $context);
 
         $this->statuses[$endpoint] = $status;
     }

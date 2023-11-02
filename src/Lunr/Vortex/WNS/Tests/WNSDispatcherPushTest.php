@@ -31,7 +31,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
     {
         $endpoints = [ 'endpoint' ];
 
-        $message = 'Tried to push notification to {endpoint} but wasn\'t authenticated.';
+        $message = 'Tried to push WNS notification to {endpoint} but wasn\'t authenticated.';
         $context = [ 'endpoint' => 'endpoint' ];
 
         $this->logger->expects($this->once())
@@ -55,7 +55,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
 
         $endpoints = [ 'endpoint' ];
 
-        $message = 'Tried to push notification to {endpoint} but wasn\'t authenticated.';
+        $message = 'Tried to push WNS notification to {endpoint} but wasn\'t authenticated.';
         $context = [ 'endpoint' => 'endpoint' ];
 
         $this->logger->expects($this->once())
@@ -199,7 +199,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
                    ->with('endpoint', $headers, 'payload')
                    ->will($this->throwException(new Requests_Exception('Network error!', 'curlerror', NULL)));
 
-        $message = 'Dispatching push notification to {endpoint} failed: {error}';
+        $message = 'Dispatching WNS notification to {endpoint} failed: {error}';
         $context = [ 'endpoint' => 'endpoint', 'error' => 'Network error!' ];
 
         $this->logger->expects($this->once())
@@ -272,7 +272,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
                    ->with('endpoint', $headers, 'payload')
                    ->will($this->throwException(new Requests_Exception('Network error!', 'curlerror', NULL)));
 
-        $message = 'Dispatching push notification to {endpoint} failed: {error}';
+        $message = 'Dispatching WNS notification to {endpoint} failed: {error}';
         $context = [ 'endpoint' => 'endpoint', 'error' => 'Network error!' ];
 
         $this->logger->expects($this->once())

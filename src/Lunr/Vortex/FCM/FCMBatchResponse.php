@@ -173,7 +173,7 @@ class FCMBatchResponse
         }
 
         $context = [ 'error' => $error_message ];
-        $this->logger->warning('Dispatching push notification failed: {error}', $context);
+        $this->logger->warning('Dispatching FCM notification failed: {error}', $context);
     }
 
     /**
@@ -243,7 +243,7 @@ class FCMBatchResponse
         }
 
         $context = [ 'endpoint' => $endpoint, 'error' => $error_message ];
-        $this->logger->warning('Dispatching push notification failed for endpoint {endpoint}: {error}', $context);
+        $this->logger->warning('Dispatching FCM notification failed for endpoint {endpoint}: {error}', $context);
 
         $this->statuses[$endpoint] = $status;
     }

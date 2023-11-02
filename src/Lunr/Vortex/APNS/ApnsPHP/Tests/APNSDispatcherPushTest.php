@@ -278,7 +278,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                        'Dispatching push notification failed: {error}',
+                        'Dispatching APNS notification failed: {error}',
                         [ 'error' => 'Failed to connect' ]
                      );
 
@@ -303,7 +303,7 @@ class APNSDispatcherPushTest extends APNSDispatcherTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                        'Dispatching push notification failed: {error}',
+                        'Dispatching APNS notification failed: {error}',
                         [ 'error' => 'Failed to send' ]
                      );
 

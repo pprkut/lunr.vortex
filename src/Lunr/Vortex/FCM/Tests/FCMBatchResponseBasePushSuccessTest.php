@@ -40,7 +40,7 @@ class FCMBatchResponseBasePushSuccessTest extends FCMBatchResponseTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                         'Dispatching push notification failed: {error}',
+                         'Dispatching FCM notification failed: {error}',
                          [ 'error' => 'Unknown error' ]
                      );
 
@@ -98,7 +98,7 @@ class FCMBatchResponseBasePushSuccessTest extends FCMBatchResponseTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                         'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                         'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
                          [ 'endpoint' => 'endpoint1', 'error' => 'Invalid registration token' ]
                      );
 
@@ -182,7 +182,7 @@ class FCMBatchResponseBasePushSuccessTest extends FCMBatchResponseTest
 
             $endpoints[] = $endpoint;
             $params[]    = [
-                'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
                 [ 'endpoint' => $endpoint, 'error' => $error_messages[$endpoint] ],
             ];
         }
@@ -237,7 +237,7 @@ class FCMBatchResponseBasePushSuccessTest extends FCMBatchResponseTest
             'endpoint5' => PushNotificationStatus::SUCCESS,
         ];
 
-        $message = 'Dispatching push notification failed for endpoint {endpoint}: {error}';
+        $message = 'Dispatching FCM notification failed for endpoint {endpoint}: {error}';
         $this->logger->expects($this->exactly(2))
                      ->method('warning')
                      ->withConsecutive(

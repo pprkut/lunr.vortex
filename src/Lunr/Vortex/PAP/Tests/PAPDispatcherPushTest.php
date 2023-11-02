@@ -68,12 +68,12 @@ class PAPDispatcherPushTest extends PAPDispatcherTest
                    ->with($url, $headers, $xml, $options)
                    ->will($this->throwException(new Requests_Exception('Network error!', 'curlerror', NULL)));
 
-        $message = 'Dispatching push notification to {endpoint} failed: {error}';
+        $message = 'Dispatching PAP notification to {endpoint} failed: {error}';
         $context = [ 'endpoint' => 'endpoint', 'error' => 'Network error!' ];
 
         $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->withConsecutive([ $message, $context ], [ 'Parsing response of push notification to {endpoint} failed: {error}' ]);
+                     ->withConsecutive([ $message, $context ], [ 'Parsing response of PAP notification to {endpoint} failed: {error}' ]);
 
         $this->assertInstanceOf('Lunr\Vortex\PAP\PAPResponse', $this->class->push($this->payload, $endpoints));
 
@@ -180,12 +180,12 @@ class PAPDispatcherPushTest extends PAPDispatcherTest
                    ->with($url, $headers, $xml, $options)
                    ->will($this->throwException(new Requests_Exception('Network error!', 'curlerror', NULL)));
 
-        $message = 'Dispatching push notification to {endpoint} failed: {error}';
+        $message = 'Dispatching PAP notification to {endpoint} failed: {error}';
         $context = [ 'endpoint' => 'endpoint', 'error' => 'Network error!' ];
 
         $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->withConsecutive([ $message, $context ], [ 'Parsing response of push notification to {endpoint} failed: {error}' ]);
+                     ->withConsecutive([ $message, $context ], [ 'Parsing response of PAP notification to {endpoint} failed: {error}' ]);
 
         $this->class->push($this->payload, $endpoints);
 
