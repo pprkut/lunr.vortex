@@ -171,7 +171,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
 
         $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->withConsecutive([ $message, $context ], [ 'Dispatching push notification failed: {error}' ]);
+                     ->withConsecutive([ $message, $context ], [ 'Dispatching FCM notification failed: {error}' ]);
 
         $result = $this->class->push($this->payload, $endpoints);
 
@@ -214,7 +214,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
 
         $this->logger->expects($this->exactly(2))
                      ->method('warning')
-                     ->withConsecutive([ $message, $context ], [ 'Dispatching push notification failed: {error}' ]);
+                     ->withConsecutive([ $message, $context ], [ 'Dispatching FCM notification failed: {error}' ]);
 
         $result = $this->class->push($this->payload, $endpoints);
 

@@ -73,7 +73,7 @@ class JPushReportReportEndpointErrorTest extends JPushReportTest
      */
     public function testReportEndpointErrorSucceeds($endpoint, $error_code, $status, $message): void
     {
-        $log_message = 'Dispatching push notification failed for endpoint {endpoint}: {error}';
+        $log_message = 'Dispatching JPush notification failed for endpoint {endpoint}: {error}';
 
         $context = [
             'endpoint' => $endpoint,

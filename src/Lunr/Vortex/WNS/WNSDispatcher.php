@@ -120,7 +120,7 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
 
         if (!isset($this->oauth_token))
         {
-            $this->logger->warning('Tried to push notification to {endpoint} but wasn\'t authenticated.', [ 'endpoint' => $endpoints[0] ]);
+            $this->logger->warning('Tried to push WNS notification to {endpoint} but wasn\'t authenticated.', [ 'endpoint' => $endpoints[0] ]);
             $response = $this->get_new_response_object_for_failed_request($endpoints[0]);
 
             $this->type = WNSType::RAW;
@@ -172,7 +172,7 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
             $response = $this->get_new_response_object_for_failed_request($endpoints[0]);
             $context  = [ 'error' => $e->getMessage(), 'endpoint' => $endpoints[0] ];
 
-            $this->logger->warning('Dispatching push notification to {endpoint} failed: {error}', $context);
+            $this->logger->warning('Dispatching WNS notification to {endpoint} failed: {error}', $context);
         }
 
         $this->type = WNSType::RAW;

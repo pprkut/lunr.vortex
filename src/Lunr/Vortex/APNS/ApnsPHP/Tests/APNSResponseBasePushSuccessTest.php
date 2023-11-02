@@ -75,7 +75,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                        'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                        'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                         [ 'endpoint' => 'endpoint1', 'error' => 'Invalid token' ]
                      );
 
@@ -119,7 +119,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                        'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                        'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                         [ 'endpoint' => 'endpoint1', 'error' => 'IdleTimeout' ]
                      );
 
@@ -254,19 +254,19 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                      ->method('warning')
                      ->withConsecutive(
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint1', 'error' => 'Invalid token' ],
                         ],
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint2', 'error' => 'Invalid token size' ],
                         ],
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint3', 'error' => 'Processing error' ],
                         ],
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint4', 'error' => 'Shutdown' ],
                         ]
                      );
@@ -437,31 +437,31 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                      ->method('warning')
                      ->withConsecutive(
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint1', 'error' => 'TopicDisallowed' ],
                         ],
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint2', 'error' => 'BadCertificate' ],
                         ],
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint3', 'error' => 'BadCertificateEnvironment' ],
                         ],
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint4', 'error' => 'InvalidProviderToken' ],
                         ],
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint5', 'error' => 'ExpiredProviderToken' ],
                         ],
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint6', 'error' => 'BadDeviceToken' ],
                         ],
                         [
-                            'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                            'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint7', 'error' => 'DeviceTokenNotForTopic' ],
                         ]
                      );
@@ -524,7 +524,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                        'Dispatching push notification failed for endpoint {endpoint}: {error}',
+                        'Dispatching APNS notification failed for endpoint {endpoint}: {error}',
                         [ 'endpoint' => 'endpoint4', 'error' => 'Processing error' ]
                      );
 
