@@ -39,7 +39,7 @@ class FCMBatchResponseBasePushErrorTest extends FCMBatchResponseTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                         'Dispatching push notification failed: {error}',
+                         'Dispatching FCM notification failed: {error}',
                          [ 'error' => "Invalid JSON ({$content})" ]
                      );
 
@@ -68,7 +68,7 @@ class FCMBatchResponseBasePushErrorTest extends FCMBatchResponseTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                         'Dispatching push notification failed: {error}',
+                         'Dispatching FCM notification failed: {error}',
                          [ 'error' => 'Error with authentication' ]
                      );
 
@@ -116,7 +116,7 @@ class FCMBatchResponseBasePushErrorTest extends FCMBatchResponseTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                         'Dispatching push notification failed: {error}',
+                         'Dispatching FCM notification failed: {error}',
                          [ 'error' => 'Internal error' ]
                      );
 
@@ -162,7 +162,7 @@ class FCMBatchResponseBasePushErrorTest extends FCMBatchResponseTest
         $this->logger->expects($this->once())
                      ->method('warning')
                      ->with(
-                         'Dispatching push notification failed: {error}',
+                         'Dispatching FCM notification failed: {error}',
                          [ 'error' => 'Unknown error' ]
                      );
 

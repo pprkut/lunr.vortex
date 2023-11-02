@@ -56,12 +56,6 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
     private const GOOGLE_SEND_URL = 'https://fcm.googleapis.com/fcm/send';
 
     /**
-     * Service name.
-     * @var string
-     */
-    private const SERVICE_NAME = 'FCM';
-
-    /**
      * Constructor.
      *
      * @param Session         $http   Shared instance of the Requests\Session class.
@@ -180,7 +174,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
         catch (RequestsException $e)
         {
             $this->logger->warning(
-                'Dispatching ' . self::SERVICE_NAME . ' notification(s) failed: {message}',
+                'Dispatching FCM notification(s) failed: {message}',
                 [ 'message' => $e->getMessage() ]
             );
             $http_response = $this->get_new_response_object_for_failed_request();

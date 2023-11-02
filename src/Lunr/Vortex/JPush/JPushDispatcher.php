@@ -37,12 +37,6 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
     private const JPUSH_SEND_URL = 'https://api.jpush.cn/v3/push';
 
     /**
-     * Service name.
-     * @var string
-     */
-    private const SERVICE_NAME = 'JPush';
-
-    /**
      * Push Notification authentication token.
      * @var string|null
      */
@@ -167,7 +161,7 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
         catch (RequestsException $e)
         {
             $this->logger->warning(
-                'Dispatching ' . self::SERVICE_NAME . ' notification(s) failed: {message}',
+                'Dispatching JPush notification(s) failed: {message}',
                 [ 'message' => $e->getMessage() ]
             );
             $http_response = $this->get_new_response_object_for_failed_request();
