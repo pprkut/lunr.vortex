@@ -66,11 +66,6 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
         $this->http       = $http;
         $this->logger     = $logger;
         $this->auth_token = NULL;
-
-        $this->http->options = [
-            'timeout'         => 15, // timeout in seconds
-            'connect_timeout' => 15 // timeout in seconds
-        ];
     }
 
     /**
@@ -148,10 +143,14 @@ class JPushDispatcher implements PushNotificationMultiDispatcherInterface
         $tmp_payload['audience']['registration_id'] = $endpoints;
 
         $json_payload = json_encode($tmp_payload, JSON_UNESCAPED_UNICODE);
+        $options      = [
+            'timeout'         => 15, // timeout in seconds
+            'connect_timeout' => 15  // timeout in seconds
+        ];
 
         try
         {
-            $http_response = $this->http->post(static::JPUSH_SEND_URL, [], $json_payload, []);
+            $http_response = $this->http->post(static::JPUSH_SEND_URL, [], $json_payload, $options);
         }
         catch (Requests_Exception $e)
         {
