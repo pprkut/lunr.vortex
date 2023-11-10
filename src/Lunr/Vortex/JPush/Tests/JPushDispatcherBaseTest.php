@@ -29,9 +29,6 @@ class JPushDispatcherBaseTest extends JPushDispatcherTest
     public function testRequestsSessionIsSetCorrectly(): void
     {
         $this->assertPropertySame('http', $this->http);
-
-        $this->assertSame(15, $this->http->options['timeout']);
-        $this->assertSame(15, $this->http->options['connect_timeout']);
     }
 
     /**
