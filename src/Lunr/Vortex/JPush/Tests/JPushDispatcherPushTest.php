@@ -150,6 +150,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"alert":"hello","audience":{"registration_id":["endpoint"]}}';
         $payload   = [ 'alert' => 'hello' ];
+        $options   = [ 'timeout' => 15, 'connect_timeout' => 15 ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -157,7 +158,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with($url, [], $post, [])
+                   ->with($url, [], $post, $options)
                    ->will($this->throwException(new RequestsException('cURL error 10: Request error', 'curlerror', NULL)));
 
         $message = 'Dispatching JPush notification(s) failed: {message}';
@@ -187,6 +188,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"alert":"hello","audience":{"registration_id":["endpoint"]}}';
         $payload   = [ 'alert' => 'hello' ];
+        $options   = [ 'timeout' => 15, 'connect_timeout' => 15 ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -194,7 +196,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with($url, [], $post, [])
+                   ->with($url, [], $post, $options)
                    ->will($this->throwException(new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL)));
 
         $message = 'Dispatching JPush notification(s) failed: {message}';
@@ -224,6 +226,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"alert":"hello","audience":{"registration_id":["endpoint"]}}';
         $payload   = [ 'alert' => 'hello' ];
+        $options   = [ 'timeout' => 15, 'connect_timeout' => 15 ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -235,7 +238,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with($url, [], $post, [])
+                   ->with($url, [], $post, $options)
                    ->will($this->returnValue($response));
 
         $message = 'Dispatching JPush notification failed: {error}';
@@ -263,6 +266,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"alert":"hello","audience":{"registration_id":["endpoint"]}}';
         $payload   = [ 'alert' => 'hello' ];
+        $options   = [ 'timeout' => 15, 'connect_timeout' => 15 ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -272,7 +276,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with($url, [], $post, [])
+                   ->with($url, [], $post, $options)
                    ->will($this->returnValue($response));
 
         $this->class->push($this->payload, $endpoints);
@@ -289,6 +293,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint"]}}';
         $payload   = [ 'collapse_key' => 'abcde-12345', 'alert' => 'hello' ];
+        $options   = [ 'timeout' => 15, 'connect_timeout' => 15 ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -300,7 +305,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with($url, [], $post, [])
+                   ->with($url, [], $post, $options)
                    ->will($this->returnValue($response));
 
         $this->class->push($this->payload, $endpoints);
@@ -317,6 +322,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $url       = 'https://api.jpush.cn/v3/push';
         $post      = '{"collapse_key":"abcde-12345","alert":"hello","message":{"msg_content":"凄い"},"audience":{"registration_id":["endpoint"]}}';
         $payload   = [ 'collapse_key' => 'abcde-12345', 'alert' => 'hello', 'message' => [ 'msg_content' => '凄い' ] ];
+        $options   = [ 'timeout' => 15, 'connect_timeout' => 15 ];
 
         $this->payload->expects($this->exactly(1))
                       ->method('get_payload')
@@ -328,7 +334,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with($url, [], $post, [])
+                   ->with($url, [], $post, $options)
                    ->willReturn($response);
 
         $this->class->push($this->payload, $endpoints);
@@ -366,7 +372,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->http->expects($this->once())
                    ->method('post')
-                   ->with($url, [], $post, [])
+                   ->with($url, [], $post, $options)
                    ->will($this->returnValue($response));
 
         $this->class->push($this->payload, $endpoints);
@@ -394,6 +400,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $post2   = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint3","endpoint4"]}}';
         $post3   = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint5"]}}';
         $payload = [ 'collapse_key' => 'abcde-12345', 'alert' => 'hello' ];
+        $options = [ 'timeout' => 15, 'connect_timeout' => 15 ];
 
         $this->payload->expects($this->exactly(3))
                       ->method('get_payload')
@@ -401,7 +408,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->http->expects($this->exactly(3))
                    ->method('post')
-                   ->withConsecutive([ $url, [], $post1, []], [ $url, [], $post2, []], [ $url, [], $post3, []])
+                   ->withConsecutive([ $url, [], $post1, $options ], [ $url, [], $post2, $options ], [ $url, [], $post3, $options ])
                    ->will($this->returnValue($response));
 
         $this->class->push($this->payload, $endpoints);
