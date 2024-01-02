@@ -21,14 +21,14 @@ class EmailResponseGetUnknownStatusTest extends EmailResponseTest
 {
 
     /**
-     * Test that get_status() returns PushNotification::UNKNOWN
+     * Test that get_status() returns PushNotificationStatus::Unknown
      * when an unknown endpoint is passed in.
      *
      * @covers Lunr\Vortex\Email\EmailResponse::get_status
      */
     public function testGetUnknownStatusForEndpoint(): void
     {
-        $this->assertEquals(PushNotificationStatus::UNKNOWN, $this->class->get_status('unknown'));
+        $this->assertEquals(PushNotificationStatus::Unknown, $this->class->get_status('unknown'));
     }
 
 }

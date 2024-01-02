@@ -29,7 +29,7 @@ class APNSResponse implements PushNotificationResponseInterface
 
     /**
      * The statuses per endpoint.
-     * @var array<PushNotificationStatus::*>
+     * @var array<PushNotificationStatus>
      */
     protected array $statuses;
 
@@ -107,14 +107,14 @@ class APNSResponse implements PushNotificationResponseInterface
                     case APNSHttpStatus::ERROR_UNREGISTERED:
                     case APNSBinaryStatus::ERROR_INVALID_TOKEN_SIZE:
                     case APNSBinaryStatus::ERROR_INVALID_TOKEN:
-                        $status = PushNotificationStatus::INVALID_ENDPOINT;
+                        $status = PushNotificationStatus::InvalidEndpoint;
                         break;
                     case APNSHttpStatus::TOO_MANY_REQUESTS:
                     case APNSBinaryStatus::ERROR_PROCESSING:
-                        $status = PushNotificationStatus::TEMPORARY_ERROR;
+                        $status = PushNotificationStatus::TemporaryError;
                         break;
                     default:
-                        $status = PushNotificationStatus::UNKNOWN;
+                        $status = PushNotificationStatus::Unknown;
                         break;
                 }
 
@@ -125,15 +125,15 @@ class APNSResponse implements PushNotificationResponseInterface
                     case APNSHttpStatusReason::ERROR_CERTIFICATE_INVALID:
                     case APNSHttpStatusReason::ERROR_CERTIFICATE_ENVIRONMENT:
                     case APNSHttpStatusReason::ERROR_INVALID_AUTH_TOKEN:
-                        $status = PushNotificationStatus::ERROR;
+                        $status = PushNotificationStatus::Error;
                         break;
                     case APNSHttpStatusReason::ERROR_IDLE_TIMEOUT:
                     case APNSHttpStatusReason::ERROR_EXPIRED_AUTH_TOKEN:
-                        $status = PushNotificationStatus::TEMPORARY_ERROR;
+                        $status = PushNotificationStatus::TemporaryError;
                         break;
                     case APNSHttpStatusReason::ERROR_BAD_TOKEN:
                     case APNSHttpStatusReason::ERROR_NON_MATCHING_TOKEN:
-                        $status = PushNotificationStatus::INVALID_ENDPOINT;
+                        $status = PushNotificationStatus::InvalidEndpoint;
                         break;
                     default:
                     break;
@@ -152,7 +152,7 @@ class APNSResponse implements PushNotificationResponseInterface
         {
             if (!isset($this->statuses[$endpoint]))
             {
-                $this->statuses[$endpoint] = PushNotificationStatus::SUCCESS;
+                $this->statuses[$endpoint] = PushNotificationStatus::Success;
             }
         }
     }
@@ -168,7 +168,7 @@ class APNSResponse implements PushNotificationResponseInterface
     {
         foreach ($invalid_endpoints as $invalid_endpoint)
         {
-            $this->statuses[$invalid_endpoint] = PushNotificationStatus::INVALID_ENDPOINT;
+            $this->statuses[$invalid_endpoint] = PushNotificationStatus::InvalidEndpoint;
         }
     }
 
@@ -185,7 +185,7 @@ class APNSResponse implements PushNotificationResponseInterface
         {
             if (!isset($this->statuses[$endpoint]))
             {
-                $this->statuses[$endpoint] = PushNotificationStatus::ERROR;
+                $this->statuses[$endpoint] = PushNotificationStatus::Error;
             }
         }
     }
@@ -195,11 +195,11 @@ class APNSResponse implements PushNotificationResponseInterface
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus::* Delivery status for the endpoint
+     * @return PushNotificationStatus Delivery status for the endpoint
      */
-    public function get_status(string $endpoint): int
+    public function get_status(string $endpoint): PushNotificationStatus
     {
-        return isset($this->statuses[$endpoint]) ? $this->statuses[$endpoint] : PushNotificationStatus::UNKNOWN;
+        return isset($this->statuses[$endpoint]) ? $this->statuses[$endpoint] : PushNotificationStatus::Unknown;
     }
 
 }

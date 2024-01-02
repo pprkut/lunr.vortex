@@ -9,6 +9,7 @@
 
 namespace Lunr\Vortex\JPush\Tests;
 
+use Lunr\Vortex\PushNotificationStatus;
 use WpOrg\Requests\Exception as RequestsException;
 use WpOrg\Requests\Exception\Http\Status400 as RequestsExceptionHTTP400;
 
@@ -89,7 +90,7 @@ class JPushReportGetReportTest extends JPushReportTest
 
         $this->class->get_report(1453658564165, [ 'endpoint1' ]);
 
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => 5 ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Error ]);
     }
 
     /**
@@ -187,13 +188,13 @@ class JPushReportGetReportTest extends JPushReportTest
         $this->class->get_report(1453658564165, $endpoints);
 
         $this->assertPropertyEquals('statuses', [
-            'endpoint1' => 7,
-            'endpoint2' => 3,
-            'endpoint3' => 5,
-            'endpoint4' => 2,
-            'endpoint5' => 0,
-            'endpoint6' => 0,
-            'endpoint7' => 1,
+            'endpoint1' => PushNotificationStatus::Deferred,
+            'endpoint2' => PushNotificationStatus::InvalidEndpoint,
+            'endpoint3' => PushNotificationStatus::Error,
+            'endpoint4' => PushNotificationStatus::TemporaryError,
+            'endpoint5' => PushNotificationStatus::Unknown,
+            'endpoint6' => PushNotificationStatus::Unknown,
+            'endpoint7' => PushNotificationStatus::Success,
         ]);
     }
 

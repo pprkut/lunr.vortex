@@ -69,13 +69,13 @@ class EmailResponse implements PushNotificationResponseInterface
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus::* Delivery status for the endpoint
+     * @return PushNotificationStatus Delivery status for the endpoint
      */
-    public function get_status(string $endpoint): int
+    public function get_status(string $endpoint): PushNotificationStatus
     {
         if (!array_key_exists($endpoint, $this->statuses))
         {
-            return PushNotificationStatus::UNKNOWN;
+            return PushNotificationStatus::Unknown;
         }
 
         return $this->statuses[$endpoint];
@@ -94,11 +94,11 @@ class EmailResponse implements PushNotificationResponseInterface
         {
             if ($result_array['is_error'] === FALSE)
             {
-                $this->statuses[$endpoint] = PushNotificationStatus::SUCCESS;
+                $this->statuses[$endpoint] = PushNotificationStatus::Success;
             }
             else
             {
-                $this->statuses[$endpoint] = PushNotificationStatus::ERROR;
+                $this->statuses[$endpoint] = PushNotificationStatus::Error;
 
                 $context = [ 'endpoint' => $endpoint, 'message' => $result_array['error_message'] ];
 

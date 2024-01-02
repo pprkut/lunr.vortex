@@ -47,7 +47,7 @@ class WNSResponseSuccessTest extends WNSResponseTest
      */
     public function testStatusIsSuccess(): void
     {
-        $this->assertEquals(PushNotificationStatus::SUCCESS, $this->get_reflection_property_value('status'));
+        $this->assertEquals(PushNotificationStatus::Success, $this->get_reflection_property_value('status'));
     }
 
     /**
@@ -81,7 +81,7 @@ class WNSResponseSuccessTest extends WNSResponseTest
      */
     public function testGetStatusReturnsStatusForCorrectEndpoint(): void
     {
-        $this->assertEquals($this->class->get_status('http://localhost/'), PushNotificationStatus::SUCCESS);
+        $this->assertEquals($this->class->get_status('http://localhost/'), PushNotificationStatus::Success);
     }
 
     /**
@@ -91,7 +91,7 @@ class WNSResponseSuccessTest extends WNSResponseTest
      */
     public function testGetStatusReturnsUnknownStatusForIncorrectEndpoint(): void
     {
-        $this->assertEquals($this->class->get_status('http://foo/'), PushNotificationStatus::UNKNOWN);
+        $this->assertEquals($this->class->get_status('http://foo/'), PushNotificationStatus::Unknown);
     }
 
 }

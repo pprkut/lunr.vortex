@@ -46,7 +46,7 @@ class JPushBatchResponseBasePushSuccessTest extends JPushBatchResponseTest
                    ->method('post');
 
         $endpoints = [ 'endpoint1' ];
-        $statuses  = [ 'endpoint1' => PushNotificationStatus::UNKNOWN ];
+        $statuses  = [ 'endpoint1' => PushNotificationStatus::Unknown ];
 
         $this->class = new JPushBatchResponse($this->http, $this->logger, $this->response, $endpoints, '[]');
 

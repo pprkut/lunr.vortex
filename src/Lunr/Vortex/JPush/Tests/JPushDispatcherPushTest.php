@@ -210,7 +210,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->assertInstanceOf('Lunr\Vortex\JPush\JPushResponse', $result);
 
-        $this->assertSame($result->get_status('endpoint'), PushNotificationStatus::TEMPORARY_ERROR);
+        $this->assertSame($result->get_status('endpoint'), PushNotificationStatus::TemporaryError);
 
         $this->unmock_function('curl_errno');
     }
@@ -252,7 +252,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->assertInstanceOf('Lunr\Vortex\JPush\JPushResponse', $result);
 
-        $this->assertSame(PushNotificationStatus::ERROR, $result->get_status('endpoint'));
+        $this->assertSame(PushNotificationStatus::Error, $result->get_status('endpoint'));
     }
 
     /**

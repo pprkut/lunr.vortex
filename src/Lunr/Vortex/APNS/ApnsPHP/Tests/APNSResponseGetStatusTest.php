@@ -45,36 +45,36 @@ class APNSResponseGetStatusTest extends APNSResponseTest
     {
         $data = [];
 
-        $data['unknown status if no status set'] = [ [], PushNotificationStatus::UNKNOWN ];
+        $data['unknown status if no status set'] = [ [], PushNotificationStatus::Unknown ];
 
         $data['unknown status if endpoint absent']           = [
             [
-                'endpoint1' => PushNotificationStatus::INVALID_ENDPOINT,
+                'endpoint1' => PushNotificationStatus::InvalidEndpoint,
             ],
-            PushNotificationStatus::UNKNOWN,
+            PushNotificationStatus::Unknown,
         ];
         $data['unknown status if endpoint absent, full set'] = [
             [
-                'endpoint1' => PushNotificationStatus::ERROR,
-                'endpoint2' => PushNotificationStatus::INVALID_ENDPOINT,
-                'endpoint3' => PushNotificationStatus::SUCCESS,
+                'endpoint1' => PushNotificationStatus::Error,
+                'endpoint2' => PushNotificationStatus::InvalidEndpoint,
+                'endpoint3' => PushNotificationStatus::Success,
             ],
-            PushNotificationStatus::UNKNOWN,
+            PushNotificationStatus::Unknown,
         ];
 
         $data['own status if present']           = [
             [
-                'endpoint_param' => PushNotificationStatus::INVALID_ENDPOINT,
+                'endpoint_param' => PushNotificationStatus::InvalidEndpoint,
             ],
-            PushNotificationStatus::INVALID_ENDPOINT,
+            PushNotificationStatus::InvalidEndpoint,
         ];
         $data['own status if present, full set'] = [
             [
-                'endpoint1'      => PushNotificationStatus::ERROR,
-                'endpoint_param' => PushNotificationStatus::SUCCESS,
-                'endpoint2'      => PushNotificationStatus::TEMPORARY_ERROR,
+                'endpoint1'      => PushNotificationStatus::Error,
+                'endpoint_param' => PushNotificationStatus::Success,
+                'endpoint2'      => PushNotificationStatus::TemporaryError,
             ],
-            PushNotificationStatus::SUCCESS,
+            PushNotificationStatus::Success,
         ];
 
         return $data;

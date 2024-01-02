@@ -48,7 +48,7 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
         parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Error ]);
     }
 
     /**
@@ -76,7 +76,7 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
         parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Error ]);
     }
 
     /**
@@ -104,7 +104,7 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
         parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::INVALID_ENDPOINT ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::InvalidEndpoint ]);
     }
 
     /**
@@ -132,7 +132,7 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
         parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Error ]);
     }
 
     /**
@@ -160,7 +160,7 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
         parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Error ]);
     }
 
     /**
@@ -207,7 +207,7 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
         parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TEMPORARY_ERROR ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TemporaryError ]);
     }
 
     /**
@@ -252,7 +252,7 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
         parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::UNKNOWN ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Unknown ]);
     }
 
     /**
@@ -275,7 +275,7 @@ class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
         parent::baseSetUp($this->class);
 
         $this->assertPropertySame('logger', $this->logger);
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::UNKNOWN ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Unknown ]);
     }
 
 }

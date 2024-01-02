@@ -21,7 +21,7 @@ class JPushResponse implements PushNotificationDeferredResponseInterface
 
     /**
      * The statuses per endpoint.
-     * @var array<string,array{"status": PushNotificationStatus::*, "message_id": string|null}>
+     * @var array<string,array{"status": PushNotificationStatus, "message_id": string|null}>
      */
     protected array $statuses;
 
@@ -72,11 +72,11 @@ class JPushResponse implements PushNotificationDeferredResponseInterface
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus::* Delivery status for the endpoint
+     * @return PushNotificationStatus Delivery status for the endpoint
      */
-    public function get_status(string $endpoint): int
+    public function get_status(string $endpoint): PushNotificationStatus
     {
-        return $this->statuses[$endpoint]['status'] ?? PushNotificationStatus::UNKNOWN;
+        return $this->statuses[$endpoint]['status'] ?? PushNotificationStatus::Unknown;
     }
 
     /**

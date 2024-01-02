@@ -28,12 +28,12 @@ class JPushReportReportErrorTest extends JPushReportTest
     {
         $return = [];
 
-        $return['http400'] = [ 400, PushNotificationStatus::ERROR, 'Invalid request' ];
-        $return['http401'] = [ 401, PushNotificationStatus::ERROR, 'Error with authentication' ];
-        $return['http402'] = [ 402, PushNotificationStatus::UNKNOWN, 'Unknown error' ];
-        $return['http403'] = [ 403, PushNotificationStatus::ERROR, 'Error with configuration' ];
-        $return['http412'] = [ 412, PushNotificationStatus::UNKNOWN, 'Unknown error' ];
-        $return['http500'] = [ 500, PushNotificationStatus::TEMPORARY_ERROR, 'Internal error' ];
+        $return['http400'] = [ 400, PushNotificationStatus::Error, 'Invalid request' ];
+        $return['http401'] = [ 401, PushNotificationStatus::Error, 'Error with authentication' ];
+        $return['http402'] = [ 402, PushNotificationStatus::Unknown, 'Unknown error' ];
+        $return['http403'] = [ 403, PushNotificationStatus::Error, 'Error with configuration' ];
+        $return['http412'] = [ 412, PushNotificationStatus::Unknown, 'Unknown error' ];
+        $return['http500'] = [ 500, PushNotificationStatus::TemporaryError, 'Internal error' ];
 
         return $return;
     }
@@ -83,7 +83,7 @@ class JPushReportReportErrorTest extends JPushReportTest
         $method = $this->get_accessible_reflection_method('report_error');
         $method->invokeArgs($this->class, [ $this->response, &$endpoints ]);
 
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::ERROR ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Error ]);
     }
 
     /**
@@ -105,7 +105,7 @@ class JPushReportReportErrorTest extends JPushReportTest
         $method = $this->get_accessible_reflection_method('report_error');
         $method->invokeArgs($this->class, [ $this->response, &$endpoints ]);
 
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::DEFERRED ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Deferred ]);
     }
 
 }

@@ -49,7 +49,7 @@ class FCMResponseBasePushSuccessTest extends FCMResponseTest
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertySame('endpoint', $endpoint);
-        $this->assertPropertyEquals('status', PushNotificationStatus::UNKNOWN);
+        $this->assertPropertyEquals('status', PushNotificationStatus::Unknown);
         $this->assertPropertyEquals('content', $content);
         $this->assertPropertyEquals('http_code', 200);
     }
@@ -76,7 +76,7 @@ class FCMResponseBasePushSuccessTest extends FCMResponseTest
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertySame('endpoint', $endpoint);
-        $this->assertPropertyEquals('status', PushNotificationStatus::SUCCESS);
+        $this->assertPropertyEquals('status', PushNotificationStatus::Success);
         $this->assertPropertyEquals('content', $content);
         $this->assertPropertyEquals('http_code', 200);
     }
@@ -107,7 +107,7 @@ class FCMResponseBasePushSuccessTest extends FCMResponseTest
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertySame('endpoint', $endpoint);
-        $this->assertPropertyEquals('status', PushNotificationStatus::INVALID_ENDPOINT);
+        $this->assertPropertyEquals('status', PushNotificationStatus::InvalidEndpoint);
         $this->assertPropertyEquals('content', $content);
         $this->assertPropertyEquals('http_code', 200);
     }
@@ -121,19 +121,19 @@ class FCMResponseBasePushSuccessTest extends FCMResponseTest
     {
         $data = [];
 
-        $data[] = [ 'Missing registration token', 'MissingRegistration', PushNotificationStatus::INVALID_ENDPOINT ];
-        $data[] = [ 'Invalid registration token', 'InvalidRegistration', PushNotificationStatus::INVALID_ENDPOINT ];
-        $data[] = [ 'Unregistered device', 'NotRegistered', PushNotificationStatus::INVALID_ENDPOINT ];
-        $data[] = [ 'Invalid package name', 'InvalidPackageName', PushNotificationStatus::INVALID_ENDPOINT ];
-        $data[] = [ 'Mismatched sender', 'MismatchSenderId', PushNotificationStatus::INVALID_ENDPOINT ];
-        $data[] = [ 'Message too big', 'MessageTooBig', PushNotificationStatus::ERROR ];
-        $data[] = [ 'Invalid data key', 'InvalidDataKey', PushNotificationStatus::ERROR ];
-        $data[] = [ 'Invalid time to live', 'InvalidTtl', PushNotificationStatus::ERROR ];
-        $data[] = [ 'Timeout', 'Unavailable', PushNotificationStatus::TEMPORARY_ERROR ];
-        $data[] = [ 'Internal server error', 'InternalServerError', PushNotificationStatus::TEMPORARY_ERROR ];
-        $data[] = [ 'Device message rate exceeded', 'DeviceMessageRateExceeded', PushNotificationStatus::TEMPORARY_ERROR ];
-        $data[] = [ 'Topics message rate exceeded', 'TopicsMessageRateExceeded', PushNotificationStatus::TEMPORARY_ERROR ];
-        $data[] = [ 'unknown-stuff', 'unknown-stuff', PushNotificationStatus::UNKNOWN ];
+        $data[] = [ 'Missing registration token', 'MissingRegistration', PushNotificationStatus::InvalidEndpoint ];
+        $data[] = [ 'Invalid registration token', 'InvalidRegistration', PushNotificationStatus::InvalidEndpoint ];
+        $data[] = [ 'Unregistered device', 'NotRegistered', PushNotificationStatus::InvalidEndpoint ];
+        $data[] = [ 'Invalid package name', 'InvalidPackageName', PushNotificationStatus::InvalidEndpoint ];
+        $data[] = [ 'Mismatched sender', 'MismatchSenderId', PushNotificationStatus::InvalidEndpoint ];
+        $data[] = [ 'Message too big', 'MessageTooBig', PushNotificationStatus::Error ];
+        $data[] = [ 'Invalid data key', 'InvalidDataKey', PushNotificationStatus::Error ];
+        $data[] = [ 'Invalid time to live', 'InvalidTtl', PushNotificationStatus::Error ];
+        $data[] = [ 'Timeout', 'Unavailable', PushNotificationStatus::TemporaryError ];
+        $data[] = [ 'Internal server error', 'InternalServerError', PushNotificationStatus::TemporaryError ];
+        $data[] = [ 'Device message rate exceeded', 'DeviceMessageRateExceeded', PushNotificationStatus::TemporaryError ];
+        $data[] = [ 'Topics message rate exceeded', 'TopicsMessageRateExceeded', PushNotificationStatus::TemporaryError ];
+        $data[] = [ 'unknown-stuff', 'unknown-stuff', PushNotificationStatus::Unknown ];
 
         return $data;
     }
@@ -141,14 +141,14 @@ class FCMResponseBasePushSuccessTest extends FCMResponseTest
     /**
      * Test constructor behavior for success of push notification with multiple errors.
      *
-     * @param string $error_msg Error message we set
-     * @param string $error     Error codes we recieve
-     * @param int    $status    The status code we map to the error
+     * @param string                 $error_msg Error message we set
+     * @param string                 $error     Error codes we recieve
+     * @param PushNotificationStatus $status    The status code we map to the error
      *
      * @dataProvider externalErrorCodeDataProvider
      * @covers       Lunr\Vortex\FCM\FCMResponse::__construct
      */
-    public function testPushSuccessWithErrors(string $error_msg, string $error, int $status): void
+    public function testPushSuccessWithErrors(string $error_msg, string $error, PushNotificationStatus $status): void
     {
         $temp_content                        = json_decode(file_get_contents(TEST_STATICS . '/Vortex/fcm/response_single_error.json'), TRUE);
         $temp_content['results'][0]['error'] = $error;

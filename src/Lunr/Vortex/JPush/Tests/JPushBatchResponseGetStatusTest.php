@@ -52,22 +52,22 @@ class JPushBatchResponseGetStatusTest extends JPushBatchResponseTest
         $data = [];
 
         // return deferred status if no status set
-        $data[] = [ [], PushNotificationStatus::DEFERRED ];
+        $data[] = [ [], PushNotificationStatus::Deferred ];
 
         // return endpoint own status if present
         $data[] = [
             [
-                'endpoint_param' => PushNotificationStatus::INVALID_ENDPOINT,
+                'endpoint_param' => PushNotificationStatus::InvalidEndpoint,
             ],
-            PushNotificationStatus::INVALID_ENDPOINT,
+            PushNotificationStatus::InvalidEndpoint,
         ];
         $data[] = [
             [
-                'endpoint1'      => PushNotificationStatus::ERROR,
-                'endpoint_param' => PushNotificationStatus::SUCCESS,
-                'endpoint2'      => PushNotificationStatus::TEMPORARY_ERROR,
+                'endpoint1'      => PushNotificationStatus::Error,
+                'endpoint_param' => PushNotificationStatus::Success,
+                'endpoint2'      => PushNotificationStatus::TemporaryError,
             ],
-            PushNotificationStatus::SUCCESS,
+            PushNotificationStatus::Success,
         ];
 
         return $data;

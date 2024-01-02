@@ -41,9 +41,9 @@ class FCMResponse implements PushNotificationResponseInterface
 
     /**
      * Delivery status.
-     * @var PushNotificationStatus::*
+     * @var PushNotificationStatus
      */
-    private int $status;
+    private PushNotificationStatus $status;
 
     /**
      * Push notification endpoint.
@@ -117,7 +117,7 @@ class FCMResponse implements PushNotificationResponseInterface
 
         if (!isset($result['error']))
         {
-            $this->status = PushNotificationStatus::SUCCESS;
+            $this->status = PushNotificationStatus::Success;
         }
         else
         {
@@ -132,13 +132,13 @@ class FCMResponse implements PushNotificationResponseInterface
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus::* Delivery status for the endpoint
+     * @return PushNotificationStatus Delivery status for the endpoint
      */
-    public function get_status(string $endpoint): int
+    public function get_status(string $endpoint): PushNotificationStatus
     {
         if ($endpoint != $this->endpoint)
         {
-            return PushNotificationStatus::UNKNOWN;
+            return PushNotificationStatus::Unknown;
         }
 
         return $this->status;
@@ -154,22 +154,22 @@ class FCMResponse implements PushNotificationResponseInterface
     private function report_error(string $endpoint)
     {
         $error_message = 'Unknown error';
-        $status        = PushNotificationStatus::UNKNOWN;
+        $status        = PushNotificationStatus::Unknown;
 
         if ($this->http_code == 400)
         {
             $error_message = "Invalid JSON ({$this->content})";
-            $status        = PushNotificationStatus::ERROR;
+            $status        = PushNotificationStatus::Error;
         }
         elseif ($this->http_code == 401)
         {
             $error_message = 'Error with authentication';
-            $status        = PushNotificationStatus::ERROR;
+            $status        = PushNotificationStatus::Error;
         }
         elseif ($this->http_code >= 500)
         {
             $error_message = 'Internal error';
-            $status        = PushNotificationStatus::TEMPORARY_ERROR;
+            $status        = PushNotificationStatus::TemporaryError;
         }
 
         $this->status = $status;
@@ -191,55 +191,55 @@ class FCMResponse implements PushNotificationResponseInterface
         switch ($error_code)
         {
             case 'MissingRegistration':
-                $status        = PushNotificationStatus::INVALID_ENDPOINT;
+                $status        = PushNotificationStatus::InvalidEndpoint;
                 $error_message = 'Missing registration token';
                 break;
             case 'InvalidRegistration':
-                $status        = PushNotificationStatus::INVALID_ENDPOINT;
+                $status        = PushNotificationStatus::InvalidEndpoint;
                 $error_message = 'Invalid registration token';
                 break;
             case 'NotRegistered':
-                $status        = PushNotificationStatus::INVALID_ENDPOINT;
+                $status        = PushNotificationStatus::InvalidEndpoint;
                 $error_message = 'Unregistered device';
                 break;
             case 'InvalidPackageName':
-                $status        = PushNotificationStatus::INVALID_ENDPOINT;
+                $status        = PushNotificationStatus::InvalidEndpoint;
                 $error_message = 'Invalid package name';
                 break;
             case 'MismatchSenderId':
-                $status        = PushNotificationStatus::INVALID_ENDPOINT;
+                $status        = PushNotificationStatus::InvalidEndpoint;
                 $error_message = 'Mismatched sender';
                 break;
             case 'MessageTooBig':
-                $status        = PushNotificationStatus::ERROR;
+                $status        = PushNotificationStatus::Error;
                 $error_message = 'Message too big';
                 break;
             case 'InvalidDataKey':
-                $status        = PushNotificationStatus::ERROR;
+                $status        = PushNotificationStatus::Error;
                 $error_message = 'Invalid data key';
                 break;
             case 'InvalidTtl':
-                $status        = PushNotificationStatus::ERROR;
+                $status        = PushNotificationStatus::Error;
                 $error_message = 'Invalid time to live';
                 break;
             case 'Unavailable':
-                $status        = PushNotificationStatus::TEMPORARY_ERROR;
+                $status        = PushNotificationStatus::TemporaryError;
                 $error_message = 'Timeout';
                 break;
             case 'InternalServerError':
-                $status        = PushNotificationStatus::TEMPORARY_ERROR;
+                $status        = PushNotificationStatus::TemporaryError;
                 $error_message = 'Internal server error';
                 break;
             case 'DeviceMessageRateExceeded':
-                $status        = PushNotificationStatus::TEMPORARY_ERROR;
+                $status        = PushNotificationStatus::TemporaryError;
                 $error_message = 'Device message rate exceeded';
                 break;
             case 'TopicsMessageRateExceeded':
-                $status        = PushNotificationStatus::TEMPORARY_ERROR;
+                $status        = PushNotificationStatus::TemporaryError;
                 $error_message = 'Topics message rate exceeded';
                 break;
             default:
-                $status        = PushNotificationStatus::UNKNOWN;
+                $status        = PushNotificationStatus::Unknown;
                 $error_message = $error_code;
                 break;
         }

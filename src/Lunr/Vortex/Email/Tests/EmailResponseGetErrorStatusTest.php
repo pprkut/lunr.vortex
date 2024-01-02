@@ -29,14 +29,14 @@ class EmailResponseGetErrorStatusTest extends EmailResponseTest
     }
 
     /**
-     * Test that get_status() returns PushNotification::ERROR
+     * Test that get_status() returns PushNotificationStatus::Error
      * for an endpoint with a failed notification.
      *
      * @covers Lunr\Vortex\Email\EmailResponse::get_status
      */
     public function testGetErrorStatusForEndpoint(): void
     {
-        $this->assertEquals(PushNotificationStatus::ERROR, $this->class->get_status('error-endpoint'));
+        $this->assertEquals(PushNotificationStatus::Error, $this->class->get_status('error-endpoint'));
     }
 
 }

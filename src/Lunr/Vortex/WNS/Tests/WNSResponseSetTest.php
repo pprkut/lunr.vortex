@@ -41,7 +41,7 @@ class WNSResponseSetTest extends WNSResponseTest
         $this->logger->expects($this->never())
                      ->method('warning');
 
-        $this->assertEquals(PushNotificationStatus::SUCCESS, $this->get_reflection_property_value('status'));
+        $this->assertEquals(PushNotificationStatus::Success, $this->get_reflection_property_value('status'));
     }
 
     /**

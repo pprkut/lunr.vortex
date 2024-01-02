@@ -35,7 +35,7 @@ class JPushResponseGetMessageIdTest extends JPushResponseTest
         $data[] = [
             [
                 'endpoint1' => [
-                    'status'     => PushNotificationStatus::INVALID_ENDPOINT,
+                    'status'     => PushNotificationStatus::InvalidEndpoint,
                     'message_id' => '165468564'
                 ],
             ],
@@ -44,15 +44,15 @@ class JPushResponseGetMessageIdTest extends JPushResponseTest
         $data[] = [
             [
                 'endpoint1' => [
-                    'status'     => PushNotificationStatus::ERROR,
+                    'status'     => PushNotificationStatus::Error,
                     'message_id' => '165468564'
                 ],
                 'endpoint2' => [
-                    'status'     => PushNotificationStatus::INVALID_ENDPOINT,
+                    'status'     => PushNotificationStatus::InvalidEndpoint,
                     'message_id' => '165468564'
                 ],
                 'endpoint3' => [
-                    'status'     => PushNotificationStatus::SUCCESS,
+                    'status'     => PushNotificationStatus::Success,
                     'message_id' => '555165655'
                 ],
             ],
@@ -62,14 +62,8 @@ class JPushResponseGetMessageIdTest extends JPushResponseTest
         // return NULL if batch was not set
         $data[] = [
             [
-                'endpoint_param' => PushNotificationStatus::INVALID_ENDPOINT,
-            ],
-            NULL,
-        ];
-        $data[] = [
-            [
                 'endpoint_param' => [
-                    'status' => PushNotificationStatus::INVALID_ENDPOINT,
+                    'status' => PushNotificationStatus::InvalidEndpoint,
                 ],
             ],
             NULL,
@@ -79,7 +73,7 @@ class JPushResponseGetMessageIdTest extends JPushResponseTest
         $data[] = [
             [
                 'endpoint_param' => [
-                    'status'     => PushNotificationStatus::INVALID_ENDPOINT,
+                    'status'     => PushNotificationStatus::InvalidEndpoint,
                     'message_id' => '165468564'
                 ],
             ],
@@ -88,15 +82,15 @@ class JPushResponseGetMessageIdTest extends JPushResponseTest
         $data[] = [
             [
                 'endpoint1'      => [
-                    'status'     => PushNotificationStatus::ERROR,
+                    'status'     => PushNotificationStatus::Error,
                     'message_id' => '165468564'
                 ],
                 'endpoint_param' => [
-                    'status'     => PushNotificationStatus::SUCCESS,
+                    'status'     => PushNotificationStatus::Success,
                     'message_id' => '165468564'
                 ],
                 'endpoint2'      => [
-                    'status'     => PushNotificationStatus::INVALID_ENDPOINT,
+                    'status'     => PushNotificationStatus::InvalidEndpoint,
                     'message_id' => '555165655'
                 ],
             ],

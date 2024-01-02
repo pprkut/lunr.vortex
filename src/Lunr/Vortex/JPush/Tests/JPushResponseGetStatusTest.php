@@ -30,34 +30,34 @@ class JPushResponseGetStatusTest extends JPushResponseTest
         $data = [];
 
         // return unknown status if no status set
-        $data[] = [ [], PushNotificationStatus::UNKNOWN ];
+        $data[] = [ [], PushNotificationStatus::Unknown ];
 
         // return unknown status if endpoint absent
         $data[] = [
             [
                 'endpoint1' => [
-                    'status' => PushNotificationStatus::INVALID_ENDPOINT,
+                    'status' => PushNotificationStatus::InvalidEndpoint,
                     'batch'  => 165468564
                 ],
             ],
-            PushNotificationStatus::UNKNOWN,
+            PushNotificationStatus::Unknown,
         ];
         $data[] = [
             [
                 'endpoint1' => [
-                    'status' => PushNotificationStatus::ERROR,
+                    'status' => PushNotificationStatus::Error,
                     'batch'  => 165468564
                 ],
                 'endpoint2' => [
-                    'status' => PushNotificationStatus::INVALID_ENDPOINT,
+                    'status' => PushNotificationStatus::InvalidEndpoint,
                     'batch'  => 165468564
                 ],
                 'endpoint3' => [
-                    'status' => PushNotificationStatus::SUCCESS,
+                    'status' => PushNotificationStatus::Success,
                     'batch'  => 165468564
                 ],
             ],
-            PushNotificationStatus::UNKNOWN,
+            PushNotificationStatus::Unknown,
         ];
 
         // return unknown if status was not set
@@ -67,35 +67,35 @@ class JPushResponseGetStatusTest extends JPushResponseTest
                     'batch'  => 165468564
                 ],
             ],
-            PushNotificationStatus::UNKNOWN,
+            PushNotificationStatus::Unknown,
         ];
 
         // return endpoint own status if present
         $data[] = [
             [
                 'endpoint_param' => [
-                    'status' => PushNotificationStatus::INVALID_ENDPOINT,
+                    'status' => PushNotificationStatus::InvalidEndpoint,
                     'batch'  => 165468564
                 ],
             ],
-            PushNotificationStatus::INVALID_ENDPOINT,
+            PushNotificationStatus::InvalidEndpoint,
         ];
         $data[] = [
             [
                 'endpoint1'      => [
-                    'status' => PushNotificationStatus::ERROR,
+                    'status' => PushNotificationStatus::Error,
                     'batch'  => 165468564
                 ],
                 'endpoint_param' => [
-                    'status' => PushNotificationStatus::SUCCESS,
+                    'status' => PushNotificationStatus::Success,
                     'batch'  => 165468564
                 ],
                 'endpoint2'      => [
-                    'status' => PushNotificationStatus::INVALID_ENDPOINT,
+                    'status' => PushNotificationStatus::InvalidEndpoint,
                     'batch'  => 165468564
                 ],
             ],
-            PushNotificationStatus::SUCCESS,
+            PushNotificationStatus::Success,
         ];
 
         return $data;

@@ -28,8 +28,8 @@ class JPushResponseAddBatchResponseTest extends JPushResponseTest
     public function testAddBatchResponseWithNoEndpointDoesNotModifyStatusesAndBatches(): void
     {
         $statuses = [
-            'endpoint1' => PushNotificationStatus::ERROR,
-            'endpoint2' => PushNotificationStatus::SUCCESS,
+            'endpoint1' => PushNotificationStatus::Error,
+            'endpoint2' => PushNotificationStatus::Success,
         ];
 
         $this->set_reflection_property_value('statuses', $statuses);
@@ -55,11 +55,11 @@ class JPushResponseAddBatchResponseTest extends JPushResponseTest
     {
         $statuses = [
             'endpoint1' => [
-                'status'     => PushNotificationStatus::ERROR,
+                'status'     => PushNotificationStatus::Error,
                 'message_id' => '165468151',
             ],
             'endpoint2' => [
-                'status'     => PushNotificationStatus::SUCCESS,
+                'status'     => PushNotificationStatus::Success,
                 'message_id' => '165468151',
             ],
         ];
@@ -68,19 +68,19 @@ class JPushResponseAddBatchResponseTest extends JPushResponseTest
 
         $expected_statuses = [
             'endpoint1' => [
-                'status'     => PushNotificationStatus::ERROR,
+                'status'     => PushNotificationStatus::Error,
                 'message_id' => '165468151',
             ],
             'endpoint2' => [
-                'status'     => PushNotificationStatus::INVALID_ENDPOINT,
+                'status'     => PushNotificationStatus::InvalidEndpoint,
                 'message_id' => '165468564',
             ],
             'endpoint3' => [
-                'status'     => PushNotificationStatus::UNKNOWN,
+                'status'     => PushNotificationStatus::Unknown,
                 'message_id' => '165468564',
             ],
             'endpoint4' => [
-                'status'     => PushNotificationStatus::SUCCESS,
+                'status'     => PushNotificationStatus::Success,
                 'message_id' => '165468564',
             ],
         ];
@@ -95,9 +95,9 @@ class JPushResponseAddBatchResponseTest extends JPushResponseTest
                              ->method('get_status')
                              ->willReturnMap(
                                  [
-                                     [ 'endpoint2', PushNotificationStatus::INVALID_ENDPOINT ],
-                                     [ 'endpoint3', PushNotificationStatus::UNKNOWN ],
-                                     [ 'endpoint4', PushNotificationStatus::SUCCESS ],
+                                     [ 'endpoint2', PushNotificationStatus::InvalidEndpoint ],
+                                     [ 'endpoint3', PushNotificationStatus::Unknown ],
+                                     [ 'endpoint4', PushNotificationStatus::Success ],
                                  ]
                              );
 

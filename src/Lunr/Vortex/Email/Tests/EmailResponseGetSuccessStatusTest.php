@@ -29,14 +29,14 @@ class EmailResponseGetSuccessStatusTest extends EmailResponseTest
     }
 
     /**
-     * Test that get_status() returns PushNotification::SUCCESS
+     * Test that get_status() returns PushNotificationStatus::Success
      * for an endpoint with a succesful notification.
      *
      * @covers Lunr\Vortex\Email\EmailResponse::get_status
      */
     public function testGetSuccessStatusForEndpoint(): void
     {
-        $this->assertEquals(PushNotificationStatus::SUCCESS, $this->class->get_status('success-endpoint'));
+        $this->assertEquals(PushNotificationStatus::Success, $this->class->get_status('success-endpoint'));
     }
 
 }

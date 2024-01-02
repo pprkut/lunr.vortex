@@ -48,11 +48,11 @@ class FCMResponseGetStatusTest extends FCMResponseTest
      */
     public function testGetStatusReturnsUnknown(): void
     {
-        $this->set_reflection_property_value('status', PushNotificationStatus::SUCCESS);
+        $this->set_reflection_property_value('status', PushNotificationStatus::Success);
 
         $result = $this->class->get_status('endpoint_param');
 
-        $this->assertSame(PushNotificationStatus::UNKNOWN, $result);
+        $this->assertSame(PushNotificationStatus::Unknown, $result);
     }
 
     /**
@@ -62,11 +62,11 @@ class FCMResponseGetStatusTest extends FCMResponseTest
      */
     public function testGetStatusSucceeds(): void
     {
-        $this->set_reflection_property_value('status', PushNotificationStatus::SUCCESS);
+        $this->set_reflection_property_value('status', PushNotificationStatus::Success);
 
         $result = $this->class->get_status('endpoint1');
 
-        $this->assertSame(PushNotificationStatus::SUCCESS, $result);
+        $this->assertSame(PushNotificationStatus::Success, $result);
     }
 
 }

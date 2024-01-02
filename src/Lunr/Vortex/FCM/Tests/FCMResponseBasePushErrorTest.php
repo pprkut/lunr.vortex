@@ -50,7 +50,7 @@ class FCMResponseBasePushErrorTest extends FCMResponseTest
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertySame('endpoint', $endpoint);
-        $this->assertPropertyEquals('status', PushNotificationStatus::ERROR);
+        $this->assertPropertyEquals('status', PushNotificationStatus::Error);
         $this->assertPropertyEquals('content', $content);
         $this->assertPropertyEquals('http_code', $http_code);
     }
@@ -82,7 +82,7 @@ class FCMResponseBasePushErrorTest extends FCMResponseTest
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertySame('endpoint', $endpoint);
-        $this->assertPropertyEquals('status', PushNotificationStatus::ERROR);
+        $this->assertPropertyEquals('status', PushNotificationStatus::Error);
         $this->assertPropertyEquals('content', $content);
         $this->assertPropertyEquals('http_code', $http_code);
     }
@@ -133,7 +133,7 @@ class FCMResponseBasePushErrorTest extends FCMResponseTest
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertySame('endpoint', $endpoint);
-        $this->assertPropertyEquals('status', PushNotificationStatus::TEMPORARY_ERROR);
+        $this->assertPropertyEquals('status', PushNotificationStatus::TemporaryError);
         $this->assertPropertyEquals('content', $content);
         $this->assertPropertyEquals('http_code', $http_code);
     }
@@ -182,7 +182,7 @@ class FCMResponseBasePushErrorTest extends FCMResponseTest
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertySame('endpoint', $endpoint);
-        $this->assertPropertyEquals('status', PushNotificationStatus::UNKNOWN);
+        $this->assertPropertyEquals('status', PushNotificationStatus::Unknown);
         $this->assertPropertyEquals('content', $content);
         $this->assertPropertyEquals('http_code', $http_code);
     }

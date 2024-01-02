@@ -183,7 +183,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
 
         $this->assertInstanceOf('Lunr\Vortex\FCM\FCMResponse', $result);
 
-        $this->assertSame($result->get_status('endpoint'), PushNotificationStatus::TEMPORARY_ERROR);
+        $this->assertSame($result->get_status('endpoint'), PushNotificationStatus::TemporaryError);
 
         $this->unmock_function('curl_errno');
     }

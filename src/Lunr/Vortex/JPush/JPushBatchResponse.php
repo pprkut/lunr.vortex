@@ -109,11 +109,11 @@ class JPushBatchResponse
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus::* Delivery status for the endpoint
+     * @return PushNotificationStatus Delivery status for the endpoint
      */
-    public function get_status(string $endpoint): int
+    public function get_status(string $endpoint): PushNotificationStatus
     {
-        return $this->statuses[$endpoint] ?? PushNotificationStatus::DEFERRED;
+        return $this->statuses[$endpoint] ?? PushNotificationStatus::Deferred;
     }
 
     /**
@@ -148,14 +148,14 @@ class JPushBatchResponse
             $upstream_code = $body['error']['code'] ?? NULL;
         }
 
-        $status = PushNotificationStatus::ERROR;
+        $status = PushNotificationStatus::Error;
 
         switch ($response->status_code)
         {
             case 400:
                 if ($upstream_code === 1011)
                 {
-                    $status = PushNotificationStatus::INVALID_ENDPOINT;
+                    $status = PushNotificationStatus::InvalidEndpoint;
                 }
 
                 $error_message = $upstream_msg ?? 'Invalid request';
@@ -168,14 +168,14 @@ class JPushBatchResponse
                 break;
             default:
                 $error_message = $upstream_msg ?? 'Unknown error';
-                $status        = PushNotificationStatus::UNKNOWN;
+                $status        = PushNotificationStatus::Unknown;
                 break;
         }
 
         if ($response->status_code >= 500)
         {
             $error_message = $upstream_msg ?? 'Internal error';
-            $status        = PushNotificationStatus::TEMPORARY_ERROR;
+            $status        = PushNotificationStatus::TemporaryError;
         }
 
         foreach ($endpoints as $endpoint)

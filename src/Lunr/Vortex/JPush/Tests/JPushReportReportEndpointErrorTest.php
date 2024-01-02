@@ -9,6 +9,8 @@
 
 namespace Lunr\Vortex\JPush\Tests;
 
+use Lunr\Vortex\PushNotificationStatus;
+
 /**
  * This class contains tests for the get_report function of the JPushReport class.
  *
@@ -29,31 +31,31 @@ class JPushReportReportEndpointErrorTest extends JPushReportTest
         $return['Unknown failure']                = [
             'endpoint1',
             1,
-            7,
+            PushNotificationStatus::Deferred,
             'Not delivered'
         ];
         $return['Registration ID unknown']        = [
             'endpoint2',
             2,
-            3,
+            PushNotificationStatus::InvalidEndpoint,
             'Registration_id does not belong to the application'
         ];
         $return['Registration ID not in message'] = [
             'endpoint3',
             3,
-            5,
+            PushNotificationStatus::Error,
             'Registration_id belongs to the application, but it is not the target of the message'
         ];
         $return['System failure']                 = [
             'endpoint4',
             4,
-            2,
+            PushNotificationStatus::TemporaryError,
             'The system is abnormal'
         ];
         $return['Failure not matched']            = [
             'endpoint5',
             5,
-            0,
+            PushNotificationStatus::Unknown,
             5
         ];
 

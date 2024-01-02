@@ -26,11 +26,11 @@ class JPushReportGetStatusesTest extends JPushReportTest
      */
     public function testGetStatusReturnsStatus(): void
     {
-        $this->set_reflection_property_value('statuses', [ 'endpoint1' => 1 ]);
+        $this->set_reflection_property_value('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
 
         $result = $this->class->get_status('endpoint1');
 
-        $this->assertSame(PushNotificationStatus::SUCCESS, $result);
+        $this->assertSame(PushNotificationStatus::Success, $result);
     }
 
     /**
@@ -40,11 +40,11 @@ class JPushReportGetStatusesTest extends JPushReportTest
      */
     public function testGetStatusReturnsUnknownIfEndpointDoesNotExists(): void
     {
-        $this->set_reflection_property_value('statuses', [ 'endpoint1' => 1 ]);
+        $this->set_reflection_property_value('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
 
         $result = $this->class->get_status('endpoint_unknown');
 
-        $this->assertSame(PushNotificationStatus::UNKNOWN, $result);
+        $this->assertSame(PushNotificationStatus::Unknown, $result);
     }
 
 }

@@ -13,56 +13,48 @@ namespace Lunr\Vortex;
 /**
  * Push notification delivery status.
  */
-class PushNotificationStatus
+enum PushNotificationStatus: int
 {
 
     /**
      * Push notification status unknown.
-     * @var integer
      */
-    public const UNKNOWN = 0;
+    case Unknown = 0;
 
     /**
      * Push notification delivered successfully.
-     * @var integer
      */
-    public const SUCCESS = 1;
+    case Success = 1;
 
     /**
      * Push notification could not be delivered. Try again later.
-     * @var integer
      */
-    public const TEMPORARY_ERROR = 2;
+    case TemporaryError = 2;
 
     /**
      * Push notification endpoint invalid.
-     * @var integer
      */
-    public const INVALID_ENDPOINT = 3;
+    case InvalidEndpoint = 3;
 
     /**
      * Push notification not delivered because of client misconfiguration.
-     * @var integer
      */
-    public const CLIENT_ERROR = 4;
+    case ClientError = 4;
 
     /**
      * Push notification not delivered because of server error.
-     * @var integer
      */
-    public const ERROR = 5;
+    case Error = 5;
 
     /**
      * Push notification not processed by any dispatcher.
-     * @var integer
      */
-    public const NOT_HANDLED = 6;
+    case NotHandled = 6;
 
     /**
      * Push notification status will be fetched at a later time.
-     * @var integer
      */
-    public const DEFERRED = 7;
+    case Deferred = 7;
 
 }
 

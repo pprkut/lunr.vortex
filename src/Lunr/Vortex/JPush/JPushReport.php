@@ -115,7 +115,7 @@ class JPushReport
         {
             foreach ($endpoints as $endpoint)
             {
-                $this->statuses[$endpoint] = PushNotificationStatus::ERROR;
+                $this->statuses[$endpoint] = PushNotificationStatus::Error;
             }
 
             $context = [ 'error' => $e->getMessage() ];
@@ -127,7 +127,7 @@ class JPushReport
         {
             if ($result['status'] === 0)
             {
-                $this->statuses[$endpoint] = PushNotificationStatus::SUCCESS;
+                $this->statuses[$endpoint] = PushNotificationStatus::Success;
             }
             else
             {
@@ -141,11 +141,11 @@ class JPushReport
      *
      * @param string $endpoint Endpoint
      *
-     * @return PushNotificationStatus::* Delivery status for the endpoint
+     * @return PushNotificationStatus Delivery status for the endpoint
      */
-    public function get_status(string $endpoint): int
+    public function get_status(string $endpoint): PushNotificationStatus
     {
-        return $this->statuses[$endpoint] ?? PushNotificationStatus::UNKNOWN;
+        return $this->statuses[$endpoint] ?? PushNotificationStatus::Unknown;
     }
 
     /**
@@ -170,14 +170,14 @@ class JPushReport
             $upstream_code = $body['error']['code'] ?? NULL;
         }
 
-        $status = PushNotificationStatus::ERROR;
+        $status = PushNotificationStatus::Error;
 
         switch ($response->status_code)
         {
             case 400:
                 if ($upstream_code === 3002)
                 {
-                    $status = PushNotificationStatus::DEFERRED;
+                    $status = PushNotificationStatus::Deferred;
                 }
 
                 $error_message = $upstream_msg ?? 'Invalid request';
@@ -190,14 +190,14 @@ class JPushReport
                 break;
             default:
                 $error_message = $upstream_msg ?? 'Unknown error';
-                $status        = PushNotificationStatus::UNKNOWN;
+                $status        = PushNotificationStatus::Unknown;
                 break;
         }
 
         if ($response->status_code >= 500)
         {
             $error_message = $upstream_msg ?? 'Internal error';
-            $status        = PushNotificationStatus::TEMPORARY_ERROR;
+            $status        = PushNotificationStatus::TemporaryError;
         }
 
         foreach ($endpoints as $endpoint)
@@ -224,23 +224,23 @@ class JPushReport
         switch ($error_code)
         {
             case 1:
-                $status        = PushNotificationStatus::DEFERRED;
+                $status        = PushNotificationStatus::Deferred;
                 $error_message = 'Not delivered';
                 break;
             case 2:
-                $status        = PushNotificationStatus::INVALID_ENDPOINT;
+                $status        = PushNotificationStatus::InvalidEndpoint;
                 $error_message = 'Registration_id does not belong to the application';
                 break;
             case 3:
-                $status        = PushNotificationStatus::ERROR;
+                $status        = PushNotificationStatus::Error;
                 $error_message = 'Registration_id belongs to the application, but it is not the target of the message';
                 break;
             case 4:
-                $status        = PushNotificationStatus::TEMPORARY_ERROR;
+                $status        = PushNotificationStatus::TemporaryError;
                 $error_message = 'The system is abnormal';
                 break;
             default:
-                $status        = PushNotificationStatus::UNKNOWN;
+                $status        = PushNotificationStatus::Unknown;
                 $error_message = $error_code;
                 break;
         }

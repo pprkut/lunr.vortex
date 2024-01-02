@@ -33,7 +33,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
         $endpoints         = [ 'endpoint1' ];
         $invalid_endpoints = [];
         $errors            = [];
-        $statuses          = [ 'endpoint1' => PushNotificationStatus::SUCCESS ];
+        $statuses          = [ 'endpoint1' => PushNotificationStatus::Success ];
 
         $this->class = new APNSResponse($this->logger, $endpoints, $invalid_endpoints, $errors, '{}');
 
@@ -66,7 +66,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                 ],
             ],
         ];
-        $statuses          = [ 'endpoint1' => PushNotificationStatus::INVALID_ENDPOINT ];
+        $statuses          = [ 'endpoint1' => PushNotificationStatus::InvalidEndpoint ];
 
         $this->apns_message->expects($this->once())
                            ->method('getRecipient')
@@ -110,7 +110,7 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                 ],
             ],
         ];
-        $statuses          = [ 'endpoint1' => PushNotificationStatus::TEMPORARY_ERROR ];
+        $statuses          = [ 'endpoint1' => PushNotificationStatus::TemporaryError ];
 
         $this->apns_message->expects($this->once())
                            ->method('getRecipient')
@@ -141,9 +141,9 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
         $invalid_endpoints = [];
         $errors            = [];
         $statuses          = [
-            'endpoint1' => PushNotificationStatus::SUCCESS,
-            'endpoint2' => PushNotificationStatus::SUCCESS,
-            'endpoint3' => PushNotificationStatus::SUCCESS,
+            'endpoint1' => PushNotificationStatus::Success,
+            'endpoint2' => PushNotificationStatus::Success,
+            'endpoint3' => PushNotificationStatus::Success,
         ];
 
         $this->class = new APNSResponse($this->logger, $endpoints, $invalid_endpoints, $errors, '{}');
@@ -228,10 +228,10 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
             ],
         ];
         $statuses          = [
-            'endpoint1' => PushNotificationStatus::INVALID_ENDPOINT,
-            'endpoint2' => PushNotificationStatus::INVALID_ENDPOINT,
-            'endpoint3' => PushNotificationStatus::TEMPORARY_ERROR,
-            'endpoint4' => PushNotificationStatus::UNKNOWN,
+            'endpoint1' => PushNotificationStatus::InvalidEndpoint,
+            'endpoint2' => PushNotificationStatus::InvalidEndpoint,
+            'endpoint3' => PushNotificationStatus::TemporaryError,
+            'endpoint4' => PushNotificationStatus::Unknown,
         ];
 
         $message1->expects($this->once())
@@ -395,14 +395,14 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
             ],
         ];
         $statuses          = [
-            'endpoint1' => PushNotificationStatus::ERROR,
-            'endpoint2' => PushNotificationStatus::ERROR,
-            'endpoint3' => PushNotificationStatus::ERROR,
-            'endpoint4' => PushNotificationStatus::ERROR,
-            'endpoint5' => PushNotificationStatus::TEMPORARY_ERROR,
-            'endpoint6' => PushNotificationStatus::INVALID_ENDPOINT,
-            'endpoint6' => PushNotificationStatus::INVALID_ENDPOINT,
-            'endpoint7' => PushNotificationStatus::INVALID_ENDPOINT,
+            'endpoint1' => PushNotificationStatus::Error,
+            'endpoint2' => PushNotificationStatus::Error,
+            'endpoint3' => PushNotificationStatus::Error,
+            'endpoint4' => PushNotificationStatus::Error,
+            'endpoint5' => PushNotificationStatus::TemporaryError,
+            'endpoint6' => PushNotificationStatus::InvalidEndpoint,
+            'endpoint6' => PushNotificationStatus::InvalidEndpoint,
+            'endpoint7' => PushNotificationStatus::InvalidEndpoint,
         ];
 
         $message1->expects($this->once())
@@ -510,11 +510,11 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
             ],
         ];
         $statuses          = [
-            'endpoint1' => PushNotificationStatus::SUCCESS,
-            'endpoint2' => PushNotificationStatus::INVALID_ENDPOINT,
-            'endpoint3' => PushNotificationStatus::INVALID_ENDPOINT,
-            'endpoint4' => PushNotificationStatus::TEMPORARY_ERROR,
-            'endpoint5' => PushNotificationStatus::SUCCESS,
+            'endpoint1' => PushNotificationStatus::Success,
+            'endpoint2' => PushNotificationStatus::InvalidEndpoint,
+            'endpoint3' => PushNotificationStatus::InvalidEndpoint,
+            'endpoint4' => PushNotificationStatus::TemporaryError,
+            'endpoint5' => PushNotificationStatus::Success,
         ];
 
         $message4->expects($this->once())

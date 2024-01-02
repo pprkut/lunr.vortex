@@ -101,19 +101,19 @@ abstract class WNSResponseTest extends LunrBaseTest
     public function failedRequestProvider()
     {
         $requests   = [];
-        $requests[] = [ 200, 'channelthrottled', PushNotificationStatus::TEMPORARY_ERROR ];
-        $requests[] = [ 200, 'dropped', PushNotificationStatus::CLIENT_ERROR ];
-        $requests[] = [ 404, 'N/A', PushNotificationStatus::INVALID_ENDPOINT ];
-        $requests[] = [ 410, 'N/A', PushNotificationStatus::INVALID_ENDPOINT ];
-        $requests[] = [ 400, 'N/A', PushNotificationStatus::ERROR ];
-        $requests[] = [ 401, 'N/A', PushNotificationStatus::ERROR ];
-        $requests[] = [ 403, 'N/A', PushNotificationStatus::ERROR ];
-        $requests[] = [ 405, 'N/A', PushNotificationStatus::ERROR ];
-        $requests[] = [ 413, 'N/A', PushNotificationStatus::ERROR ];
-        $requests[] = [ 406, 'N/A', PushNotificationStatus::TEMPORARY_ERROR ];
-        $requests[] = [ 500, 'N/A', PushNotificationStatus::TEMPORARY_ERROR ];
-        $requests[] = [ 503, 'N/A', PushNotificationStatus::TEMPORARY_ERROR ];
-        $requests[] = [ 420, 'N/A', PushNotificationStatus::UNKNOWN ];
+        $requests[] = [ 200, 'channelthrottled', PushNotificationStatus::TemporaryError ];
+        $requests[] = [ 200, 'dropped', PushNotificationStatus::ClientError ];
+        $requests[] = [ 404, 'N/A', PushNotificationStatus::InvalidEndpoint ];
+        $requests[] = [ 410, 'N/A', PushNotificationStatus::InvalidEndpoint ];
+        $requests[] = [ 400, 'N/A', PushNotificationStatus::Error ];
+        $requests[] = [ 401, 'N/A', PushNotificationStatus::Error ];
+        $requests[] = [ 403, 'N/A', PushNotificationStatus::Error ];
+        $requests[] = [ 405, 'N/A', PushNotificationStatus::Error ];
+        $requests[] = [ 413, 'N/A', PushNotificationStatus::Error ];
+        $requests[] = [ 406, 'N/A', PushNotificationStatus::TemporaryError ];
+        $requests[] = [ 500, 'N/A', PushNotificationStatus::TemporaryError ];
+        $requests[] = [ 503, 'N/A', PushNotificationStatus::TemporaryError ];
+        $requests[] = [ 420, 'N/A', PushNotificationStatus::Unknown ];
 
         return $requests;
     }
