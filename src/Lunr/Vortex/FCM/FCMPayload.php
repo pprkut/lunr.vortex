@@ -10,8 +10,6 @@
 
 namespace Lunr\Vortex\FCM;
 
-use ReflectionClass;
-
 /**
  * Firebase Cloud Messaging Push Notification Payload Generator.
  */
@@ -30,8 +28,6 @@ class FCMPayload
     public function __construct()
     {
         $this->elements = [];
-
-        $this->elements['priority'] = FCMPriority::HIGH;
     }
 
     /**
@@ -45,28 +41,13 @@ class FCMPayload
     /**
      * Construct the payload for the push notification.
      *
+     * @param int $flag The flag to encode the payload with
+     *
      * @return string FCMPayload
      */
-    public function get_payload(): string
+    public function get_json_payload(int $flag = 0): string
     {
-        return json_encode($this->elements);
-    }
-
-    /**
-     * Sets the payload key collapse_key.
-     *
-     * An arbitrary string that is used to collapse a group of alike messages
-     * when the device is offline, so that only the last message gets sent to the client.
-     *
-     * @param string $key The notification collapse key identifier
-     *
-     * @return FCMPayload Self Reference
-     */
-    public function set_collapse_key(string $key): self
-    {
-        $this->elements['collapse_key'] = $key;
-
-        return $this;
+        return json_encode([ 'message' => $this->elements ], $flag);
     }
 
     /**
@@ -81,23 +62,6 @@ class FCMPayload
     public function set_data(array $data): self
     {
         $this->elements['data'] = $data;
-
-        return $this;
-    }
-
-    /**
-     * Sets the payload key time_to_live.
-     *
-     * It defines how long (in seconds) the message should be kept on FCM storage,
-     * if the device is offline.
-     *
-     * @param int $ttl The time in seconds for the notification to stay alive
-     *
-     * @return FCMPayload Self Reference
-     */
-    public function set_time_to_live(int $ttl): self
-    {
-        $this->elements['time_to_live'] = $ttl;
 
         return $this;
     }
@@ -139,20 +103,6 @@ class FCMPayload
     }
 
     /**
-     * Sets the notification as providing content.
-     *
-     * @param bool $val Value for the "content_available" field.
-     *
-     * @return FCMPayload Self Reference
-     */
-    public function set_content_available(bool $val): self
-    {
-        $this->elements['content_available'] = $val;
-
-        return $this;
-    }
-
-    /**
      * Sets the topic name to send the message to.
      *
      * @param string $topic String of the topic name
@@ -185,39 +135,6 @@ class FCMPayload
     }
 
     /**
-     * Mark the notification as mutable.
-     *
-     * @param bool $mutable Notification mutable_content value.
-     *
-     * @return FCMPayload Self Reference
-     */
-    public function set_mutable_content(bool $mutable): self
-    {
-        $this->elements['mutable_content'] = $mutable;
-
-        return $this;
-    }
-
-    /**
-     * Mark the notification priority.
-     *
-     * @param string $priority Notification priority value.
-     *
-     * @return FCMPayload Self Reference
-     */
-    public function set_priority(string $priority): self
-    {
-        $priority       = strtolower($priority);
-        $priority_class = new ReflectionClass('\Lunr\Vortex\FCM\FCMPriority');
-        if (in_array($priority, array_values($priority_class->getConstants())))
-        {
-            $this->elements['priority'] = $priority;
-        }
-
-        return $this;
-    }
-
-    /**
      * Set additional FCM values in the 'fcm_options' key.
      *
      * @param string $key   Options key.
@@ -228,6 +145,20 @@ class FCMPayload
     public function set_options(string $key, string $value): self
     {
         $this->elements['fcm_options'][$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set the token of the target for the notification.
+     *
+     * @param string $token Token of the target for the notification.
+     *
+     * @return FCMPayload Self Reference
+     */
+    public function set_token(string $token): self
+    {
+        $this->elements['token'] = $token;
 
         return $this;
     }
