@@ -10,6 +10,8 @@
 
 namespace Lunr\Vortex\FCM\Tests;
 
+use InvalidArgumentException;
+
 /**
  * This class contains tests for the setters of the FCMDispatcher class.
  *
@@ -19,25 +21,81 @@ class FCMDispatcherSetTest extends FCMDispatcherTest
 {
 
     /**
-     * Test that set_auth_token() sets the endpoint.
+     * Test that set_project_id() sets the project_id.
      *
-     * @covers Lunr\Vortex\FCM\FCMDispatcher::set_auth_token
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::set_project_id
      */
-    public function testSetAuthTokenSetsPayload(): void
+    public function testSetProjectIDSetsProjectId(): void
     {
-        $this->class->set_auth_token('auth_token');
+        $this->class->set_project_id('project_id');
 
-        $this->assertPropertyEquals('auth_token', 'auth_token');
+        $this->assertPropertyEquals('project_id', 'project_id');
     }
 
     /**
-     * Test the fluid interface of set_auth_token().
+     * Test the return of set_project_id().
      *
-     * @covers Lunr\Vortex\FCM\FCMDispatcher::set_auth_token
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::set_project_id
      */
-    public function testSetAuthTokenReturnsSelfReference(): void
+    public function testSetProjectIdReturnsSelfReference(): void
     {
-        $this->assertEquals($this->class, $this->class->set_auth_token('auth_token'));
+        $this->assertEquals($this->class, $this->class->set_project_id('project_id'));
+    }
+
+    /**
+     * Test that set_client_email() sets the client_email.
+     *
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::set_client_email
+     */
+    public function testSetClientEmailSetsClientEmail(): void
+    {
+        $this->class->set_client_email('email');
+
+        $this->assertPropertyEquals('client_email', 'email');
+    }
+
+    /**
+     * Test the return of set_client_email().
+     *
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::set_client_email
+     */
+    public function testSetClientEmailReturnsSelfReference(): void
+    {
+        $this->assertEquals($this->class, $this->class->set_client_email('email'));
+    }
+
+    /**
+     * Test that set_private_key() sets the private_key.
+     *
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::set_private_key
+     */
+    public function testSetPrivateKeySetsPrivateKey(): void
+    {
+        $this->class->set_private_key('key');
+
+        $this->assertPropertyEquals('private_key', 'key');
+    }
+
+    /**
+     * Test the return of set_private_key().
+     *
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::set_private_key
+     */
+    public function testSetPrivateKeyReturnsSelfReference(): void
+    {
+        $this->assertEquals($this->class, $this->class->set_private_key('key'));
+    }
+
+    /**
+     * Test that set_oauth_token() sets the oauth_token.
+     *
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::set_oauth_token
+     */
+    public function testSetOAuthTokenSetsOAuthToken(): void
+    {
+        $this->class->set_oauth_token('token');
+
+        $this->assertPropertyEquals('oauth_token', 'token');
     }
 
 }

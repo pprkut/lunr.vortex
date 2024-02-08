@@ -10,13 +10,17 @@
 
 namespace Lunr\Vortex\FCM\Tests;
 
-use Lunr\Vortex\FCM\FCMDispatcher;
+use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\UnencryptedToken;
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\FCM\FCMDispatcher;
 use Lunr\Vortex\FCM\FCMPayload;
+use Mockery;
+use Mockery\MockInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
-use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers
@@ -51,6 +55,18 @@ abstract class FCMDispatcherTest extends LunrBaseTest
     protected $payload;
 
     /**
+     * Mock instance of the token builder class.
+     * @var MockInterface<Builder>
+     */
+    protected $token_builder;
+
+    /**
+     * Mock instance of the token UnencryptedToken class.
+     * @var MockObject<UnencryptedToken>
+     */
+    protected $token_plain;
+
+    /**
      * Instance of the tested class.
      * @var FCMDispatcher
      */
@@ -68,6 +84,10 @@ abstract class FCMDispatcherTest extends LunrBaseTest
                               ->disableOriginalConstructor()
                               ->getMock();
 
+        $this->token_builder = Mockery::mock(Builder::class);
+
+        $this->token_plain = $this->getMockBuilder(UnencryptedToken::class)->getMock();
+
         $this->class = new FCMDispatcher($this->http, $this->logger);
 
         parent::baseSetUp($this->class);
@@ -78,6 +98,8 @@ abstract class FCMDispatcherTest extends LunrBaseTest
      */
     public function tearDown(): void
     {
+        Mockery::close();
+
         unset($this->logger);
         unset($this->payload);
         unset($this->class);

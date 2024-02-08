@@ -47,6 +47,8 @@
             <file>../src/Lunr/Vortex/FCM/Tests/FCMResponseBasePushSuccessTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMResponseGetStatusTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherBaseTest.php</file>
+            <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherConfigureOAuthTokenTest.php</file>
+            <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherGetOAuthTokenTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherSetTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherPushTest.php</file>
         </testsuite>

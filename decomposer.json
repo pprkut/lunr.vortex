@@ -55,5 +55,13 @@
             "prefix": "WpOrg\\Requests",
             "search-path": "/src/"
         }
+    },
+    "Mockery": {
+        "url": "https://github.com/mockery/mockery.git",
+        "version": "1.6.7",
+        "psr0": {
+            "path": "/library/"
+        },
+        "development-only": true
     }
 }
