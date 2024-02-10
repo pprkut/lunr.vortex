@@ -49,7 +49,7 @@ class JPushReport
 
     /**
      * The statuses per endpoint.
-     * @var array<int,string[]>
+     * @var array<string,PushNotificationStatus>
      */
     private array $statuses;
 
