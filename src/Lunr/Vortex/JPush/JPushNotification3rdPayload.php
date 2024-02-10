@@ -52,9 +52,9 @@ class JPushNotification3rdPayload extends JPushPayload
      *
      * @param string $sound The notification sound
      *
-     * @return JPushNotification3rdPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_sound(string $sound): self
+    public function set_sound(string $sound): static
     {
         return $this->set_notification_3rd_data('sound', $sound);
     }

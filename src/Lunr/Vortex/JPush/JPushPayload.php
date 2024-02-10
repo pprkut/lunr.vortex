@@ -62,9 +62,9 @@ abstract class JPushPayload
      *
      * @param string $identifier The notification identifier
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_notification_identifier(string $identifier): self
+    public function set_notification_identifier(string $identifier): static
     {
         $this->elements['cid'] = $identifier;
 
@@ -76,9 +76,9 @@ abstract class JPushPayload
      *
      * @param string $message The notification body
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_body(string $message): self
+    public function set_body(string $message): static
     {
         return $this->set_message_data('msg_content', $message)
                     ->set_notification_3rd_data('content', $message)
@@ -90,9 +90,9 @@ abstract class JPushPayload
      *
      * @param string $message The notification title
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_title(string $message): self
+    public function set_title(string $message): static
     {
         return $this->set_message_data('title', $message)
                     ->set_notification_3rd_data('title', $message)
@@ -106,9 +106,9 @@ abstract class JPushPayload
      *
      * @param array $data The actual notification information
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_data(array $data): self
+    public function set_data(array $data): static
     {
         return $this->set_message_data('extras', $data)
                     ->set_notification_3rd_data('extras', $data)
@@ -120,9 +120,9 @@ abstract class JPushPayload
      *
      * @param string $category The notification category
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_category(string $category): self
+    public function set_category(string $category): static
     {
         return $this->set_message_data('content_type', $category)
                     ->set_notification_data('category', $category);
@@ -136,9 +136,9 @@ abstract class JPushPayload
      *
      * @param int $ttl The time in seconds for the notification to stay alive
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_time_to_live(int $ttl): self
+    public function set_time_to_live(int $ttl): static
     {
         $this->set_options('time_to_live', $ttl);
 
@@ -153,9 +153,9 @@ abstract class JPushPayload
      *
      * @param string $key The notification collapse key identifier
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_collapse_key(string $key): self
+    public function set_collapse_key(string $key): static
     {
         $this->set_options('apns_collapse_id', $key);
 
@@ -168,9 +168,9 @@ abstract class JPushPayload
      * @param string                $key   Options key.
      * @param string|int|float|bool $value Options value.
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_options(string $key, $value): self
+    public function set_options(string $key, $value): static
     {
         if (!isset($this->elements['options']))
         {
@@ -189,9 +189,9 @@ abstract class JPushPayload
      * @param mixed    $value     The value accompanying that key.
      * @param string[] $platforms The platforms to apply this to.
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    protected function set_notification_data(string $key, $value, array $platforms = self::PLATFORMS): self
+    protected function set_notification_data(string $key, $value, array $platforms = self::PLATFORMS): static
     {
         foreach ($platforms as $platform)
         {
@@ -207,9 +207,9 @@ abstract class JPushPayload
      * @param string $key   The key in the notification->platform object.
      * @param mixed  $value The value accompanying that key.
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    protected function set_message_data(string $key, $value): self
+    protected function set_message_data(string $key, $value): static
     {
         $this->elements['message'][$key] = $value;
 
@@ -222,9 +222,9 @@ abstract class JPushPayload
      * @param string $key   The key in the notification->platform object.
      * @param mixed  $value The value accompanying that key.
      *
-     * @return JPushPayload Self Reference
+     * @return $this Self Reference
      */
-    protected function set_notification_3rd_data(string $key, $value): self
+    protected function set_notification_3rd_data(string $key, $value): static
     {
         $this->elements['notification_3rd'][$key] = $value;
 

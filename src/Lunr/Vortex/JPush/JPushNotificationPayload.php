@@ -56,9 +56,9 @@ class JPushNotificationPayload extends JPushPayload
      *
      * @param string $sound The notification sound
      *
-     * @return JPushNotificationPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_sound(string $sound): self
+    public function set_sound(string $sound): static
     {
         return $this->set_notification_data('sound', $sound);
     }
@@ -68,9 +68,9 @@ class JPushNotificationPayload extends JPushPayload
      *
      * @param bool $val Value for the "content_available" field.
      *
-     * @return JPushNotificationPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_content_available(bool $val): self
+    public function set_content_available(bool $val): static
     {
         return $this->set_notification_data('content-available', $val, [ 'ios' ]);
     }
@@ -80,9 +80,9 @@ class JPushNotificationPayload extends JPushPayload
      *
      * @param bool $mutable Notification mutable_content value.
      *
-     * @return JPushNotificationPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_mutable_content(bool $mutable): self
+    public function set_mutable_content(bool $mutable): static
     {
         return $this->set_notification_data('mutable-content', $mutable, [ 'ios' ]);
     }
@@ -92,9 +92,9 @@ class JPushNotificationPayload extends JPushPayload
      *
      * @param int $priority Notification priority value.
      *
-     * @return JPushNotificationPayload Self Reference
+     * @return $this Self Reference
      */
-    public function set_priority(int $priority): self
+    public function set_priority(int $priority): static
     {
         $priority_class = new ReflectionClass('\Lunr\Vortex\JPush\JPushPriority');
         $priorities     = array_values($priority_class->getConstants());
