@@ -76,7 +76,7 @@ class FCMResponse implements PushNotificationResponseInterface
 
         if ($this->http_code == 200)
         {
-            $this->set_status($endpoint);
+            $this->status = PushNotificationStatus::Success;
         }
         else
         {
@@ -94,37 +94,6 @@ class FCMResponse implements PushNotificationResponseInterface
         unset($this->content);
         unset($this->status);
         unset($this->payload);
-    }
-
-    /**
-     * Define the status result for each endpoint.
-     *
-     * @param string $endpoint The endpoints the message was sent to.
-     *
-     * @return void
-     */
-    private function set_status(string $endpoint): void
-    {
-        $json_content = json_decode($this->content, TRUE);
-
-        if (!isset($json_content['results']))
-        {
-            $this->report_error($endpoint);
-            return;
-        }
-
-        $result = $json_content['results'][0];
-
-        if (!isset($result['error']))
-        {
-            $this->status = PushNotificationStatus::Success;
-        }
-        else
-        {
-            $this->report_endpoint_error($endpoint, $result['error']);
-        }
-
-        // We are supposed here to parse the new registration ids
     }
 
     /**
@@ -147,100 +116,50 @@ class FCMResponse implements PushNotificationResponseInterface
     /**
      * Report an error with the push notification.
      *
-     * @param string $endpoint The endpoints the message was sent to
+     * @param string $endpoint The endpoints the message was sent to.
      *
      * @return void
      */
-    private function report_error(string $endpoint)
+    private function report_error(string $endpoint): void
     {
-        $error_message = 'Unknown error';
-        $status        = PushNotificationStatus::Unknown;
+        $json_content = json_decode($this->content, TRUE);
 
-        if ($this->http_code == 400)
-        {
-            $error_message = "Invalid JSON ({$this->content})";
-            $status        = PushNotificationStatus::Error;
-        }
-        elseif ($this->http_code == 401)
-        {
-            $error_message = 'Error with authentication';
-            $status        = PushNotificationStatus::Error;
-        }
-        elseif ($this->http_code >= 500)
-        {
-            $error_message = 'Internal error';
-            $status        = PushNotificationStatus::TemporaryError;
-        }
+        $error_message = $json_content['error']['message'] ?? NULL;
+        $error_code    = $json_content['error']['details'][0]['errorCode'] ?? NULL;
 
-        $this->status = $status;
-
-        $context = [ 'endpoint' => $endpoint, 'error' => $error_message ];
-        $this->logger->warning('Dispatching FCM notification failed for endpoint {endpoint}: {error}', $context);
-    }
-
-    /**
-     * Report an error with the push notification for one endpoint.
-     *
-     * @param string $endpoint   Endpoint for which the push failed
-     * @param string $error_code Error responde code
-     *
-     * @return void
-     */
-    private function report_endpoint_error(string $endpoint, string $error_code)
-    {
-        switch ($error_code)
+        switch ($this->http_code)
         {
-            case 'MissingRegistration':
-                $status        = PushNotificationStatus::InvalidEndpoint;
-                $error_message = 'Missing registration token';
+            case 400:
+                $status          = PushNotificationStatus::Error;
+                $error_message ??= 'Invalid parameter';
                 break;
-            case 'InvalidRegistration':
-                $status        = PushNotificationStatus::InvalidEndpoint;
-                $error_message = 'Invalid registration token';
+            case 401:
+                $status          = PushNotificationStatus::Error;
+                $error_message ??= 'Error with authentication';
                 break;
-            case 'NotRegistered':
-                $status        = PushNotificationStatus::InvalidEndpoint;
-                $error_message = 'Unregistered device';
+            case 403:
+                $status          = PushNotificationStatus::InvalidEndpoint;
+                $error_message ??= 'Mismatched sender';
                 break;
-            case 'InvalidPackageName':
-                $status        = PushNotificationStatus::InvalidEndpoint;
-                $error_message = 'Invalid package name';
+            case 404:
+                $status          = PushNotificationStatus::InvalidEndpoint;
+                $error_message ??= 'Unregisted or missing token';
                 break;
-            case 'MismatchSenderId':
-                $status        = PushNotificationStatus::InvalidEndpoint;
-                $error_message = 'Mismatched sender';
+            case 429:
+                $status          = PushNotificationStatus::TemporaryError;
+                $error_message ??= 'Exceeded qouta error';
                 break;
-            case 'MessageTooBig':
-                $status        = PushNotificationStatus::Error;
-                $error_message = 'Message too big';
+            case 500:
+                $status          = PushNotificationStatus::TemporaryError;
+                $error_message ??= 'Internal error';
                 break;
-            case 'InvalidDataKey':
-                $status        = PushNotificationStatus::Error;
-                $error_message = 'Invalid data key';
-                break;
-            case 'InvalidTtl':
-                $status        = PushNotificationStatus::Error;
-                $error_message = 'Invalid time to live';
-                break;
-            case 'Unavailable':
-                $status        = PushNotificationStatus::TemporaryError;
-                $error_message = 'Timeout';
-                break;
-            case 'InternalServerError':
-                $status        = PushNotificationStatus::TemporaryError;
-                $error_message = 'Internal server error';
-                break;
-            case 'DeviceMessageRateExceeded':
-                $status        = PushNotificationStatus::TemporaryError;
-                $error_message = 'Device message rate exceeded';
-                break;
-            case 'TopicsMessageRateExceeded':
-                $status        = PushNotificationStatus::TemporaryError;
-                $error_message = 'Topics message rate exceeded';
+            case 503:
+                $status          = PushNotificationStatus::TemporaryError;
+                $error_message ??= 'Timeout';
                 break;
             default:
-                $status        = PushNotificationStatus::Unknown;
-                $error_message = $error_code;
+                $status          = PushNotificationStatus::Unknown;
+                $error_message ??= $error_code ?? 'Unknown error';
                 break;
         }
 

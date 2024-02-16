@@ -132,7 +132,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                         ],
                         [
                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
-                            [ 'endpoint' => 'endpoint', 'error' => 'Invalid JSON ()' ]
+                            [ 'endpoint' => 'endpoint', 'error' => 'Invalid parameter' ]
                         ]
                     );
 
