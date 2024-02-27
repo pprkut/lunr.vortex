@@ -38,6 +38,8 @@
             <file>../src/Lunr/Vortex/Email/Tests/EmailDispatcherSetTest.php</file>
         </testsuite>
         <testsuite name="FCM">
+            <file>../src/Lunr/Vortex/FCM/Tests/FCMAndroidPayloadBaseTest.php</file>
+            <file>../src/Lunr/Vortex/FCM/Tests/FCMAndroidPayloadSetTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadGetTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadHasTopicTest.php</file>

@@ -23,11 +23,18 @@ class FCMPayload
     protected array $elements;
 
     /**
+     * The Android payload Push Notification Element.
+     * @var ?FCMAndroidPayload
+     */
+    protected ?FCMAndroidPayload $android_payload;
+
+    /**
      * Constructor.
      */
     public function __construct()
     {
-        $this->elements = [];
+        $this->elements        = [];
+        $this->android_payload = NULL;
     }
 
     /**
@@ -36,6 +43,7 @@ class FCMPayload
     public function __destruct()
     {
         unset($this->elements);
+        unset($this->android_payload);
     }
 
     /**
@@ -47,7 +55,14 @@ class FCMPayload
      */
     public function get_json_payload(int $flag = 0): string
     {
-        return json_encode([ 'message' => $this->elements ], $flag);
+        $payload = $this->elements;
+
+        if ($this->android_payload !== NULL)
+        {
+            $payload['android'] = $this->android_payload->get_payload();
+        }
+
+        return json_encode([ 'message' => $payload ], $flag);
     }
 
     /**
@@ -159,6 +174,37 @@ class FCMPayload
     public function set_token(string $token): self
     {
         $this->elements['token'] = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get the android payload element.
+     *
+     * @return FCMAndroidPayload
+     */
+    public function get_android_payload(): FCMAndroidPayload
+    {
+        return $this->android_payload ?? new FCMAndroidPayload();
+    }
+
+    /**
+     * Set the android payload element.
+     *
+     * @param array|FCMAndroidPayload $payload The android payload element
+     *
+     * @return self self Reference
+     */
+    public function set_android_payload(array|FCMAndroidPayload $payload): self
+    {
+        if (is_array($payload))
+        {
+            $this->elements['android'] = $payload;
+
+            return $this;
+        }
+
+        $this->android_payload = $payload;
 
         return $this;
     }

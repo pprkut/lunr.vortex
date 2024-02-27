@@ -169,6 +169,55 @@ class FCMPayloadSetTest extends FCMPayloadTest
         $this->assertSame($this->class, $this->class->set_token('endpoint_token'));
     }
 
+    /**
+     * Test set_android_payload() works correctly.
+     *
+     * @covers \Lunr\Vortex\FCM\FCMPayload::set_android_payload
+     */
+    public function testSetAndroidPayloadWorksCorrectlyWithArray()
+    {
+        $this->class->set_android_payload([ 'notification' => 'test' ]);
+
+        $value = $this->get_reflection_property_value('elements');
+
+        $this->assertArrayHasKey('android', $value);
+        $this->assertEquals([ 'notification' => 'test' ], $value['android']);
+    }
+
+    /**
+     * Test fluid interface of set_android_payload().
+     *
+     * @covers \Lunr\Vortex\FCM\FCMPayload::set_android_payload
+     */
+    public function testSetAndroidPayloadReturnsSelfReferenceWithArray()
+    {
+        $this->assertSame($this->class, $this->class->set_android_payload([ 'notification' => 'test' ]));
+    }
+
+    /**
+     * Test set_android_payload() works correctly.
+     *
+     * @covers \Lunr\Vortex\FCM\FCMPayload::set_android_payload
+     */
+    public function testSetAndroidPayloadWorksCorrectlyWithAndroidPayload()
+    {
+        $this->class->set_android_payload($this->android_payload);
+
+        $value = $this->get_reflection_property_value('android_payload');
+
+        $this->assertEquals($this->android_payload, $value);
+    }
+
+    /**
+     * Test fluid interface of set_android_payload().
+     *
+     * @covers \Lunr\Vortex\FCM\FCMPayload::set_android_payload
+     */
+    public function testSetAndroidPayloadReturnsSelfReferenceWithAndroidPayload()
+    {
+        $this->assertSame($this->class, $this->class->set_android_payload($this->android_payload));
+    }
+
 }
 
 ?>

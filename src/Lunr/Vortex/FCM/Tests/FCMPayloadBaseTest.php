@@ -26,6 +26,14 @@ class FCMPayloadBaseTest extends FCMPayloadTest
         $this->assertPropertySame('elements', []);
     }
 
+    /**
+     * Test android_payload is initialized with NULL.
+     */
+    public function testAndroidPayloadIsInitializedWithNULL(): void
+    {
+        $this->assertPropertySame('android_payload', NULL);
+    }
+
 }
 
 ?>
