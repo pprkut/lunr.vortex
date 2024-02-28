@@ -218,6 +218,55 @@ class FCMPayloadSetTest extends FCMPayloadTest
         $this->assertSame($this->class, $this->class->set_android_payload($this->android_payload));
     }
 
+    /**
+     * Test set_apns_payload() works correctly.
+     *
+     * @covers \Lunr\Vortex\FCM\FCMPayload::set_apns_payload
+     */
+    public function testSetApnsPayloadWorksCorrectlyWithArray()
+    {
+        $this->class->set_apns_payload([ 'notification' => 'test' ]);
+
+        $value = $this->get_reflection_property_value('elements');
+
+        $this->assertArrayHasKey('apns', $value);
+        $this->assertEquals([ 'notification' => 'test' ], $value['apns']);
+    }
+
+    /**
+     * Test fluid interface of set_apns_payload().
+     *
+     * @covers \Lunr\Vortex\FCM\FCMPayload::set_apns_payload
+     */
+    public function testSetApnsPayloadReturnsSelfReferenceWithArray()
+    {
+        $this->assertSame($this->class, $this->class->set_apns_payload([ 'notification' => 'test' ]));
+    }
+
+    /**
+     * Test set_apns_payload() works correctly.
+     *
+     * @covers \Lunr\Vortex\FCM\FCMPayload::set_apns_payload
+     */
+    public function testSetApnsPayloadWorksCorrectlyWithApnsPayload()
+    {
+        $this->class->set_apns_payload($this->apns_payload);
+
+        $value = $this->get_reflection_property_value('apns_payload');
+
+        $this->assertEquals($this->apns_payload, $value);
+    }
+
+    /**
+     * Test fluid interface of set_apns_payload().
+     *
+     * @covers \Lunr\Vortex\FCM\FCMPayload::set_apns_payload
+     */
+    public function testSetApnsPayloadReturnsSelfReferenceWithApnsPayload()
+    {
+        $this->assertSame($this->class, $this->class->set_apns_payload($this->apns_payload));
+    }
+
 }
 
 ?>

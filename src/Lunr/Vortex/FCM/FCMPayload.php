@@ -29,12 +29,19 @@ class FCMPayload
     protected ?FCMAndroidPayload $android_payload;
 
     /**
+     * The Apns payload Push Notification Element.
+     * @var ?FCMApnsPayload
+     */
+    protected ?FCMApnsPayload $apns_payload;
+
+    /**
      * Constructor.
      */
     public function __construct()
     {
         $this->elements        = [];
         $this->android_payload = NULL;
+        $this->apns_payload    = NULL;
     }
 
     /**
@@ -44,6 +51,7 @@ class FCMPayload
     {
         unset($this->elements);
         unset($this->android_payload);
+        unset($this->apns_payload);
     }
 
     /**
@@ -60,6 +68,11 @@ class FCMPayload
         if ($this->android_payload !== NULL)
         {
             $payload['android'] = $this->android_payload->get_payload();
+        }
+
+        if ($this->apns_payload !== NULL)
+        {
+            $payload['apns'] = $this->apns_payload->get_payload();
         }
 
         return json_encode([ 'message' => $payload ], $flag);
@@ -205,6 +218,37 @@ class FCMPayload
         }
 
         $this->android_payload = $payload;
+
+        return $this;
+    }
+
+    /**
+     * Get the apns payload element.
+     *
+     * @return FCMApnsPayload
+     */
+    public function get_apns_payload(): FCMApnsPayload
+    {
+        return $this->apns_payload ?? new FCMApnsPayload();
+    }
+
+    /**
+     * Set the apns payload element.
+     *
+     * @param array|FCMApnsPayload $payload The android payload element
+     *
+     * @return self self Reference
+     */
+    public function set_apns_payload(array|FCMApnsPayload $payload): self
+    {
+        if (is_array($payload))
+        {
+            $this->elements['apns'] = $payload;
+
+            return $this;
+        }
+
+        $this->apns_payload = $payload;
 
         return $this;
     }

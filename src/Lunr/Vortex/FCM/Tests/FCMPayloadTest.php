@@ -12,6 +12,7 @@ namespace Lunr\Vortex\FCM\Tests;
 
 use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\FCM\FCMAndroidPayload;
+use Lunr\Vortex\FCM\FCMApnsPayload;
 use Lunr\Vortex\FCM\FCMPayload;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
@@ -32,10 +33,16 @@ class FCMPayloadTest extends LunrBaseTest
     protected $payload;
 
     /**
-     * Sample payload json
+     * Sample android payload
      * @var FCMAndroidPayload
      */
     protected $android_payload;
+
+    /**
+     * Sample apns payload
+     * @var FCMApnsPayload
+     */
+    protected $apns_payload;
 
     /**
      * Instance of the tested class.
@@ -63,6 +70,9 @@ class FCMPayloadTest extends LunrBaseTest
         $this->android_payload = $this->getMockBuilder(FCMAndroidPayload::class)
                                       ->getMock();
 
+        $this->apns_payload = $this->getMockBuilder(FCMApnsPayload::class)
+                                   ->getMock();
+
         $this->class = $this->getMockBuilder('Lunr\Vortex\FCM\FCMPayload')
                             ->getMockForAbstractClass();
 
@@ -76,6 +86,7 @@ class FCMPayloadTest extends LunrBaseTest
     {
         unset($this->payload);
         unset($this->android_payload);
+        unset($this->apns_payload);
         unset($this->class);
 
         parent::tearDown();
