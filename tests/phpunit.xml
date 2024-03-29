@@ -40,6 +40,8 @@
         <testsuite name="FCM">
             <file>../src/Lunr/Vortex/FCM/Tests/FCMAndroidPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMAndroidPayloadSetTest.php</file>
+            <file>../src/Lunr/Vortex/FCM/Tests/FCMApnsPayloadBaseTest.php</file>
+            <file>../src/Lunr/Vortex/FCM/Tests/FCMApnsPayloadSetTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadGetTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadHasTopicTest.php</file>
