@@ -18,7 +18,7 @@ use Lcobucci\JWT\Encoding\JoseEncoder;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
 use Lcobucci\JWT\Token\Builder;
-use Lunr\Vortex\PushNotificationDispatcherInterface;
+use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use UnexpectedValueException;
@@ -29,8 +29,14 @@ use WpOrg\Requests\Session;
 /**
  * Firebase Cloud Messaging Push Notification Dispatcher.
  */
-class FCMDispatcher implements PushNotificationDispatcherInterface
+class FCMDispatcher implements PushNotificationMultiDispatcherInterface
 {
+    /**
+     * Maximum number of endpoints allowed in one push.
+     * @var integer
+     */
+    private const BATCH_SIZE = 1000;
+
     /**
      * Push Notification Oauth token.
      * @var string
@@ -190,23 +196,32 @@ class FCMDispatcher implements PushNotificationDispatcherInterface
     /**
      * Getter for FCMResponse.
      *
-     * @param Response        $http_response Requests\Response object.
-     * @param LoggerInterface $logger        Shared instance of a Logger.
-     * @param string          $endpoint      The endpoint the message was sent to.
-     * @param string          $payload       Raw payload that was sent to FCM.
-     *
      * @return FCMResponse
      */
-    public function get_response(Response $http_response, LoggerInterface $logger, string $endpoint, string $payload): FCMResponse
+    public function get_response(): FCMResponse
     {
-        return new FCMResponse($http_response, $logger, $endpoint, $payload);
+        return new FCMResponse();
+    }
+
+    /**
+     * Getter for FCMBatchResponse.
+     *
+     * @param array<string|int,Response|RequestsException> $http_responses Array of Requests\Response object.
+     * @param LoggerInterface                              $logger         Shared instance of a Logger.
+     * @param string[]                                     $endpoints      The endpoints the message was sent to.
+     *
+     * @return FCMBatchResponse
+     */
+    public function get_batch_response(array $http_responses, LoggerInterface $logger, array $endpoints): FCMBatchResponse
+    {
+        return new FCMBatchResponse($http_responses, $logger, $endpoints);
     }
 
     /**
      * Push the notification.
      *
-     * @param object   $payload   Payload object
-     * @param string[] $endpoints Endpoints to send to in this batch
+     * @param object $payload   Payload object
+     * @param array  $endpoints Endpoints to send to in this batch
      *
      * @return FCMResponse Response object
      */
@@ -222,59 +237,80 @@ class FCMDispatcher implements PushNotificationDispatcherInterface
             throw new InvalidArgumentException('No endpoints provided!');
         }
 
-        if ($this->oauth_token === NULL)
+        $fcm_response = $this->get_response();
+
+        if ($this->oauth_token === NULL || $this->project_id === NULL)
         {
-            $context = [ 'endpoint' => $endpoints[0] ];
-            $this->logger->warning('Tried to push FCM notification to {endpoint} but wasn\'t authenticated.', $context);
+            if ($this->oauth_token === NULL)
+            {
+                $http_code = 401;
+                $error_msg = 'Tried to push FCM notification but wasn\'t authenticated.';
+            }
+            else
+            {
+                $http_code = 400;
+                $error_msg = 'Tried to push FCM notification but project id is not provided.';
+            }
 
-            $response = $this->get_new_response_object_for_failed_request(401);
+            $this->logger->warning($error_msg);
 
-            return $this->get_response($response, $this->logger, $endpoints[0], $payload->get_json_payload());
+            $http_response = $this->get_new_response_object_for_failed_request($http_code);
+
+            $fcm_response->add_batch_response($this->get_batch_response([ $http_response ], $this->logger, $endpoints), $endpoints);
+
+            return $fcm_response;
         }
 
-        if ($this->project_id === NULL)
+        foreach (array_chunk($endpoints, self::BATCH_SIZE) as &$batch)
         {
-            $context = [ 'endpoint' => $endpoints[0] ];
-            $this->logger->warning('Tried to push FCM notification to {endpoint} but project id is not provided.', $context);
+            $batch_response = $this->push_batch($payload, $batch);
 
-            $response = $this->get_new_response_object_for_failed_request(400);
+            $fcm_response->add_batch_response($batch_response, $batch);
 
-            return $this->get_response($response, $this->logger, $endpoints[0], $payload->get_json_payload());
+            unset($batch_response);
         }
 
+        unset($batch);
+
+        return $fcm_response;
+    }
+
+    /**
+     * Push the notification to a batch of endpoints.
+     *
+     * @param object   $payload   Payload object
+     * @param string[] $endpoints Endpoints to send to in this batch
+     *
+     * @return FCMBatchResponse Response object
+     */
+    public function push_batch(object $payload, array &$endpoints): FCMBatchResponse
+    {
         $headers = [
             'Content-Type'  => 'application/json',
             'Authorization' => 'Bearer ' . $this->oauth_token,
         ];
 
-        $json_payload = $payload->set_token($endpoints[0])
-                                ->get_json_payload(JSON_UNESCAPED_UNICODE);
+        $options = [
+            'timeout'         => 15, // timeout in seconds
+            'connect_timeout' => 15 // timeout in seconds
+        ];
 
-        try
+        $url = self::GOOGLE_SEND_URL . $this->project_id . '/messages:send';
+
+        $requests = [];
+
+        foreach ($endpoints as $endpoint)
         {
-            $options = [
-                'timeout'         => 15, // timeout in seconds
-                'connect_timeout' => 15 // timeout in seconds
+            $requests[$endpoint] = [
+                'url'     => $url,
+                'headers' => $headers,
+                'data'    => $payload->set_token($endpoint)->get_json_payload(JSON_UNESCAPED_UNICODE)
             ];
-
-            $http_response = $this->http->post(self::GOOGLE_SEND_URL . $this->project_id . '/messages:send', $headers, $json_payload, $options);
-        }
-        catch (RequestsException $e)
-        {
-            $this->logger->warning(
-                'Dispatching FCM notification(s) failed: {message}',
-                [ 'message' => $e->getMessage() ]
-            );
-
-            $http_response = $this->get_new_response_object_for_failed_request();
-
-            if ($e->getType() == 'curlerror' && curl_errno($e->getData()) == 28)
-            {
-                $http_response->status_code = 500;
-            }
         }
 
-        return $this->get_response($http_response, $this->logger, $endpoints[0], $json_payload);
+        $responses = $this->http->request_multiple($requests, $options);
+
+        return $this->get_batch_response($responses, $this->logger, $endpoints);
     }
 
     /**

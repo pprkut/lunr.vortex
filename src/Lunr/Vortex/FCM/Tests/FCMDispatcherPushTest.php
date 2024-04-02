@@ -10,10 +10,10 @@
 
 namespace Lunr\Vortex\FCM\Tests;
 
-use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\APNS\APNSPayload;
 use Lunr\Vortex\Email\EmailPayload;
 use Lunr\Vortex\JPush\JPushMessagePayload;
+use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\WNS\WNSTilePayload;
 use WpOrg\Requests\Exception as RequestsException;
 
@@ -79,26 +79,80 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
      *
      * @covers Lunr\Vortex\FCM\FCMDispatcher::push
      */
-    public function testPushWhenOAuthTokenIsNull(): void
+    public function testPushWhenOAuthTokenIsNullSingleEndpoint(): void
     {
         $endpoints = [ 'endpoint' ];
-
-        $this->payload->expects($this->once())
-                      ->method('get_json_payload')
-                      ->willReturn('{"collapse_key":"abcde-12345"}');
 
         $this->set_reflection_property_value('oauth_token', NULL);
 
         $this->logger->expects($this->exactly(2))
                      ->method('warning')
                      ->withConsecutive(
-                        [
-                            'Tried to push FCM notification to {endpoint} but wasn\'t authenticated.',
-                            [ 'endpoint' => 'endpoint' ]
-                        ],
+                        [ 'Tried to push FCM notification but wasn\'t authenticated.' ],
                         [
                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint', 'error' => 'Error with authentication' ]
+                        ]
+                    );
+
+        $result = $this->class->push($this->payload, $endpoints);
+
+        $this->assertInstanceOf('Lunr\Vortex\FCM\FCMResponse', $result);
+    }
+
+    /**
+     * Test that push() returns response when oauth_token is null.
+     *
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::push
+     */
+    public function testPushWhenOAuthTokenIsNullMultipleEndpoints(): void
+    {
+        $endpoints = [ 'endpoint', 'endpoint1', 'endpoint2' ];
+
+        $this->set_reflection_property_value('oauth_token', NULL);
+
+        $this->logger->expects($this->exactly(4))
+                     ->method('warning')
+                     ->withConsecutive(
+                        [ 'Tried to push FCM notification but wasn\'t authenticated.' ],
+                        [
+                            'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                            [ 'endpoint' => 'endpoint', 'error' => 'Error with authentication' ]
+                        ],
+                        [
+                            'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                            [ 'endpoint' => 'endpoint1', 'error' => 'Error with authentication' ]
+                        ],
+                        [
+                            'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                            [ 'endpoint' => 'endpoint2', 'error' => 'Error with authentication' ]
+                        ],
+                    );
+
+        $result = $this->class->push($this->payload, $endpoints);
+
+        $this->assertInstanceOf('Lunr\Vortex\FCM\FCMResponse', $result);
+    }
+
+    /**
+     * Test that push() returns response when project_id is null.
+     *
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::push
+     */
+    public function testPushWhenProjectIdIsNullSingleEndpoint(): void
+    {
+        $endpoints = [ 'endpoint' ];
+
+        $this->set_reflection_property_value('oauth_token', 'test');
+        $this->set_reflection_property_value('project_id', NULL);
+
+        $this->logger->expects($this->exactly(2))
+                     ->method('warning')
+                     ->withConsecutive(
+                        [ 'Tried to push FCM notification but project id is not provided.' ],
+                        [
+                            'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                            [ 'endpoint' => 'endpoint', 'error' => 'Invalid parameter' ]
                         ]
                     );
 
@@ -112,28 +166,29 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
      *
      * @covers Lunr\Vortex\FCM\FCMDispatcher::push
      */
-    public function testPushWhenProjectIdIsNull(): void
+    public function testPushWhenProjectIdIsNullMultipleEndpoints(): void
     {
-        $endpoints = [ 'endpoint' ];
-
-        $this->payload->expects($this->once())
-                      ->method('get_json_payload')
-                      ->willReturn('{"collapse_key":"abcde-12345"}');
+        $endpoints = [ 'endpoint', 'endpoint1', 'endpoint2' ];
 
         $this->set_reflection_property_value('oauth_token', 'test');
         $this->set_reflection_property_value('project_id', NULL);
 
-        $this->logger->expects($this->exactly(2))
+        $this->logger->expects($this->exactly(4))
                      ->method('warning')
                      ->withConsecutive(
-                        [
-                            'Tried to push FCM notification to {endpoint} but project id is not provided.',
-                            [ 'endpoint' => 'endpoint' ]
-                        ],
+                        [ 'Tried to push FCM notification but project id is not provided.' ],
                         [
                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
                             [ 'endpoint' => 'endpoint', 'error' => 'Invalid parameter' ]
-                        ]
+                        ],
+                        [
+                            'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                            [ 'endpoint' => 'endpoint1', 'error' => 'Invalid parameter' ]
+                        ],
+                        [
+                            'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                            [ 'endpoint' => 'endpoint2', 'error' => 'Invalid parameter' ]
+                        ],
                     );
 
         $result = $this->class->push($this->payload, $endpoints);
@@ -165,8 +220,8 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $this->http->expects($this->once())
-                   ->method('post')
-                   ->will($this->returnValue($response));
+                   ->method('request_multiple')
+                   ->willReturn([ 'endpoint' => $response ]);
 
         $this->class->push($this->payload, $endpoints);
 
@@ -200,6 +255,14 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'connect_timeout' => 15
         ];
 
+        $requests = [
+            'endpoint' => [
+                'url'     => $url,
+                'headers' => $headers,
+                'data'    => '{"token":"endpoint"}',
+            ]
+        ];
+
         $this->payload->expects($this->once())
                       ->method('set_token')
                       ->with('endpoint')
@@ -210,20 +273,21 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->willReturn('{"token":"endpoint"}');
 
         $this->http->expects($this->once())
-                   ->method('post')
-                   ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo('{"token":"endpoint"}'), $this->equalTo($options))
-                   ->will($this->throwException(new RequestsException('cURL error 10: Request error', 'curlerror', NULL)));
+                   ->method('request_multiple')
+                   ->with($requests, $options)
+                   ->willReturn([ 'endpoint' => new RequestsException('cURL error 10: Request error', 'curlerror', NULL) ]);
 
-        $message = 'Dispatching FCM notification(s) failed: {message}';
-        $context = [ 'message' => 'cURL error 10: Request error' ];
+        $context = [ 'endpoint' => 'endpoint', 'error' => 'cURL error 10: Request error' ];
 
-        $this->logger->expects($this->exactly(2))
+        $this->logger->expects($this->once())
                      ->method('warning')
-                     ->withConsecutive([ $message, $context ], [ 'Dispatching FCM notification failed for endpoint {endpoint}: {error}' ]);
+                     ->with('Dispatching FCM notification failed for endpoint {endpoint}: {error}', $context);
 
         $result = $this->class->push($this->payload, $endpoints);
 
         $this->assertInstanceOf('Lunr\Vortex\FCM\FCMResponse', $result);
+
+        $this->assertSame($result->get_status('endpoint'), PushNotificationStatus::Unknown);
 
         $this->unmock_function('curl_errno');
     }
@@ -254,6 +318,14 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'connect_timeout' => 15
         ];
 
+        $requests = [
+            'endpoint' => [
+                'url'     => $url,
+                'headers' => $headers,
+                'data'    => '{"token":"endpoint"}',
+            ]
+        ];
+
         $this->payload->expects($this->once())
                       ->method('set_token')
                       ->with('endpoint')
@@ -264,16 +336,15 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->willReturn('{"token":"endpoint"}');
 
         $this->http->expects($this->once())
-                   ->method('post')
-                   ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo('{"token":"endpoint"}'), $this->equalTo($options))
-                   ->will($this->throwException(new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL)));
+                   ->method('request_multiple')
+                   ->with($requests, $options)
+                   ->willReturn([ 'endpoint' => new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL) ]);
 
-        $message = 'Dispatching FCM notification(s) failed: {message}';
-        $context = [ 'message' => 'cURL error 28: Request timed out' ];
+        $context = [ 'endpoint' => 'endpoint', 'error' => 'cURL error 28: Request timed out' ];
 
-        $this->logger->expects($this->exactly(2))
+        $this->logger->expects($this->once())
                      ->method('warning')
-                     ->withConsecutive([ $message, $context ], [ 'Dispatching FCM notification failed for endpoint {endpoint}: {error}' ]);
+                     ->with('Dispatching FCM notification failed for endpoint {endpoint}: {error}', $context);
 
         $result = $this->class->push($this->payload, $endpoints);
 
@@ -311,6 +382,14 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'connect_timeout' => 15
         ];
 
+        $requests = [
+            'endpoint' => [
+                'url'     => $url,
+                'headers' => $headers,
+                'data'    => $post,
+            ]
+        ];
+
         $this->payload->expects($this->once())
                       ->method('set_token')
                       ->with('endpoint')
@@ -321,9 +400,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->willReturn($post);
 
         $this->http->expects($this->once())
-                   ->method('post')
-                   ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo($post), $this->equalTo($options))
-                   ->will($this->returnValue($response));
+                   ->method('request_multiple')
+                   ->with($requests, $options)
+                   ->willReturn([ 'endpoint' => $response ]);
 
         $this->class->push($this->payload, $endpoints);
     }
@@ -355,6 +434,14 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'connect_timeout' => 15
         ];
 
+        $requests = [
+            'endpoint' => [
+                'url'     => $url,
+                'headers' => $headers,
+                'data'    => $post,
+            ]
+        ];
+
         $this->payload->expects($this->once())
                       ->method('set_token')
                       ->with('endpoint')
@@ -365,9 +452,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->willReturn($post);
 
         $this->http->expects($this->once())
-                   ->method('post')
-                   ->with($this->equalTo($url), $this->equalTo($headers), $this->equalTo($post), $this->equalTo($options))
-                   ->will($this->returnValue($response));
+                   ->method('request_multiple')
+                   ->with($requests, $options)
+                   ->willReturn([ 'endpoint' => $response ]);
 
         $this->class->push($this->payload, $endpoints);
     }
@@ -399,6 +486,14 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'connect_timeout' => 15
         ];
 
+        $requests = [
+            'endpoint' => [
+                'url'     => $url,
+                'headers' => $headers,
+                'data'    => $post,
+            ]
+        ];
+
         $this->payload->expects($this->once())
                       ->method('set_token')
                       ->with('endpoint')
@@ -409,11 +504,98 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->willReturn($post);
 
         $this->http->expects($this->once())
-                   ->method('post')
-                   ->with($url, $headers, $post, $options)
-                   ->willReturn($response);
+                   ->method('request_multiple')
+                   ->with($requests, $options)
+                   ->willReturn([ 'endpoint' => $response ]);
 
         $this->class->push($this->payload, $endpoints);
+    }
+
+    /**
+     * Test that push() sends correct request with multiple endpoints.
+     *
+     * @covers Lunr\Vortex\FCM\FCMDispatcher::push
+     */
+    public function testPushRequestWithMultipleEndpoints(): void
+    {
+        $this->set_reflection_property_value('oauth_token', 'oauth_token');
+        $this->set_reflection_property_value('project_id', 'fcm-project');
+
+        $this->mock_function('curl_errno', function () { return 28; });
+
+        $endpoints = [ 'endpoint', 'endpoint1', 'endpoint2', 'endpoint3' ];
+
+        $response_200 = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
+        $response_403 = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
+
+        $response_200->status_code = 200;
+        $response_403->status_code = 403;
+
+        $headers = [
+            'Content-Type'  => 'application/json',
+            'Authorization' => 'Bearer oauth_token',
+        ];
+
+        $url  = 'https://fcm.googleapis.com/v1/projects/fcm-project/messages:send';
+        $post = '{"collapse_key":"abcde-12345","token":"endpoint"}';
+
+        $options = [
+            'timeout'         => 15,
+            'connect_timeout' => 15
+        ];
+
+        $requests = [
+            'endpoint' => [
+                'url'     => $url,
+                'headers' => $headers,
+                'data'    => $post,
+            ],
+            'endpoint1' => [
+                'url'     => $url,
+                'headers' => $headers,
+                'data'    => $post,
+            ],
+            'endpoint2' => [
+                'url'     => $url,
+                'headers' => $headers,
+                'data'    => $post,
+            ],
+            'endpoint3' => [
+                'url'     => $url,
+                'headers' => $headers,
+                'data'    => $post,
+            ],
+        ];
+
+        $responses = [
+            'endpoint'  => $response_200,
+            'endpoint1' => new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL),
+            'endpoint2' => $response_403,
+            'endpoint3' => new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL),
+        ];
+
+        $this->payload->expects($this->exactly(4))
+                      ->method('set_token')
+                      ->withConsecutive([ 'endpoint' ], [ 'endpoint1' ], [ 'endpoint2' ], [ 'endpoint3' ])
+                      ->willReturnSelf();
+
+        $this->payload->expects($this->exactly(4))
+                      ->method('get_json_payload')
+                      ->willReturn($post);
+
+        $this->http->expects($this->once())
+                   ->method('request_multiple')
+                   ->with($requests, $options)
+                   ->willReturn($responses);
+
+        $result = $this->class->push($this->payload, $endpoints);
+
+        $this->assertSame($result->get_status('endpoint'), PushNotificationStatus::Success);
+        $this->assertSame($result->get_status('endpoint1'), PushNotificationStatus::TemporaryError);
+        $this->assertSame($result->get_status('endpoint2'), PushNotificationStatus::InvalidEndpoint);
+        $this->assertSame($result->get_status('endpoint3'), PushNotificationStatus::TemporaryError);
+
+        $this->unmock_function('curl_errno');
     }
 
 }

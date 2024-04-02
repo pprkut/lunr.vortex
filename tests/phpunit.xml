@@ -42,12 +42,15 @@
             <file>../src/Lunr/Vortex/FCM/Tests/FCMAndroidPayloadSetTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMApnsPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMApnsPayloadSetTest.php</file>
+            <file>../src/Lunr/Vortex/FCM/Tests/FCMBatchResponseBasePushTest.php</file>
+            <file>../src/Lunr/Vortex/FCM/Tests/FCMBatchResponseGetStatusTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadBaseTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadGetTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadHasTopicTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadHasConditionTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMResponseBasePushTest.php</file>
+            <file>../src/Lunr/Vortex/FCM/Tests/FCMResponseAddBatchResponseTest.php</file>
+            <file>../src/Lunr/Vortex/FCM/Tests/FCMResponseBaseTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMResponseGetStatusTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherBaseTest.php</file>
             <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherConfigureOAuthTokenTest.php</file>

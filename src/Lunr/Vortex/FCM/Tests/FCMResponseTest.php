@@ -12,6 +12,7 @@ namespace Lunr\Vortex\FCM\Tests;
 
 use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\FCM\FCMResponse;
+use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers
@@ -23,22 +24,10 @@ abstract class FCMResponseTest extends LunrBaseTest
 {
 
     /**
-     * Mock instance of the Logger class.
-     * @var LoggerInterface
+     * Mock instance of the FCMBatchResponse class.
+     * @var Lunr\Vortex\FCM\FCMBatchResponse
      */
-    protected $logger;
-
-    /**
-     * Mock instance of the Requests\Response class.
-     * @var Response
-     */
-    protected $response;
-
-    /**
-     * Instance of the tested class.
-     * @var FCMResponse
-     */
-    protected FCMResponse $class;
+    protected $batch_response;
 
     /**
      * Testcase Constructor.
@@ -47,9 +36,13 @@ abstract class FCMResponseTest extends LunrBaseTest
      */
     public function setUp(): void
     {
-        $this->logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
+        $this->batch_response = $this->getMockBuilder('Lunr\Vortex\FCM\FCMBatchResponse')
+                                     ->disableOriginalConstructor()
+                                     ->getMock();
 
-        $this->response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
+        $this->class = new FCMResponse();
+
+        parent::baseSetUp($this->class);
     }
 
     /**
@@ -57,11 +50,9 @@ abstract class FCMResponseTest extends LunrBaseTest
      */
     public function tearDown(): void
     {
-        unset($this->logger);
-        unset($this->response);
+        unset($this->batch_response);
         unset($this->class);
-
-        parent::tearDown();
+        unset($this->reflection);
     }
 
 }
