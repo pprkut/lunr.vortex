@@ -17,7 +17,7 @@ class FCMAndroidPayload
 
     /**
      * Array of Push Notification elements.
-     * @var array<string,mixed>
+     * @var FcmAndroidConfig
      */
     protected array $elements;
 
@@ -42,7 +42,7 @@ class FCMAndroidPayload
     /**
      * Construct the android payload for the fcm push notification.
      *
-     * @return array<string,mixed>
+     * @return FcmAndroidConfig
      */
     public function get_payload(): array
     {
@@ -57,9 +57,9 @@ class FCMAndroidPayload
      *
      * @param string $key The notification collapse key identifier
      *
-     * @return FCMAndroidPayload Self Reference
+     * @return $this
      */
-    public function set_collapse_key(string $key): self
+    public function set_collapse_key(string $key): static
     {
         $this->elements['collapse_key'] = $key;
 
@@ -74,9 +74,9 @@ class FCMAndroidPayload
      *
      * @param int $ttl The time in seconds for the notification to stay alive
      *
-     * @return FCMAndroidPayload Self Reference
+     * @return $this
      */
-    public function set_time_to_live(int $ttl): self
+    public function set_time_to_live(int $ttl): static
     {
         $this->elements['ttl'] = $ttl . 's';
 
@@ -88,9 +88,9 @@ class FCMAndroidPayload
      *
      * @param FCMAndroidPriority $priority Notification priority value.
      *
-     * @return FCMAndroidPayload Self Reference
+     * @return $this
      */
-    public function set_priority(FCMAndroidPriority $priority): self
+    public function set_priority(FCMAndroidPriority $priority): static
     {
         $this->elements['priority'] = $priority->value;
 
@@ -102,9 +102,9 @@ class FCMAndroidPayload
      *
      * @param string $category The category to set it to
      *
-     * @return FCMAndroidPayload Self Reference
+     * @return $this
      */
-    public function set_category(string $category): self
+    public function set_category(string $category): static
     {
         $this->elements['notification']['click_action'] = $category;
 
@@ -116,9 +116,9 @@ class FCMAndroidPayload
      *
      * @param string $tag The tag to set it to
      *
-     * @return FCMAndroidPayload Self Reference
+     * @return $this
      */
-    public function set_tag(string $tag): self
+    public function set_tag(string $tag): static
     {
         $this->elements['notification']['tag'] = $tag;
 
@@ -130,9 +130,9 @@ class FCMAndroidPayload
      *
      * @param string $color The color to set it to
      *
-     * @return FCMAndroidPayload Self Reference
+     * @return $this
      */
-    public function set_color(string $color): self
+    public function set_color(string $color): static
     {
         $this->elements['notification']['color'] = $color;
 
@@ -144,9 +144,9 @@ class FCMAndroidPayload
      *
      * @param string $icon The icon to set it to
      *
-     * @return FCMAndroidPayload Self Reference
+     * @return $this
      */
-    public function set_icon(string $icon): self
+    public function set_icon(string $icon): static
     {
         $this->elements['notification']['icon'] = $icon;
 
@@ -158,9 +158,9 @@ class FCMAndroidPayload
      *
      * @param string $sound The sound to set it to
      *
-     * @return FCMAndroidPayload Self Reference
+     * @return $this
      */
-    public function set_sound(string $sound): self
+    public function set_sound(string $sound): static
     {
         $this->elements['notification']['sound'] = $sound;
 

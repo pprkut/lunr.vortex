@@ -20,7 +20,7 @@ class FCMApnsPayload
 
     /**
      * Array of Push Notification elements.
-     * @var array
+     * @var FcmApnsConfig
      */
     protected array $elements;
 
@@ -43,7 +43,7 @@ class FCMApnsPayload
     /**
      * Construct the apns payload for the fcm push notification.
      *
-     * @return array
+     * @return FcmApnsConfig
      */
     public function get_payload(): array
     {
@@ -58,9 +58,9 @@ class FCMApnsPayload
      *
      * @param string $key The notification collapse key identifier
      *
-     * @return FCMApnsPayload Self Reference
+     * @return $this
      */
-    public function set_collapse_key(string $key): self
+    public function set_collapse_key(string $key): static
     {
         $this->elements['headers']['apns-collapse-id'] = $key;
 
@@ -72,9 +72,9 @@ class FCMApnsPayload
      *
      * @param bool $val Value for the "content_available" field.
      *
-     * @return FCMApnsPayload Self Reference
+     * @return $this
      */
-    public function set_content_available(bool $val): self
+    public function set_content_available(bool $val): static
     {
         $this->elements['payload']['aps']['content-available'] = (int) $val;
 
@@ -86,9 +86,9 @@ class FCMApnsPayload
      *
      * @param bool $mutable Notification mutable_content value.
      *
-     * @return FCMApnsPayload Self Reference
+     * @return $this
      */
-    public function set_mutable_content(bool $mutable): self
+    public function set_mutable_content(bool $mutable): static
     {
         $this->elements['payload']['aps']['mutable-content'] = (int) $mutable;
 
@@ -100,9 +100,9 @@ class FCMApnsPayload
      *
      * @param string $priority Notification priority value.
      *
-     * @return FCMApnsPayload Self Reference
+     * @return $this
      */
-    public function set_priority(string $priority): self
+    public function set_priority(string $priority): static
     {
         $priority = strtoupper($priority);
 
@@ -121,9 +121,9 @@ class FCMApnsPayload
      *
      * @param string $category The category to set it to
      *
-     * @return FCMApnsPayload Self Reference
+     * @return $this
      */
-    public function set_category(string $category): self
+    public function set_category(string $category): static
     {
         $this->elements['payload']['aps']['category'] = $category;
 
@@ -135,9 +135,9 @@ class FCMApnsPayload
      *
      * @param string $sound The sound to set it to
      *
-     * @return FCMApnsPayload Self Reference
+     * @return $this
      */
-    public function set_sound(string $sound): self
+    public function set_sound(string $sound): static
     {
         $this->elements['payload']['aps']['sound'] = $sound;
 

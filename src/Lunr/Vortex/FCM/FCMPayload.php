@@ -18,7 +18,7 @@ class FCMPayload
 
     /**
      * Array of Push Notification elements.
-     * @var array
+     * @var FcmPayloadData
      */
     protected array $elements;
 
@@ -83,11 +83,11 @@ class FCMPayload
      *
      * The fields of data represent the key-value pairs of the message's payload data.
      *
-     * @param array $data The actual notification information
+     * @param array<string,string> $data The actual notification information
      *
-     * @return FCMPayload Self Reference
+     * @return $this
      */
-    public function set_data(array $data): self
+    public function set_data(array $data): static
     {
         $this->elements['data'] = $data;
 
@@ -119,11 +119,11 @@ class FCMPayload
      *
      * The fields of data represent the key-value pairs of the message's payload notification data.
      *
-     * @param array $notification The actual notification information
+     * @param FcmNotification $notification The actual notification information
      *
-     * @return FCMPayload Self Reference
+     * @return $this
      */
-    public function set_notification(array $notification): self
+    public function set_notification(array $notification): static
     {
         $this->elements['notification'] = $notification;
 
@@ -135,9 +135,9 @@ class FCMPayload
      *
      * @param string $topic String of the topic name
      *
-     * @return FCMPayload Self Reference
+     * @return $this
      */
-    public function set_topic(string $topic): self
+    public function set_topic(string $topic): static
     {
         $this->elements['topic'] = $topic;
 
@@ -153,9 +153,9 @@ class FCMPayload
      *
      * @param string $condition Key-value pairs of payload data
      *
-     * @return FCMPayload Self Reference
+     * @return $this
      */
-    public function set_condition(string $condition): self
+    public function set_condition(string $condition): static
     {
         $this->elements['condition'] = $condition;
 
@@ -165,12 +165,12 @@ class FCMPayload
     /**
      * Set additional FCM values in the 'fcm_options' key.
      *
-     * @param string $key   Options key.
-     * @param string $value Options value.
+     * @param FcmOptionKeys $key   Options key.
+     * @param string        $value Options value.
      *
-     * @return FCMPayload Self Reference
+     * @return $this
      */
-    public function set_options(string $key, string $value): self
+    public function set_options(string $key, string $value): static
     {
         $this->elements['fcm_options'][$key] = $value;
 
@@ -182,9 +182,9 @@ class FCMPayload
      *
      * @param string $token Token of the target for the notification.
      *
-     * @return FCMPayload Self Reference
+     * @return $this
      */
-    public function set_token(string $token): self
+    public function set_token(string $token): static
     {
         $this->elements['token'] = $token;
 
@@ -204,7 +204,7 @@ class FCMPayload
     }
 
     /**
-     * Returns a reference the apns payload element.
+     * Returns a reference of the apns payload element.
      *
      * @return FCMApnsPayload
      */
