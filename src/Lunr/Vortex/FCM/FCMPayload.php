@@ -192,65 +192,27 @@ class FCMPayload
     }
 
     /**
-     * Get the android payload element.
+     * Returns a reference of the android payload element.
      *
      * @return FCMAndroidPayload
      */
-    public function get_android_payload(): FCMAndroidPayload
+    public function android_payload(): FCMAndroidPayload
     {
-        return $this->android_payload ?? new FCMAndroidPayload();
+        $this->android_payload ??= new FCMAndroidPayload();
+
+        return $this->android_payload;
     }
 
     /**
-     * Set the android payload element.
-     *
-     * @param array|FCMAndroidPayload $payload The android payload element
-     *
-     * @return self self Reference
-     */
-    public function set_android_payload(array|FCMAndroidPayload $payload): self
-    {
-        if (is_array($payload))
-        {
-            $this->elements['android'] = $payload;
-
-            return $this;
-        }
-
-        $this->android_payload = $payload;
-
-        return $this;
-    }
-
-    /**
-     * Get the apns payload element.
+     * Returns a reference the apns payload element.
      *
      * @return FCMApnsPayload
      */
-    public function get_apns_payload(): FCMApnsPayload
+    public function apns_payload(): FCMApnsPayload
     {
-        return $this->apns_payload ?? new FCMApnsPayload();
-    }
+        $this->apns_payload ??= new FCMApnsPayload();
 
-    /**
-     * Set the apns payload element.
-     *
-     * @param array|FCMApnsPayload $payload The android payload element
-     *
-     * @return self self Reference
-     */
-    public function set_apns_payload(array|FCMApnsPayload $payload): self
-    {
-        if (is_array($payload))
-        {
-            $this->elements['apns'] = $payload;
-
-            return $this;
-        }
-
-        $this->apns_payload = $payload;
-
-        return $this;
+        return $this->apns_payload;
     }
 
 }

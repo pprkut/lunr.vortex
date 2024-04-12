@@ -151,47 +151,59 @@ class FCMPayloadGetTest extends FCMPayloadTest
     }
 
     /**
-     * Test get_android_payload() returns new payload.
+     * Test android_payload() returns new payload.
      *
-     * @covers Lunr\Vortex\FCM\FCMPayload::get_android_payload
+     * @covers Lunr\Vortex\FCM\FCMPayload::android_payload
      */
-    public function testGetAndroidPayloadReturnsNewPayload(): void
+    public function testAndroidPayloadReturnsNewPayload(): void
     {
-        $this->assertInstanceOf(FCMAndroidPayload::class, $this->class->get_android_payload());
+        $return = $this->class->android_payload();
+
+        $this->assertInstanceOf(FCMAndroidPayload::class, $return);
+
+        $property_value = $this->get_reflection_property_value('android_payload');
+
+        $this->assertSame($return, $property_value);
     }
 
     /**
-     * Test get_android_payload() returns saved payload.
+     * Test android_payload() returns saved payload.
      *
-     * @covers Lunr\Vortex\FCM\FCMPayload::get_android_payload
+     * @covers Lunr\Vortex\FCM\FCMPayload::android_payload
      */
-    public function testGetAndroidPayloadReturnsSavedPayload(): void
+    public function testAndroidPayloadReturnsSavedPayload(): void
     {
         $this->set_reflection_property_value('android_payload', $this->android_payload);
 
-        $this->assertSame($this->android_payload, $this->class->get_android_payload());
+        $this->assertSame($this->android_payload, $this->class->android_payload());
     }
 
     /**
-     * Test get_apns_payload() returns new payload.
+     * Test apns_payload() returns new payload.
      *
-     * @covers Lunr\Vortex\FCM\FCMPayload::get_apns_payload
+     * @covers Lunr\Vortex\FCM\FCMPayload::apns_payload
      */
     public function testGetApnsPayloadReturnsNewPayload(): void
     {
-        $this->assertInstanceOf(FCMApnsPayload::class, $this->class->get_apns_payload());
+        $return = $this->class->apns_payload();
+
+        $this->assertInstanceOf(FCMApnsPayload::class, $return);
+
+        $property_value = $this->get_reflection_property_value('apns_payload');
+
+        $this->assertSame($return, $property_value);
     }
 
     /**
-     * Test get_apns_payload() returns saved payload.
+     * Test apns_payload() returns saved payload.
      *
-     * @covers Lunr\Vortex\FCM\FCMPayload::get_apns_payload
+     * @covers Lunr\Vortex\FCM\FCMPayload::apns_payload
      */
     public function testGetApnsPayloadReturnsSavedPayload(): void
     {
         $this->set_reflection_property_value('apns_payload', $this->apns_payload);
 
-        $this->assertSame($this->apns_payload, $this->class->get_apns_payload());
+        $this->assertSame($this->apns_payload, $this->class->apns_payload());
     }
 
 }
