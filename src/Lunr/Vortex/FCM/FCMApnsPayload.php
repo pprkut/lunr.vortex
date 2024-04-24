@@ -14,6 +14,16 @@ use ReflectionClass;
 
 /**
  * Firebase Cloud Messaging Push Notification APNS Payload Generator.
+ *
+ * @phpstan-type FcmApnsOptions array{
+ *     analytics_label?: string,
+ *     image?: string
+ * }
+ * @phpstan-type FcmApnsConfig array{
+ *     headers?: array<string,string>,
+ *     payload?: array<string, mixed>,
+ *     fcm_options?: FcmApnsOptions
+ * }
  */
 class FCMApnsPayload
 {

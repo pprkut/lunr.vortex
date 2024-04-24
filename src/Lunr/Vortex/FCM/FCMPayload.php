@@ -14,6 +14,29 @@ use InvalidArgumentException;
 
 /**
  * Firebase Cloud Messaging Push Notification Payload Generator.
+ *
+ * @phpstan-import-type FcmAndroidConfig from FCMAndroidPayload
+ * @phpstan-import-type FcmApnsConfig from FCMApnsPayload
+ * @phpstan-type FcmNotification array{
+ *     title?: string,
+ *     body?: string,
+ *     image?: string
+ * }
+ * @phpstan-type FcmOptions array{
+ *     analytics_label?: string
+ * }
+ * @phpstan-type FcmPayloadData array{
+ *     name?: string,
+ *     data?: array<string,string>,
+ *     notification?: FcmNotification,
+ *     android?: FcmAndroidConfig,
+ *     apns?: FcmApnsConfig,
+ *     fcm_options?: FcmOptions,
+ *     token?: string,
+ *     topic?: string,
+ *     condition?: string
+ * }
+ * @phpstan-type FcmOptionKeys "analytics_label"
  */
 class FCMPayload
 {

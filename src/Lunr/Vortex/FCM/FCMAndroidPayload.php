@@ -11,6 +11,58 @@ namespace Lunr\Vortex\FCM;
 
 /**
  * Firebase Cloud Messaging Push Notification Android Payload Generator.
+ *
+ * @phpstan-type FcmColor array{
+ *     red: int|float,
+ *     green: int|float,
+ *     blue: int|float,
+ *     alpha: int|float
+ * }
+ * @phpstan-type FcmLightSettings array{
+ *     color?: FcmColor,
+ *     light_on_duration?: string,
+ *     light_off_duration?: string
+ * }
+ * @phpstan-type FcmAndroidNotification array{
+ *     title?: string,
+ *     body?: string,
+ *     icon?: string,
+ *     color?: string,
+ *     sound?: string,
+ *     tag?: string,
+ *     click_action?: string,
+ *     body_loc_key?: string,
+ *     body_loc_args?: string[],
+ *     title_loc_key?: string,
+ *     title_loc_args?: string[],
+ *     channel_id?: string,
+ *     ticker?: string,
+ *     sticky?: bool,
+ *     event_time?: string,
+ *     local_only?: bool,
+ *     notification_priority?: value-of<FCMNotificationPriority>,
+ *     default_sound?: bool,
+ *     default_vibrate_timings?: bool,
+ *     default_light_settings?: bool,
+ *     vibrate_timings?: string[],
+ *     visibility?: value-of<FCMVisibility>,
+ *     notification_count?: int,
+ *     light_settings?: FcmLightSettings[],
+ *     image?: string
+ * }
+ * @phpstan-type FcmAndroidOptions array{
+ *     analytics_label?: string
+ * }
+ * @phpstan-type FcmAndroidConfig array{
+ *     collapse_key?: string,
+ *     priority?: value-of<FCMAndroidPriority>,
+ *     ttl?: string,
+ *     restricted_package_name?: string,
+ *     data?: array<string, string>,
+ *     notification?: FcmAndroidNotification,
+ *     fcm_options?: FcmAndroidOptions,
+ *     direct_boot_ok?: bool
+ * }
  */
 class FCMAndroidPayload
 {

@@ -7,18 +7,3 @@ parameters:
         - phpstan.autoload.inc.php
     excludePaths:
         - ../src/*/Tests/*
-    typeAliases:
-        FcmNotification: 'array{title?: string, body?: string, image?: string}'
-        FcmOptions: 'array{analytics_label?: string}'
-        FcmOptionKeys: '"analytics_label"'
-        FcmAndroidMessagePriority: '"NORMAL"|"HIGH"'
-        FcmNotificationPriority: '"PRIORITY_UNSPECIFIED"|"PRIORITY_MIN"|"PRIORITY_LOW"|"PRIORITY_DEFAULT"|"PRIORITY_HIGH"|"PRIORITY_MAX"'
-        FcmVisibility: '"VISIBILITY_UNSPECIFIED"|"PRIVATE"|"PUBLIC"|"SECRET"'
-        FcmColor: 'array{red: int|float, green: int|float, blue: int|float, alpha: int|float}'
-        FcmLightSettings: 'array{color?: FcmColor, light_on_duration?: string, light_off_duration?: string}'
-        FcmAndroidNotification: 'array{title?: string, body?: string, icon?: string, color?: string, sound?: string, tag?: string, click_action?: string, body_loc_key?: string, body_loc_args?: string[], title_loc_key?: string, title_loc_args?: string[], channel_id?: string, ticker?: string, sticky?: bool, event_time?: string, local_only?: bool, notification_priority?: FcmNotificationPriority, default_sound?: bool, default_vibrate_timings?: bool, default_light_settings?: bool, vibrate_timings?: string[], visibility?: FcmVisibility, notification_count?: int, light_settings?: FcmLightSettings[], image?: string}'
-        FcmAndroidOptions: 'array{analytics_label?: string}'
-        FcmAndroidConfig: 'array{collapse_key?: string, priority?: FcmAndroidMessagePriority, ttl?: string, restricted_package_name?: string, data?: array<string, string>, notification?: FcmAndroidNotification, fcm_options?: FcmAndroidOptions, direct_boot_ok?: bool}'
-        FcmApnsOptions: 'array{analytics_label?: string, image?: string}'
-        FcmApnsConfig: 'array{headers?: array<string,string>, payload?: array<string, mixed>, fcm_options?: FcmApnsOptions}'
-        FcmPayloadData: 'array{name?: string, data?: array<string,string>, notification?: FcmNotification, android?: FcmAndroidConfig, apns?: FcmApnsConfig, fcm_options?: FcmOptions, token?: string, topic?: string, condition?: string}'
