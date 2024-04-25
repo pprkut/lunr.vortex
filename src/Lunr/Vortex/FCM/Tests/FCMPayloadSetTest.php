@@ -10,6 +10,8 @@
 
 namespace Lunr\Vortex\FCM\Tests;
 
+use InvalidArgumentException;
+
 /**
  * This class contains tests for the setters of the FCMPayload class.
  *
@@ -44,6 +46,21 @@ class FCMPayloadSetTest extends FCMPayloadTest
     }
 
     /**
+     * Test set_data() decodes array value to string.
+     *
+     * @covers \Lunr\Vortex\FCM\FCMPayload::set_data
+     */
+    public function testSetDataThrowsExceptionWhenArrayValueIsNotString(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Data type of test_key must be a string!');
+
+        $this->class->set_data([ 'test_key' => [ 'value_key' => 'value' ] ]);
+
+        $value = $this->get_reflection_property_value('elements');
+    }
+
+    /**
      * Test set_data() works correctly.
      *
      * @covers \Lunr\Vortex\FCM\FCMPayload::set_data
@@ -65,7 +82,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
      */
     public function testSetDataReturnsSelfReference(): void
     {
-        $this->assertSame($this->class, $this->class->set_data([]));
+        $this->assertSame($this->class, $this->class->set_data([ 'key' => 'value' ]));
     }
 
     /**

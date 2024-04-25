@@ -10,6 +10,8 @@
 
 namespace Lunr\Vortex\FCM;
 
+use InvalidArgumentException;
+
 /**
  * Firebase Cloud Messaging Push Notification Payload Generator.
  */
@@ -89,6 +91,17 @@ class FCMPayload
      */
     public function set_data(array $data): static
     {
+        foreach ($data as $key => &$value)
+        {
+            // @phpstan-ignore-next-line
+            if (is_string($value) === FALSE)
+            {
+                throw new InvalidArgumentException('Data type of ' . $key . ' must be a string!');
+            }
+        }
+
+        unset($value);
+
         $this->elements['data'] = $data;
 
         return $this;
