@@ -103,6 +103,12 @@
             <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherPushTest.php</file>
             <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherSetTest.php</file>
         </testsuite>
+        <testsuite name="General">
+            <file>../src/Lunr/Vortex/Tests/PushNotificationDispatcherBaseTest.php</file>
+            <file>../src/Lunr/Vortex/Tests/PushNotificationDispatcherDispatchTest.php</file>
+            <file>../src/Lunr/Vortex/Tests/PushNotificationDispatcherGetTest.php</file>
+            <file>../src/Lunr/Vortex/Tests/PushNotificationDispatcherSetupTest.php</file>
+        </testsuite>
     </testsuites>
     <coverage>
         <include>
