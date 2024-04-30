@@ -23,6 +23,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use UnexpectedValueException;
 use WpOrg\Requests\Exception as RequestsException;
+use WpOrg\Requests\Requests;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
 
@@ -304,6 +305,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
             $requests[$endpoint] = [
                 'url'     => $url,
                 'headers' => $headers,
+                'type'    => Requests::POST,
                 'data'    => $payload->set_token($endpoint)->get_json_payload(JSON_UNESCAPED_UNICODE)
             ];
         }

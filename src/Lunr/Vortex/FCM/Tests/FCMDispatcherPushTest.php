@@ -259,6 +259,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'endpoint' => [
                 'url'     => $url,
                 'headers' => $headers,
+                'type'    => 'POST',
                 'data'    => '{"token":"endpoint"}',
             ]
         ];
@@ -322,6 +323,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'endpoint' => [
                 'url'     => $url,
                 'headers' => $headers,
+                'type'    => 'POST',
                 'data'    => '{"token":"endpoint"}',
             ]
         ];
@@ -386,6 +388,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'endpoint' => [
                 'url'     => $url,
                 'headers' => $headers,
+                'type'    => 'POST',
                 'data'    => $post,
             ]
         ];
@@ -438,6 +441,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'endpoint' => [
                 'url'     => $url,
                 'headers' => $headers,
+                'type'    => 'POST',
                 'data'    => $post,
             ]
         ];
@@ -490,6 +494,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'endpoint' => [
                 'url'     => $url,
                 'headers' => $headers,
+                'type'    => 'POST',
                 'data'    => $post,
             ]
         ];
@@ -548,21 +553,25 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'endpoint' => [
                 'url'     => $url,
                 'headers' => $headers,
+                'type'    => 'POST',
                 'data'    => $post,
             ],
             'endpoint1' => [
                 'url'     => $url,
                 'headers' => $headers,
+                'type'    => 'POST',
                 'data'    => $post,
             ],
             'endpoint2' => [
                 'url'     => $url,
                 'headers' => $headers,
+                'type'    => 'POST',
                 'data'    => $post,
             ],
             'endpoint3' => [
                 'url'     => $url,
                 'headers' => $headers,
+                'type'    => 'POST',
                 'data'    => $post,
             ],
         ];
