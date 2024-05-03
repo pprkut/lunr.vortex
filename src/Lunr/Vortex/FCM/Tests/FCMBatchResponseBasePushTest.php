@@ -28,7 +28,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      *
      * @covers Lunr\Vortex\FCM\FCMBatchResponse::__construct
      */
-    public function testPushSuccesWithSingleSuccess(): void
+    public function testPushSuccessWithSingleSuccess(): void
     {
         $content   = file_get_contents(TEST_STATICS . '/Vortex/fcm/response_single_success.json');
         $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3' ];
@@ -66,7 +66,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      *
      * @covers Lunr\Vortex\FCM\FCMBatchResponse::__construct
      */
-    public function testPushSuccesWithPreconditionFailWithSingle(): void
+    public function testPushSuccessWithPreconditionFailWithSingle(): void
     {
         $endpoints = [ 'endpoint1' ];
 
@@ -98,7 +98,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      *
      * @covers Lunr\Vortex\FCM\FCMBatchResponse::__construct
      */
-    public function testPushSuccesWithPreconditionFailWithMultiple(): void
+    public function testPushSuccessWithPreconditionFailWithMultiple(): void
     {
         $endpoints = [ 'endpoint1', 'endpoint2' ];
 
@@ -348,7 +348,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $data[] = [ 'Invalid parameter', 400, PushNotificationStatus::Error ];
         $data[] = [ 'Error with authentication', 401, PushNotificationStatus::Error ];
         $data[] = [ 'Mismatched sender', 403, PushNotificationStatus::InvalidEndpoint ];
-        $data[] = [ 'Unregisted or missing token', 404, PushNotificationStatus::InvalidEndpoint ];
+        $data[] = [ 'Unregistered or missing token', 404, PushNotificationStatus::InvalidEndpoint ];
         $data[] = [ 'Exceeded qouta error', 429, PushNotificationStatus::TemporaryError ];
         $data[] = [ 'Internal error', 500, PushNotificationStatus::TemporaryError ];
         $data[] = [ 'Timeout', 503, PushNotificationStatus::TemporaryError ];

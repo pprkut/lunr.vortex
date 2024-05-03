@@ -30,7 +30,7 @@ class EmailResponseGetSuccessStatusTest extends EmailResponseTest
 
     /**
      * Test that get_status() returns PushNotificationStatus::Success
-     * for an endpoint with a succesful notification.
+     * for an endpoint with a successful notification.
      *
      * @covers Lunr\Vortex\Email\EmailResponse::get_status
      */
