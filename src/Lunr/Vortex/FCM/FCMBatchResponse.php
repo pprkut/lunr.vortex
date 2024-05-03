@@ -84,7 +84,7 @@ class FCMBatchResponse implements PushNotificationResponseInterface
     }
 
     /**
-     * Set endpoint statusses
+     * Set endpoint statuses
      *
      * @return void
      */
@@ -170,7 +170,7 @@ class FCMBatchResponse implements PushNotificationResponseInterface
                 break;
             case 404:
                 $status          = PushNotificationStatus::InvalidEndpoint;
-                $error_message ??= 'Unregisted or missing token';
+                $error_message ??= 'Unregistered or missing token';
                 break;
             case 429:
                 $status          = PushNotificationStatus::TemporaryError;
