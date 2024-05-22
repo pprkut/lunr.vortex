@@ -20,7 +20,7 @@ use PHPUnit\Framework\MockObject\Stub;
  *
  * @covers Lunr\Vortex\FCM\FCMApnsPayload
  */
-class FCMApnsPayloadTest extends LunrBaseTest
+abstract class FCMApnsPayloadTest extends LunrBaseTest
 {
 
     /**

@@ -22,7 +22,7 @@ use ReflectionClass;
  *
  * @covers Lunr\Vortex\APNS\APNSPayload
  */
-class APNSPayloadTest extends LunrBaseTest
+abstract class APNSPayloadTest extends LunrBaseTest
 {
 
     /**

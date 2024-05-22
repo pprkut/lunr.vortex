@@ -23,7 +23,7 @@ use PHPUnit\Framework\MockObject\Stub;
  *
  * @covers Lunr\Vortex\FCM\FCMPayload
  */
-class FCMPayloadTest extends LunrBaseTest
+abstract class FCMPayloadTest extends LunrBaseTest
 {
 
     /**

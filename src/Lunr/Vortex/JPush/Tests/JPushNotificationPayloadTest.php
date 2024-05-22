@@ -20,7 +20,7 @@ use ReflectionClass;
  *
  * @covers Lunr\Vortex\JPush\JPushNotificationPayload
  */
-class JPushNotificationPayloadTest extends LunrBaseTest
+abstract class JPushNotificationPayloadTest extends LunrBaseTest
 {
 
     /**

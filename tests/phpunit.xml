@@ -16,98 +16,23 @@
     </php>
     <testsuites>
         <testsuite name="APNS">
-            <file>../src/Lunr/Vortex/APNS/Tests/APNSPayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/APNS/Tests/APNSPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/APNS/ApnsPHP/Tests/APNSResponseBasePushSuccessTest.php</file>
-            <file>../src/Lunr/Vortex/APNS/ApnsPHP/Tests/APNSResponseBasePushErrorTest.php</file>
-            <file>../src/Lunr/Vortex/APNS/ApnsPHP/Tests/APNSResponseGetStatusTest.php</file>
-            <file>../src/Lunr/Vortex/APNS/ApnsPHP/Tests/APNSDispatcherBaseTest.php</file>
-            <file>../src/Lunr/Vortex/APNS/ApnsPHP/Tests/APNSDispatcherPushTest.php</file>
+            <directory>../src/Lunr/Vortex/APNS/Tests/</directory>
+            <directory>../src/Lunr/Vortex/APNS/ApnsPHP/Tests/</directory>
         </testsuite>
         <testsuite name="Email">
-            <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/Email/Tests/EmailPayloadTest.php</file>
-            <file>../src/Lunr/Vortex/Email/Tests/EmailResponseTest.php</file>
-            <file>../src/Lunr/Vortex/Email/Tests/EmailResponseGetErrorStatusTest.php</file>
-            <file>../src/Lunr/Vortex/Email/Tests/EmailResponseGetSuccessStatusTest.php</file>
-            <file>../src/Lunr/Vortex/Email/Tests/EmailResponseGetUnknownStatusTest.php</file>
-            <file>../src/Lunr/Vortex/Email/Tests/EmailDispatcherBaseTest.php</file>
-            <file>../src/Lunr/Vortex/Email/Tests/EmailDispatcherPushTest.php</file>
-            <file>../src/Lunr/Vortex/Email/Tests/EmailDispatcherSetTest.php</file>
+            <directory>../src/Lunr/Vortex/Email/Tests/</directory>
         </testsuite>
         <testsuite name="FCM">
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMAndroidPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMAndroidPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMApnsPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMApnsPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMBatchResponseBasePushTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMBatchResponseGetStatusTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadHasTopicTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadHasConditionTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMResponseAddBatchResponseTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMResponseBaseTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMResponseGetStatusTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherBaseTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherConfigureOAuthTokenTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherGetOAuthTokenTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherSetTest.php</file>
-            <file>../src/Lunr/Vortex/FCM/Tests/FCMDispatcherPushTest.php</file>
+            <directory>../src/Lunr/Vortex/FCM/Tests/</directory>
         </testsuite>
         <testsuite name="JPush">
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushMessagePayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushMessagePayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotificationPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotificationPayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotificationPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotification3rdPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotification3rdPayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushNotification3rdPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushBatchResponseBasePushErrorTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushBatchResponseBasePushSuccessTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushBatchResponseGetMessageIdTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushBatchResponseGetStatusTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushResponseBaseTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushResponseAddBatchResponseTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushResponseGetMessageIdTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushResponseGetStatusTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherBaseTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherSetTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushDispatcherPushTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushReportBaseTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushReportGetReportTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushReportGetStatusesTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushReportReportEndpointErrorTest.php</file>
-            <file>../src/Lunr/Vortex/JPush/Tests/JPushReportReportErrorTest.php</file>
+            <directory>../src/Lunr/Vortex/JPush/Tests/</directory>
         </testsuite>
         <testsuite name="WNS">
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSPayloadBaseTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSToastPayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSToastPayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSTilePayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSTilePayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSBadgePayloadSetTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSBadgePayloadGetTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSResponseSetTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSResponseSuccessTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSResponseErrorTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherBaseTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherGetOAuthTokenTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherConfigureOAuthTokenTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherPushTest.php</file>
-            <file>../src/Lunr/Vortex/WNS/Tests/WNSDispatcherSetTest.php</file>
+            <directory>../src/Lunr/Vortex/WNS/Tests/</directory>
         </testsuite>
         <testsuite name="General">
-            <file>../src/Lunr/Vortex/Tests/PushNotificationDispatcherBaseTest.php</file>
-            <file>../src/Lunr/Vortex/Tests/PushNotificationDispatcherDispatchTest.php</file>
-            <file>../src/Lunr/Vortex/Tests/PushNotificationDispatcherGetTest.php</file>
-            <file>../src/Lunr/Vortex/Tests/PushNotificationDispatcherSetupTest.php</file>
+            <directory>../src/Lunr/Vortex/Tests/</directory>
         </testsuite>
     </testsuites>
     <coverage>
