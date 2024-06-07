@@ -13,6 +13,7 @@ namespace Lunr\Vortex\FCM\Tests;
 use Lunr\Vortex\FCM\FCMBatchResponse;
 use Lunr\Vortex\PushNotificationStatus;
 use WpOrg\Requests\Exception as RequestsException;
+use WpOrg\Requests\Exception\Transport\Curl as CurlException;
 
 /**
  * This class contains tests for the constructor of the FCMBatchResponse class
@@ -161,7 +162,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertySame('endpoints', $endpoints);
-        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Unknown ]);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TemporaryError ]);
         $this->assertPropertySame('responses', $responses);
 
         $this->unmock_function('curl_errno');
@@ -185,9 +186,9 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         ];
 
         $statuses = [
-            'endpoint1' => PushNotificationStatus::Unknown,
-            'endpoint2' => PushNotificationStatus::Unknown,
-            'endpoint3' => PushNotificationStatus::Unknown,
+            'endpoint1' => PushNotificationStatus::TemporaryError,
+            'endpoint2' => PushNotificationStatus::TemporaryError,
+            'endpoint3' => PushNotificationStatus::TemporaryError,
         ];
 
         $this->logger->expects($this->exactly(3))
@@ -266,6 +267,258 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
             'endpoint1' => new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL),
             'endpoint2' => new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL),
             'endpoint3' => new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL),
+        ];
+
+        $statuses = [
+            'endpoint1' => PushNotificationStatus::TemporaryError,
+            'endpoint2' => PushNotificationStatus::TemporaryError,
+            'endpoint3' => PushNotificationStatus::TemporaryError,
+        ];
+
+        $this->logger->expects($this->exactly(3))
+                     ->method('warning')
+                     ->withConsecutive(
+                         [
+                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                             [ 'endpoint' => 'endpoint1', 'error' => 'cURL error 28: Request timed out' ]
+                         ],
+                         [
+                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                             [ 'endpoint' => 'endpoint2', 'error' => 'cURL error 28: Request timed out' ]
+                         ],
+                         [
+                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                             [ 'endpoint' => 'endpoint3', 'error' => 'cURL error 28: Request timed out' ]
+                         ]
+                     );
+
+        $this->class = new FCMBatchResponse($responses, $this->logger, $endpoints);
+
+        parent::baseSetUp($this->class);
+
+        $this->assertPropertySame('logger', $this->logger);
+        $this->assertPropertySame('endpoints', $endpoints);
+        $this->assertPropertyEquals('statuses', $statuses);
+        $this->assertPropertySame('responses', $responses);
+
+        $this->unmock_function('curl_errno');
+    }
+
+    /**
+     * Test constructor behavior for error of push notification in case of timeout request.
+     *
+     * @covers Lunr\Vortex\FCM\FCMBatchResponse::__construct
+     */
+    public function testPushCurlErrorEasyWithSingleEndpoints(): void
+    {
+        $this->mock_function('curl_errno', function () { return 28; });
+
+        $endpoints = [ 'endpoint1' ];
+
+        $responses = [ 'endpoint1' => new RequestsException('cURL error 28: Request timed out', CurlException::EASY, NULL) ];
+
+        $this->logger->expects($this->once())
+                     ->method('warning')
+                     ->with(
+                         'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                         [ 'endpoint' => 'endpoint1', 'error' => 'cURL error 28: Request timed out' ]
+                     );
+
+        $this->class = new FCMBatchResponse($responses, $this->logger, $endpoints);
+
+        parent::baseSetUp($this->class);
+
+        $this->assertPropertySame('logger', $this->logger);
+        $this->assertPropertySame('endpoints', $endpoints);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TemporaryError ]);
+        $this->assertPropertySame('responses', $responses);
+
+        $this->unmock_function('curl_errno');
+    }
+
+    /**
+     * Test constructor behavior for error of push notification in case of timeout request.
+     *
+     * @covers Lunr\Vortex\FCM\FCMBatchResponse::__construct
+     */
+    public function testPushCurlErrorEasyWithMultipleEndpoints(): void
+    {
+        $this->mock_function('curl_errno', function () { return 28; });
+
+        $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3' ];
+
+        $responses = [
+            'endpoint1' => new RequestsException('cURL error 28: Request timed out', CurlException::EASY, NULL),
+            'endpoint2' => new RequestsException('cURL error 28: Request timed out', CurlException::EASY, NULL),
+            'endpoint3' => new RequestsException('cURL error 28: Request timed out', CurlException::EASY, NULL),
+        ];
+
+        $statuses = [
+            'endpoint1' => PushNotificationStatus::TemporaryError,
+            'endpoint2' => PushNotificationStatus::TemporaryError,
+            'endpoint3' => PushNotificationStatus::TemporaryError,
+        ];
+
+        $this->logger->expects($this->exactly(3))
+                     ->method('warning')
+                     ->withConsecutive(
+                         [
+                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                             [ 'endpoint' => 'endpoint1', 'error' => 'cURL error 28: Request timed out' ]
+                         ],
+                         [
+                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                             [ 'endpoint' => 'endpoint2', 'error' => 'cURL error 28: Request timed out' ]
+                         ],
+                         [
+                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                             [ 'endpoint' => 'endpoint3', 'error' => 'cURL error 28: Request timed out' ]
+                         ]
+                     );
+
+        $this->class = new FCMBatchResponse($responses, $this->logger, $endpoints);
+
+        parent::baseSetUp($this->class);
+
+        $this->assertPropertySame('logger', $this->logger);
+        $this->assertPropertySame('endpoints', $endpoints);
+        $this->assertPropertyEquals('statuses', $statuses);
+        $this->assertPropertySame('responses', $responses);
+
+        $this->unmock_function('curl_errno');
+    }
+
+    /**
+     * Test constructor behavior for error of push notification in case of timeout request.
+     *
+     * @covers Lunr\Vortex\FCM\FCMBatchResponse::__construct
+     */
+    public function testPushCurlErrorMultiWithSingleEndpoints(): void
+    {
+        $this->mock_function('curl_errno', function () { return 28; });
+
+        $endpoints = [ 'endpoint1' ];
+
+        $responses = [ 'endpoint1' => new RequestsException('cURL error 28: Request timed out', CurlException::MULTI, NULL) ];
+
+        $this->logger->expects($this->once())
+                     ->method('warning')
+                     ->with(
+                         'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                         [ 'endpoint' => 'endpoint1', 'error' => 'cURL error 28: Request timed out' ]
+                     );
+
+        $this->class = new FCMBatchResponse($responses, $this->logger, $endpoints);
+
+        parent::baseSetUp($this->class);
+
+        $this->assertPropertySame('logger', $this->logger);
+        $this->assertPropertySame('endpoints', $endpoints);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TemporaryError ]);
+        $this->assertPropertySame('responses', $responses);
+
+        $this->unmock_function('curl_errno');
+    }
+
+    /**
+     * Test constructor behavior for error of push notification in case of timeout request.
+     *
+     * @covers Lunr\Vortex\FCM\FCMBatchResponse::__construct
+     */
+    public function testPushCurlErrorMultiWithMultipleEndpoints(): void
+    {
+        $this->mock_function('curl_errno', function () { return 28; });
+
+        $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3' ];
+
+        $responses = [
+            'endpoint1' => new RequestsException('cURL error 28: Request timed out', CurlException::MULTI, NULL),
+            'endpoint2' => new RequestsException('cURL error 28: Request timed out', CurlException::MULTI, NULL),
+            'endpoint3' => new RequestsException('cURL error 28: Request timed out', CurlException::MULTI, NULL),
+        ];
+
+        $statuses = [
+            'endpoint1' => PushNotificationStatus::TemporaryError,
+            'endpoint2' => PushNotificationStatus::TemporaryError,
+            'endpoint3' => PushNotificationStatus::TemporaryError,
+        ];
+
+        $this->logger->expects($this->exactly(3))
+                     ->method('warning')
+                     ->withConsecutive(
+                         [
+                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                             [ 'endpoint' => 'endpoint1', 'error' => 'cURL error 28: Request timed out' ]
+                         ],
+                         [
+                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                             [ 'endpoint' => 'endpoint2', 'error' => 'cURL error 28: Request timed out' ]
+                         ],
+                         [
+                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                             [ 'endpoint' => 'endpoint3', 'error' => 'cURL error 28: Request timed out' ]
+                         ]
+                     );
+
+        $this->class = new FCMBatchResponse($responses, $this->logger, $endpoints);
+
+        parent::baseSetUp($this->class);
+
+        $this->assertPropertySame('logger', $this->logger);
+        $this->assertPropertySame('endpoints', $endpoints);
+        $this->assertPropertyEquals('statuses', $statuses);
+        $this->assertPropertySame('responses', $responses);
+
+        $this->unmock_function('curl_errno');
+    }
+
+    /**
+     * Test constructor behavior for error of push notification in case of timeout request.
+     *
+     * @covers Lunr\Vortex\FCM\FCMBatchResponse::__construct
+     */
+    public function testPushCurlErrorShareWithSingleEndpoints(): void
+    {
+        $this->mock_function('curl_errno', function () { return 28; });
+
+        $endpoints = [ 'endpoint1' ];
+
+        $responses = [ 'endpoint1' => new RequestsException('cURL error 28: Request timed out', CurlException::SHARE, NULL) ];
+
+        $this->logger->expects($this->once())
+                     ->method('warning')
+                     ->with(
+                         'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                         [ 'endpoint' => 'endpoint1', 'error' => 'cURL error 28: Request timed out' ]
+                     );
+
+        $this->class = new FCMBatchResponse($responses, $this->logger, $endpoints);
+
+        parent::baseSetUp($this->class);
+
+        $this->assertPropertySame('logger', $this->logger);
+        $this->assertPropertySame('endpoints', $endpoints);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TemporaryError ]);
+        $this->assertPropertySame('responses', $responses);
+
+        $this->unmock_function('curl_errno');
+    }
+
+    /**
+     * Test constructor behavior for error of push notification in case of timeout request.
+     *
+     * @covers Lunr\Vortex\FCM\FCMBatchResponse::__construct
+     */
+    public function testPushCurlErrorShareWithMultipleEndpoints(): void
+    {
+        $this->mock_function('curl_errno', function () { return 28; });
+
+        $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3' ];
+
+        $responses = [
+            'endpoint1' => new RequestsException('cURL error 28: Request timed out', CurlException::SHARE, NULL),
+            'endpoint2' => new RequestsException('cURL error 28: Request timed out', CurlException::SHARE, NULL),
+            'endpoint3' => new RequestsException('cURL error 28: Request timed out', CurlException::SHARE, NULL),
         ];
 
         $statuses = [

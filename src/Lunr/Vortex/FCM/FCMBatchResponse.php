@@ -15,6 +15,7 @@ use Lunr\Vortex\PushNotificationResponseInterface;
 use Lunr\Vortex\PushNotificationStatus;
 use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Exception as RequestsException;
+use WpOrg\Requests\Exception\Transport\Curl as CurlException;
 use WpOrg\Requests\Response;
 
 /**
@@ -45,6 +46,17 @@ class FCMBatchResponse implements PushNotificationResponseInterface
      * @var string[]
      */
     private array $endpoints;
+
+    /**
+     * Set of error types that indicate a curl error.
+     * @var array
+     */
+    private const CURL_ERROR_TYPES = [
+        'curlerror',
+        CurlException::EASY,
+        CurlException::MULTI,
+        CurlException::SHARE,
+    ];
 
     /**
      * Constructor.
@@ -101,7 +113,7 @@ class FCMBatchResponse implements PushNotificationResponseInterface
                     [ 'endpoint' => $endpoint, 'error' => $response->getMessage() ]
                 );
 
-                if ($response->getType() == 'curlerror' && curl_errno($response->getData()) == 28)
+                if (in_array($response->getType(), self::CURL_ERROR_TYPES))
                 {
                     $this->statuses[$endpoint] = PushNotificationStatus::TemporaryError;
                     continue;
