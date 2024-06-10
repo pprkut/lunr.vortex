@@ -75,7 +75,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
 
         $context = [
             'endpoint' => 'endpoint1',
-            'error'    => 'Invalid parameter',
+            'error'    => 'Invalid argument',
         ];
 
         $this->logger->expects($this->once())
@@ -107,7 +107,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
 
         $context = [
             'endpoint' => 'endpoint1',
-            'error'    => 'Invalid parameter',
+            'error'    => 'Invalid argument',
         ];
 
         $context1 = [ 'endpoint' => 'endpoint2' ] + $context;
@@ -585,6 +585,39 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
 
         $this->assertPropertySame('logger', $this->logger);
         $this->assertPropertySame('endpoints', $endpoints);
+        $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::InvalidEndpoint ]);
+        $this->assertPropertySame('responses', $responses);
+    }
+
+    /**
+     * Test constructor behavior for error of push notification in case of bad request error.
+     *
+     * @covers Lunr\Vortex\FCM\FCMBatchResponse::__construct
+     */
+    public function testPushErrorGenericBadRequestError(): void
+    {
+        $http_code = 400;
+        $content   = file_get_contents(TEST_STATICS . '/Vortex/fcm/response_generic_error.json');
+        $endpoints = [ 'endpoint1' ];
+
+        $this->response->status_code = $http_code;
+        $this->response->body        = $content;
+
+        $responses = [ 'endpoint1' => $this->response ];
+
+        $this->logger->expects($this->once())
+                     ->method('warning')
+                     ->with(
+                         'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
+                         [ 'endpoint' => 'endpoint1', 'error' => 'Invalid Argument' ]
+                     );
+
+        $this->class = new FCMBatchResponse($responses, $this->logger, $endpoints);
+
+        parent::baseSetUp($this->class);
+
+        $this->assertPropertySame('logger', $this->logger);
+        $this->assertPropertySame('endpoints', $endpoints);
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Error ]);
         $this->assertPropertySame('responses', $responses);
     }
@@ -598,7 +631,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
     {
         $data = [];
 
-        $data[] = [ 'Invalid parameter', 400, PushNotificationStatus::Error ];
+        $data[] = [ 'Invalid argument', 400, PushNotificationStatus::Error ];
         $data[] = [ 'Error with authentication', 401, PushNotificationStatus::Error ];
         $data[] = [ 'Mismatched sender', 403, PushNotificationStatus::InvalidEndpoint ];
         $data[] = [ 'Unregistered or missing token', 404, PushNotificationStatus::InvalidEndpoint ];
