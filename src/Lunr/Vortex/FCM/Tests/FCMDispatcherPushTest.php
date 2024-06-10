@@ -220,8 +220,8 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $this->http->expects($this->once())
-                   ->method('request_multiple')
-                   ->willReturn([ 'endpoint' => $response ]);
+                   ->method('post')
+                   ->willReturn($response);
 
         $this->class->push($this->payload, $endpoints);
 
@@ -251,18 +251,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $url = 'https://fcm.googleapis.com/v1/projects/fcm-project/messages:send';
 
         $options = [
-            'timeout'          => 15,
-            'connect_timeout'  => 15,
+            'timeout'          => 30,
+            'connect_timeout'  => 30,
             'protocol_version' => 2.0,
-        ];
-
-        $requests = [
-            'endpoint' => [
-                'url'     => $url,
-                'headers' => $headers,
-                'type'    => 'POST',
-                'data'    => '{"token":"endpoint"}',
-            ]
         ];
 
         $this->payload->expects($this->once())
@@ -275,9 +266,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->willReturn('{"token":"endpoint"}');
 
         $this->http->expects($this->once())
-                   ->method('request_multiple')
-                   ->with($requests, $options)
-                   ->willReturn([ 'endpoint' => new RequestsException('cURL error 10: Request error', 'curlerror', NULL) ]);
+                   ->method('post')
+                   ->with($url, $headers, '{"token":"endpoint"}', $options)
+                   ->willThrowException(new RequestsException('cURL error 10: Request error', 'curlerror', NULL));
 
         $context = [ 'endpoint' => 'endpoint', 'error' => 'cURL error 10: Request error' ];
 
@@ -316,8 +307,8 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $url = 'https://fcm.googleapis.com/v1/projects/fcm-project/messages:send';
 
         $options = [
-            'timeout'          => 15,
-            'connect_timeout'  => 15,
+            'timeout'          => 30,
+            'connect_timeout'  => 30,
             'protocol_version' => 2.0,
         ];
 
@@ -340,9 +331,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->willReturn('{"token":"endpoint"}');
 
         $this->http->expects($this->once())
-                   ->method('request_multiple')
-                   ->with($requests, $options)
-                   ->willReturn([ 'endpoint' => new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL) ]);
+                   ->method('post')
+                   ->with($url, $headers, '{"token":"endpoint"}', $options)
+                   ->willThrowException(new RequestsException('cURL error 28: Request timed out', 'curlerror', NULL));
 
         $context = [ 'endpoint' => 'endpoint', 'error' => 'cURL error 28: Request timed out' ];
 
@@ -382,18 +373,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $post = '{"token":"endpoint"}';
 
         $options = [
-            'timeout'          => 15,
-            'connect_timeout'  => 15,
+            'timeout'          => 30,
+            'connect_timeout'  => 30,
             'protocol_version' => 2.0,
-        ];
-
-        $requests = [
-            'endpoint' => [
-                'url'     => $url,
-                'headers' => $headers,
-                'type'    => 'POST',
-                'data'    => $post,
-            ]
         ];
 
         $this->payload->expects($this->once())
@@ -406,9 +388,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->willReturn($post);
 
         $this->http->expects($this->once())
-                   ->method('request_multiple')
-                   ->with($requests, $options)
-                   ->willReturn([ 'endpoint' => $response ]);
+                   ->method('post')
+                   ->with($url, $headers, $post, $options)
+                   ->willReturn($response);
 
         $this->class->push($this->payload, $endpoints);
     }
@@ -436,18 +418,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $post = '{"collapse_key":"abcde-12345","token":"endpoint"}';
 
         $options = [
-            'timeout'          => 15,
-            'connect_timeout'  => 15,
+            'timeout'          => 30,
+            'connect_timeout'  => 30,
             'protocol_version' => 2.0,
-        ];
-
-        $requests = [
-            'endpoint' => [
-                'url'     => $url,
-                'headers' => $headers,
-                'type'    => 'POST',
-                'data'    => $post,
-            ]
         ];
 
         $this->payload->expects($this->once())
@@ -460,9 +433,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->willReturn($post);
 
         $this->http->expects($this->once())
-                   ->method('request_multiple')
-                   ->with($requests, $options)
-                   ->willReturn([ 'endpoint' => $response ]);
+                   ->method('post')
+                   ->with($url, $headers, $post, $options)
+                   ->willReturn($response);
 
         $this->class->push($this->payload, $endpoints);
     }
@@ -490,18 +463,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $post = '{"collapse_key":"abcde-12345","data":{"message":"凄い"},"token":"endpoint"}';
 
         $options = [
-            'timeout'          => 15,
-            'connect_timeout'  => 15,
+            'timeout'          => 30,
+            'connect_timeout'  => 30,
             'protocol_version' => 2.0,
-        ];
-
-        $requests = [
-            'endpoint' => [
-                'url'     => $url,
-                'headers' => $headers,
-                'type'    => 'POST',
-                'data'    => $post,
-            ]
         ];
 
         $this->payload->expects($this->once())
@@ -514,9 +478,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->willReturn($post);
 
         $this->http->expects($this->once())
-                   ->method('request_multiple')
-                   ->with($requests, $options)
-                   ->willReturn([ 'endpoint' => $response ]);
+                   ->method('post')
+                   ->with($url, $headers, $post, $options)
+                   ->willReturn($response);
 
         $this->class->push($this->payload, $endpoints);
     }
@@ -550,36 +514,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $post = '{"collapse_key":"abcde-12345","token":"endpoint"}';
 
         $options = [
-            'timeout'          => 15,
-            'connect_timeout'  => 15,
+            'timeout'          => 30,
+            'connect_timeout'  => 30,
             'protocol_version' => 2.0,
-        ];
-
-        $requests = [
-            'endpoint' => [
-                'url'     => $url,
-                'headers' => $headers,
-                'type'    => 'POST',
-                'data'    => $post,
-            ],
-            'endpoint1' => [
-                'url'     => $url,
-                'headers' => $headers,
-                'type'    => 'POST',
-                'data'    => $post,
-            ],
-            'endpoint2' => [
-                'url'     => $url,
-                'headers' => $headers,
-                'type'    => 'POST',
-                'data'    => $post,
-            ],
-            'endpoint3' => [
-                'url'     => $url,
-                'headers' => $headers,
-                'type'    => 'POST',
-                'data'    => $post,
-            ],
         ];
 
         $responses = [
@@ -598,10 +535,15 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                       ->method('get_json_payload')
                       ->willReturn($post);
 
-        $this->http->expects($this->once())
-                   ->method('request_multiple')
-                   ->with($requests, $options)
-                   ->willReturn($responses);
+        $this->http->expects($this->exactly(4))
+                   ->method('post')
+                   ->with($url, $headers, $post, $options)
+                   ->willReturnOnConsecutiveCalls(
+                       $responses['endpoint'],
+                       $responses['endpoint1'],
+                       $responses['endpoint2'],
+                       $responses['endpoint3'],
+                   );
 
         $result = $this->class->push($this->payload, $endpoints);
 
