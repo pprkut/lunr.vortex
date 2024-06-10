@@ -152,7 +152,7 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                         [ 'Tried to push FCM notification but project id is not provided.' ],
                         [
                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
-                            [ 'endpoint' => 'endpoint', 'error' => 'Invalid parameter' ]
+                            [ 'endpoint' => 'endpoint', 'error' => 'Invalid argument' ]
                         ]
                     );
 
@@ -179,15 +179,15 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
                         [ 'Tried to push FCM notification but project id is not provided.' ],
                         [
                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
-                            [ 'endpoint' => 'endpoint', 'error' => 'Invalid parameter' ]
+                            [ 'endpoint' => 'endpoint', 'error' => 'Invalid argument' ]
                         ],
                         [
                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
-                            [ 'endpoint' => 'endpoint1', 'error' => 'Invalid parameter' ]
+                            [ 'endpoint' => 'endpoint1', 'error' => 'Invalid argument' ]
                         ],
                         [
                             'Dispatching FCM notification failed for endpoint {endpoint}: {error}',
-                            [ 'endpoint' => 'endpoint2', 'error' => 'Invalid parameter' ]
+                            [ 'endpoint' => 'endpoint2', 'error' => 'Invalid argument' ]
                         ],
                     );
 
