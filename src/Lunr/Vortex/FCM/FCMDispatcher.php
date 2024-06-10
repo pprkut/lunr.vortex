@@ -299,19 +299,24 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
 
         $url = self::GOOGLE_SEND_URL . $this->project_id . '/messages:send';
 
-        $requests = [];
+        $responses = [];
 
         foreach ($endpoints as $endpoint)
         {
-            $requests[$endpoint] = [
-                'url'     => $url,
-                'headers' => $headers,
-                'type'    => Requests::POST,
-                'data'    => $payload->set_token($endpoint)->get_json_payload(JSON_UNESCAPED_UNICODE)
-            ];
+            try
+            {
+                $responses[$endpoint] = $this->http->post(
+                    $url,
+                    $headers,
+                    $payload->set_token($endpoint)->get_json_payload(JSON_UNESCAPED_UNICODE),
+                    $options
+                );
+            }
+            catch (RequestsException $e)
+            {
+                $responses[$endpoint] = $e;
+            }
         }
-
-        $responses = $this->http->request_multiple($requests, $options);
 
         return $this->get_batch_response($responses, $this->logger, $endpoints);
     }
