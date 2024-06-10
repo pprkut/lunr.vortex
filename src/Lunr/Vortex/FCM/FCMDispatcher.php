@@ -292,8 +292,9 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
         ];
 
         $options = [
-            'timeout'         => 15, // timeout in seconds
-            'connect_timeout' => 15 // timeout in seconds
+            'timeout'          => 15, // timeout in seconds
+            'connect_timeout'  => 15, // timeout in seconds
+            'protocol_version' => 2.0,
         ];
 
         $url = self::GOOGLE_SEND_URL . $this->project_id . '/messages:send';

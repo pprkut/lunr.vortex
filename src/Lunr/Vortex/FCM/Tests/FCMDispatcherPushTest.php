@@ -251,8 +251,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $url = 'https://fcm.googleapis.com/v1/projects/fcm-project/messages:send';
 
         $options = [
-            'timeout'         => 15,
-            'connect_timeout' => 15
+            'timeout'          => 15,
+            'connect_timeout'  => 15,
+            'protocol_version' => 2.0,
         ];
 
         $requests = [
@@ -315,8 +316,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $url = 'https://fcm.googleapis.com/v1/projects/fcm-project/messages:send';
 
         $options = [
-            'timeout'         => 15,
-            'connect_timeout' => 15
+            'timeout'          => 15,
+            'connect_timeout'  => 15,
+            'protocol_version' => 2.0,
         ];
 
         $requests = [
@@ -380,8 +382,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $post = '{"token":"endpoint"}';
 
         $options = [
-            'timeout'         => 15,
-            'connect_timeout' => 15
+            'timeout'          => 15,
+            'connect_timeout'  => 15,
+            'protocol_version' => 2.0,
         ];
 
         $requests = [
@@ -433,8 +436,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $post = '{"collapse_key":"abcde-12345","token":"endpoint"}';
 
         $options = [
-            'timeout'         => 15,
-            'connect_timeout' => 15
+            'timeout'          => 15,
+            'connect_timeout'  => 15,
+            'protocol_version' => 2.0,
         ];
 
         $requests = [
@@ -486,8 +490,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $post = '{"collapse_key":"abcde-12345","data":{"message":"凄い"},"token":"endpoint"}';
 
         $options = [
-            'timeout'         => 15,
-            'connect_timeout' => 15
+            'timeout'          => 15,
+            'connect_timeout'  => 15,
+            'protocol_version' => 2.0,
         ];
 
         $requests = [
@@ -545,8 +550,9 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
         $post = '{"collapse_key":"abcde-12345","token":"endpoint"}';
 
         $options = [
-            'timeout'         => 15,
-            'connect_timeout' => 15
+            'timeout'          => 15,
+            'connect_timeout'  => 15,
+            'protocol_version' => 2.0,
         ];
 
         $requests = [
