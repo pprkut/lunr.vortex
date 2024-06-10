@@ -169,8 +169,15 @@ class FCMBatchResponse implements PushNotificationResponseInterface
         switch ($response->status_code)
         {
             case 400:
-                $status          = PushNotificationStatus::Error;
-                $error_message ??= 'Invalid parameter';
+                if ($error_message == 'The registration token is not a valid FCM registration token')
+                {
+                    $status = PushNotificationStatus::InvalidEndpoint;
+                }
+                else
+                {
+                    $status          = PushNotificationStatus::Error;
+                    $error_message ??= 'Invalid argument';
+                }
                 break;
             case 401:
                 $status          = PushNotificationStatus::Error;
