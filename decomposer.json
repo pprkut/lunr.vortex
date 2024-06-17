@@ -5,7 +5,8 @@
         "psr4": {
             "prefix": "Lunr\\Halo",
             "search-path": "/src/Lunr/Halo/"
-        }
+        },
+        "development-only": true
     },
     "Psr-Log": {
         "url": "https://github.com/php-fig/log.git",
