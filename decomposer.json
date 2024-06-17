@@ -25,17 +25,9 @@
     },
     "JWT": {
         "url": "https://github.com/lcobucci/JWT.git",
-        "version": "4.1.5",
+        "version": "5.3.0",
         "psr4": {
             "prefix": "Lcobucci\\JWT",
-            "search-path": "/src/"
-        }
-    },
-    "Clock": {
-        "url": "https://github.com/lcobucci/Clock.git",
-        "version": "2.0.0",
-        "psr4": {
-            "prefix": "Lcobucci\\Clock",
             "search-path": "/src/"
         }
     },
