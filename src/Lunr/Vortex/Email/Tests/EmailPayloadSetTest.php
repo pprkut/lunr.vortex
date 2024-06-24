@@ -33,6 +33,7 @@ class EmailPayloadSetTest extends EmailPayloadTest
             'charset'  => 'UTF-8',
             'encoding' => 'base64',
             'subject'  => 'subject',
+            'body'     => '',
         ];
 
         $this->assertArrayHasKey('subject', $value);
@@ -63,6 +64,7 @@ class EmailPayloadSetTest extends EmailPayloadTest
         $expected = [
             'charset'  => 'UTF-8',
             'encoding' => 'base64',
+            'subject'  => '',
             'body'     => 'body',
         ];
 
@@ -94,6 +96,8 @@ class EmailPayloadSetTest extends EmailPayloadTest
         $expected = [
             'charset'  => 'UTF-16',
             'encoding' => 'base64',
+            'subject'  => '',
+            'body'     => '',
         ];
 
         $this->assertArrayHasKey('charset', $value);
@@ -124,6 +128,8 @@ class EmailPayloadSetTest extends EmailPayloadTest
         $expected = [
             'charset'  => 'UTF-8',
             'encoding' => 'binary',
+            'subject'  => '',
+            'body'     => '',
         ];
 
         $this->assertArrayHasKey('encoding', $value);

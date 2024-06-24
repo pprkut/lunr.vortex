@@ -16,34 +16,42 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Email notification response wrapper.
+ *
+ * @phpstan-type MailResults array<
+ *     string,
+ *     array{
+ *         is_error: bool,
+ *         error_message: string
+ *     }
+ * >
  */
 class EmailResponse implements PushNotificationResponseInterface
 {
 
     /**
      * Push notification statuses per endpoint.
-     * @var array
+     * @var array<string, PushNotificationStatus>
      */
     private array $statuses;
 
     /**
      * Shared instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
-    private LoggerInterface $logger;
+    private readonly LoggerInterface $logger;
 
     /**
      * Raw payload that was sent out.
      * @var string
      */
-    protected string $payload;
+    protected readonly string $payload;
 
     /**
      * Constructor.
      *
-     * @param array                    $mail_results Contains endpoints with corresponding PHPMailer results.
-     * @param \Psr\Log\LoggerInterface $logger       Shared instance of a Logger.
-     * @param string                   $payload      Raw payload that was sent out.
+     * @param MailResults     $mail_results Contains endpoints with corresponding PHPMailer results.
+     * @param LoggerInterface $logger       Shared instance of a Logger.
+     * @param string          $payload      Raw payload that was sent out.
      */
     public function __construct(array $mail_results, LoggerInterface $logger, string $payload)
     {
@@ -60,8 +68,6 @@ class EmailResponse implements PushNotificationResponseInterface
     public function __destruct()
     {
         unset($this->statuses);
-        unset($this->logger);
-        unset($this->payload);
     }
 
     /**
@@ -84,7 +90,7 @@ class EmailResponse implements PushNotificationResponseInterface
     /**
      * Store the results per endpoint in the statuses property
      *
-     * @param array $mail_results Array containing is_error and a possible error message per endpoint
+     * @param MailResults $mail_results Array containing is_error and a possible error message per endpoint
      *
      * @return void
      */

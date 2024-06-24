@@ -33,14 +33,14 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
      *
      * @var PHPMailer
      */
-    private PHPMailer $mail_transport;
+    private readonly PHPMailer $mail_transport;
 
     /**
      * Shared instance of a Logger class.
      *
      * @var LoggerInterface
      */
-    private LoggerInterface $logger;
+    private readonly LoggerInterface $logger;
 
     /**
      * Constructor.
@@ -62,8 +62,6 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
     public function __destruct()
     {
         unset($this->source);
-        unset($this->mail_transport);
-        unset($this->logger);
     }
 
     /**
@@ -79,8 +77,8 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
     /**
      * Send the notification.
      *
-     * @param object $payload   Payload object
-     * @param array  $endpoints Endpoints to send to in this batch
+     * @param object   $payload   Payload object
+     * @param string[] $endpoints Endpoints to send to in this batch
      *
      * @return EmailResponse Response object
      */
@@ -91,7 +89,7 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
             throw new InvalidArgumentException('Invalid payload object!');
         }
 
-        $payload_array = json_decode($payload->get_payload(), TRUE);
+        $payload_array = $payload->get_payload();
 
         // PHPMailer is not reentrant, so we have to clone it before we can do endpoint specific configuration.
         $mail_transport = $this->clone_mail();

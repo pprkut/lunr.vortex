@@ -25,15 +25,17 @@ class EmailPayloadGetTest extends EmailPayloadTest
      */
     public function testGetPayload(): void
     {
-        $file     = TEST_STATICS . '/Vortex/email/payload.json';
+        $payload  = json_decode(file_get_contents(TEST_STATICS . '/Vortex/email/payload.json'), TRUE);
         $elements = [
-            'subject' => 'value1',
-            'body'    => 'value2',
+            'subject'  => 'value1',
+            'body'     => 'value2',
+            'charset'  => 'UTF-8',
+            'encoding' => 'base64',
         ];
 
         $this->set_reflection_property_value('elements', $elements);
 
-        $this->assertStringMatchesFormatFile($file, $this->class->get_payload());
+        $this->assertSame($payload, $this->class->get_payload());
     }
 
 }

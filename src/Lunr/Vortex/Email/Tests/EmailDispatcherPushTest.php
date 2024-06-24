@@ -69,7 +69,12 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn('{"subject": "subject", "body": "body", "charset": "UTF-8", "encoding": "base64"}');
+                      ->willReturn([
+                          'subject'  => 'subject',
+                          'body'     => 'body',
+                          'charset'  => 'UTF-8',
+                          'encoding' => 'base64'
+                      ]);
 
         $this->set_reflection_property_value('source', 'sender@domain.com');
 
@@ -115,7 +120,12 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn('{"subject": "subject", "body": "body", "charset": "UTF-8", "encoding": "base64"}');
+                      ->willReturn([
+                          'subject'  => 'subject',
+                          'body'     => 'body',
+                          'charset'  => 'UTF-8',
+                          'encoding' => 'base64'
+                      ]);
 
         $this->set_reflection_property_value('source', 'sender@domain.com');
 
@@ -161,7 +171,12 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->payload->expects($this->once())
                       ->method('get_payload')
-                      ->willReturn('{"subject": "subject", "body": "body", "charset": "UTF-8", "encoding": "base64"}');
+                      ->willReturn([
+                          'subject'  => 'subject',
+                          'body'     => 'body',
+                          'charset'  => 'UTF-8',
+                          'encoding' => 'base64'
+                      ]);
 
         $this->set_reflection_property_value('source', 'sender@domain.com');
 

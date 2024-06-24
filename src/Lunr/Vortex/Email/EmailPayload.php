@@ -12,13 +12,20 @@ namespace Lunr\Vortex\Email;
 
 /**
  * Email Notification Payload Generator.
+ *
+ * @phpstan-type MailPayload array{
+ *     charset: string,
+ *     encoding: "8bit"|"7bit"|"binary"|"base64"|"quoted-printable",
+ *     subject: string,
+ *     body: string
+ * }
  */
 class EmailPayload
 {
 
     /**
      * Array of Email Notification message elements.
-     * @var array
+     * @var MailPayload
      */
     protected array $elements;
 
@@ -30,6 +37,8 @@ class EmailPayload
         $this->elements = [
             'charset'  => 'UTF-8',
             'encoding' => 'base64',
+            'subject'  => '',
+            'body'     => '',
         ];
     }
 
@@ -44,11 +53,11 @@ class EmailPayload
     /**
      * Construct the payload for the email notification.
      *
-     * @return string The Email Payload
+     * @return MailPayload The Email Payload
      */
-    public function get_payload(): string
+    public function get_payload(): array
     {
-        return json_encode($this->elements);
+        return $this->elements;
     }
 
     /**
@@ -100,7 +109,7 @@ class EmailPayload
      *
      * Default encoding is base64.
      *
-     * @param string $encoding The encoding of the email
+     * @param "8bit"|"7bit"|"binary"|"base64"|"quoted-printable" $encoding The encoding of the email
      *
      * @return EmailPayload Self Reference
      */

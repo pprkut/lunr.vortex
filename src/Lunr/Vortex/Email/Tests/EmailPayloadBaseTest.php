@@ -26,6 +26,8 @@ class EmailPayloadBaseTest extends EmailPayloadTest
         $expected = [
             'charset'  => 'UTF-8',
             'encoding' => 'base64',
+            'subject'  => '',
+            'body'     => '',
         ];
 
         $this->assertEquals($expected, $this->get_reflection_property_value('elements'));
