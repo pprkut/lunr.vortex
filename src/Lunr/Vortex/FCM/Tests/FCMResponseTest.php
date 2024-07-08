@@ -30,6 +30,12 @@ abstract class FCMResponseTest extends LunrBaseTest
     protected $batch_response;
 
     /**
+     * Instance of the tested class.
+     * @var FCMResponse
+     */
+    protected FCMResponse $class;
+
+    /**
      * Testcase Constructor.
      *
      * @return void
