@@ -17,17 +17,11 @@ abstract class WNSPayload
 {
 
     /**
-     * Array of Push Notification elements.
-     * @var array
-     */
-    protected array $elements;
-
-    /**
      * Constructor.
      */
     public function __construct()
     {
-        $this->elements = [];
+        // no-op
     }
 
     /**
@@ -35,7 +29,7 @@ abstract class WNSPayload
      */
     public function __destruct()
     {
-        unset($this->elements);
+        // no-op
     }
 
     /**

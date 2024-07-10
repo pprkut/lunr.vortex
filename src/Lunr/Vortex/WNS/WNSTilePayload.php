@@ -12,9 +12,21 @@ namespace Lunr\Vortex\WNS;
 
 /**
  * Windows Tile Push Notification Payload Generator.
+ *
+ * @phpstan-type WNSTilePayloadElements array{
+ *     image: string[],
+ *     templates: string[],
+ *     text: string[]
+ * }
  */
 class WNSTilePayload extends WNSPayload
 {
+
+    /**
+     * Array of Push Notification elements.
+     * @var WNSTilePayloadElements
+     */
+    protected array $elements;
 
     /**
      * Constructor.
@@ -22,6 +34,12 @@ class WNSTilePayload extends WNSPayload
     public function __construct()
     {
         parent::__construct();
+
+        $this->elements = [
+            'image'     => [],
+            'templates' => [],
+            'text'      => [],
+        ];
     }
 
     /**
@@ -29,6 +47,7 @@ class WNSTilePayload extends WNSPayload
      */
     public function __destruct()
     {
+        unset($this->elements);
         parent::__destruct();
     }
 
@@ -52,7 +71,7 @@ class WNSTilePayload extends WNSPayload
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\r\n";
 
-        foreach ($this->elements['template'] as $key => $template)
+        foreach ($this->elements['templates'] as $key => $template)
         {
             $xml .= '<tile>' . "\r\n";
             $xml .= '    <visual version="2">' . "\r\n";
@@ -61,7 +80,7 @@ class WNSTilePayload extends WNSPayload
             $xml .= '        </binding>' . "\r\n";
             $xml .= '    </visual>' . "\r\n";
             $xml .= '</tile>';
-            $xml .= ($key < (count($this->elements['template']) - 1)) ? "\r\n\r\n" : "\r\n";
+            $xml .= ($key < (count($this->elements['templates']) - 1)) ? "\r\n\r\n" : "\r\n";
         }
 
         return $xml;
@@ -76,7 +95,7 @@ class WNSTilePayload extends WNSPayload
      *
      * @return self Self Reference
      */
-    public function set_text($text, int $line = 0): self
+    public function set_text(array|string $text, int $line = 0): self
     {
         if (!is_array($text))
         {
@@ -101,7 +120,7 @@ class WNSTilePayload extends WNSPayload
      *
      * @return self Self Reference
      */
-    public function set_image($image, int $line = 0): self
+    public function set_image(array|string $image, int $line = 0): self
     {
         if (!is_array($image))
         {
@@ -122,12 +141,11 @@ class WNSTilePayload extends WNSPayload
      *
      * @param string[]|string $templates Template(s) for notification
      *
-     *
      * @see https://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.notifications.tiletemplatetype
      *
      * @return WNSTilePayload Self Reference
      */
-    public function set_templates($templates): self
+    public function set_templates(array|string $templates): self
     {
         if (!is_array($templates))
         {

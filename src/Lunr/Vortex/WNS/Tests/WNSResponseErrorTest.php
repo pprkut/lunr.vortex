@@ -33,7 +33,7 @@ class WNSResponseErrorTest extends WNSResponseTest
      */
     public function testHeadersIsNull(): void
     {
-        $this->assertEquals(NULL, $this->get_reflection_property_value('headers'));
+        $this->assertPropertyUnset('headers');
     }
 
     /**

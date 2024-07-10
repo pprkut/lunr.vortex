@@ -12,9 +12,19 @@ namespace Lunr\Vortex\WNS;
 
 /**
  * Windows Badge Push Notification Payload Generator.
+ *
+ * @phpstan-type WNSBadgePayloadElements array{
+ *     value?: string
+ * }
  */
 class WNSBadgePayload extends WNSPayload
 {
+
+    /**
+     * Array of Push Notification elements.
+     * @var WNSBadgePayloadElements
+     */
+    protected array $elements;
 
     /**
      * Constructor.
@@ -22,6 +32,8 @@ class WNSBadgePayload extends WNSPayload
     public function __construct()
     {
         parent::__construct();
+
+        $this->elements = [];
     }
 
     /**
@@ -29,6 +41,7 @@ class WNSBadgePayload extends WNSPayload
      */
     public function __destruct()
     {
+        unset($this->elements);
         parent::__destruct();
     }
 
