@@ -10,6 +10,7 @@
 
 namespace Lunr\Vortex\WNS;
 
+use ArrayAccess;
 use Lunr\Vortex\PushNotificationResponseInterface;
 use Lunr\Vortex\PushNotificationStatus;
 use WpOrg\Requests\Response;
@@ -24,33 +25,33 @@ class WNSResponse implements PushNotificationResponseInterface
 
     /**
      * HTTP headers of the response.
-     * @var Headers
+     * @var array<string,string>|ArrayAccess<string,string>
      */
-    private $headers;
+    private array|ArrayAccess $headers;
 
     /**
      * HTTP status code.
-     * @var mixed
+     * @var int|bool
      */
-    private $http_code;
+    private readonly int|bool $http_code;
 
     /**
      * Delivery status.
      * @var PushNotificationStatus
      */
-    private PushNotificationStatus $status;
+    private readonly PushNotificationStatus $status;
 
     /**
      * Push notification endpoint.
      * @var string
      */
-    private string $endpoint;
+    private readonly string $endpoint;
 
     /**
      * Raw payload that was sent to WNS.
      * @var string|null
      */
-    protected ?string $payload;
+    protected readonly ?string $payload;
 
     /**
      * Constructor.
@@ -82,9 +83,6 @@ class WNSResponse implements PushNotificationResponseInterface
     public function __destruct()
     {
         unset($this->headers);
-        unset($this->http_code);
-        unset($this->status);
-        unset($this->payload);
     }
 
     /**

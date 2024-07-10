@@ -12,9 +12,22 @@ namespace Lunr\Vortex\WNS;
 
 /**
  * Windows Toast Push Notification Payload Generator.
+ *
+ * @phpstan-type WNSToastPayloadElements array{
+ *     image?: string,
+ *     launch?: string,
+ *     template?: string,
+ *     text: string[]
+ * }
  */
 class WNSToastPayload extends WNSPayload
 {
+
+    /**
+     * Array of Push Notification elements.
+     * @var WNSToastPayloadElements
+     */
+    protected array $elements;
 
     /**
      * Constructor.
@@ -22,6 +35,10 @@ class WNSToastPayload extends WNSPayload
     public function __construct()
     {
         parent::__construct();
+
+        $this->elements = [
+            'text' => [],
+        ];
     }
 
     /**
@@ -29,6 +46,7 @@ class WNSToastPayload extends WNSPayload
      */
     public function __destruct()
     {
+        unset($this->elements);
         parent::__destruct();
     }
 
@@ -79,7 +97,7 @@ class WNSToastPayload extends WNSPayload
      *
      * @return self Self Reference
      */
-    public function set_text($text, int $line = 0): self
+    public function set_text(array|string $text, int $line = 0): self
     {
         if (!is_array($text))
         {

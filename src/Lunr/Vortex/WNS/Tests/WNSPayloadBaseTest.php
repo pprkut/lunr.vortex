@@ -10,9 +10,6 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
-use Lunr\Halo\LunrBaseTest;
-use ReflectionClass;
-
 /**
  * This class contains common setup routines, providers
  * and shared attributes for testing the WNSPayload class.
@@ -21,14 +18,6 @@ use ReflectionClass;
  */
 class WNSPayloadBaseTest extends WNSPayloadTest
 {
-
-    /**
-     * Test elements is initialized as an empty array.
-     */
-    public function testElementsIsInitializedAsEmptyArray(): void
-    {
-        $this->assertArrayEmpty($this->get_reflection_property_value('elements'));
-    }
 
     /**
      * Test escape_string() works correctly.

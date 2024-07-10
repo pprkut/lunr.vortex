@@ -11,6 +11,7 @@
 namespace Lunr\Vortex\WNS\Tests;
 
 use Lunr\Vortex\PushNotificationStatus;
+use Lunr\Vortex\WNS\WNSResponse;
 
 /**
  * This class contains tests for setting meta information about WNS dispatches.
@@ -35,13 +36,23 @@ class WNSResponseSetTest extends WNSResponseTest
      */
     public function testStatusForSuccessRequestStatus(): void
     {
-        $method = $this->get_accessible_reflection_method('set_status');
-        $method->invokeArgs($this->class, [ 'URL', $this->logger ]);
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
-        $this->logger->expects($this->never())
-                     ->method('warning');
+        $response->headers = [
+            'Date'                         => '2016-01-13',
+            'X-WNS-Status'                 => 'received',
+            'X-WNS-DeviceConnectionStatus' => 'N/A',
+        ];
 
-        $this->assertEquals(PushNotificationStatus::Success, $this->get_reflection_property_value('status'));
+        $response->status_code = 200;
+        $response->url         = 'http://localhost/';
+
+        $class = new WNSResponse($response, $this->logger, '<?xml version="1.0" encoding="utf-8"?>');
+
+        $value = $this->get_reflection_property('status')
+                      ->getValue($class);
+
+        $this->assertEquals(PushNotificationStatus::Success, $value);
     }
 
     /**
@@ -56,18 +67,21 @@ class WNSResponseSetTest extends WNSResponseTest
      */
     public function testSetStatusForNonSuccessRequestStatus($code, $nstatus, $expected): void
     {
-        $headers = [];
+        $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
-        $headers['X-WNS-Status']                 = $nstatus;
-        $headers['X-WNS-DeviceConnectionStatus'] = 'N/A';
-        $headers['X-WNS-Error-Description']      = 'Something is broken';
-        $headers['X-WNS-Debug-Trace']            = 'Tracing brokenness';
+        $response->headers = [
+            'Date'                         => '2016-01-13',
+            'X-WNS-Status'                 => $nstatus,
+            'X-WNS-DeviceConnectionStatus' => 'N/A',
+            'X-WNS-Error-Description'      => 'Something is broken',
+            'X-WNS-Debug-Trace'            => 'Tracing brokenness',
+        ];
 
-        $this->set_reflection_property_value('headers', $headers);
-        $this->set_reflection_property_value('http_code', $code);
+        $response->status_code = $code;
+        $response->url         = 'http://localhost/';
 
         $context = [
-            'endpoint'          => 'URL',
+            'endpoint'          => 'http://localhost/',
             'nstatus'           => $nstatus,
             'dstatus'           => 'N/A',
             'error_description' => 'Something is broken',
@@ -84,10 +98,12 @@ class WNSResponseSetTest extends WNSResponseTest
                          $this->equalTo($context)
                      );
 
-        $method = $this->get_accessible_reflection_method('set_status');
-        $method->invokeArgs($this->class, [ 'URL', $this->logger ]);
+        $class = new WNSResponse($response, $this->logger, '<?xml version="1.0" encoding="utf-8"?>');
 
-        $this->assertEquals($expected, $this->get_reflection_property_value('status'));
+        $value = $this->get_reflection_property('status')
+                      ->getValue($class);
+
+        $this->assertEquals($expected, $value);
     }
 
 }

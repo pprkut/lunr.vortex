@@ -53,14 +53,14 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
      * Shared instance of the Requests\Session class.
      * @var Session
      */
-    private Session $http;
+    private readonly Session $http;
 
     /**
      * Shared instance of a Logger class.
      *
      * @var LoggerInterface
      */
-    private LoggerInterface $logger;
+    private readonly LoggerInterface $logger;
 
     /**
      * The URL to use to request an OAuth token.
@@ -96,8 +96,6 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
     public function __destruct()
     {
         unset($this->type);
-        unset($this->http);
-        unset($this->logger);
         unset($this->client_id);
         unset($this->client_secret);
         unset($this->oauth_token);
@@ -106,8 +104,8 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
     /**
      * Push the notification.
      *
-     * @param object $payload   Payload object
-     * @param array  $endpoints Endpoints to send to in this batch
+     * @param object   $payload   Payload object
+     * @param string[] $endpoints Endpoints to send to in this batch
      *
      * @return WNSResponse Response object
      */
@@ -250,6 +248,9 @@ class WNSDispatcher implements PushNotificationDispatcherInterface
             throw new RuntimeException('Requesting token failed: No response');
         }
 
+        /**
+         * @var object{'access_token'?: string} $response_object
+         */
         $response_object = json_decode($response->body);
 
         if (!(json_last_error() === JSON_ERROR_NONE))

@@ -26,7 +26,7 @@ class WNSTilePayloadGetTest extends WNSTilePayloadTest
     public function testGetPayload(): void
     {
         $file     = TEST_STATICS . '/Vortex/wns/tile.xml';
-        $elements = [ 'text' => [ 'Text' ], 'template' => [ 'TileSquare150x150Text04', 'TileWide310x150Text03' ], 'image' => [ 'image' ] ];
+        $elements = [ 'text' => [ 'Text' ], 'templates' => [ 'TileSquare150x150Text04', 'TileWide310x150Text03' ], 'image' => [ 'image' ] ];
 
         $this->set_reflection_property_value('elements', $elements);
 
@@ -41,7 +41,7 @@ class WNSTilePayloadGetTest extends WNSTilePayloadTest
     public function testGetPayloadWithoutImage(): void
     {
         $file     = TEST_STATICS . '/Vortex/wns/tile_image.xml';
-        $elements = [ 'text' => [ 'Text' ], 'template' => [ 'TileSquare150x150Text04', 'TileWide310x150Text03' ], 'image' => [] ];
+        $elements = [ 'text' => [ 'Text' ], 'templates' => [ 'TileSquare150x150Text04', 'TileWide310x150Text03' ], 'image' => [] ];
 
         $this->set_reflection_property_value('elements', $elements);
 
@@ -56,7 +56,7 @@ class WNSTilePayloadGetTest extends WNSTilePayloadTest
     public function testGetPayloadWithoutWideTemplate(): void
     {
         $file     = TEST_STATICS . '/Vortex/wns/tile_square.xml';
-        $elements = [ 'text' => [ 'Text' ], 'template' => [ 'TileSquare150x150Text04' ], 'image' => [] ];
+        $elements = [ 'text' => [ 'Text' ], 'templates' => [ 'TileSquare150x150Text04' ], 'image' => [] ];
 
         $this->set_reflection_property_value('elements', $elements);
 
