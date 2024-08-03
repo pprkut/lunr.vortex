@@ -11,7 +11,6 @@
 namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Halo\LunrBaseTest;
-use ReflectionClass;
 use Lunr\Vortex\JPush\JPushResponse;
 
 /**

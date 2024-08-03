@@ -12,7 +12,6 @@ namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\JPush\JPushNotificationPayload;
-use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers

@@ -10,10 +10,10 @@
 
 namespace Lunr\Vortex\JPush\Tests;
 
-use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\APNS\APNSPayload;
 use Lunr\Vortex\Email\EmailPayload;
 use Lunr\Vortex\FCM\FCMPayload;
+use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\WNS\WNSTilePayload;
 use WpOrg\Requests\Exception as RequestsException;
 
