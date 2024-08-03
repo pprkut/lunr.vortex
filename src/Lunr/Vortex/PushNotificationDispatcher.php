@@ -10,12 +10,7 @@
 
 namespace Lunr\Vortex;
 
-use Lunr\Vortex\PushNotificationDeferredResponseInterface;
-use Lunr\Vortex\PushNotificationDispatcherInterface;
-use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
 use Lunr\Vortex\PushNotificationStatus as Status;
-use Lunr\Vortex\PushNotificationStatus;
-use ReflectionClass;
 
 /**
  * Generic Push Notification Dispatcher.

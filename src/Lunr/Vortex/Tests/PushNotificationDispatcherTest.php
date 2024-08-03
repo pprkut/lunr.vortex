@@ -9,7 +9,6 @@
 
 namespace Lunr\Vortex\Tests;
 
-use Lunr\Vortex\PushNotificationDispatcher;
 use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher;
 use Lunr\Vortex\APNS\ApnsPHP\APNSResponse;
@@ -19,12 +18,12 @@ use Lunr\Vortex\FCM\FCMDispatcher;
 use Lunr\Vortex\FCM\FCMResponse;
 use Lunr\Vortex\JPush\JPushDispatcher;
 use Lunr\Vortex\JPush\JPushResponse;
+use Lunr\Vortex\PushNotificationDispatcher;
+use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\WNS\WNSDispatcher;
 use Lunr\Vortex\WNS\WNSResponse;
-use Lunr\Vortex\PushNotificationStatus;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
-use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers
