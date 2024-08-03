@@ -10,12 +10,11 @@
 
 namespace Lunr\Vortex\Email;
 
+use InvalidArgumentException;
 use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
-use Lunr\Vortex\PushNotificationResponseInterface;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
 use PHPMailer\PHPMailer\PHPMailer;
 use Psr\Log\LoggerInterface;
-use InvalidArgumentException;
 
 /**
  * Email Notification Dispatcher.
