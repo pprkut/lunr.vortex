@@ -10,15 +10,14 @@
 
 namespace Lunr\Vortex\APNS\ApnsPHP;
 
+use ApnsPHP\Exception as ApnsPHPException;
 use ApnsPHP\Message;
 use ApnsPHP\Message\Exception as MessageException;
-use ApnsPHP\Exception as ApnsPHPException;
 use ApnsPHP\Push;
+use InvalidArgumentException;
 use Lunr\Vortex\APNS\APNSPayload;
 use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
-use Lunr\Vortex\PushNotificationResponseInterface;
 use Psr\Log\LoggerInterface;
-use InvalidArgumentException;
 
 /**
  * Apple Push Notification Service Push Notification Dispatcher.

@@ -10,6 +10,7 @@
 
 namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
+use ApnsPHP\Message;
 use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\APNS\ApnsPHP\APNSResponse;
 
@@ -36,7 +37,7 @@ abstract class APNSResponseTest extends LunrBaseTest
 
     /**
      * Mock instance of an APNS Message class.
-     * @var \ApnsPHP\Message
+     * @var Message
      */
     protected $apns_message;
 
