@@ -10,8 +10,8 @@
 
 namespace Lunr\Vortex\Email;
 
-use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\PushNotificationResponseInterface;
+use Lunr\Vortex\PushNotificationStatus;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -28,7 +28,7 @@ class EmailResponse implements PushNotificationResponseInterface
 
     /**
      * Shared instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
     private LoggerInterface $logger;
 
@@ -41,9 +41,9 @@ class EmailResponse implements PushNotificationResponseInterface
     /**
      * Constructor.
      *
-     * @param array                    $mail_results Contains endpoints with corresponding PHPMailer results.
-     * @param \Psr\Log\LoggerInterface $logger       Shared instance of a Logger.
-     * @param string                   $payload      Raw payload that was sent out.
+     * @param array           $mail_results Contains endpoints with corresponding PHPMailer results.
+     * @param LoggerInterface $logger       Shared instance of a Logger.
+     * @param string          $payload      Raw payload that was sent out.
      */
     public function __construct(array $mail_results, LoggerInterface $logger, string $payload)
     {

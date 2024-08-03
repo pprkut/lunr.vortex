@@ -10,10 +10,11 @@
 
 namespace Lunr\Vortex\Email\Tests;
 
-use Lunr\Vortex\Email\EmailDispatcher;
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\Email\EmailDispatcher;
 use Lunr\Vortex\Email\EmailPayload;
-use ReflectionClass;
+use PHPMailer\PHPMailer\PHPMailer;
+use Psr\Log\LoggerInterface;
 
 /**
  * This class contains common setup routines, providers
@@ -26,13 +27,13 @@ abstract class EmailDispatcherTest extends LunrBaseTest
 
     /**
      * Mock instance of the PHPMailer class.
-     * @var \PHPMailer\PHPMailer\PHPMailer
+     * @var PHPMailer
      */
     protected $mail_transport;
 
     /**
      * Mock instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
     protected $logger;
 

@@ -10,9 +10,8 @@
 
 namespace Lunr\Vortex\Email\Tests;
 
-use Lunr\Vortex\Email\EmailResponse;
 use Lunr\Halo\LunrBaseTest;
-use ReflectionClass;
+use Lunr\Vortex\Email\EmailResponse;
 
 /**
  * This class contains setup routines for testing the EmailResponse class.
