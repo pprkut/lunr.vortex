@@ -11,10 +11,10 @@ namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\JPush\JPushReport;
+use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
-use PHPUnit\Framework\MockObject\MockObject;
-use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers
@@ -33,7 +33,7 @@ abstract class JPushReportTest extends LunrBaseTest
 
     /**
      * Mock instance of the Logger class.
-     * @var \Psr\Log\LoggerInterface|MockObject
+     * @var LoggerInterface|MockObject
      */
     protected $logger;
 

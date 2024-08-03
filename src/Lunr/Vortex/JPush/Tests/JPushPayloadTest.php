@@ -14,7 +14,6 @@ use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\JPush\JPushPayload;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
-use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers
