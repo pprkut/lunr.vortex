@@ -10,8 +10,8 @@
 
 namespace Lunr\Vortex\APNS\ApnsPHP;
 
-use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\PushNotificationResponseInterface;
+use Lunr\Vortex\PushNotificationStatus;
 use Psr\Log\LoggerInterface;
 
 /**
