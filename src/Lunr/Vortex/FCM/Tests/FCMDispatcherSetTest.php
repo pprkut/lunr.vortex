@@ -10,8 +10,6 @@
 
 namespace Lunr\Vortex\FCM\Tests;
 
-use InvalidArgumentException;
-
 /**
  * This class contains tests for the setters of the FCMDispatcher class.
  *

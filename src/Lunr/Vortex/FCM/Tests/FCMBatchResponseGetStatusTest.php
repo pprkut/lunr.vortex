@@ -13,7 +13,6 @@ namespace Lunr\Vortex\FCM\Tests;
 use InvalidArgumentException;
 use Lunr\Vortex\FCM\FCMBatchResponse;
 use Lunr\Vortex\PushNotificationStatus;
-use WpOrg\Requests\Exception\InvalidArgument;
 
 /**
  * This class contains tests for the get_status function of the FCMBatchResponse class.
