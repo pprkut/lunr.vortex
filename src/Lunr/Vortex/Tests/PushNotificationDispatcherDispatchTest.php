@@ -13,9 +13,8 @@ use Lunr\Vortex\APNS\APNSPayload;
 use Lunr\Vortex\Email\EmailPayload;
 use Lunr\Vortex\FCM\FCMPayload;
 use Lunr\Vortex\JPush\JPushMessagePayload;
-use Lunr\Vortex\WNS\WNSTilePayload;
 use Lunr\Vortex\PushNotificationStatus;
-use Lunr\Vortex\PushNotificationDispatcher;
+use Lunr\Vortex\WNS\WNSTilePayload;
 
 /**
  * This class contains tests for the dispatch function of the PushNotificationDispatcher class.

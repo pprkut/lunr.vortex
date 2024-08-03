@@ -9,8 +9,6 @@
 
 namespace Lunr\Vortex\Tests;
 
-use Lunr\Vortex\PushNotificationDispatcher;
-
 /**
  * This class contains tests for the setup functions of the PushNotificationDispatcher class.
  *
