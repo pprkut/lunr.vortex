@@ -10,9 +10,6 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
-use Lunr\Halo\LunrBaseTest;
-use ReflectionClass;
-
 /**
  * This class contains common setup routines, providers
  * and shared attributes for testing the WNSPayload class.
