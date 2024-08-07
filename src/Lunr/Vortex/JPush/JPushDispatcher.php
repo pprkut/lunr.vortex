@@ -10,13 +10,12 @@
 
 namespace Lunr\Vortex\JPush;
 
+use InvalidArgumentException;
 use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
-use Lunr\Vortex\PushNotificationResponseInterface;
 use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Exception as RequestsException;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
-use InvalidArgumentException;
 
 /**
  * JPush Push Notification Dispatcher.

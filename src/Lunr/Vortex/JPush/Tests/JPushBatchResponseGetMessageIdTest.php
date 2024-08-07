@@ -10,8 +10,6 @@
 namespace Lunr\Vortex\JPush\Tests;
 
 use Lunr\Vortex\JPush\JPushBatchResponse;
-use Lunr\Vortex\PushNotificationStatus;
-use ReflectionClass;
 
 /**
  * This class contains tests for the JPushBatchResponse class.

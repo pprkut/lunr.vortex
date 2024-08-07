@@ -10,8 +10,8 @@
 
 namespace Lunr\Vortex\JPush;
 
-use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\PushNotificationDeferredResponseInterface;
+use Lunr\Vortex\PushNotificationStatus;
 
 /**
  * Google Cloud Messaging Push Notification response wrapper.

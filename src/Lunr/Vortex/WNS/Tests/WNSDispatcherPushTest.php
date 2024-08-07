@@ -10,11 +10,11 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
-use Lunr\Vortex\WNS\WNSType;
 use Lunr\Vortex\APNS\APNSPayload;
 use Lunr\Vortex\Email\EmailPayload;
 use Lunr\Vortex\FCM\FCMPayload;
 use Lunr\Vortex\JPush\JPushMessagePayload;
+use Lunr\Vortex\WNS\WNSType;
 use WpOrg\Requests\Exception as RequestsException;
 
 /**

@@ -10,15 +10,14 @@
 
 namespace Lunr\Vortex\WNS;
 
+use InvalidArgumentException;
 use Lunr\Vortex\PushNotificationDispatcherInterface;
-use Lunr\Vortex\PushNotificationResponseInterface;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
+use UnexpectedValueException;
 use WpOrg\Requests\Exception as RequestsException;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
-use InvalidArgumentException;
-use RuntimeException;
-use UnexpectedValueException;
 
 /**
  * Windows Push Notification Dispatcher.

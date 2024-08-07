@@ -10,7 +10,6 @@
 
 namespace Lunr\Vortex\JPush\Tests;
 
-use Lunr\Vortex\JPush\JPushType;
 use Lunr\Halo\PropertyTraits\PsrLoggerTestTrait;
 
 /**

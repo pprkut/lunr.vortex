@@ -10,12 +10,12 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
+use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\WNS\WNSDispatcher;
 use Lunr\Vortex\WNS\WNSType;
-use Lunr\Halo\LunrBaseTest;
+use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
-use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers
@@ -34,7 +34,7 @@ abstract class WNSDispatcherTest extends LunrBaseTest
 
     /**
      * Mock instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
     protected $logger;
 

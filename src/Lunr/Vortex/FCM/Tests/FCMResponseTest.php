@@ -12,7 +12,6 @@ namespace Lunr\Vortex\FCM\Tests;
 
 use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\FCM\FCMResponse;
-use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers

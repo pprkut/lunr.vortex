@@ -13,9 +13,8 @@ namespace Lunr\Vortex\WNS;
 use ArrayAccess;
 use Lunr\Vortex\PushNotificationResponseInterface;
 use Lunr\Vortex\PushNotificationStatus;
-use WpOrg\Requests\Response;
-use WpOrg\Requests\Response\Headers;
 use Psr\Log\LoggerInterface;
+use WpOrg\Requests\Response;
 
 /**
  * Windows Push Notification response wrapper.

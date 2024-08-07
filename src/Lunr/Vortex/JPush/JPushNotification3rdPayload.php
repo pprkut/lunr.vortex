@@ -9,8 +9,6 @@
 
 namespace Lunr\Vortex\JPush;
 
-use ReflectionClass;
-
 /**
  * JPush Notification_3rd Payload Generator.
  */

@@ -10,11 +10,14 @@
 
 namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
-use Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher;
+use ApnsPHP\Message;
+use ApnsPHP\Push;
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\APNS\APNSPayload;
+use Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
-use ReflectionClass;
+use Psr\Log\LoggerInterface;
 
 /**
  * This class contains common setup routines, providers
@@ -33,25 +36,25 @@ abstract class APNSDispatcherTest extends LunrBaseTest
 
     /**
      * Mock instance of a Logger class.
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
     protected $logger;
 
     /**
      * Mock instance of an APNS Push class.
-     * @var \ApnsPHP\Push
+     * @var Push
      */
     protected $apns_push;
 
     /**
      * Mock instance of an APNS Message class.
-     * @var \ApnsPHP\Message
+     * @var Message
      */
     protected $apns_message;
 
     /**
      * Mock instance of the APNS Payload class.
-     * @var \Lunr\Vortex\APNS\APNSPayload
+     * @var APNSPayload
      */
     protected $payload;
 

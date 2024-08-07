@@ -10,8 +10,8 @@
 
 namespace Lunr\Vortex\Email;
 
-use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\PushNotificationResponseInterface;
+use Lunr\Vortex\PushNotificationStatus;
 use Psr\Log\LoggerInterface;
 
 /**

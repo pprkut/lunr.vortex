@@ -10,13 +10,12 @@
 
 namespace Lunr\Vortex\JPush\Tests;
 
-use Lunr\Vortex\JPush\JPushDispatcher;
 use Lunr\Halo\LunrBaseTest;
+use Lunr\Vortex\JPush\JPushDispatcher;
 use Lunr\Vortex\JPush\JPushPayload;
 use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
-use ReflectionClass;
 
 /**
  * This class contains common setup routines, providers

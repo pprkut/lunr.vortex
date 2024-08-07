@@ -10,13 +10,13 @@
 
 namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
+use ApnsPHP\Exception as ApnsPHPException;
+use ApnsPHP\Message\Exception as MessageException;
+use ApnsPHP\Push\Exception as PushException;
 use Lunr\Vortex\Email\EmailPayload;
 use Lunr\Vortex\FCM\FCMPayload;
 use Lunr\Vortex\JPush\JPushMessagePayload;
 use Lunr\Vortex\WNS\WNSTilePayload;
-use ApnsPHP\Exception as ApnsPHPException;
-use ApnsPHP\Message\Exception as MessageException;
-use ApnsPHP\Push\Exception as PushException;
 
 /**
  * This class contains tests for the push() method of the APNSDispatcher class.

@@ -10,10 +10,10 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
-use Lunr\Vortex\WNS\WNSResponse;
-use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Halo\LunrBaseTest;
-use ReflectionClass;
+use Lunr\Vortex\PushNotificationStatus;
+use Lunr\Vortex\WNS\WNSResponse;
+use Psr\Log\LoggerInterface;
 
 /**
  * This class contains common setup routines, providers
@@ -26,7 +26,7 @@ abstract class WNSResponseTest extends LunrBaseTest
 
     /**
      * Mock instance of the Logger class.
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
     protected $logger;
 
