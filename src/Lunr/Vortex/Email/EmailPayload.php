@@ -69,7 +69,7 @@ class EmailPayload
      */
     public function set_body(string $body): self
     {
-        $this->elements['body'] = $body;
+        $this->elements['body']  = $body;
 
         return $this;
     }

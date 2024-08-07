@@ -51,7 +51,7 @@ class FCMResponse implements PushNotificationResponseInterface
      */
     public function add_batch_response(FCMBatchResponse $batch_response, array $endpoints): void
     {
-        foreach ($endpoints as $endpoint)
+        foreach($endpoints as $endpoint)
         {
             $this->statuses[$endpoint] = $batch_response->get_status($endpoint);
         }

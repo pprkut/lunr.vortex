@@ -18,6 +18,7 @@ use InvalidArgumentException;
 use Lunr\Vortex\APNS\APNSPayload;
 use Lunr\Vortex\PushNotificationMultiDispatcherInterface;
 use Psr\Log\LoggerInterface;
+use Exception;
 
 /**
  * Apple Push Notification Service Push Notification Dispatcher.
@@ -100,8 +101,7 @@ class APNSDispatcher implements PushNotificationMultiDispatcherInterface
      */
     public function push(object $payload, array &$endpoints): APNSResponse
     {
-        if (!$payload instanceof APNSPayload)
-        {
+        if (!$payload instanceof APNSPayload) {
             throw new InvalidArgumentException('Invalid payload object!');
         }
 
