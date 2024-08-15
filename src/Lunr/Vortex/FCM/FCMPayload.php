@@ -167,7 +167,7 @@ class FCMPayload
     }
 
     /**
-     * Sets the topic name to send the message to.
+     * Sets the topic name to send the message to. Will unset the token or condition target if set.
      *
      * @param string $topic String of the topic name
      *
@@ -177,11 +177,15 @@ class FCMPayload
     {
         $this->elements['topic'] = $topic;
 
+        unset($this->elements['token']);
+        unset($this->elements['condition']);
+
         return $this;
     }
 
     /**
-     * Sets the condition to send the message to. For example:
+     * Sets the condition to send the message to. Will unset the token or topic target if set.
+     * For example:
      * 'TopicA' in topics && ('TopicB' in topics || 'TopicC' in topics)
      *
      * You can include up to five topics in your conditional expression.
@@ -194,6 +198,9 @@ class FCMPayload
     public function set_condition(string $condition): static
     {
         $this->elements['condition'] = $condition;
+
+        unset($this->elements['token']);
+        unset($this->elements['topic']);
 
         return $this;
     }
@@ -214,7 +221,7 @@ class FCMPayload
     }
 
     /**
-     * Set the token of the target for the notification.
+     * Set the token of the target for the notification. Will unset the topic or condition target if set.
      *
      * @param string $token Token of the target for the notification.
      *
@@ -223,6 +230,9 @@ class FCMPayload
     public function set_token(string $token): static
     {
         $this->elements['token'] = $token;
+
+        unset($this->elements['topic']);
+        unset($this->elements['condition']);
 
         return $this;
     }

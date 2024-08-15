@@ -98,6 +98,9 @@ class FCMPayloadSetTest extends FCMPayloadTest
 
         $this->assertArrayHasKey('topic', $value);
         $this->assertEquals('News', $value['topic']);
+
+        $this->assertArrayNotHasKey('token', $value);
+        $this->assertArrayNotHasKey('condition', $value);
     }
 
     /**
@@ -123,6 +126,9 @@ class FCMPayloadSetTest extends FCMPayloadTest
 
         $this->assertArrayHasKey('condition', $value);
         $this->assertEquals("'TopicA' in topics && 'TopicB' in topics", $value['condition']);
+
+        $this->assertArrayNotHasKey('token', $value);
+        $this->assertArrayNotHasKey('topic', $value);
     }
 
     /**
@@ -174,6 +180,9 @@ class FCMPayloadSetTest extends FCMPayloadTest
 
         $this->assertArrayHasKey('token', $value);
         $this->assertEquals('endpoint_token', $value['token']);
+
+        $this->assertArrayNotHasKey('condition', $value);
+        $this->assertArrayNotHasKey('topic', $value);
     }
 
     /**
