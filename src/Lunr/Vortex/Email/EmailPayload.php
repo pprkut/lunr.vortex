@@ -17,7 +17,8 @@ namespace Lunr\Vortex\Email;
  *     charset: string,
  *     encoding: "8bit"|"7bit"|"binary"|"base64"|"quoted-printable",
  *     subject: string,
- *     body: string
+ *     body: string,
+ *     body_as_html: bool
  * }
  */
 class EmailPayload
@@ -35,10 +36,11 @@ class EmailPayload
     public function __construct()
     {
         $this->elements = [
-            'charset'  => 'UTF-8',
-            'encoding' => 'base64',
-            'subject'  => '',
-            'body'     => '',
+            'charset'      => 'UTF-8',
+            'encoding'     => 'base64',
+            'subject'      => '',
+            'body'         => '',
+            'body_as_html' => FALSE,
         ];
     }
 
@@ -116,6 +118,20 @@ class EmailPayload
     public function set_encoding(string $encoding): self
     {
         $this->elements['encoding'] = $encoding;
+
+        return $this;
+    }
+
+    /**
+     * Configure if the body should be treated as HTML.
+     *
+     * @param bool $as_html If the body should be treated as HTML
+     *
+     * @return self Self reference
+     */
+    public function body_as_html(bool $as_html): self
+    {
+        $this->elements['body_as_html'] = $as_html;
 
         return $this;
     }

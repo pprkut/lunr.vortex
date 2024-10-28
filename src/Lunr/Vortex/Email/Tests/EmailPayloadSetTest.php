@@ -30,10 +30,11 @@ class EmailPayloadSetTest extends EmailPayloadTest
         $value = $this->get_reflection_property_value('elements');
 
         $expected = [
-            'charset'  => 'UTF-8',
-            'encoding' => 'base64',
-            'subject'  => 'subject',
-            'body'     => '',
+            'charset'      => 'UTF-8',
+            'encoding'     => 'base64',
+            'subject'      => 'subject',
+            'body'         => '',
+            'body_as_html' => FALSE,
         ];
 
         $this->assertArrayHasKey('subject', $value);
@@ -62,10 +63,11 @@ class EmailPayloadSetTest extends EmailPayloadTest
         $value = $this->get_reflection_property_value('elements');
 
         $expected = [
-            'charset'  => 'UTF-8',
-            'encoding' => 'base64',
-            'subject'  => '',
-            'body'     => 'body',
+            'charset'      => 'UTF-8',
+            'encoding'     => 'base64',
+            'subject'      => '',
+            'body'         => 'body',
+            'body_as_html' => FALSE,
         ];
 
         $this->assertArrayHasKey('body', $value);
@@ -94,10 +96,11 @@ class EmailPayloadSetTest extends EmailPayloadTest
         $value = $this->get_reflection_property_value('elements');
 
         $expected = [
-            'charset'  => 'UTF-16',
-            'encoding' => 'base64',
-            'subject'  => '',
-            'body'     => '',
+            'charset'      => 'UTF-16',
+            'encoding'     => 'base64',
+            'subject'      => '',
+            'body'         => '',
+            'body_as_html' => FALSE,
         ];
 
         $this->assertArrayHasKey('charset', $value);
@@ -126,10 +129,11 @@ class EmailPayloadSetTest extends EmailPayloadTest
         $value = $this->get_reflection_property_value('elements');
 
         $expected = [
-            'charset'  => 'UTF-8',
-            'encoding' => 'binary',
-            'subject'  => '',
-            'body'     => '',
+            'charset'      => 'UTF-8',
+            'encoding'     => 'binary',
+            'subject'      => '',
+            'body'         => '',
+            'body_as_html' => FALSE,
         ];
 
         $this->assertArrayHasKey('encoding', $value);
@@ -144,6 +148,39 @@ class EmailPayloadSetTest extends EmailPayloadTest
     public function testSetEncodingReturnsSelfReference(): void
     {
         $this->assertSame($this->class, $this->class->set_encoding('binary'));
+    }
+
+    /**
+     * Test body_as_html() works correctly.
+     *
+     * @covers Lunr\Vortex\Email\EmailPayload::body_as_html
+     */
+    public function testSetHasHTMLBody(): void
+    {
+        $this->class->body_as_html(TRUE);
+
+        $value = $this->get_reflection_property_value('elements');
+
+        $expected = [
+            'charset'      => 'UTF-8',
+            'encoding'     => 'base64',
+            'subject'      => '',
+            'body'         => '',
+            'body_as_html' => TRUE,
+        ];
+
+        $this->assertArrayHasKey('encoding', $value);
+        $this->assertEquals($expected, $value);
+    }
+
+    /**
+     * Test fluid interface of body_as_html().
+     *
+     * @covers Lunr\Vortex\Email\EmailPayload::body_as_html
+     */
+    public function testSetHasHTMLBodyReturnsSelfReference(): void
+    {
+        $this->assertSame($this->class, $this->class->body_as_html(TRUE));
     }
 
 }

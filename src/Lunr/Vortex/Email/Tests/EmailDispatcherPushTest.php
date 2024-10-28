@@ -70,15 +70,20 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
         $this->payload->expects($this->once())
                       ->method('get_payload')
                       ->willReturn([
-                          'subject'  => 'subject',
-                          'body'     => 'body',
-                          'charset'  => 'UTF-8',
-                          'encoding' => 'base64'
+                          'subject'      => 'subject',
+                          'body'         => 'body',
+                          'charset'      => 'UTF-8',
+                          'encoding'     => 'base64',
+                          'body_as_html' => FALSE,
                       ]);
 
         $this->set_reflection_property_value('source', 'sender@domain.com');
 
         $this->mock_method([ $this->class, 'clone_mail' ], function () { return $this->mail_transport; }, 'private');
+
+        $this->mail_transport->expects($this->once())
+                             ->method('isHTML')
+                             ->with(FALSE);
 
         $this->mail_transport->expects($this->once())
                              ->method('setFrom')
@@ -121,15 +126,20 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
         $this->payload->expects($this->once())
                       ->method('get_payload')
                       ->willReturn([
-                          'subject'  => 'subject',
-                          'body'     => 'body',
-                          'charset'  => 'UTF-8',
-                          'encoding' => 'base64'
+                          'subject'      => 'subject',
+                          'body'         => 'body',
+                          'charset'      => 'UTF-8',
+                          'encoding'     => 'base64',
+                          'body_as_html' => FALSE,
                       ]);
 
         $this->set_reflection_property_value('source', 'sender@domain.com');
 
         $this->mock_method([ $this->class, 'clone_mail' ], function () { return $this->mail_transport; }, 'private');
+
+        $this->mail_transport->expects($this->once())
+                             ->method('isHTML')
+                             ->with(FALSE);
 
         $this->mail_transport->expects($this->once())
                              ->method('setFrom')
@@ -172,10 +182,11 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
         $this->payload->expects($this->once())
                       ->method('get_payload')
                       ->willReturn([
-                          'subject'  => 'subject',
-                          'body'     => 'body',
-                          'charset'  => 'UTF-8',
-                          'encoding' => 'base64'
+                          'subject'      => 'subject',
+                          'body'         => 'body',
+                          'charset'      => 'UTF-8',
+                          'encoding'     => 'base64',
+                          'body_as_html' => FALSE,
                       ]);
 
         $this->set_reflection_property_value('source', 'sender@domain.com');

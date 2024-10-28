@@ -99,6 +99,8 @@ class EmailDispatcher implements PushNotificationMultiDispatcherInterface
         $mail_transport->CharSet  = $payload_array['charset'];
         $mail_transport->Encoding = $payload_array['encoding'];
 
+        $mail_transport->isHTML($payload_array['body_as_html']);
+
         $mail_results = [];
 
         foreach ($endpoints as $endpoint)

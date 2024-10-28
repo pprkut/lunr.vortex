@@ -24,10 +24,11 @@ class EmailPayloadBaseTest extends EmailPayloadTest
     public function testElementsIsInitializedAsEmptyArray(): void
     {
         $expected = [
-            'charset'  => 'UTF-8',
-            'encoding' => 'base64',
-            'subject'  => '',
-            'body'     => '',
+            'charset'      => 'UTF-8',
+            'encoding'     => 'base64',
+            'subject'      => '',
+            'body'         => '',
+            'body_as_html' => FALSE,
         ];
 
         $this->assertEquals($expected, $this->get_reflection_property_value('elements'));
