@@ -10,11 +10,11 @@
 
 namespace Lunr\Vortex\WNS;
 
-use ArrayAccess;
 use Lunr\Vortex\PushNotificationResponseInterface;
 use Lunr\Vortex\PushNotificationStatus;
 use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Response;
+use WpOrg\Requests\Response\Headers;
 
 /**
  * Windows Push Notification response wrapper.
@@ -24,9 +24,9 @@ class WNSResponse implements PushNotificationResponseInterface
 
     /**
      * HTTP headers of the response.
-     * @var array<string,string>|ArrayAccess<string,string>
+     * @var Headers<string,string>
      */
-    private array|ArrayAccess $headers;
+    private Headers $headers;
 
     /**
      * HTTP status code.
