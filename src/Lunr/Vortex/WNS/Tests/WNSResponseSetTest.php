@@ -12,6 +12,7 @@ namespace Lunr\Vortex\WNS\Tests;
 
 use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\WNS\WNSResponse;
+use WpOrg\Requests\Response\Headers;
 
 /**
  * This class contains tests for setting meta information about WNS dispatches.
@@ -38,11 +39,11 @@ class WNSResponseSetTest extends WNSResponseTest
     {
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
-        $response->headers = [
+        $response->headers = new Headers([
             'Date'                         => '2016-01-13',
             'X-WNS-Status'                 => 'received',
             'X-WNS-DeviceConnectionStatus' => 'N/A',
-        ];
+        ]);
 
         $response->status_code = 200;
         $response->url         = 'http://localhost/';
@@ -69,13 +70,13 @@ class WNSResponseSetTest extends WNSResponseTest
     {
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
-        $response->headers = [
+        $response->headers = new Headers([
             'Date'                         => '2016-01-13',
             'X-WNS-Status'                 => $nstatus,
             'X-WNS-DeviceConnectionStatus' => 'N/A',
             'X-WNS-Error-Description'      => 'Something is broken',
             'X-WNS-Debug-Trace'            => 'Tracing brokenness',
-        ];
+        ]);
 
         $response->status_code = $code;
         $response->url         = 'http://localhost/';

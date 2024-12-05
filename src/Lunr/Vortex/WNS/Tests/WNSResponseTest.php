@@ -14,6 +14,7 @@ use Lunr\Halo\LunrBaseTest;
 use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\WNS\WNSResponse;
 use Psr\Log\LoggerInterface;
+use WpOrg\Requests\Response\Headers;
 
 /**
  * This class contains common setup routines, providers
@@ -66,13 +67,13 @@ abstract class WNSResponseTest extends LunrBaseTest
 
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
-        $response->headers = [
+        $response->headers = new Headers([
             'Date'                         => '2016-01-13',
             'X-WNS-Status'                 => 'received',
             'X-WNS-DeviceConnectionStatus' => 'connected',
             'X-WNS-Error-Description'      => 'Some Error',
             'X-WNS-Debug-Trace'            => 'Some Trace',
-        ];
+        ]);
 
         $response->status_code = 200;
         $response->url         = 'http://localhost/';
