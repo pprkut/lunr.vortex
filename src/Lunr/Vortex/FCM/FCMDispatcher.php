@@ -253,7 +253,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
             throw new InvalidArgumentException('Invalid payload object!');
         }
 
-        if ($endpoints === [] && !$payload->has_topic() && !$payload->has_condition())
+        if ($endpoints === [] && !$payload->is_broadcast())
         {
             throw new InvalidArgumentException('No target provided!');
         }
@@ -282,9 +282,11 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
             return $fcm_response;
         }
 
-        if ($payload->has_topic() || $payload->has_condition())
+        if ($payload->is_broadcast())
         {
-            $fcm_response->add_batch_response($this->push_batch($payload, $endpoints), $endpoints);
+            $batch_response = $this->push_batch($payload, $endpoints);
+
+            $fcm_response->add_broadcast_response($batch_response);
 
             return $fcm_response;
         }
@@ -328,7 +330,7 @@ class FCMDispatcher implements PushNotificationMultiDispatcherInterface
 
         $responses = [];
 
-        if ($payload->has_topic() || $payload->has_condition())
+        if ($payload->is_broadcast())
         {
             try
             {
