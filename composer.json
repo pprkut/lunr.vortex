@@ -14,7 +14,7 @@
     "ext-xml": "*"
   },
   "require-dev": {
-    "lunr/halo": "~0.10.0",
+    "lunr/halo": "dev-master",
     "phpunit/phpunit": ">=9.0 <9.6",
     "mockery/mockery": "~1.5",
     "ext-xdebug": ">=3.1"
