@@ -7,7 +7,7 @@
   "license": "MIT",
   "require": {
     "psr/log": ">=1.1",
-    "m2mobi/apns-php": "dev-master",
+    "m2mobi/apns-php": "dev-release/4.0.x",
     "phpmailer/phpmailer": "~6.4",
     "rmccue/requests": "~2.0",
     "php": ">=8.1",
