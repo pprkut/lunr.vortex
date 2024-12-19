@@ -18,8 +18,7 @@
     },
     "ApnsPHP": {
         "url": "https://github.com/move-backend/apnsphp.git",
-        "version": "4.0.0",
-        "revision": "release/4.0.x",
+        "version": "4.0.0rc1",
         "psr0": {
             "path": "/"
         }
