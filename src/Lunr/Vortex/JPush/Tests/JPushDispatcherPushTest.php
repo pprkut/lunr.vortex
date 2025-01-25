@@ -360,11 +360,6 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
-        $headers = [
-            'Content-Type'  => 'application/json',
-            'Authorization' => 'Basic auth_token',
-        ];
-
         $options = [
             'timeout'         => 15,
             'connect_timeout' => 15
@@ -392,9 +387,6 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
         $url = 'https://api.jpush.cn/v3/push';
-
-        $http_pos    = 0;
-        $payload_pos = 0;
 
         $post1   = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint1","endpoint2"]}}';
         $post2   = '{"collapse_key":"abcde-12345","alert":"hello","audience":{"registration_id":["endpoint3","endpoint4"]}}';

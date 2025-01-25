@@ -28,15 +28,6 @@ class PushNotificationDispatcherGetTest extends PushNotificationDispatcherTest
      */
     public function testGetEndpointsByStatusIgnoresUnsetStatuses(): void
     {
-        $statuses = [
-            PushNotificationStatus::Success->value => [
-                [
-                    '1',
-                    'i',
-                ],
-            ],
-        ];
-
         $value = $this->class->get_endpoints_by_status([ PushNotificationStatus::Success->value ]);
 
         $this->assertSame([], $value);
