@@ -57,7 +57,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
 
         $this->class->set_data([ 'test_key' => [ 'value_key' => 'value' ] ]);
 
-        $value = $this->get_reflection_property_value('elements');
+        $this->get_reflection_property_value('elements');
     }
 
     /**

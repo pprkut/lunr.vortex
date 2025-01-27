@@ -312,15 +312,6 @@ class FCMDispatcherPushTest extends FCMDispatcherTest
             'protocol_version' => 2.0,
         ];
 
-        $requests = [
-            'endpoint' => [
-                'url'     => $url,
-                'headers' => $headers,
-                'type'    => 'POST',
-                'data'    => '{"token":"endpoint"}',
-            ]
-        ];
-
         $this->payload->expects($this->once())
                       ->method('set_token')
                       ->with('endpoint')

@@ -308,17 +308,13 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
                         ->getMock();
         };
 
-        $message1 = $new_message();
-        $message2 = $new_message();
-        $message3 = $new_message();
-        $message4 = $new_message();
-        $message5 = $new_message();
+        $message = $new_message();
 
         $endpoints         = [ 'endpoint1', 'endpoint2', 'endpoint3', 'endpoint4', 'endpoint5' ];
         $invalid_endpoints = [ 'endpoint2', 'endpoint3' ];
         $errors            = [
             4 => [
-                'MESSAGE'             => $message4,
+                'MESSAGE'             => $message,
                 'ERRORS'              => [
                     [
                         'command'       => 1,
@@ -338,9 +334,9 @@ class APNSResponseBasePushSuccessTest extends APNSResponseTest
             'endpoint5' => PushNotificationStatus::Success,
         ];
 
-        $message4->expects($this->once())
-                 ->method('getRecipient')
-                 ->willReturn('endpoint4');
+        $message->expects($this->once())
+                ->method('getRecipient')
+                ->willReturn('endpoint4');
 
         $this->logger->expects($this->once())
                      ->method('warning')
