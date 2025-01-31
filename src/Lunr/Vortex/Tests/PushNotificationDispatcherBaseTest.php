@@ -14,7 +14,7 @@ namespace Lunr\Vortex\Tests;
  *
  * @covers Lunr\Vortex\PushNotificationDispatcher
  */
-class PushNotificationDispatcherBaseTest extends PushNotificationDispatcherTest
+class PushNotificationDispatcherBaseTest extends PushNotificationDispatcherTestCase
 {
 
     /**

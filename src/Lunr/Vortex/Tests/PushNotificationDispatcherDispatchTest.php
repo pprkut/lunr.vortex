@@ -21,7 +21,7 @@ use Lunr\Vortex\WNS\WNSTilePayload;
  *
  * @covers Lunr\Vortex\PushNotificationDispatcher
  */
-class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherTest
+class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherTestCase
 {
 
     /**
@@ -225,7 +225,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
             'fcm'   => $this->fcm,
         ];
 
-        $this->set_reflection_property_value('dispatchers', $dispatchers);
+        $this->setReflectionPropertyValue('dispatchers', $dispatchers);
 
         $apns_payload = $this->getMockBuilder(APNSPayload::class)
                              ->disableOriginalConstructor()
@@ -395,7 +395,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
             'fcm'   => $this->fcm,
             'email' => $this->email,
         ];
-        $this->set_reflection_property_value('dispatchers', $dispatchers);
+        $this->setReflectionPropertyValue('dispatchers', $dispatchers);
 
         $apns_payload = $this->getMockBuilder(APNSPayload::class)
                              ->disableOriginalConstructor()
@@ -493,7 +493,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
             'fcm'   => $this->fcm,
             'email' => $this->email,
         ];
-        $this->set_reflection_property_value('dispatchers', $dispatchers);
+        $this->setReflectionPropertyValue('dispatchers', $dispatchers);
 
         $apns_payload = $this->getMockBuilder(APNSPayload::class)
                              ->disableOriginalConstructor()
@@ -550,7 +550,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
 
         $this->class->dispatch($endpoints, $payloads);
 
-        $property    = $this->get_accessible_reflection_property('dispatchers');
+        $property    = $this->getReflectionProperty('dispatchers');
         $dispatchers = $property->getValue($this->class);
 
         $this->assertArrayHasKey('apns', $dispatchers);
@@ -564,7 +564,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
      */
     public function testDispatchSinglePushOneByOne(): void
     {
-        $this->set_reflection_property_value('dispatchers', [ 'wns' => $this->wns ]);
+        $this->setReflectionPropertyValue('dispatchers', [ 'wns' => $this->wns ]);
 
         $tile_payload = $this->getMockBuilder(WNSTilePayload::class)
                              ->disableOriginalConstructor()
@@ -651,7 +651,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
             'fcm'   => $this->fcm,
             'email' => $this->email,
         ];
-        $this->set_reflection_property_value('dispatchers', $dispatchers);
+        $this->setReflectionPropertyValue('dispatchers', $dispatchers);
 
         $apns_payload = $this->getMockBuilder(APNSPayload::class)
                              ->disableOriginalConstructor()
@@ -738,7 +738,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
             'fcm'   => $this->fcm,
             'email' => $this->email,
         ];
-        $this->set_reflection_property_value('dispatchers', $dispatchers);
+        $this->setReflectionPropertyValue('dispatchers', $dispatchers);
 
         $apns_payload = $this->getMockBuilder(APNSPayload::class)
                              ->disableOriginalConstructor()
@@ -813,7 +813,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
 
         $this->class->dispatch($endpoints, $payloads);
 
-        $property    = $this->get_accessible_reflection_property('dispatchers');
+        $property    = $this->getReflectionProperty('dispatchers');
         $dispatchers = $property->getValue($this->class);
 
         $this->assertArrayHasKey('apns', $dispatchers);
@@ -829,7 +829,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
      */
     public function testDispatchMultiCastWithDeferredResponse(): void
     {
-        $this->set_reflection_property_value('dispatchers', [ 'jpush' => $this->jpush ]);
+        $this->setReflectionPropertyValue('dispatchers', [ 'jpush' => $this->jpush ]);
 
         $jpush_payload = $this->getMockBuilder(JPushMessagePayload::class)
                              ->disableOriginalConstructor()
@@ -920,7 +920,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
 
         $this->class->dispatch($endpoints, [ 'jpush'  => [ 'notification' => $jpush_payload ]]);
 
-        $property    = $this->get_accessible_reflection_property('dispatchers');
+        $property    = $this->getReflectionProperty('dispatchers');
         $dispatchers = $property->getValue($this->class);
 
         $this->assertArrayHasKey('jpush', $dispatchers);
@@ -939,7 +939,7 @@ class PushNotificationDispatcherDispatchTest extends PushNotificationDispatcherT
             'fcm'   => $this->fcm,
             'email' => $this->email,
         ];
-        $this->set_reflection_property_value('dispatchers', $dispatchers);
+        $this->setReflectionPropertyValue('dispatchers', $dispatchers);
 
         $data_payload = $this->getMockBuilder(FCMPayload::class)
                              ->disableOriginalConstructor()

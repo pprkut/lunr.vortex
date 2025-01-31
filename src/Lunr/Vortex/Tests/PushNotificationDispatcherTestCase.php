@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the PushNotificationDispatcherTest class.
+ * This file contains the PushNotificationDispatcherTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2024 Move Agency Group B.V., Zwolle, The Netherlands
  * SPDX-License-Identifier: MIT
@@ -9,7 +9,7 @@
 
 namespace Lunr\Vortex\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher;
 use Lunr\Vortex\APNS\ApnsPHP\APNSResponse;
 use Lunr\Vortex\Email\EmailDispatcher;
@@ -31,7 +31,7 @@ use PHPUnit\Framework\MockObject\Stub;
  *
  * @covers PushNotificationDispatcher
  */
-abstract class PushNotificationDispatcherTest extends LunrBaseTest
+abstract class PushNotificationDispatcherTestCase extends LunrBaseTestCase
 {
 
     /**

@@ -18,7 +18,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\PushNotificationDispatcher
  */
-class PushNotificationDispatcherGetTest extends PushNotificationDispatcherTest
+class PushNotificationDispatcherGetTest extends PushNotificationDispatcherTestCase
 {
 
     /**
@@ -49,7 +49,7 @@ class PushNotificationDispatcherGetTest extends PushNotificationDispatcherTest
             ],
         ];
 
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $expected = [
             [
@@ -85,7 +85,7 @@ class PushNotificationDispatcherGetTest extends PushNotificationDispatcherTest
             ],
         ];
 
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $expected = [
             [
@@ -125,7 +125,7 @@ class PushNotificationDispatcherGetTest extends PushNotificationDispatcherTest
             ],
         ];
 
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $this->assertEquals([], $this->class->get_endpoints_by_status([]));
     }
@@ -152,7 +152,7 @@ class PushNotificationDispatcherGetTest extends PushNotificationDispatcherTest
             ],
         ];
 
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $this->assertSame($statuses, $this->class->get_statuses());
     }
@@ -183,7 +183,7 @@ class PushNotificationDispatcherGetTest extends PushNotificationDispatcherTest
             ],
         ];
 
-        $this->set_reflection_property_value('broadcast_statuses', $broadcast_statuses);
+        $this->setReflectionPropertyValue('broadcast_statuses', $broadcast_statuses);
 
         $this->assertSame($broadcast_statuses, $this->class->get_broadcast_statuses());
     }

@@ -14,7 +14,7 @@ namespace Lunr\Vortex\Tests;
  *
  * @covers Lunr\Vortex\PushNotificationDispatcher
  */
-class PushNotificationDispatcherSetupTest extends PushNotificationDispatcherTest
+class PushNotificationDispatcherSetupTest extends PushNotificationDispatcherTestCase
 {
 
     /**
@@ -24,7 +24,7 @@ class PushNotificationDispatcherSetupTest extends PushNotificationDispatcherTest
      */
     public function testRegisterDispatcher(): void
     {
-        $property = $this->get_accessible_reflection_property('dispatchers');
+        $property = $this->getReflectionProperty('dispatchers');
         $before   = $property->getValue($this->class);
 
         $this->assertArrayEmpty($before);
