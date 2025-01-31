@@ -19,7 +19,7 @@ use ApnsPHP\Message\Priority;
  *
  * @covers Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher
  */
-class APNSDispatcherBuildForPayloadTest extends APNSDispatcherTest
+class APNSDispatcherBuildForPayloadTest extends APNSDispatcherTestCase
 {
 
     /**
@@ -71,7 +71,7 @@ class APNSDispatcherBuildForPayloadTest extends APNSDispatcherTest
                             ->method('get_payload')
                             ->willReturn($payload);
 
-        $return = $this->get_reflection_method('build_message_for_payload')
+        $return = $this->getReflectionMethod('build_message_for_payload')
                        ->invokeArgs($this->class, [ $this->alert_payload ]);
 
         $this->assertEquals($message, $return);
@@ -144,7 +144,7 @@ class APNSDispatcherBuildForPayloadTest extends APNSDispatcherTest
                          ->method('get_payload')
                          ->willReturn($payload);
 
-        $return = $this->get_reflection_method('build_live_activity_for_payload')
+        $return = $this->getReflectionMethod('build_live_activity_for_payload')
                        ->invokeArgs($this->class, [ $this->la_payload ]);
 
         $this->assertEquals($message, $return);

@@ -14,7 +14,7 @@ namespace Lunr\Vortex\APNS\Tests;
  *
  * @covers \Lunr\Vortex\APNS\APNSLiveActivityPayload
  */
-class APNSLiveActivityPayloadGetTest extends APNSLiveActivityPayloadTest
+class APNSLiveActivityPayloadGetTest extends APNSLiveActivityPayloadTestCase
 {
 
     /**
@@ -31,7 +31,7 @@ class APNSLiveActivityPayloadGetTest extends APNSLiveActivityPayloadTest
         $file     = TEST_STATICS . $file;
         $elements = $data_array;
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertJsonStringEqualsJsonFile($file, json_encode($this->class->get_payload()));
     }

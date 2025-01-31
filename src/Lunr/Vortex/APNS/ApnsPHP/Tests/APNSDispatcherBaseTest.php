@@ -17,7 +17,7 @@ use Lunr\Halo\PropertyTraits\PsrLoggerTestTrait;
  *
  * @covers Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher
  */
-class APNSDispatcherBaseTest extends APNSDispatcherTest
+class APNSDispatcherBaseTest extends APNSDispatcherTestCase
 {
 
     use PsrLoggerTestTrait;

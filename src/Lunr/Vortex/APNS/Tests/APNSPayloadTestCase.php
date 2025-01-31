@@ -1,24 +1,27 @@
 <?php
 
 /**
- * This file contains the APNSAlertPayloadTest class.
+ * This file contains the APNSPayloadTestCase class.
  *
- * SPDX-FileCopyrightText: Copyright 2024 Move Agency Group B.V., Zwolle, The Netherlands
+ * SPDX-FileCopyrightText: Copyright 2014 M2mobi B.V., Amsterdam, The Netherlands
+ * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
  * SPDX-License-Identifier: MIT
  */
 
 namespace Lunr\Vortex\APNS\Tests;
 
-use Lunr\Halo\LunrBaseTest;
-use Lunr\Vortex\APNS\APNSAlertPayload;
+use Lunr\Halo\LunrBaseTestCase;
+use Lunr\Vortex\APNS\APNSPayload;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 
 /**
  * This class contains common setup routines, providers
- * and shared attributes for testing the APNSAlertPayload class.
+ * and shared attributes for testing the APNSPayload class.
  *
- * @covers Lunr\Vortex\APNS\APNSAlertPayload
+ * @covers Lunr\Vortex\APNS\APNSPayload
  */
-abstract class APNSAlertPayloadTest extends LunrBaseTest
+abstract class APNSPayloadTestCase extends LunrBaseTestCase
 {
 
     /**
@@ -29,9 +32,9 @@ abstract class APNSAlertPayloadTest extends LunrBaseTest
 
     /**
      * Instance of the tested class.
-     * @var APNSAlertPayload
+     * @var APNSPayload&MockObject&Stub
      */
-    protected APNSAlertPayload $class;
+    protected APNSPayload&MockObject&Stub $class;
 
     /**
      * Testcase Constructor.
@@ -50,7 +53,8 @@ abstract class APNSAlertPayloadTest extends LunrBaseTest
 
         $this->payload = json_encode($elements_array);
 
-        $this->class = new APNSAlertPayload();
+        $this->class = $this->getMockBuilder(APNSPayload::class)
+                            ->getMockForAbstractClass();
 
         parent::baseSetUp($this->class);
     }

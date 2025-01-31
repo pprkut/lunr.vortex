@@ -18,7 +18,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\APNS\ApnsPHP\APNSResponse
  */
-class APNSResponseGetStatusTest extends APNSResponseTest
+class APNSResponseGetStatusTest extends APNSResponseTestCase
 {
 
     /**
@@ -90,7 +90,7 @@ class APNSResponseGetStatusTest extends APNSResponseTest
      */
     public function testGetStatus($statuses, $status): void
     {
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $result = $this->class->get_status('endpoint_param');
 

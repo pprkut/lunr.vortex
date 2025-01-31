@@ -17,7 +17,7 @@ use ApnsPHP\Message\Priority;
  *
  * @covers Lunr\Vortex\APNS\APNSPayload
  */
-class APNSPayloadSetTest extends APNSPayloadTest
+class APNSPayloadSetTest extends APNSPayloadTestCase
 {
 
     /**
@@ -46,7 +46,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_alert('test');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('body', $value);
         $this->assertEquals('test', $value['body']);
@@ -61,7 +61,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_body('test');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('body', $value);
         $this->assertEquals('test', $value['body']);
@@ -86,7 +86,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_sound('test');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('sound', $value);
         $this->assertEquals('test', $value['sound']);
@@ -111,7 +111,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_thread_id('test');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('thread_id', $value);
         $this->assertEquals('test', $value['thread_id']);
@@ -136,7 +136,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_category('test');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('category', $value);
         $this->assertEquals('test', $value['category']);
@@ -161,7 +161,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_content_available(TRUE);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('content_available', $value);
         $this->assertEquals(TRUE, $value['content_available']);
@@ -186,7 +186,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_title('title');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('title', $value);
         $this->assertEquals('title', $value['title']);
@@ -215,7 +215,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_custom_data($key, $value);
 
-        $result = $this->get_reflection_property_value('elements');
+        $result = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('custom_data', $result);
         $this->assertSame([ $key => $value ], $result['custom_data']);
@@ -240,7 +240,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_badge(5);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('badge', $value);
         $this->assertEquals(5, $value['badge']);
@@ -265,7 +265,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_collapse_key('key');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('collapse_key', $value);
         $this->assertEquals('key', $value['collapse_key']);
@@ -290,7 +290,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_topic('key');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('topic', $value);
         $this->assertEquals('key', $value['topic']);
@@ -315,7 +315,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_priority(Priority::ConsiderPowerUsage);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('priority', $value);
         $this->assertEquals(Priority::ConsiderPowerUsage, $value['priority']);
@@ -340,7 +340,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_identifier('key');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('identifier', $value);
         $this->assertEquals('key', $value['identifier']);
@@ -365,7 +365,7 @@ class APNSPayloadSetTest extends APNSPayloadTest
     {
         $this->class->set_mutable_content(TRUE);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('mutable_content', $value);
         $this->assertEquals(TRUE, $value['mutable_content']);

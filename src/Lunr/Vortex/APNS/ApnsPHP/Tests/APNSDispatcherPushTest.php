@@ -25,7 +25,7 @@ use Lunr\Vortex\WNS\WNSTilePayload;
  *
  * @covers Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher
  */
-class APNSDispatcherPushTest extends APNSDispatcherTest
+class APNSDispatcherPushTest extends APNSDispatcherTestCase
 {
 
     /**

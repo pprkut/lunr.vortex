@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the APNSResponseTest class.
+ * This file contains the APNSResponseTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2016 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -11,7 +11,7 @@
 namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
 use ApnsPHP\Message;
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\APNS\ApnsPHP\APNSResponse;
 
 /**
@@ -20,7 +20,7 @@ use Lunr\Vortex\APNS\ApnsPHP\APNSResponse;
  *
  * @covers Lunr\Vortex\APNS\ApnsPHP\APNSResponse
  */
-abstract class APNSResponseTest extends LunrBaseTest
+abstract class APNSResponseTestCase extends LunrBaseTestCase
 {
 
     /**

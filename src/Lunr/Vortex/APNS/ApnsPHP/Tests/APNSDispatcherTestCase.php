@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the APNSDispatcherTest class.
+ * This file contains the APNSDispatcherTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2016 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -11,7 +11,7 @@
 namespace Lunr\Vortex\APNS\ApnsPHP\Tests;
 
 use ApnsPHP\Push;
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\APNS\APNSAlertPayload;
 use Lunr\Vortex\APNS\APNSLiveActivityPayload;
 use Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher;
@@ -25,7 +25,7 @@ use Psr\Log\LoggerInterface;
  *
  * @covers Lunr\Vortex\APNS\ApnsPHP\APNSDispatcher
  */
-abstract class APNSDispatcherTest extends LunrBaseTest
+abstract class APNSDispatcherTestCase extends LunrBaseTestCase
 {
 
     /**

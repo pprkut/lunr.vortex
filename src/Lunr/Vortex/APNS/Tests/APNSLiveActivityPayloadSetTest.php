@@ -16,7 +16,7 @@ use ApnsPHP\Message\LiveActivityEvent;
  *
  * @covers Lunr\Vortex\APNS\APNSLiveActivityPayload
  */
-class APNSLiveActivityPayloadSetTest extends APNSLiveActivityPayloadTest
+class APNSLiveActivityPayloadSetTest extends APNSLiveActivityPayloadTestCase
 {
 
     /**
@@ -28,7 +28,7 @@ class APNSLiveActivityPayloadSetTest extends APNSLiveActivityPayloadTest
     {
         $this->class->set_event(LiveActivityEvent::Start);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('event', $value);
         $this->assertEquals(LiveActivityEvent::Start, $value['event']);
@@ -53,7 +53,7 @@ class APNSLiveActivityPayloadSetTest extends APNSLiveActivityPayloadTest
     {
         $this->class->set_content_state([]);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('contentState', $value);
         $this->assertEquals([], $value['contentState']);
@@ -78,7 +78,7 @@ class APNSLiveActivityPayloadSetTest extends APNSLiveActivityPayloadTest
     {
         $this->class->set_attributes([]);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('attributes', $value);
         $this->assertEquals([], $value['attributes']);
@@ -103,7 +103,7 @@ class APNSLiveActivityPayloadSetTest extends APNSLiveActivityPayloadTest
     {
         $this->class->set_attributes_type('type');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('attributesType', $value);
         $this->assertEquals('type', $value['attributesType']);
@@ -128,7 +128,7 @@ class APNSLiveActivityPayloadSetTest extends APNSLiveActivityPayloadTest
     {
         $this->class->set_stale_timestamp(1);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('staleTime', $value);
         $this->assertEquals(1, $value['staleTime']);
@@ -153,7 +153,7 @@ class APNSLiveActivityPayloadSetTest extends APNSLiveActivityPayloadTest
     {
         $this->class->set_dismiss_timestamp(1);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('dismissTime', $value);
         $this->assertEquals(1, $value['dismissTime']);

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the APNSLiveActivityPayloadTest class.
+ * This file contains the APNSLiveActivityPayloadTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2024 Move Agency Group B.V., Zwolle, The Netherlands
  * SPDX-License-Identifier: MIT
@@ -9,7 +9,7 @@
 
 namespace Lunr\Vortex\APNS\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\APNS\APNSLiveActivityPayload;
 
 /**
@@ -18,7 +18,7 @@ use Lunr\Vortex\APNS\APNSLiveActivityPayload;
  *
  * @covers \Lunr\Vortex\APNS\APNSLiveActivityPayload
  */
-abstract class APNSLiveActivityPayloadTest extends LunrBaseTest
+abstract class APNSLiveActivityPayloadTestCase extends LunrBaseTestCase
 {
 
     /**

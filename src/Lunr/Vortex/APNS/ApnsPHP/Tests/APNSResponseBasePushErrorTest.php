@@ -19,7 +19,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\APNS\ApnsPHP\APNSResponse
  */
-class APNSResponseBasePushErrorTest extends APNSResponseTest
+class APNSResponseBasePushErrorTest extends APNSResponseTestCase
 {
 
     /**

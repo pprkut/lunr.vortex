@@ -14,7 +14,7 @@ namespace Lunr\Vortex\APNS\Tests;
  *
  * @covers Lunr\Vortex\APNS\APNSPayload
  */
-class APNSPayloadBaseTest extends APNSPayloadTest
+class APNSPayloadBaseTest extends APNSPayloadTestCase
 {
 
     /**
