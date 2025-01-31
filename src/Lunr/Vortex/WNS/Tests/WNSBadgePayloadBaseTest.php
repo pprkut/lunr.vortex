@@ -15,7 +15,7 @@ namespace Lunr\Vortex\WNS\Tests;
  *
  * @covers Lunr\Vortex\WNS\WNSBadgePayload
  */
-class WNSBadgePayloadBaseTest extends WNSBadgePayloadTest
+class WNSBadgePayloadBaseTest extends WNSBadgePayloadTestCase
 {
 
     /**
@@ -23,7 +23,7 @@ class WNSBadgePayloadBaseTest extends WNSBadgePayloadTest
      */
     public function testElementsIsInitializedAsEmptyArray(): void
     {
-        $this->assertArrayEmpty($this->get_reflection_property_value('elements'));
+        $this->assertArrayEmpty($this->getReflectionPropertyValue('elements'));
     }
 
 }

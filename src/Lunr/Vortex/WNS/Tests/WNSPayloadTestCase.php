@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the WNSPayloadTest class.
+ * This file contains the WNSPayloadTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2013 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\WNS\WNSPayload;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
@@ -21,7 +21,7 @@ use PHPUnit\Framework\MockObject\Stub;
  *
  * @covers Lunr\Vortex\WNS\WNSPayload
  */
-abstract class WNSPayloadTest extends LunrBaseTest
+abstract class WNSPayloadTestCase extends LunrBaseTestCase
 {
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the WNSResponseTest class.
+ * This file contains the WNSResponseTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2013 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\PushNotificationStatus;
 use Lunr\Vortex\WNS\WNSResponse;
 use Psr\Log\LoggerInterface;
@@ -22,7 +22,7 @@ use WpOrg\Requests\Response\Headers;
  *
  * @covers Lunr\Vortex\WNS\WNSResponse
  */
-abstract class WNSResponseTest extends LunrBaseTest
+abstract class WNSResponseTestCase extends LunrBaseTestCase
 {
 
     /**

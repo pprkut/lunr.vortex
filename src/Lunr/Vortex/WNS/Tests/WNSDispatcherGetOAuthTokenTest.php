@@ -16,7 +16,7 @@ use WpOrg\Requests\Exception as RequestsException;
  * Class WNSDispatcherGetOAuthTokenTest tests the Authentication to the WNS Server
  * @covers Lunr\Vortex\WNS\WNSDispatcher
  */
-class WNSDispatcherGetOAuthTokenTest extends WNSDispatcherTest
+class WNSDispatcherGetOAuthTokenTest extends WNSDispatcherTestCase
 {
 
     /**
@@ -29,8 +29,8 @@ class WNSDispatcherGetOAuthTokenTest extends WNSDispatcherTest
      */
     private function expectFromConfig($client_id, $client_secret): void
     {
-        $this->set_reflection_property_value('client_id', $client_id);
-        $this->set_reflection_property_value('client_secret', $client_secret);
+        $this->setReflectionPropertyValue('client_id', $client_id);
+        $this->setReflectionPropertyValue('client_secret', $client_secret);
     }
 
     /**

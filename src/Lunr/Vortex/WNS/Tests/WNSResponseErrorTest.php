@@ -17,7 +17,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers \Lunr\Vortex\WNS\WNSResponse
  */
-class WNSResponseErrorTest extends WNSResponseTest
+class WNSResponseErrorTest extends WNSResponseTestCase
 {
 
     /**
@@ -41,7 +41,7 @@ class WNSResponseErrorTest extends WNSResponseTest
      */
     public function testStatusIsError(): void
     {
-        $this->assertEquals(PushNotificationStatus::Error, $this->get_reflection_property_value('status'));
+        $this->assertEquals(PushNotificationStatus::Error, $this->getReflectionPropertyValue('status'));
     }
 
     /**
@@ -57,7 +57,7 @@ class WNSResponseErrorTest extends WNSResponseTest
      */
     public function testHttpCodeIsSetCorrectly(): void
     {
-        $this->assertFalse($this->get_reflection_property_value('http_code'));
+        $this->assertFalse($this->getReflectionPropertyValue('http_code'));
     }
 
     /**

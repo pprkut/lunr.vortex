@@ -15,7 +15,7 @@ namespace Lunr\Vortex\WNS\Tests;
  *
  * @covers Lunr\Vortex\WNS\WNSToastPayload
  */
-class WNSToastPayloadGetTest extends WNSToastPayloadTest
+class WNSToastPayloadGetTest extends WNSToastPayloadTestCase
 {
 
     /**
@@ -28,7 +28,7 @@ class WNSToastPayloadGetTest extends WNSToastPayloadTest
         $file     = TEST_STATICS . '/Vortex/wns/toast_title.xml';
         $elements = [ 'text' => [ 'Title' ] ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringMatchesFormatFile($file, $this->class->get_payload());
     }
@@ -43,7 +43,7 @@ class WNSToastPayloadGetTest extends WNSToastPayloadTest
         $file     = TEST_STATICS . '/Vortex/wns/toast_message.xml';
         $elements = [ 'text' => [ 'Message' ] ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringMatchesFormatFile($file, $this->class->get_payload());
     }
@@ -58,7 +58,7 @@ class WNSToastPayloadGetTest extends WNSToastPayloadTest
         $file     = TEST_STATICS . '/Vortex/wns/toast_deeplink.xml';
         $elements = [ 'text' => [], 'template' => 'ToastText01', 'launch' => 'Deeplink' ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringMatchesFormatFile($file, $this->class->get_payload());
     }
@@ -73,7 +73,7 @@ class WNSToastPayloadGetTest extends WNSToastPayloadTest
         $file     = TEST_STATICS . '/Vortex/wns/toast.xml';
         $elements = [ 'text' => [ 'Title', 'Message', 'Hello' ], 'template' => 'ToastText04', 'image' => 'image', 'launch' => 'Deeplink' ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringMatchesFormatFile($file, $this->class->get_payload());
     }

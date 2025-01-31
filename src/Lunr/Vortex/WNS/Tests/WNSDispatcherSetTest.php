@@ -17,7 +17,7 @@ use Lunr\Vortex\WNS\WNSType;
  *
  * @covers Lunr\Vortex\WNS\WNSDispatcher
  */
-class WNSDispatcherSetTest extends WNSDispatcherTest
+class WNSDispatcherSetTest extends WNSDispatcherTestCase
 {
 
     /**
@@ -98,7 +98,7 @@ class WNSDispatcherSetTest extends WNSDispatcherTest
     {
         $this->class->set_type($type);
 
-        $this->assertSame($type, $this->get_reflection_property_value('type'));
+        $this->assertSame($type, $this->getReflectionPropertyValue('type'));
     }
 
     /**
@@ -110,7 +110,7 @@ class WNSDispatcherSetTest extends WNSDispatcherTest
     {
         $this->class->set_type('Android');
 
-        $this->assertEquals(WNSType::RAW, $this->get_reflection_property_value('type'));
+        $this->assertEquals(WNSType::RAW, $this->getReflectionPropertyValue('type'));
     }
 
 }

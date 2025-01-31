@@ -15,7 +15,7 @@ namespace Lunr\Vortex\WNS\Tests;
  *
  * @covers Lunr\Vortex\WNS\WNSTilePayload
  */
-class WNSTilePayloadGetTest extends WNSTilePayloadTest
+class WNSTilePayloadGetTest extends WNSTilePayloadTestCase
 {
 
     /**
@@ -28,7 +28,7 @@ class WNSTilePayloadGetTest extends WNSTilePayloadTest
         $file     = TEST_STATICS . '/Vortex/wns/tile.xml';
         $elements = [ 'text' => [ 'Text' ], 'templates' => [ 'TileSquare150x150Text04', 'TileWide310x150Text03' ], 'image' => [ 'image' ] ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringEqualsFile($file, $this->class->get_payload());
     }
@@ -43,7 +43,7 @@ class WNSTilePayloadGetTest extends WNSTilePayloadTest
         $file     = TEST_STATICS . '/Vortex/wns/tile_image.xml';
         $elements = [ 'text' => [ 'Text' ], 'templates' => [ 'TileSquare150x150Text04', 'TileWide310x150Text03' ], 'image' => [] ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringEqualsFile($file, $this->class->get_payload());
     }
@@ -58,7 +58,7 @@ class WNSTilePayloadGetTest extends WNSTilePayloadTest
         $file     = TEST_STATICS . '/Vortex/wns/tile_square.xml';
         $elements = [ 'text' => [ 'Text' ], 'templates' => [ 'TileSquare150x150Text04' ], 'image' => [] ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringEqualsFile($file, $this->class->get_payload());
     }

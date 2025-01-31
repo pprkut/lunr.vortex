@@ -15,7 +15,7 @@ namespace Lunr\Vortex\WNS\Tests;
  *
  * @covers Lunr\Vortex\WNS\WNSBadgePayload
  */
-class WNSBadgePayloadGetTest extends WNSBadgePayloadTest
+class WNSBadgePayloadGetTest extends WNSBadgePayloadTestCase
 {
 
     /**
@@ -28,7 +28,7 @@ class WNSBadgePayloadGetTest extends WNSBadgePayloadTest
         $file     = TEST_STATICS . '/Vortex/wns/badge.xml';
         $elements = [ 'value' => 2 ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringMatchesFormatFile($file, $this->class->get_payload());
     }

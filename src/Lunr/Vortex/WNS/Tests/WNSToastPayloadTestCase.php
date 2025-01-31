@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the WNSTilePayloadTest class.
+ * This file contains the WNSToastPayloadTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2013 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,30 +10,30 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
-use Lunr\Halo\LunrBaseTest;
-use Lunr\Vortex\WNS\WNSTilePayload;
+use Lunr\Halo\LunrBaseTestCase;
+use Lunr\Vortex\WNS\WNSToastPayload;
 
 /**
  * This class contains common setup routines, providers
- * and shared attributes for testing the WNSTilePayload class.
+ * and shared attributes for testing the WNSToastPayload class.
  *
- * @covers Lunr\Vortex\WNS\WNSTilePayload
+ * @covers Lunr\Vortex\WNS\WNSToastPayload
  */
-abstract class WNSTilePayloadTest extends LunrBaseTest
+abstract class WNSToastPayloadTestCase extends LunrBaseTestCase
 {
 
     /**
      * Instance of the tested class.
-     * @var WNSTilePayload
+     * @var WNSToastPayload
      */
-    protected WNSTilePayload $class;
+    protected WNSToastPayload $class;
 
     /**
      * Testcase Constructor.
      */
     public function setUp(): void
     {
-        $this->class = new WNSTilePayload();
+        $this->class = new WNSToastPayload();
 
         parent::baseSetUp($this->class);
     }

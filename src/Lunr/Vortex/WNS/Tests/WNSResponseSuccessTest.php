@@ -17,7 +17,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\WNS\WNSResponse
  */
-class WNSResponseSuccessTest extends WNSResponseTest
+class WNSResponseSuccessTest extends WNSResponseTestCase
 {
 
     /**
@@ -33,7 +33,7 @@ class WNSResponseSuccessTest extends WNSResponseTest
      */
     public function testHeadersIsSetCorrectly(): void
     {
-        $headers = $this->get_reflection_property_value('headers');
+        $headers = $this->getReflectionPropertyValue('headers');
 
         $this->assertArrayHasKey('X-WNS-Status', $headers);
         $this->assertArrayHasKey('X-WNS-DeviceConnectionStatus', $headers);
@@ -47,7 +47,7 @@ class WNSResponseSuccessTest extends WNSResponseTest
      */
     public function testStatusIsSuccess(): void
     {
-        $this->assertEquals(PushNotificationStatus::Success, $this->get_reflection_property_value('status'));
+        $this->assertEquals(PushNotificationStatus::Success, $this->getReflectionPropertyValue('status'));
     }
 
     /**
@@ -63,7 +63,7 @@ class WNSResponseSuccessTest extends WNSResponseTest
      */
     public function testHttpCodeIsSetCorrectly(): void
     {
-        $this->assertEquals(200, $this->get_reflection_property_value('http_code'));
+        $this->assertEquals(200, $this->getReflectionPropertyValue('http_code'));
     }
 
     /**

@@ -15,7 +15,7 @@ namespace Lunr\Vortex\WNS\Tests;
  *
  * @covers Lunr\Vortex\WNS\WNSTilePayload
  */
-class WNSTilePayloadSetTest extends WNSTilePayloadTest
+class WNSTilePayloadSetTest extends WNSTilePayloadTestCase
 {
 
     /**
@@ -27,7 +27,7 @@ class WNSTilePayloadSetTest extends WNSTilePayloadTest
     {
         $this->class->set_text('&text');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('text', $value);
         $this->assertEquals('&amp;text', $value['text'][0]);
@@ -42,7 +42,7 @@ class WNSTilePayloadSetTest extends WNSTilePayloadTest
     {
         $this->class->set_text('&text', 1);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('text', $value);
         $this->assertEquals('&amp;text', $value['text'][1]);
@@ -57,7 +57,7 @@ class WNSTilePayloadSetTest extends WNSTilePayloadTest
     {
         $this->class->set_text([ 'Hello', 'Text', 'Test' ]);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('text', $value);
         $this->assertEquals([ 'Hello', 'Text', 'Test' ], $value['text']);
@@ -82,7 +82,7 @@ class WNSTilePayloadSetTest extends WNSTilePayloadTest
     {
         $this->class->set_image('&image');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('image', $value);
         $this->assertEquals('&amp;image', $value['image'][0]);
@@ -97,7 +97,7 @@ class WNSTilePayloadSetTest extends WNSTilePayloadTest
     {
         $this->class->set_image('&image', 1);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('image', $value);
         $this->assertEquals('&amp;image', $value['image'][1]);
@@ -112,7 +112,7 @@ class WNSTilePayloadSetTest extends WNSTilePayloadTest
     {
         $this->class->set_image([ 'Hello', 'Image', 'Test' ]);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('image', $value);
         $this->assertEquals([ 'Hello', 'Image', 'Test' ], $value['image']);
@@ -137,7 +137,7 @@ class WNSTilePayloadSetTest extends WNSTilePayloadTest
     {
         $this->class->set_templates([ 'HelloSQ', 'HelloW' ]);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('templates', $value);
         $this->assertEquals([ 'HelloSQ', 'HelloW' ], $value['templates']);

@@ -15,7 +15,7 @@ namespace Lunr\Vortex\WNS\Tests;
  *
  * @covers Lunr\Vortex\WNS\WNSTilePayload
  */
-class WNSTilePayloadBaseTest extends WNSTilePayloadTest
+class WNSTilePayloadBaseTest extends WNSTilePayloadTestCase
 {
 
     /**

@@ -19,7 +19,7 @@ use WpOrg\Requests\Response\Headers;
  *
  * @covers Lunr\Vortex\WNS\WNSResponse
  */
-class WNSResponseSetTest extends WNSResponseTest
+class WNSResponseSetTest extends WNSResponseTestCase
 {
 
     /**
@@ -50,7 +50,7 @@ class WNSResponseSetTest extends WNSResponseTest
 
         $class = new WNSResponse($response, $this->logger, '<?xml version="1.0" encoding="utf-8"?>');
 
-        $value = $this->get_reflection_property('status')
+        $value = $this->getReflectionProperty('status')
                       ->getValue($class);
 
         $this->assertEquals(PushNotificationStatus::Success, $value);
@@ -101,7 +101,7 @@ class WNSResponseSetTest extends WNSResponseTest
 
         $class = new WNSResponse($response, $this->logger, '<?xml version="1.0" encoding="utf-8"?>');
 
-        $value = $this->get_reflection_property('status')
+        $value = $this->getReflectionProperty('status')
                       ->getValue($class);
 
         $this->assertEquals($expected, $value);

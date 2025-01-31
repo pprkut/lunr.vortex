@@ -15,7 +15,7 @@ namespace Lunr\Vortex\WNS\Tests;
  *
  * @covers Lunr\Vortex\WNS\WNSBadgePayload
  */
-class WNSBadgePayloadSetTest extends WNSBadgePayloadTest
+class WNSBadgePayloadSetTest extends WNSBadgePayloadTestCase
 {
 
     /**
@@ -27,7 +27,7 @@ class WNSBadgePayloadSetTest extends WNSBadgePayloadTest
     {
         $this->class->set_value(1);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('value', $value);
         $this->assertEquals(1, $value['value']);

@@ -22,7 +22,7 @@ use WpOrg\Requests\Exception as RequestsException;
  *
  * @covers Lunr\Vortex\WNS\WNSDispatcher
  */
-class WNSDispatcherPushTest extends WNSDispatcherTest
+class WNSDispatcherPushTest extends WNSDispatcherTestCase
 {
 
     /**
@@ -88,7 +88,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
      */
     public function testPushWithoutOauthResetsProperties(): void
     {
-        $this->set_reflection_property_value('type', WNSType::TOAST);
+        $this->setReflectionPropertyValue('type', WNSType::TOAST);
 
         $endpoints = [ 'endpoint' ];
 
@@ -118,7 +118,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
                               ->disableOriginalConstructor()
                               ->getMock();
 
-        $this->set_reflection_property_value('oauth_token', '123456');
+        $this->setReflectionPropertyValue('oauth_token', '123456');
 
         $endpoints = [ 'endpoint' ];
 
@@ -153,7 +153,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
                               ->disableOriginalConstructor()
                               ->getMock();
 
-        $this->set_reflection_property_value('oauth_token', '123456');
+        $this->setReflectionPropertyValue('oauth_token', '123456');
 
         $endpoints = [ 'endpoint' ];
 
@@ -184,7 +184,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
      */
     public function testPushingRawDoesNotSetTargetHeader(): void
     {
-        $this->set_reflection_property_value('oauth_token', '123456');
+        $this->setReflectionPropertyValue('oauth_token', '123456');
 
         $endpoints = [ 'endpoint' ];
 
@@ -215,7 +215,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
      */
     public function testPushReturnsWNSResponseObjectOnRequestFailure(): void
     {
-        $this->set_reflection_property_value('oauth_token', '123456');
+        $this->setReflectionPropertyValue('oauth_token', '123456');
 
         $endpoints = [ 'endpoint' ];
 
@@ -253,7 +253,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
      */
     public function testPushReturnsWNSResponseObject(): void
     {
-        $this->set_reflection_property_value('oauth_token', '123456');
+        $this->setReflectionPropertyValue('oauth_token', '123456');
 
         $endpoints = [ 'endpoint' ];
 
@@ -288,7 +288,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
                               ->disableOriginalConstructor()
                               ->getMock();
 
-        $this->set_reflection_property_value('oauth_token', '123456');
+        $this->setReflectionPropertyValue('oauth_token', '123456');
 
         $endpoints = [ 'endpoint' ];
 
@@ -331,7 +331,7 @@ class WNSDispatcherPushTest extends WNSDispatcherTest
                               ->disableOriginalConstructor()
                               ->getMock();
 
-        $this->set_reflection_property_value('oauth_token', '123456');
+        $this->setReflectionPropertyValue('oauth_token', '123456');
 
         $endpoints = [ 'endpoint' ];
 

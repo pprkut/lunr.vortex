@@ -16,7 +16,7 @@ namespace Lunr\Vortex\WNS\Tests;
  *
  * @covers Lunr\Vortex\WNS\WNSPayload
  */
-class WNSPayloadBaseTest extends WNSPayloadTest
+class WNSPayloadBaseTest extends WNSPayloadTestCase
 {
 
     /**
@@ -30,7 +30,7 @@ class WNSPayloadBaseTest extends WNSPayloadTest
      */
     public function testEscapeString($string, $expected): void
     {
-        $method = $this->get_accessible_reflection_method('escape_string');
+        $method = $this->getReflectionMethod('escape_string');
 
         $this->assertEquals($expected, $method->invokeArgs($this->class, [ $string ]));
     }

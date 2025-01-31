@@ -15,7 +15,7 @@ namespace Lunr\Vortex\WNS\Tests;
  *
  * @covers Lunr\Vortex\WNS\WNSToastPayload
  */
-class WNSToastPayloadSetTest extends WNSToastPayloadTest
+class WNSToastPayloadSetTest extends WNSToastPayloadTestCase
 {
 
     /**
@@ -27,7 +27,7 @@ class WNSToastPayloadSetTest extends WNSToastPayloadTest
     {
         $this->class->set_text('&title');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('text', $value);
         $this->assertEquals('&amp;title', $value['text'][0]);
@@ -42,7 +42,7 @@ class WNSToastPayloadSetTest extends WNSToastPayloadTest
     {
         $this->class->set_text([ 'title', 'message' ]);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('text', $value);
         $this->assertEquals('title', $value['text'][0]);
@@ -68,7 +68,7 @@ class WNSToastPayloadSetTest extends WNSToastPayloadTest
     {
         $this->class->set_text('&message', 1);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('text', $value);
         $this->assertEquals('&amp;message', $value['text'][1]);
@@ -83,7 +83,7 @@ class WNSToastPayloadSetTest extends WNSToastPayloadTest
     {
         $this->class->set_launch('/page&link');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('launch', $value);
         $this->assertEquals('/page&amp;link', $value['launch']);
@@ -108,7 +108,7 @@ class WNSToastPayloadSetTest extends WNSToastPayloadTest
     {
         $this->class->set_template('ToastText04');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('template', $value);
         $this->assertEquals('ToastText04', $value['template']);
@@ -133,7 +133,7 @@ class WNSToastPayloadSetTest extends WNSToastPayloadTest
     {
         $this->class->set_image('https://image.url/img.jpg');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('image', $value);
         $this->assertEquals('https://image.url/img.jpg', $value['image']);

@@ -18,7 +18,7 @@ use Lunr\Vortex\WNS\WNSType;
  *
  * @covers Lunr\Vortex\WNS\WNSDispatcher
  */
-class WNSDispatcherBaseTest extends WNSDispatcherTest
+class WNSDispatcherBaseTest extends WNSDispatcherTestCase
 {
 
     use PsrLoggerTestTrait;
@@ -28,7 +28,7 @@ class WNSDispatcherBaseTest extends WNSDispatcherTest
      */
     public function testRequestsSessionIsSetCorrectly(): void
     {
-        $this->assertSame($this->http, $this->get_reflection_property_value('http'));
+        $this->assertSame($this->http, $this->getReflectionPropertyValue('http'));
     }
 
     /**
@@ -36,7 +36,7 @@ class WNSDispatcherBaseTest extends WNSDispatcherTest
      */
     public function testTypeIsSetToRaw(): void
     {
-        $this->assertSame(WNSType::RAW, $this->get_reflection_property_value('type'));
+        $this->assertSame(WNSType::RAW, $this->getReflectionPropertyValue('type'));
     }
 
     /**
@@ -46,7 +46,7 @@ class WNSDispatcherBaseTest extends WNSDispatcherTest
      */
     public function testGetNewResponseObjectForFailedRequest(): void
     {
-        $method = $this->get_accessible_reflection_method('get_new_response_object_for_failed_request');
+        $method = $this->getReflectionMethod('get_new_response_object_for_failed_request');
 
         $result = $method->invokeArgs($this->class, [ 'http://localhost/' ]);
 

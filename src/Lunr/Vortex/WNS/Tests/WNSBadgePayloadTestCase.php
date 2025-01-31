@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the WNSBadgePayloadTest class.
+ * This file contains the WNSBadgePayloadTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2013 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\WNS\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\WNS\WNSBadgePayload;
 
 /**
@@ -19,7 +19,7 @@ use Lunr\Vortex\WNS\WNSBadgePayload;
  *
  * @covers Lunr\Vortex\WNS\WNSBadgePayload
  */
-abstract class WNSBadgePayloadTest extends LunrBaseTest
+abstract class WNSBadgePayloadTestCase extends LunrBaseTestCase
 {
 
     /**
