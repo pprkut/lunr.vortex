@@ -17,7 +17,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\FCM\FCMResponse
  */
-class FCMResponseAddBatchResponseTest extends FCMResponseTest
+class FCMResponseAddBatchResponseTest extends FCMResponseTestCase
 {
 
     /**
@@ -32,7 +32,7 @@ class FCMResponseAddBatchResponseTest extends FCMResponseTest
             'endpoint2' => PushNotificationStatus::Success,
         ];
 
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $this->class->add_batch_response($this->batch_response, []);
 
@@ -60,7 +60,7 @@ class FCMResponseAddBatchResponseTest extends FCMResponseTest
             'endpoint4' => PushNotificationStatus::Success,
         ];
 
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $this->batch_response->expects($this->exactly(3))
                              ->method('get_status')

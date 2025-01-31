@@ -15,7 +15,7 @@ namespace Lunr\Vortex\FCM\Tests;
  *
  * @covers Lunr\Vortex\FCM\FCMPayload
  */
-class FCMPayloadBaseTest extends FCMPayloadTest
+class FCMPayloadBaseTest extends FCMPayloadTestCase
 {
 
     /**

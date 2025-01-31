@@ -15,7 +15,7 @@ namespace Lunr\Vortex\FCM\Tests;
  *
  * @covers \Lunr\Vortex\FCM\FCMApnsPayload
  */
-class FCMApnsPayloadSetTest extends FCMApnsPayloadTest
+class FCMApnsPayloadSetTest extends FCMApnsPayloadTestCase
 {
 
     /**
@@ -27,7 +27,7 @@ class FCMApnsPayloadSetTest extends FCMApnsPayloadTest
     {
         $this->class->set_collapse_key('test');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('headers', $value);
         $this->assertArrayHasKey('apns-collapse-id', $value['headers']);
@@ -53,7 +53,7 @@ class FCMApnsPayloadSetTest extends FCMApnsPayloadTest
     {
         $this->class->set_content_available(TRUE);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('payload', $value);
         $this->assertArrayHasKey('aps', $value['payload']);
@@ -80,7 +80,7 @@ class FCMApnsPayloadSetTest extends FCMApnsPayloadTest
     {
         $this->class->set_mutable_content(TRUE);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('payload', $value);
         $this->assertArrayHasKey('aps', $value['payload']);
@@ -130,7 +130,7 @@ class FCMApnsPayloadSetTest extends FCMApnsPayloadTest
     {
         $this->class->set_priority($priority);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('headers', $value);
         $this->assertArrayHasKey('apns-priority', $value['headers']);
@@ -156,7 +156,7 @@ class FCMApnsPayloadSetTest extends FCMApnsPayloadTest
     {
         $this->class->set_category('category');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('payload', $value);
         $this->assertArrayHasKey('aps', $value['payload']);
@@ -183,7 +183,7 @@ class FCMApnsPayloadSetTest extends FCMApnsPayloadTest
     {
         $this->class->set_sound('sound');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('payload', $value);
         $this->assertArrayHasKey('aps', $value['payload']);

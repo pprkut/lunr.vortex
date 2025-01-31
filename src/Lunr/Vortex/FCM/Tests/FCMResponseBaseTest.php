@@ -18,7 +18,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\FCM\FCMResponse
  */
-class FCMResponseBaseTest extends FCMResponseTest
+class FCMResponseBaseTest extends FCMResponseTestCase
 {
 
     /**
@@ -26,7 +26,7 @@ class FCMResponseBaseTest extends FCMResponseTest
      */
     public function testStatusesIsInitializedAsEmptyArray(): void
     {
-        $this->assertArrayEmpty($this->get_reflection_property_value('statuses'));
+        $this->assertArrayEmpty($this->getReflectionPropertyValue('statuses'));
     }
 
     /**
@@ -46,7 +46,7 @@ class FCMResponseBaseTest extends FCMResponseTest
      */
     public function testGetBroadcastStatusWhenSet(): void
     {
-        $this->set_reflection_property_value('broadcast_status', PushNotificationStatus::Success);
+        $this->setReflectionPropertyValue('broadcast_status', PushNotificationStatus::Success);
 
         $this->assertSame(PushNotificationStatus::Success, $this->class->get_broadcast_status());
     }
@@ -58,7 +58,7 @@ class FCMResponseBaseTest extends FCMResponseTest
      */
     public function testAddBroadcastResponseSetsStatus(): void
     {
-        $this->set_reflection_property_value('broadcast_status', PushNotificationStatus::Unknown);
+        $this->setReflectionPropertyValue('broadcast_status', PushNotificationStatus::Unknown);
 
         $this->batch_response->expects($this->once())
                              ->method('get_broadcast_status')
@@ -66,7 +66,7 @@ class FCMResponseBaseTest extends FCMResponseTest
 
         $this->class->add_broadcast_response($this->batch_response);
 
-        $this->assertSame(PushNotificationStatus::Success, $this->get_reflection_property_value('broadcast_status'));
+        $this->assertSame(PushNotificationStatus::Success, $this->getReflectionPropertyValue('broadcast_status'));
     }
 
 }

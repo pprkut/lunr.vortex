@@ -19,7 +19,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\FCM\FCMBatchResponse
  */
-class FCMBatchResponseGetStatusTest extends FCMBatchResponseTest
+class FCMBatchResponseGetStatusTest extends FCMBatchResponseTestCase
 {
 
     /**
@@ -48,7 +48,7 @@ class FCMBatchResponseGetStatusTest extends FCMBatchResponseTest
      */
     public function testGetStatusReturnsException(): void
     {
-        $this->set_reflection_property_value('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
+        $this->setReflectionPropertyValue('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid endpoint: Endpoint was not part of this batch!');
@@ -63,8 +63,8 @@ class FCMBatchResponseGetStatusTest extends FCMBatchResponseTest
      */
     public function testGetStatusReturnsUnknown(): void
     {
-        $this->set_reflection_property_value('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
-        $this->set_reflection_property_value('endpoints', [ 'endpoint1', 'endpoint_param' ]);
+        $this->setReflectionPropertyValue('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
+        $this->setReflectionPropertyValue('endpoints', [ 'endpoint1', 'endpoint_param' ]);
 
         $result = $this->class->get_status('endpoint_param');
 
@@ -78,7 +78,7 @@ class FCMBatchResponseGetStatusTest extends FCMBatchResponseTest
      */
     public function testGetStatusSucceeds(): void
     {
-        $this->set_reflection_property_value('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
+        $this->setReflectionPropertyValue('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
 
         $result = $this->class->get_status('endpoint1');
 

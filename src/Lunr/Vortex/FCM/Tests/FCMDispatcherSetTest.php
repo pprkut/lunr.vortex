@@ -17,7 +17,7 @@ use RuntimeException;
  *
  * @covers Lunr\Vortex\FCM\FCMDispatcher
  */
-class FCMDispatcherSetTest extends FCMDispatcherTest
+class FCMDispatcherSetTest extends FCMDispatcherTestCase
 {
 
     /**
@@ -93,14 +93,14 @@ class FCMDispatcherSetTest extends FCMDispatcherTest
      */
     public function testSetPrivateKeyFromFileReturnExceptionIfFileFailedToRead(): void
     {
-        $this->mock_function('file_get_contents', fn() => FALSE);
+        $this->mockFunction('file_get_contents', fn() => FALSE);
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('File does not exists or is not readable!');
 
         $this->class->set_private_key_from_file('private.key');
 
-        $this->unmock_function('file_get_contents');
+        $this->unmockFunction('file_get_contents');
     }
 
     /**
@@ -110,13 +110,13 @@ class FCMDispatcherSetTest extends FCMDispatcherTest
      */
     public function testSetPrivateKeyFromFileSetsPrivateKey(): void
     {
-        $this->mock_function('file_get_contents', fn() => 'key');
+        $this->mockFunction('file_get_contents', fn() => 'key');
 
         $this->class->set_private_key_from_file('private.key');
 
         $this->assertPropertyEquals('private_key', 'key');
 
-        $this->unmock_function('file_get_contents');
+        $this->unmockFunction('file_get_contents');
     }
 
     /**
@@ -126,11 +126,11 @@ class FCMDispatcherSetTest extends FCMDispatcherTest
      */
     public function testSetPrivateKeyFromFileReturnsSelfReference(): void
     {
-        $this->mock_function('file_get_contents', fn() => 'key');
+        $this->mockFunction('file_get_contents', fn() => 'key');
 
         $this->assertEquals($this->class, $this->class->set_private_key_from_file('private.key'));
 
-        $this->unmock_function('file_get_contents');
+        $this->unmockFunction('file_get_contents');
     }
 
     /**

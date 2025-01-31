@@ -17,7 +17,7 @@ use Lunr\Vortex\FCM\FCMAndroidPriority;
  *
  * @covers \Lunr\Vortex\FCM\FCMAndroidPayload
  */
-class FCMAndroidPayloadSetTest extends FCMAndroidPayloadTest
+class FCMAndroidPayloadSetTest extends FCMAndroidPayloadTestCase
 {
 
     /**
@@ -29,7 +29,7 @@ class FCMAndroidPayloadSetTest extends FCMAndroidPayloadTest
     {
         $this->class->set_collapse_key('test');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
         $this->assertArrayHasKey('collapse_key', $value);
         $this->assertEquals('test', $value['collapse_key']);
     }
@@ -53,7 +53,7 @@ class FCMAndroidPayloadSetTest extends FCMAndroidPayloadTest
     {
         $this->class->set_time_to_live(5);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('ttl', $value);
         $this->assertEquals('5s', $value['ttl']);
@@ -78,7 +78,7 @@ class FCMAndroidPayloadSetTest extends FCMAndroidPayloadTest
     {
         $this->class->set_priority(FCMAndroidPriority::Normal);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('priority', $value);
         $this->assertEquals('NORMAL', $value['priority']);
@@ -103,7 +103,7 @@ class FCMAndroidPayloadSetTest extends FCMAndroidPayloadTest
     {
         $this->class->set_category('category');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('notification', $value);
         $this->assertArrayHasKey('click_action', $value['notification']);
@@ -129,7 +129,7 @@ class FCMAndroidPayloadSetTest extends FCMAndroidPayloadTest
     {
         $this->class->set_tag('tag');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('notification', $value);
         $this->assertArrayHasKey('tag', $value['notification']);
@@ -155,7 +155,7 @@ class FCMAndroidPayloadSetTest extends FCMAndroidPayloadTest
     {
         $this->class->set_color('red');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('notification', $value);
         $this->assertArrayHasKey('color', $value['notification']);
@@ -181,7 +181,7 @@ class FCMAndroidPayloadSetTest extends FCMAndroidPayloadTest
     {
         $this->class->set_icon('icon');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('notification', $value);
         $this->assertArrayHasKey('icon', $value['notification']);
@@ -207,7 +207,7 @@ class FCMAndroidPayloadSetTest extends FCMAndroidPayloadTest
     {
         $this->class->set_sound('sound');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('notification', $value);
         $this->assertArrayHasKey('sound', $value['notification']);

@@ -21,7 +21,7 @@ use WpOrg\Requests\Exception\Transport\Curl as CurlException;
  *
  * @covers Lunr\Vortex\FCM\FCMBatchResponse
  */
-class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
+class FCMBatchResponseBasePushTest extends FCMBatchResponseTestCase
 {
 
     /**
@@ -143,7 +143,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushErrorFailedRequestWithSingleEndpoints(): void
     {
-        $this->mock_function('curl_errno', function () { return 10; });
+        $this->mockFunction('curl_errno', function () { return 10; });
 
         $endpoints = [ 'endpoint1' ];
 
@@ -165,7 +165,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TemporaryError ]);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -175,7 +175,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushErrorFailedRequestWithMultipleEndpoints(): void
     {
-        $this->mock_function('curl_errno', function () { return 10; });
+        $this->mockFunction('curl_errno', function () { return 10; });
 
         $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3' ];
 
@@ -217,7 +217,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertyEquals('statuses', $statuses);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -227,7 +227,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushErrorTimeoutWithSingleEndpoints(): void
     {
-        $this->mock_function('curl_errno', function () { return 28; });
+        $this->mockFunction('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint1' ];
 
@@ -249,7 +249,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TemporaryError ]);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -259,7 +259,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushErrorTimeoutWithMultipleEndpoints(): void
     {
-        $this->mock_function('curl_errno', function () { return 28; });
+        $this->mockFunction('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3' ];
 
@@ -301,7 +301,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertyEquals('statuses', $statuses);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -311,7 +311,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushCurlErrorEasyWithSingleEndpoints(): void
     {
-        $this->mock_function('curl_errno', function () { return 28; });
+        $this->mockFunction('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint1' ];
 
@@ -333,7 +333,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TemporaryError ]);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -343,7 +343,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushCurlErrorEasyWithMultipleEndpoints(): void
     {
-        $this->mock_function('curl_errno', function () { return 28; });
+        $this->mockFunction('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3' ];
 
@@ -385,7 +385,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertyEquals('statuses', $statuses);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -395,7 +395,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushCurlErrorMultiWithSingleEndpoints(): void
     {
-        $this->mock_function('curl_errno', function () { return 28; });
+        $this->mockFunction('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint1' ];
 
@@ -417,7 +417,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TemporaryError ]);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -427,7 +427,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushCurlErrorMultiWithMultipleEndpoints(): void
     {
-        $this->mock_function('curl_errno', function () { return 28; });
+        $this->mockFunction('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3' ];
 
@@ -469,7 +469,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertyEquals('statuses', $statuses);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -479,7 +479,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushCurlErrorShareWithSingleEndpoints(): void
     {
-        $this->mock_function('curl_errno', function () { return 28; });
+        $this->mockFunction('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint1' ];
 
@@ -501,7 +501,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::TemporaryError ]);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -511,7 +511,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushCurlErrorShareWithMultipleEndpoints(): void
     {
-        $this->mock_function('curl_errno', function () { return 28; });
+        $this->mockFunction('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3' ];
 
@@ -553,7 +553,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertyEquals('statuses', $statuses);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -764,7 +764,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushErrorFailedRequestWithBroadcast(): void
     {
-        $this->mock_function('curl_errno', function () { return 10; });
+        $this->mockFunction('curl_errno', function () { return 10; });
 
         $endpoints = [];
 
@@ -786,7 +786,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertySame('broadcast_status', PushNotificationStatus::TemporaryError);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -796,7 +796,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
      */
     public function testPushErrorUnknownFailedRequestWithBroadcast(): void
     {
-        $this->mock_function('curl_errno', function () { return 10; });
+        $this->mockFunction('curl_errno', function () { return 10; });
 
         $endpoints = [];
 
@@ -818,7 +818,7 @@ class FCMBatchResponseBasePushTest extends FCMBatchResponseTest
         $this->assertPropertySame('broadcast_status', PushNotificationStatus::Unknown);
         $this->assertPropertySame('responses', $responses);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**

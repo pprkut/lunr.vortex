@@ -17,7 +17,7 @@ use Lunr\Halo\PropertyTraits\PsrLoggerTestTrait;
  *
  * @covers Lunr\Vortex\FCM\FCMDispatcher
  */
-class FCMDispatcherBaseTest extends FCMDispatcherTest
+class FCMDispatcherBaseTest extends FCMDispatcherTestCase
 {
 
     use PsrLoggerTestTrait;
@@ -69,9 +69,9 @@ class FCMDispatcherBaseTest extends FCMDispatcherTest
      */
     public function testGetNewResponseObjectForFailedRequest(): void
     {
-        $this->set_reflection_property_value('project_id', 'fcm-project');
+        $this->setReflectionPropertyValue('project_id', 'fcm-project');
 
-        $method = $this->get_accessible_reflection_method('get_new_response_object_for_failed_request');
+        $method = $this->getReflectionMethod('get_new_response_object_for_failed_request');
 
         $result = $method->invoke($this->class);
 

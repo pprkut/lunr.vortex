@@ -24,7 +24,7 @@ use WpOrg\Requests\Response;
  *
  * @covers Lunr\Vortex\FCM\FCMDispatcher
  */
-class FCMDispatcherConfigureOAuthTokenTest extends FCMDispatcherTest
+class FCMDispatcherConfigureOAuthTokenTest extends FCMDispatcherTestCase
 {
 
     /**
@@ -80,7 +80,7 @@ class FCMDispatcherConfigureOAuthTokenTest extends FCMDispatcherTest
      */
     public function testConfigureOAuthTokenFailsWhenPrivateKeyIsNull(): void
     {
-        $this->set_reflection_property_value('client_email', 'email_client');
+        $this->setReflectionPropertyValue('client_email', 'email_client');
 
         $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('Requesting token failed: No private key provided');
@@ -111,8 +111,8 @@ class FCMDispatcherConfigureOAuthTokenTest extends FCMDispatcherTest
             $this->markTestSkipped('The uopz extension is not available.');
         }
 
-        $this->set_reflection_property_value('client_email', 'email_client');
-        $this->set_reflection_property_value('private_key', 'secret_key');
+        $this->setReflectionPropertyValue('client_email', 'email_client');
+        $this->setReflectionPropertyValue('private_key', 'secret_key');
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Fetching OAuth token for FCM notification(s) failed');
@@ -200,8 +200,8 @@ class FCMDispatcherConfigureOAuthTokenTest extends FCMDispatcherTest
             $this->markTestSkipped('The uopz extension is not available.');
         }
 
-        $this->set_reflection_property_value('client_email', 'email_client');
-        $this->set_reflection_property_value('private_key', 'secret_key');
+        $this->setReflectionPropertyValue('client_email', 'email_client');
+        $this->setReflectionPropertyValue('private_key', 'secret_key');
 
         $this->expectException(UnexpectedValueException::class);
         $this->expectExceptionMessage('Processing json response for fetching OAuth token for FCM notification(s) failed: Syntax error');
@@ -296,8 +296,8 @@ class FCMDispatcherConfigureOAuthTokenTest extends FCMDispatcherTest
             $this->markTestSkipped('The uopz extension is not available.');
         }
 
-        $this->set_reflection_property_value('client_email', 'email_client');
-        $this->set_reflection_property_value('private_key', 'secret_key');
+        $this->setReflectionPropertyValue('client_email', 'email_client');
+        $this->setReflectionPropertyValue('private_key', 'secret_key');
 
         $this->expectException(UnexpectedValueException::class);
         $this->expectExceptionMessage('Fetching OAuth token for FCM notification(s) failed: No access token in the response body');
@@ -392,8 +392,8 @@ class FCMDispatcherConfigureOAuthTokenTest extends FCMDispatcherTest
             $this->markTestSkipped('The uopz extension is not available.');
         }
 
-        $this->set_reflection_property_value('client_email', 'email_client');
-        $this->set_reflection_property_value('private_key', 'secret_key');
+        $this->setReflectionPropertyValue('client_email', 'email_client');
+        $this->setReflectionPropertyValue('private_key', 'secret_key');
 
         $content   = file_get_contents(TEST_STATICS . '/Vortex/fcm/oauth_error.json');
         $error_msg = json_decode($content, TRUE)['error_description'];
@@ -491,8 +491,8 @@ class FCMDispatcherConfigureOAuthTokenTest extends FCMDispatcherTest
             $this->markTestSkipped('The uopz extension is not available.');
         }
 
-        $this->set_reflection_property_value('client_email', 'email_client');
-        $this->set_reflection_property_value('private_key', 'secret_key');
+        $this->setReflectionPropertyValue('client_email', 'email_client');
+        $this->setReflectionPropertyValue('private_key', 'secret_key');
 
         $issued_at  = Mockery::mock(DateTimeImmutable::class);
         $expires_at = Mockery::mock(DateTimeImmutable::class);

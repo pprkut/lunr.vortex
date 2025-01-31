@@ -14,7 +14,7 @@ namespace Lunr\Vortex\FCM\Tests;
  *
  * @covers Lunr\Vortex\FCM\FCMApnsPayload
  */
-class FCMApnsPayloadBaseTest extends FCMApnsPayloadTest
+class FCMApnsPayloadBaseTest extends FCMApnsPayloadTestCase
 {
 
     /**
@@ -32,7 +32,7 @@ class FCMApnsPayloadBaseTest extends FCMApnsPayloadTest
      */
     public function testGetPayloadReturnsElementsArray(): void
     {
-        $this->set_reflection_property_value('elements', $this->payload);
+        $this->setReflectionPropertyValue('elements', $this->payload);
 
         $this->assertSame($this->payload, $this->class->get_payload());
     }

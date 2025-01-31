@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the FCMPayloadTest class.
+ * This file contains the FCMPayloadTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2017 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\FCM\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\FCM\FCMAndroidPayload;
 use Lunr\Vortex\FCM\FCMApnsPayload;
 use Lunr\Vortex\FCM\FCMPayload;
@@ -23,7 +23,7 @@ use PHPUnit\Framework\MockObject\Stub;
  *
  * @covers Lunr\Vortex\FCM\FCMPayload
  */
-abstract class FCMPayloadTest extends LunrBaseTest
+abstract class FCMPayloadTestCase extends LunrBaseTestCase
 {
 
     /**

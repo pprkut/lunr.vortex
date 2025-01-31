@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the FCMDispatcherTest class.
+ * This file contains the FCMDispatcherTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2017 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -12,7 +12,7 @@ namespace Lunr\Vortex\FCM\Tests;
 
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\UnencryptedToken;
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\FCM\FCMDispatcher;
 use Lunr\Vortex\FCM\FCMPayload;
 use Mockery;
@@ -28,7 +28,7 @@ use WpOrg\Requests\Session;
  *
  * @covers Lunr\Vortex\FCM\FCMDispatcher
  */
-abstract class FCMDispatcherTest extends LunrBaseTest
+abstract class FCMDispatcherTestCase extends LunrBaseTestCase
 {
     /**
      * Mock instance of the Requests\Session class.

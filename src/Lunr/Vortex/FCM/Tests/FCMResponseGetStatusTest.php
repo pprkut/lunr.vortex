@@ -17,7 +17,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\FCM\FCMResponse
  */
-class FCMResponseGetStatusTest extends FCMResponseTest
+class FCMResponseGetStatusTest extends FCMResponseTestCase
 {
 
     /**
@@ -78,7 +78,7 @@ class FCMResponseGetStatusTest extends FCMResponseTest
      */
     public function testGetStatus($statuses, $status): void
     {
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $result = $this->class->get_status('endpoint_param');
 

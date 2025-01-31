@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the FCMBatchResponseTest class.
+ * This file contains the FCMBatchResponseTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2017 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\FCM\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\FCM\FCMBatchResponse;
 use Psr\Log\LoggerInterface;
 
@@ -20,7 +20,7 @@ use Psr\Log\LoggerInterface;
  *
  * @covers Lunr\Vortex\FCM\FCMBatchResponse
  */
-abstract class FCMBatchResponseTest extends LunrBaseTest
+abstract class FCMBatchResponseTestCase extends LunrBaseTestCase
 {
 
     /**

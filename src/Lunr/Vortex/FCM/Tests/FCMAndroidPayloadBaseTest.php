@@ -16,7 +16,7 @@ use Lunr\Vortex\FCM\FCMAndroidPriority;
  *
  * @covers Lunr\Vortex\FCM\FCMAndroidPayload
  */
-class FCMAndroidPayloadBaseTest extends FCMAndroidPayloadTest
+class FCMAndroidPayloadBaseTest extends FCMAndroidPayloadTestCase
 {
 
     /**
@@ -34,7 +34,7 @@ class FCMAndroidPayloadBaseTest extends FCMAndroidPayloadTest
      */
     public function testGetPayloadReturnsElementsArray(): void
     {
-        $this->set_reflection_property_value('elements', $this->payload);
+        $this->setReflectionPropertyValue('elements', $this->payload);
 
         $this->assertSame($this->payload, $this->class->get_payload());
     }

@@ -17,7 +17,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\FCM\FCMBatchResponse
  */
-class FCMBatchResponseGetBroadcastStatusTest extends FCMBatchResponseTest
+class FCMBatchResponseGetBroadcastStatusTest extends FCMBatchResponseTestCase
 {
 
     /**
@@ -56,7 +56,7 @@ class FCMBatchResponseGetBroadcastStatusTest extends FCMBatchResponseTest
      */
     public function testGetStatusReturnsUnknown(): void
     {
-        $this->set_reflection_property_value('broadcast_status', PushNotificationStatus::Unknown);
+        $this->setReflectionPropertyValue('broadcast_status', PushNotificationStatus::Unknown);
 
         $this->assertSame(PushNotificationStatus::Unknown, $this->class->get_broadcast_status());
     }

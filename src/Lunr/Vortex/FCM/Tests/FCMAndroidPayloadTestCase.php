@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the FCMAndroidPayloadTest class.
+ * This file contains the FCMAndroidPayloadTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2024 Move Agency Group B.V., Zwolle, The Netherlands
  * SPDX-License-Identifier: MIT
@@ -9,7 +9,7 @@
 
 namespace Lunr\Vortex\FCM\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\FCM\FCMAndroidPayload;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
@@ -20,7 +20,7 @@ use PHPUnit\Framework\MockObject\Stub;
  *
  * @covers Lunr\Vortex\FCM\FCMAndroidPayload
  */
-abstract class FCMAndroidPayloadTest extends LunrBaseTest
+abstract class FCMAndroidPayloadTestCase extends LunrBaseTestCase
 {
 
     /**

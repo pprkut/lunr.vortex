@@ -18,7 +18,7 @@ use Lunr\Vortex\FCM\FCMApnsPayload;
  *
  * @covers Lunr\Vortex\FCM\FCMPayload
  */
-class FCMPayloadGetTest extends FCMPayloadTest
+class FCMPayloadGetTest extends FCMPayloadTestCase
 {
 
     /**
@@ -31,7 +31,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
         $file     = TEST_STATICS . '/Vortex/fcm/collapse_key.json';
         $elements = [ 'collapse_key' => 'test' ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringMatchesFormatFile($file, $this->class->get_json_payload());
     }
@@ -51,7 +51,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
             ],
         ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringMatchesFormatFile($file, $this->class->get_json_payload());
     }
@@ -66,7 +66,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
         $file     = TEST_STATICS . '/Vortex/fcm/time_to_live.json';
         $elements = [ 'time_to_live' => 10 ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringMatchesFormatFile($file, $this->class->get_json_payload());
     }
@@ -89,7 +89,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
             'time_to_live'     => 10,
         ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertStringMatchesFormatFile($file, $this->class->get_json_payload());
     }
@@ -112,8 +112,8 @@ class FCMPayloadGetTest extends FCMPayloadTest
             'time_to_live'     => 10,
         ];
 
-        $this->set_reflection_property_value('elements', $elements);
-        $this->set_reflection_property_value('android_payload', $this->android_payload);
+        $this->setReflectionPropertyValue('elements', $elements);
+        $this->setReflectionPropertyValue('android_payload', $this->android_payload);
 
         $this->android_payload->expects($this->once())
                               ->method('get_payload')
@@ -140,8 +140,8 @@ class FCMPayloadGetTest extends FCMPayloadTest
             'time_to_live'     => 10,
         ];
 
-        $this->set_reflection_property_value('elements', $elements);
-        $this->set_reflection_property_value('apns_payload', $this->apns_payload);
+        $this->setReflectionPropertyValue('elements', $elements);
+        $this->setReflectionPropertyValue('apns_payload', $this->apns_payload);
 
         $this->apns_payload->expects($this->once())
                            ->method('get_payload')
@@ -161,7 +161,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
 
         $this->assertInstanceOf(FCMAndroidPayload::class, $return);
 
-        $property_value = $this->get_reflection_property_value('android_payload');
+        $property_value = $this->getReflectionPropertyValue('android_payload');
 
         $this->assertSame($return, $property_value);
     }
@@ -173,7 +173,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
      */
     public function testAndroidPayloadReturnsSavedPayload(): void
     {
-        $this->set_reflection_property_value('android_payload', $this->android_payload);
+        $this->setReflectionPropertyValue('android_payload', $this->android_payload);
 
         $this->assertSame($this->android_payload, $this->class->android_payload());
     }
@@ -189,7 +189,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
 
         $this->assertInstanceOf(FCMApnsPayload::class, $return);
 
-        $property_value = $this->get_reflection_property_value('apns_payload');
+        $property_value = $this->getReflectionPropertyValue('apns_payload');
 
         $this->assertSame($return, $property_value);
     }
@@ -201,7 +201,7 @@ class FCMPayloadGetTest extends FCMPayloadTest
      */
     public function testGetApnsPayloadReturnsSavedPayload(): void
     {
-        $this->set_reflection_property_value('apns_payload', $this->apns_payload);
+        $this->setReflectionPropertyValue('apns_payload', $this->apns_payload);
 
         $this->assertSame($this->apns_payload, $this->class->apns_payload());
     }

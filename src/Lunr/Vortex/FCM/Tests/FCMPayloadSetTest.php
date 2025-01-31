@@ -17,7 +17,7 @@ use InvalidArgumentException;
  *
  * @covers \Lunr\Vortex\FCM\FCMPayload
  */
-class FCMPayloadSetTest extends FCMPayloadTest
+class FCMPayloadSetTest extends FCMPayloadTestCase
 {
 
     /**
@@ -29,7 +29,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
     {
         $this->class->set_notification([ 'key' => 'value' ]);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('notification', $value);
         $this->assertEquals([ 'key' => 'value' ], $value['notification']);
@@ -57,7 +57,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
 
         $this->class->set_data([ 'test_key' => [ 'value_key' => 'value' ] ]);
 
-        $this->get_reflection_property_value('elements');
+        $this->getReflectionPropertyValue('elements');
     }
 
     /**
@@ -69,7 +69,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
     {
         $this->class->set_data([ 'key' => 'value' ]);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('data', $value);
         $this->assertEquals([ 'key' => 'value' ], $value['data']);
@@ -94,7 +94,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
     {
         $this->class->set_topic('News');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('topic', $value);
         $this->assertEquals('News', $value['topic']);
@@ -122,7 +122,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
     {
         $this->class->set_condition("'TopicA' in topics && 'TopicB' in topics");
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('condition', $value);
         $this->assertEquals("'TopicA' in topics && 'TopicB' in topics", $value['condition']);
@@ -150,7 +150,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
     {
         $this->class->set_options('analytics_label', 'fooBar');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('fcm_options', $value);
         $this->assertArrayHasKey('analytics_label', $value['fcm_options']);
@@ -176,7 +176,7 @@ class FCMPayloadSetTest extends FCMPayloadTest
     {
         $this->class->set_token('endpoint_token');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('token', $value);
         $this->assertEquals('endpoint_token', $value['token']);
