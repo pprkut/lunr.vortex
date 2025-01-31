@@ -15,7 +15,7 @@ namespace Lunr\Vortex\Email\Tests;
  *
  * @covers Lunr\Vortex\Email\EmailPayload
  */
-class EmailPayloadBaseTest extends EmailPayloadTest
+class EmailPayloadBaseTest extends EmailPayloadTestCase
 {
 
     /**
@@ -31,7 +31,7 @@ class EmailPayloadBaseTest extends EmailPayloadTest
             'body_as_html' => FALSE,
         ];
 
-        $this->assertEquals($expected, $this->get_reflection_property_value('elements'));
+        $this->assertEquals($expected, $this->getReflectionPropertyValue('elements'));
     }
 
     /**

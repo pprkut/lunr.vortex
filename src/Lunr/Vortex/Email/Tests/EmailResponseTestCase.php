@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the EmailResponseTest class.
+ * This file contains the EmailResponseTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2014 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\Email\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\Email\EmailResponse;
 
 /**
@@ -18,7 +18,7 @@ use Lunr\Vortex\Email\EmailResponse;
  *
  * @covers Lunr\Vortex\Email\EmailResponse
  */
-abstract class EmailResponseTest extends LunrBaseTest
+abstract class EmailResponseTestCase extends LunrBaseTestCase
 {
 
     /**

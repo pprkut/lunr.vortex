@@ -21,7 +21,7 @@ use PHPMailer\PHPMailer\Exception as PHPMailerException;
  *
  * @covers Lunr\Vortex\Email\EmailDispatcher
  */
-class EmailDispatcherPushTest extends EmailDispatcherTest
+class EmailDispatcherPushTest extends EmailDispatcherTestCase
 {
 
     /**
@@ -77,9 +77,9 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
                           'body_as_html' => FALSE,
                       ]);
 
-        $this->set_reflection_property_value('source', 'sender@domain.com');
+        $this->setReflectionPropertyValue('source', 'sender@domain.com');
 
-        $this->mock_method([ $this->class, 'clone_mail' ], function () { return $this->mail_transport; }, 'private');
+        $this->mockMethod([ $this->class, 'clone_mail' ], function () { return $this->mail_transport; }, 'private');
 
         $this->mail_transport->expects($this->once())
                              ->method('isHTML')
@@ -87,7 +87,7 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->mail_transport->expects($this->once())
                              ->method('setFrom')
-                             ->with($this->get_reflection_property_value('source'));
+                             ->with($this->getReflectionPropertyValue('source'));
 
         $this->mail_transport->expects($this->once())
                              ->method('addAddress')
@@ -111,7 +111,7 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
         $this->assertEquals($this->mail_transport->CharSet, 'UTF-8');
         $this->assertEquals($this->mail_transport->Encoding, 'base64');
 
-        $this->unmock_method([ $this->class, 'clone_mail' ]);
+        $this->unmockMethod([ $this->class, 'clone_mail' ]);
     }
 
     /**
@@ -133,9 +133,9 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
                           'body_as_html' => FALSE,
                       ]);
 
-        $this->set_reflection_property_value('source', 'sender@domain.com');
+        $this->setReflectionPropertyValue('source', 'sender@domain.com');
 
-        $this->mock_method([ $this->class, 'clone_mail' ], function () { return $this->mail_transport; }, 'private');
+        $this->mockMethod([ $this->class, 'clone_mail' ], function () { return $this->mail_transport; }, 'private');
 
         $this->mail_transport->expects($this->once())
                              ->method('isHTML')
@@ -143,7 +143,7 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->mail_transport->expects($this->once())
                              ->method('setFrom')
-                             ->with($this->get_reflection_property_value('source'));
+                             ->with($this->getReflectionPropertyValue('source'));
 
         $this->mail_transport->expects($this->once())
                              ->method('addAddress')
@@ -167,7 +167,7 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
         $this->assertEquals($this->mail_transport->CharSet, 'UTF-8');
         $this->assertEquals($this->mail_transport->Encoding, 'base64');
 
-        $this->unmock_method([ $this->class, 'clone_mail' ]);
+        $this->unmockMethod([ $this->class, 'clone_mail' ]);
     }
 
     /**
@@ -189,9 +189,9 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
                           'body_as_html' => FALSE,
                       ]);
 
-        $this->set_reflection_property_value('source', 'sender@domain.com');
+        $this->setReflectionPropertyValue('source', 'sender@domain.com');
 
-        $this->mock_method([ $this->class, 'clone_mail' ], function () { return $this->mail_transport; }, 'private');
+        $this->mockMethod([ $this->class, 'clone_mail' ], function () { return $this->mail_transport; }, 'private');
 
         $this->mail_transport->expects($this->once())
                              ->method('send')
@@ -203,7 +203,7 @@ class EmailDispatcherPushTest extends EmailDispatcherTest
 
         $this->class->push($this->payload, $endpoints);
 
-        $this->unmock_method([ $this->class, 'clone_mail' ]);
+        $this->unmockMethod([ $this->class, 'clone_mail' ]);
     }
 
 }

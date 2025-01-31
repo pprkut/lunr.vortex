@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the EmailDispatcherTest class.
+ * This file contains the EmailDispatcherTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2014 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\Email\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\Email\EmailDispatcher;
 use Lunr\Vortex\Email\EmailPayload;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -22,7 +22,7 @@ use Psr\Log\LoggerInterface;
  *
  * @covers Lunr\Vortex\Email\EmailDispatcher
  */
-abstract class EmailDispatcherTest extends LunrBaseTest
+abstract class EmailDispatcherTestCase extends LunrBaseTestCase
 {
 
     /**

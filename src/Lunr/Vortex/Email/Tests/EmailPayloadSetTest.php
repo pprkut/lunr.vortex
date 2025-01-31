@@ -15,7 +15,7 @@ namespace Lunr\Vortex\Email\Tests;
  *
  * @covers Lunr\Vortex\Email\EmailPayload
  */
-class EmailPayloadSetTest extends EmailPayloadTest
+class EmailPayloadSetTest extends EmailPayloadTestCase
 {
 
     /**
@@ -27,7 +27,7 @@ class EmailPayloadSetTest extends EmailPayloadTest
     {
         $this->class->set_subject('subject');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $expected = [
             'charset'      => 'UTF-8',
@@ -60,7 +60,7 @@ class EmailPayloadSetTest extends EmailPayloadTest
     {
         $this->class->set_body('body');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $expected = [
             'charset'      => 'UTF-8',
@@ -93,7 +93,7 @@ class EmailPayloadSetTest extends EmailPayloadTest
     {
         $this->class->set_charset('UTF-16');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $expected = [
             'charset'      => 'UTF-16',
@@ -126,7 +126,7 @@ class EmailPayloadSetTest extends EmailPayloadTest
     {
         $this->class->set_encoding('binary');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $expected = [
             'charset'      => 'UTF-8',
@@ -159,7 +159,7 @@ class EmailPayloadSetTest extends EmailPayloadTest
     {
         $this->class->body_as_html(TRUE);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $expected = [
             'charset'      => 'UTF-8',

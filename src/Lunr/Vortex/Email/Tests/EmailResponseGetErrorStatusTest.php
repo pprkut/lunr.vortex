@@ -17,7 +17,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\Email\EmailResponse
  */
-class EmailResponseGetErrorStatusTest extends EmailResponseTest
+class EmailResponseGetErrorStatusTest extends EmailResponseTestCase
 {
 
     /**

@@ -15,7 +15,7 @@ namespace Lunr\Vortex\Email\Tests;
  *
  * @covers Lunr\Vortex\Email\EmailPayload
  */
-class EmailPayloadGetTest extends EmailPayloadTest
+class EmailPayloadGetTest extends EmailPayloadTestCase
 {
 
     /**
@@ -33,7 +33,7 @@ class EmailPayloadGetTest extends EmailPayloadTest
             'encoding' => 'base64',
         ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertSame($payload, $this->class->get_payload());
     }

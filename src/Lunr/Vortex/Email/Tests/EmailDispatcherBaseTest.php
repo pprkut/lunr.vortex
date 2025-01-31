@@ -17,7 +17,7 @@ use Lunr\Halo\PropertyTraits\PsrLoggerTestTrait;
  *
  * @covers Lunr\Vortex\Email\EmailDispatcher
  */
-class EmailDispatcherBaseTest extends EmailDispatcherTest
+class EmailDispatcherBaseTest extends EmailDispatcherTestCase
 {
 
     use PsrLoggerTestTrait;
@@ -35,7 +35,7 @@ class EmailDispatcherBaseTest extends EmailDispatcherTest
      */
     public function testMailIsSetCorrectly(): void
     {
-        $this->assertSame($this->mail_transport, $this->get_reflection_property_value('mail_transport'));
+        $this->assertSame($this->mail_transport, $this->getReflectionPropertyValue('mail_transport'));
     }
 
     /**
@@ -45,7 +45,7 @@ class EmailDispatcherBaseTest extends EmailDispatcherTest
      */
     public function testCloneMailReturnsClonedMailClass(): void
     {
-        $method = $this->get_accessible_reflection_method('clone_mail');
+        $method = $this->getReflectionMethod('clone_mail');
 
         $mail = $method->invoke($this->class);
 

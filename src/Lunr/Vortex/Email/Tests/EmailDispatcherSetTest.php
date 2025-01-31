@@ -15,7 +15,7 @@ namespace Lunr\Vortex\Email\Tests;
  *
  * @covers Lunr\Vortex\Email\EmailDispatcher
  */
-class EmailDispatcherSetTest extends EmailDispatcherTest
+class EmailDispatcherSetTest extends EmailDispatcherTestCase
 {
 
     /**

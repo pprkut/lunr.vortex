@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the EmailPayloadTest class.
+ * This file contains the EmailPayloadTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2013 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\Email\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\Email\EmailPayload;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
@@ -21,7 +21,7 @@ use PHPUnit\Framework\MockObject\Stub;
  *
  * @covers Lunr\Vortex\Email\EmailPayload
  */
-abstract class EmailPayloadTest extends LunrBaseTest
+abstract class EmailPayloadTestCase extends LunrBaseTestCase
 {
 
     /**
