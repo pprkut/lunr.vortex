@@ -22,7 +22,7 @@ use WpOrg\Requests\Exception as RequestsException;
  *
  * @covers \Lunr\Vortex\JPush\JPushDispatcher
  */
-class JPushDispatcherPushTest extends JPushDispatcherTest
+class JPushDispatcherPushTest extends JPushDispatcherTestCase
 {
 
     /**
@@ -90,7 +90,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
                    ->method('post')
                    ->will($this->returnValue($response));
 
-        $method = $this->get_accessible_reflection_method('push_batch');
+        $method = $this->getReflectionMethod('push_batch');
         $result = $method->invokeArgs($this->class, [ $this->payload, &$endpoints ]);
 
         $this->assertInstanceOf('Lunr\Vortex\JPush\JPushBatchResponse', $result);
@@ -124,7 +124,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
                       ->method('get_payload')
                       ->willReturn([ 'collapse_key' => 'abcde-12345' ]);
 
-        $this->set_reflection_property_value('auth_token', 'auth_token');
+        $this->setReflectionPropertyValue('auth_token', 'auth_token');
 
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
@@ -144,7 +144,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
      */
     public function testPushWithFailedRequest(): void
     {
-        $this->mock_function('curl_errno', function () { return 10; });
+        $this->mockFunction('curl_errno', function () { return 10; });
 
         $endpoints = [ 'endpoint' ];
         $url       = 'https://api.jpush.cn/v3/push';
@@ -172,7 +172,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->assertInstanceOf('Lunr\Vortex\JPush\JPushResponse', $result);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -182,7 +182,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
      */
     public function testPushWithTimeoutRequest()
     {
-        $this->mock_function('curl_errno', function () { return 28; });
+        $this->mockFunction('curl_errno', function () { return 28; });
 
         $endpoints = [ 'endpoint' ];
         $url       = 'https://api.jpush.cn/v3/push';
@@ -212,7 +212,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
 
         $this->assertSame($result->get_status('endpoint'), PushNotificationStatus::TemporaryError);
 
-        $this->unmock_function('curl_errno');
+        $this->unmockFunction('curl_errno');
     }
 
     /**
@@ -299,7 +299,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
                       ->method('get_payload')
                       ->willReturn($payload);
 
-        $this->set_reflection_property_value('auth_token', 'auth_token');
+        $this->setReflectionPropertyValue('auth_token', 'auth_token');
 
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
@@ -328,7 +328,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
                       ->method('get_payload')
                       ->willReturn($payload);
 
-        $this->set_reflection_property_value('auth_token', 'auth_token');
+        $this->setReflectionPropertyValue('auth_token', 'auth_token');
 
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
@@ -356,7 +356,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
                       ->method('get_payload')
                       ->willReturn($payload);
 
-        $this->set_reflection_property_value('auth_token', 'auth_token');
+        $this->setReflectionPropertyValue('auth_token', 'auth_token');
 
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 
@@ -382,7 +382,7 @@ class JPushDispatcherPushTest extends JPushDispatcherTest
     {
         $endpoints = [ 'endpoint1', 'endpoint2', 'endpoint3', 'endpoint4', 'endpoint5' ];
 
-        $this->set_reflection_property_value('auth_token', 'auth_token');
+        $this->setReflectionPropertyValue('auth_token', 'auth_token');
 
         $response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
 

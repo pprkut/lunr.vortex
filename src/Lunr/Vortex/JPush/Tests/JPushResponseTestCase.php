@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the JPushResponseTest class.
+ * This file contains the JPushResponseTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2020 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\JPush\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\JPush\JPushResponse;
 
 /**
@@ -19,7 +19,7 @@ use Lunr\Vortex\JPush\JPushResponse;
  *
  * @covers Lunr\Vortex\JPush\JPushResponse
  */
-abstract class JPushResponseTest extends LunrBaseTest
+abstract class JPushResponseTestCase extends LunrBaseTestCase
 {
 
     /**

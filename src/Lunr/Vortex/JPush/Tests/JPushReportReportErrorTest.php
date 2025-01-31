@@ -16,7 +16,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers \Lunr\Vortex\JPush\JPushReport
  */
-class JPushReportReportErrorTest extends JPushReportTest
+class JPushReportReportErrorTest extends JPushReportTestCase
 {
 
     /**
@@ -58,7 +58,7 @@ class JPushReportReportErrorTest extends JPushReportTest
 
         $this->response->status_code = $http_code;
 
-        $method = $this->get_accessible_reflection_method('report_error');
+        $method = $this->getReflectionMethod('report_error');
         $method->invokeArgs($this->class, [ $this->response, &$endpoints ]);
 
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => $status ]);
@@ -80,7 +80,7 @@ class JPushReportReportErrorTest extends JPushReportTest
         $this->response->status_code = 400;
         $this->response->body        = '{"error":{"message":"message_id is invalid"}}';
 
-        $method = $this->get_accessible_reflection_method('report_error');
+        $method = $this->getReflectionMethod('report_error');
         $method->invokeArgs($this->class, [ $this->response, &$endpoints ]);
 
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Error ]);
@@ -102,7 +102,7 @@ class JPushReportReportErrorTest extends JPushReportTest
         $this->response->status_code = 400;
         $this->response->body        = '{"error":{"message":"Msgid does not exist.","code":3002}}';
 
-        $method = $this->get_accessible_reflection_method('report_error');
+        $method = $this->getReflectionMethod('report_error');
         $method->invokeArgs($this->class, [ $this->response, &$endpoints ]);
 
         $this->assertPropertyEquals('statuses', [ 'endpoint1' => PushNotificationStatus::Deferred ]);

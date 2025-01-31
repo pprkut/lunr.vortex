@@ -15,7 +15,7 @@ namespace Lunr\Vortex\JPush\Tests;
  *
  * @covers \Lunr\Vortex\JPush\JPushMessagePayload
  */
-class JPushMessagePayloadGetTest extends JPushMessagePayloadTest
+class JPushMessagePayloadGetTest extends JPushMessagePayloadTestCase
 {
 
     /**
@@ -51,7 +51,7 @@ class JPushMessagePayloadGetTest extends JPushMessagePayloadTest
             'time_to_live'     => 10,
         ];
 
-        $this->set_reflection_property_value('elements', $elements);
+        $this->setReflectionPropertyValue('elements', $elements);
 
         $this->assertEquals($expected, $this->class->get_payload());
     }

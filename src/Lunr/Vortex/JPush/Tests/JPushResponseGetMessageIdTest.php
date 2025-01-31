@@ -16,7 +16,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\JPush\JPushResponse
  */
-class JPushResponseGetMessageIdTest extends JPushResponseTest
+class JPushResponseGetMessageIdTest extends JPushResponseTestCase
 {
 
     /**
@@ -111,7 +111,7 @@ class JPushResponseGetMessageIdTest extends JPushResponseTest
      */
     public function testGetBatch($statuses, $batch): void
     {
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $result = $this->class->get_message_id('endpoint_param');
 

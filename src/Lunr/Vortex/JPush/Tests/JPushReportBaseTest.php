@@ -16,7 +16,7 @@ use Lunr\Halo\PropertyTraits\PsrLoggerTestTrait;
  *
  * @covers \Lunr\Vortex\JPush\JPushReport
  */
-class JPushReportBaseTest extends JPushReportTest
+class JPushReportBaseTest extends JPushReportTestCase
 {
 
     use PsrLoggerTestTrait;
@@ -42,7 +42,7 @@ class JPushReportBaseTest extends JPushReportTest
      */
     public function testAuthTokenIsInitializedAsNull(): void
     {
-        $this->assertNull($this->get_reflection_property_value('auth_token'));
+        $this->assertNull($this->getReflectionPropertyValue('auth_token'));
     }
 
     /**

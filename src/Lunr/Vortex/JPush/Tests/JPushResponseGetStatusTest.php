@@ -17,7 +17,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\JPush\JPushResponse
  */
-class JPushResponseGetStatusTest extends JPushResponseTest
+class JPushResponseGetStatusTest extends JPushResponseTestCase
 {
 
     /**
@@ -112,7 +112,7 @@ class JPushResponseGetStatusTest extends JPushResponseTest
      */
     public function testGetStatus($statuses, $status): void
     {
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $result = $this->class->get_status('endpoint_param');
 

@@ -16,7 +16,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers \Lunr\Vortex\JPush\JPushReport
  */
-class JPushReportGetStatusesTest extends JPushReportTest
+class JPushReportGetStatusesTest extends JPushReportTestCase
 {
 
     /**
@@ -26,7 +26,7 @@ class JPushReportGetStatusesTest extends JPushReportTest
      */
     public function testGetStatusReturnsStatus(): void
     {
-        $this->set_reflection_property_value('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
+        $this->setReflectionPropertyValue('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
 
         $result = $this->class->get_status('endpoint1');
 
@@ -40,7 +40,7 @@ class JPushReportGetStatusesTest extends JPushReportTest
      */
     public function testGetStatusReturnsUnknownIfEndpointDoesNotExists(): void
     {
-        $this->set_reflection_property_value('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
+        $this->setReflectionPropertyValue('statuses', [ 'endpoint1' => PushNotificationStatus::Success ]);
 
         $result = $this->class->get_status('endpoint_unknown');
 

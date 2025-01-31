@@ -14,7 +14,7 @@ namespace Lunr\Vortex\JPush\Tests;
  *
  * @covers \Lunr\Vortex\JPush\JPushNotification3rdPayload
  */
-class JPushNotification3rdPayloadSetTest extends JPushNotification3rdPayloadTest
+class JPushNotification3rdPayloadSetTest extends JPushNotification3rdPayloadTestCase
 {
 
     /**
@@ -26,7 +26,7 @@ class JPushNotification3rdPayloadSetTest extends JPushNotification3rdPayloadTest
     {
         $this->class->set_sound('sound');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('sound', $value['notification_3rd']);
         $this->assertEquals('sound', $value['notification_3rd']['sound']);

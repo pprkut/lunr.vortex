@@ -14,7 +14,7 @@ namespace Lunr\Vortex\JPush\Tests;
  *
  * @covers \Lunr\Vortex\JPush\JPushNotification3rdPayload
  */
-class JPushNotification3rdPayloadBaseTest extends JPushNotification3rdPayloadTest
+class JPushNotification3rdPayloadBaseTest extends JPushNotification3rdPayloadTestCase
 {
 
     /**

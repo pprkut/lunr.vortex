@@ -1,33 +1,33 @@
 <?php
 
 /**
- * This file contains the JPushBatchResponseTest class.
+ * This file contains the JPushReportTestCase class.
  *
- * SPDX-FileCopyrightText: Copyright 2020 M2mobi B.V., Amsterdam, The Netherlands
- * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
+ * SPDX-FileCopyrightText: Copyright 2023 Move Agency Group B.V., Zwolle, The Netherlands
  * SPDX-License-Identifier: MIT
  */
 
 namespace Lunr\Vortex\JPush\Tests;
 
-use Lunr\Halo\LunrBaseTest;
-use Lunr\Vortex\JPush\JPushBatchResponse;
+use Lunr\Halo\LunrBaseTestCase;
+use Lunr\Vortex\JPush\JPushReport;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\LoggerInterface;
 use WpOrg\Requests\Response;
 use WpOrg\Requests\Session;
 
 /**
  * This class contains common setup routines, providers
- * and shared attributes for testing the JPushBatchResponse class.
+ * and shared attributes for testing the JPushReport class.
  *
- * @covers \Lunr\Vortex\JPush\JPushBatchResponse
+ * @covers \Lunr\Vortex\JPush\JPushReport
  */
-abstract class JPushBatchResponseTest extends LunrBaseTest
+abstract class JPushReportTestCase extends LunrBaseTestCase
 {
 
     /**
      * Mock instance of the Requests\Session class.
-     * @var Session|MockObject
+     * @var Session&MockObject
      */
     protected $http;
 
@@ -39,15 +39,15 @@ abstract class JPushBatchResponseTest extends LunrBaseTest
 
     /**
      * Mock instance of the Requests\Response class.
-     * @var Response|MockObject
+     * @var Response&MockObject
      */
     protected $response;
 
     /**
      * Instance of the tested class.
-     * @var JPushBatchResponse
+     * @var JPushReport
      */
-    protected JPushBatchResponse $class;
+    protected JPushReport $class;
 
     /**
      * Testcase Constructor.
@@ -61,6 +61,10 @@ abstract class JPushBatchResponseTest extends LunrBaseTest
         $this->logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 
         $this->response = $this->getMockBuilder('WpOrg\Requests\Response')->getMock();
+
+        $this->class = new JPushReport($this->http, $this->logger, 12, [ 'endpoint1' ]);
+
+        parent::baseSetUp($this->class);
     }
 
     /**

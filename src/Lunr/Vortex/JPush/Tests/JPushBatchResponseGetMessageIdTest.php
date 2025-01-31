@@ -16,7 +16,7 @@ use Lunr\Vortex\JPush\JPushBatchResponse;
  *
  * @covers \Lunr\Vortex\JPush\JPushBatchResponse
  */
-class JPushBatchResponseGetMessageIdTest extends JPushBatchResponseTest
+class JPushBatchResponseGetMessageIdTest extends JPushBatchResponseTestCase
 {
 
     /**

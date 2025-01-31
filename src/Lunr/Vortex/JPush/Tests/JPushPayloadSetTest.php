@@ -15,7 +15,7 @@ namespace Lunr\Vortex\JPush\Tests;
  *
  * @covers \Lunr\Vortex\JPush\JPushPayload
  */
-class JPushPayloadSetTest extends JPushPayloadTest
+class JPushPayloadSetTest extends JPushPayloadTestCase
 {
 
     /**
@@ -27,7 +27,7 @@ class JPushPayloadSetTest extends JPushPayloadTest
     {
         $this->class->set_collapse_key('test');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('apns_collapse_id', $value['options']);
         $this->assertEquals('test', $value['options']['apns_collapse_id']);
@@ -52,7 +52,7 @@ class JPushPayloadSetTest extends JPushPayloadTest
     {
         $this->class->set_time_to_live(5);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('time_to_live', $value['options']);
         $this->assertEquals(5, $value['options']['time_to_live']);
@@ -77,7 +77,7 @@ class JPushPayloadSetTest extends JPushPayloadTest
     {
         $this->class->set_data([ 'key' => 'value' ]);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('extras', $value['notification']['android']);
         $this->assertEquals([ 'key' => 'value' ], $value['notification']['android']['extras']);
@@ -104,7 +104,7 @@ class JPushPayloadSetTest extends JPushPayloadTest
     {
         $this->class->set_notification_identifier('ID');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('cid', $value);
         $this->assertEquals('ID', $value['cid']);
@@ -129,7 +129,7 @@ class JPushPayloadSetTest extends JPushPayloadTest
     {
         $this->class->set_body('BODY');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('alert', $value['notification']['android']);
         $this->assertEquals('BODY', $value['notification']['android']['alert']);
@@ -156,7 +156,7 @@ class JPushPayloadSetTest extends JPushPayloadTest
     {
         $this->class->set_title('Title');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('title', $value['notification']['android']);
         $this->assertEquals('Title', $value['notification']['android']['title']);
@@ -183,7 +183,7 @@ class JPushPayloadSetTest extends JPushPayloadTest
     {
         $this->class->set_category('cats');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('category', $value['notification']['android']);
         $this->assertEquals('cats', $value['notification']['android']['category']);
@@ -209,7 +209,7 @@ class JPushPayloadSetTest extends JPushPayloadTest
     {
         $this->class->set_options('analytics_label', 'fooBar');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('options', $value);
         $this->assertArrayHasKey('analytics_label', $value['options']);

@@ -17,7 +17,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers Lunr\Vortex\JPush\JPushResponse
  */
-class JPushResponseAddBatchResponseTest extends JPushResponseTest
+class JPushResponseAddBatchResponseTest extends JPushResponseTestCase
 {
 
     /**
@@ -32,7 +32,7 @@ class JPushResponseAddBatchResponseTest extends JPushResponseTest
             'endpoint2' => PushNotificationStatus::Success,
         ];
 
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $this->batch_response->expects($this->once())
                              ->method('get_message_id')
@@ -85,7 +85,7 @@ class JPushResponseAddBatchResponseTest extends JPushResponseTest
             ],
         ];
 
-        $this->set_reflection_property_value('statuses', $statuses);
+        $this->setReflectionPropertyValue('statuses', $statuses);
 
         $this->batch_response->expects($this->once())
                              ->method('get_message_id')

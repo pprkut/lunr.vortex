@@ -17,7 +17,7 @@ use Lunr\Halo\PropertyTraits\PsrLoggerTestTrait;
  *
  * @covers \Lunr\Vortex\JPush\JPushDispatcher
  */
-class JPushDispatcherBaseTest extends JPushDispatcherTest
+class JPushDispatcherBaseTest extends JPushDispatcherTestCase
 {
 
     use PsrLoggerTestTrait;
@@ -45,7 +45,7 @@ class JPushDispatcherBaseTest extends JPushDispatcherTest
      */
     public function testGetNewResponseObjectForFailedRequest(): void
     {
-        $method = $this->get_accessible_reflection_method('get_new_response_object_for_failed_request');
+        $method = $this->getReflectionMethod('get_new_response_object_for_failed_request');
 
         $result = $method->invoke($this->class);
 
@@ -72,7 +72,7 @@ class JPushDispatcherBaseTest extends JPushDispatcherTest
      */
     public function testGetBatchResponseReturnsJPushBatchResponseObject(): void
     {
-        $method = $this->get_accessible_reflection_method('get_batch_response');
+        $method = $this->getReflectionMethod('get_batch_response');
         $result = $method->invokeArgs($this->class, [ $this->response, [ 'endpoint' ], '[]' ]);
 
         $this->assertInstanceOf('Lunr\Vortex\JPush\JPushBatchResponse', $result);

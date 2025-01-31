@@ -16,7 +16,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers \Lunr\Vortex\JPush\JPushReport
  */
-class JPushReportReportEndpointErrorTest extends JPushReportTest
+class JPushReportReportEndpointErrorTest extends JPushReportTestCase
 {
 
     /**
@@ -86,7 +86,7 @@ class JPushReportReportEndpointErrorTest extends JPushReportTest
                      ->method('warning')
                      ->with($log_message, $context);
 
-        $method = $this->get_accessible_reflection_method('report_endpoint_error');
+        $method = $this->getReflectionMethod('report_endpoint_error');
         $method->invokeArgs($this->class, [ $endpoint, $error_code ]);
 
         $this->assertPropertyEquals('statuses', [ $endpoint => $status ]);

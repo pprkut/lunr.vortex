@@ -15,7 +15,7 @@ namespace Lunr\Vortex\JPush\Tests;
  *
  * @covers \Lunr\Vortex\JPush\JPushNotificationPayload
  */
-class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTest
+class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTestCase
 {
 
     /**
@@ -27,7 +27,7 @@ class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTest
     {
         $this->class->set_priority(1);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('priority', $value['notification']['android']);
         $this->assertEquals(1, $value['notification']['android']['priority']);
@@ -42,7 +42,7 @@ class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTest
     {
         $this->class->set_priority(25);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('priority', $value['notification']['android']);
         $this->assertEquals(2, $value['notification']['android']['priority']);
@@ -67,7 +67,7 @@ class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTest
     {
         $this->class->set_mutable_content(TRUE);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('mutable-content', $value['notification']['ios']);
         $this->assertEquals(TRUE, $value['notification']['ios']['mutable-content']);
@@ -92,7 +92,7 @@ class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTest
     {
         $this->class->set_content_available(TRUE);
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('content-available', $value['notification']['ios']);
         $this->assertEquals(TRUE, $value['notification']['ios']['content-available']);
@@ -117,7 +117,7 @@ class JPushNotificationPayloadSetTest extends JPushNotificationPayloadTest
     {
         $this->class->set_sound('sound');
 
-        $value = $this->get_reflection_property_value('elements');
+        $value = $this->getReflectionPropertyValue('elements');
 
         $this->assertArrayHasKey('sound', $value['notification']['android']);
         $this->assertEquals('sound', $value['notification']['android']['sound']);

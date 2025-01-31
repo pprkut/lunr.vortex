@@ -15,7 +15,7 @@ namespace Lunr\Vortex\JPush\Tests;
  *
  * @covers Lunr\Vortex\JPush\JPushResponse
  */
-class JPushResponseBaseTest extends JPushResponseTest
+class JPushResponseBaseTest extends JPushResponseTestCase
 {
 
     /**
@@ -23,7 +23,7 @@ class JPushResponseBaseTest extends JPushResponseTest
      */
     public function testStatusesIsInitializedAsEmptyArray(): void
     {
-        $this->assertArrayEmpty($this->get_reflection_property_value('statuses'));
+        $this->assertArrayEmpty($this->getReflectionPropertyValue('statuses'));
     }
 
 }

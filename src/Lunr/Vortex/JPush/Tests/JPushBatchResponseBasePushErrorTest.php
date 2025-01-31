@@ -19,7 +19,7 @@ use Lunr\Vortex\PushNotificationStatus;
  *
  * @covers \Lunr\Vortex\JPush\JPushBatchResponse
  */
-class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTest
+class JPushBatchResponseBasePushErrorTest extends JPushBatchResponseTestCase
 {
 
     /**

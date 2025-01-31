@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the JPushDispatcherTest class.
+ * This file contains the JPushDispatcherTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2020 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,7 +10,7 @@
 
 namespace Lunr\Vortex\JPush\Tests;
 
-use Lunr\Halo\LunrBaseTest;
+use Lunr\Halo\LunrBaseTestCase;
 use Lunr\Vortex\JPush\JPushDispatcher;
 use Lunr\Vortex\JPush\JPushPayload;
 use Psr\Log\LoggerInterface;
@@ -23,7 +23,7 @@ use WpOrg\Requests\Session;
  *
  * @covers \Lunr\Vortex\JPush\JPushDispatcher
  */
-abstract class JPushDispatcherTest extends LunrBaseTest
+abstract class JPushDispatcherTestCase extends LunrBaseTestCase
 {
     /**
      * Mock instance of the Requests\Session class.

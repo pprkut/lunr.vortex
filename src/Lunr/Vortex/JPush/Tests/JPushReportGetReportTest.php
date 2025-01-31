@@ -18,7 +18,7 @@ use WpOrg\Requests\Exception\Http\Status400 as RequestsExceptionHTTP400;
  *
  * @covers \Lunr\Vortex\JPush\JPushReport
  */
-class JPushReportGetReportTest extends JPushReportTest
+class JPushReportGetReportTest extends JPushReportTestCase
 {
 
     /**
@@ -28,9 +28,9 @@ class JPushReportGetReportTest extends JPushReportTest
      */
     public function testGetReportReturnsWhenHttpRequestFails(): void
     {
-        $this->mock_method([ $this->class, 'report_error' ], function ($response) { echo $response->status_code; });
+        $this->mockMethod([ $this->class, 'report_error' ], function ($response) { echo $response->status_code; });
 
-        $this->set_reflection_property_value('auth_token', 'auth_token_24412');
+        $this->setReflectionPropertyValue('auth_token', 'auth_token_24412');
 
         $headers = [
             'Content-Type'  => 'application/json',
@@ -54,7 +54,7 @@ class JPushReportGetReportTest extends JPushReportTest
 
         $this->assertPropertyEquals('statuses', []);
 
-        $this->unmock_method([ $this->class, 'report_error' ]);
+        $this->unmockMethod([ $this->class, 'report_error' ]);
     }
 
     /**
@@ -64,7 +64,7 @@ class JPushReportGetReportTest extends JPushReportTest
      */
     public function testGetReportWithCurlErrors(): void
     {
-        $this->set_reflection_property_value('auth_token', 'auth_token_24412');
+        $this->setReflectionPropertyValue('auth_token', 'auth_token_24412');
 
         $headers = [
             'Content-Type'  => 'application/json',
@@ -109,7 +109,7 @@ class JPushReportGetReportTest extends JPushReportTest
         $this->response->success = TRUE;
         $this->response->body    = $report_content;
 
-        $this->set_reflection_property_value('auth_token', 'auth_token_24412');
+        $this->setReflectionPropertyValue('auth_token', 'auth_token_24412');
 
         $headers = [
             'Content-Type'  => 'application/json',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the JPushMessagePayloadTest class.
+ * This file contains the JPushPayloadTestCase class.
  *
  * SPDX-FileCopyrightText: Copyright 2020 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
@@ -10,16 +10,18 @@
 
 namespace Lunr\Vortex\JPush\Tests;
 
-use Lunr\Halo\LunrBaseTest;
-use Lunr\Vortex\JPush\JPushMessagePayload;
+use Lunr\Halo\LunrBaseTestCase;
+use Lunr\Vortex\JPush\JPushPayload;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 
 /**
  * This class contains common setup routines, providers
- * and shared attributes for testing the JPushMessagePayload class.
+ * and shared attributes for testing the JPushPayload class.
  *
- * @covers Lunr\Vortex\JPush\JPushMessagePayload
+ * @covers Lunr\Vortex\JPush\JPushPayload
  */
-abstract class JPushMessagePayloadTest extends LunrBaseTest
+abstract class JPushPayloadTestCase extends LunrBaseTestCase
 {
 
     /**
@@ -30,9 +32,9 @@ abstract class JPushMessagePayloadTest extends LunrBaseTest
 
     /**
      * Instance of the tested class.
-     * @var JPushMessagePayload
+     * @var JPushPayload&MockObject&Stub
      */
-    protected JPushMessagePayload $class;
+    protected JPushPayload&MockObject&Stub $class;
 
     /**
      * Testcase Constructor.
@@ -51,7 +53,8 @@ abstract class JPushMessagePayloadTest extends LunrBaseTest
 
         $this->payload = json_encode($elements_array);
 
-        $this->class = new JPushMessagePayload();
+        $this->class = $this->getMockBuilder('Lunr\Vortex\JPush\JPushPayload')
+                            ->getMockForAbstractClass();
 
         parent::baseSetUp($this->class);
     }

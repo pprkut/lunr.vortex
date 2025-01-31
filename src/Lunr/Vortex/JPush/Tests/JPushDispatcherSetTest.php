@@ -15,7 +15,7 @@ namespace Lunr\Vortex\JPush\Tests;
  *
  * @covers \Lunr\Vortex\JPush\JPushDispatcher
  */
-class JPushDispatcherSetTest extends JPushDispatcherTest
+class JPushDispatcherSetTest extends JPushDispatcherTestCase
 {
 
     /**

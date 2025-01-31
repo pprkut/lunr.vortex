@@ -1,24 +1,25 @@
 <?php
 
 /**
- * This file contains the JPushNotification3rdPayloadTest class.
+ * This file contains the JPushNotificationPayloadTestCase class.
  *
+ * SPDX-FileCopyrightText: Copyright 2020 M2mobi B.V., Amsterdam, The Netherlands
  * SPDX-FileCopyrightText: Copyright 2022 Move Agency Group B.V., Zwolle, The Netherlands
  * SPDX-License-Identifier: MIT
  */
 
 namespace Lunr\Vortex\JPush\Tests;
 
-use Lunr\Halo\LunrBaseTest;
-use Lunr\Vortex\JPush\JPushNotification3rdPayload;
+use Lunr\Halo\LunrBaseTestCase;
+use Lunr\Vortex\JPush\JPushNotificationPayload;
 
 /**
  * This class contains common setup routines, providers
- * and shared attributes for testing the JPushNotification3rdPayload class.
+ * and shared attributes for testing the JPushNotificationPayload class.
  *
- * @covers Lunr\Vortex\JPush\JPushNotification3rdPayload
+ * @covers Lunr\Vortex\JPush\JPushNotificationPayload
  */
-abstract class JPushNotification3rdPayloadTest extends LunrBaseTest
+abstract class JPushNotificationPayloadTestCase extends LunrBaseTestCase
 {
 
     /**
@@ -29,9 +30,9 @@ abstract class JPushNotification3rdPayloadTest extends LunrBaseTest
 
     /**
      * Instance of the tested class.
-     * @var JPushNotification3rdPayload
+     * @var JPushNotificationPayload
      */
-    protected JPushNotification3rdPayload $class;
+    protected JPushNotificationPayload $class;
 
     /**
      * Testcase Constructor.
@@ -50,7 +51,7 @@ abstract class JPushNotification3rdPayloadTest extends LunrBaseTest
 
         $this->payload = json_encode($elements_array);
 
-        $this->class = new JPushNotification3rdPayload();
+        $this->class = new JPushNotificationPayload();
 
         parent::baseSetUp($this->class);
     }
