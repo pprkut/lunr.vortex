@@ -5,11 +5,19 @@
   "homepage": "https://github.com/lunr-php/lunr.vortex",
   "type": "library",
   "license": "MIT",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/framna-nl-backend/requests.git"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "require": {
     "psr/log": ">=3.0",
     "m2mobi/apns-php": ">=4.0",
     "phpmailer/phpmailer": "~6.4|~7.0",
-    "rmccue/requests": "~2.0",
+    "rmccue/requests": "~2.0 || dev-release/2.0.x",
     "php": ">=8.3",
     "ext-xml": "*"
   },
